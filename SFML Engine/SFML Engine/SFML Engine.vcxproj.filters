@@ -57,7 +57,11 @@
     <ClInclude Include="Astronaut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Helper.h">
+=======
     <ClInclude Include="Player.h">
+>>>>>>> master
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -92,7 +96,11 @@
     <ClCompile Include="Astronaut.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Helper.cpp">
+=======
     <ClCompile Include="Player.cpp">
+>>>>>>> master
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

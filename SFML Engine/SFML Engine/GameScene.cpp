@@ -2,6 +2,7 @@
 #include "GameScene.h"
 
 
+
 GameScene::GameScene(SceneStack& stack, Context context)
 	: Scene(stack, context)
 	, m_screenSize(context.window->getSize())			// Size of the Window
@@ -12,7 +13,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_playo()
 {
 	// Init Astro
-	m_astro.init(context.textures->get(Textures::Astro), sf::Vector2f(0, 0));
+	m_astro.init(context.textures->get(Textures::Astro), 500);
 
 	//	Init Playo
 	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(100, 0));
@@ -55,7 +56,11 @@ bool GameScene::update(sf::Time deltaTime)
 			m_playShockwave = false;
 	}
 
+
+	m_astro.update(deltaTime);
+
 	m_playo.update(deltaTime);
+
 
 	return true;
 }
