@@ -153,10 +153,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedSprite.h" />
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Astronaut.h" />
     <ClInclude Include="GameScene.h" />
-    <ClInclude Include="Helper.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceHolder.h" />
@@ -170,10 +171,11 @@
     <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedSprite.cpp" />
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Astronaut.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SFML Engine.cpp" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "AnimatedSprite.h"
 #include "Astronaut.h"
 #include "Player.h"
 

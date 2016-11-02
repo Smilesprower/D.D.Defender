@@ -3,6 +3,7 @@
 
 
 
+
 GameScene::GameScene(SceneStack& stack, Context context)
 	: Scene(stack, context)
 	, m_screenSize(context.window->getSize())			// Size of the Window
@@ -14,15 +15,10 @@ GameScene::GameScene(SceneStack& stack, Context context)
 {
 	// Init Astro
 	m_astro.init(context.textures->get(Textures::Astro), 500);
-
 	//	Init Playo
 	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(100, 0));
 
 	m_sprite.setTexture(context.textures->get(Textures::GameBackground));	// Gets and Sets the texture from Resourse Holder
-
-	
-
-
 
 	m_shaders.load(Shaders::Shockwave, "../resources/shader/shockwave.vert", "../resources/shader/shockwave.frag");
 	m_shockwave = &m_shaders.get(Shaders::Shockwave);
@@ -43,7 +39,7 @@ void GameScene::draw()
 		window.draw(m_sprite);
 
 	window.draw(m_astro.draw());
-	window.draw(m_playo.draw());
+	//window.draw(m_playo.draw());
 
 }
 
@@ -59,7 +55,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 	m_astro.update(deltaTime);
 
-	m_playo.update(deltaTime);
+	//m_playo.update(deltaTime);
 
 
 	return true;

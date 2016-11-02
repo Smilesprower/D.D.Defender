@@ -1,11 +1,17 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-#include "Helper.h"
+#include "AnimatedSprite.h"
+
 
 class Astronaut
 {
 public:
-
+	enum Anims
+	{
+		WalkLeft,
+		WalkRight,
+		Falling_Abducted,
+	};
 	enum State
 	{
 		Flee,
@@ -19,25 +25,24 @@ public:
 
 	void init(sf::Texture & tex, int xPos);
 	void update(sf::Time deltaTime);
-	sf::Sprite draw();
+	AnimatedSprite draw();
+
 
 private:
-
 	bool m_alive;
 	int m_direction;
 	int m_state;
-
 	sf::Vector2f m_velocity;
 
-	sf::Sprite m_sprite; 
-	sf::IntRect m_dimensions;
+	int GROUND = 500;
+	int RADIUS = 100;
+	int GRAVITY = 100;
+	int MAX_SPEED = 50;
+	int NUM_OF_ANIMS = 3;
 
+	sf::Time m_frameTime;
+	AnimatedSprite m_animatedSprite;
+	std::vector<Animation> m_animations;
+	Animation* m_currAnimation;
 
-	sf::Vector2f target;
-	sf::Text m_text;
-
-	 int GROUND = 934;
-	 int RADIUS = 100;
-	 int GRAVITY = 100;
-	 int MAX_SPEED = 50;
 };
