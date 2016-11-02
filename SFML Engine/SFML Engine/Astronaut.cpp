@@ -24,24 +24,6 @@ void Astronaut::init(sf::Texture & tex, int xPos)
 
 void Astronaut::update(sf::Time deltaTime)
 {
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		m_state = Wander;
-	}
-	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		m_state = Flee;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		m_state = Falling;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		m_state = Abducted;
-	}
-
 	if (m_state == Wander)
 	{
 
