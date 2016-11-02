@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
-
+#include "Astronaut.h"
+#include "Player.h"
 
 class GameScene : public Scene
 {
@@ -22,4 +23,6 @@ private:
 	sf::RectangleShape m_rect;
 	bool m_playShockwave;
 
+	Astronaut m_astro;
+	Player m_playo;
 };

@@ -13,6 +13,8 @@ namespace Textures
 {
 	enum ID
 	{
+		Playo,
+		Astro,
 		GameBackground,
 		PauseBackground,
 		PauseBackgroundOpaque,
