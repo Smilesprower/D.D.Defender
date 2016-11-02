@@ -2,6 +2,7 @@
 #include "GameScene.h"
 
 
+
 GameScene::GameScene(SceneStack& stack, Context context)
 	: Scene(stack, context)
 	, m_screenSize(context.window->getSize())			// Size of the Window
@@ -11,7 +12,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_astro()
 {
 	// Init Astro
-	m_astro.init(context.textures->get(Textures::Astro), sf::Vector2f(0, 0));
+	m_astro.init(context.textures->get(Textures::Astro), 500);
 
 
 	m_sprite.setTexture(context.textures->get(Textures::GameBackground));	// Gets and Sets the texture from Resourse Holder
@@ -50,6 +51,9 @@ bool GameScene::update(sf::Time deltaTime)
 		if (m_clock.getElapsedTime().asSeconds() > 5)
 			m_playShockwave = false;
 	}
+
+	m_astro.update(deltaTime);
+
 
 	return true;
 }
