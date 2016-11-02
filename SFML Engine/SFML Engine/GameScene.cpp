@@ -9,10 +9,13 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_rect(sf::Vector2f(100, 100))
 	, m_playShockwave(false)
 	, m_astro()
+	, m_playo()
 {
 	// Init Astro
 	m_astro.init(context.textures->get(Textures::Astro), sf::Vector2f(0, 0));
 
+	//	Init Playo
+	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(100, 0));
 
 	m_sprite.setTexture(context.textures->get(Textures::GameBackground));	// Gets and Sets the texture from Resourse Holder
 
@@ -39,6 +42,7 @@ void GameScene::draw()
 		window.draw(m_sprite);
 
 	window.draw(m_astro.draw());
+	window.draw(m_playo.draw());
 
 }
 
@@ -50,6 +54,8 @@ bool GameScene::update(sf::Time deltaTime)
 		if (m_clock.getElapsedTime().asSeconds() > 5)
 			m_playShockwave = false;
 	}
+
+	m_playo.update(deltaTime);
 
 	return true;
 }

@@ -26,7 +26,7 @@ private:
 	int m_direction;
 
 	sf::Vector2f m_velocity;
-	sf::Sprite m_sprite; 
+	sf::Sprite m_sprite;
 
 	const int RADIUS = 100;
 	const int MAX_SPEED = 100;
