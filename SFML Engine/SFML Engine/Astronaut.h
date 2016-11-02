@@ -28,6 +28,7 @@ private:
 	int m_state;
 
 	sf::Vector2f m_velocity;
+
 	sf::Sprite m_sprite; 
 	sf::IntRect m_dimensions;
 
