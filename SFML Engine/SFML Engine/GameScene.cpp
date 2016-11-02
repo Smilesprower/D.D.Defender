@@ -9,7 +9,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_rect(sf::Vector2f(100, 100))
 	, m_playShockwave(false)
 {
-	m_sprite.setTexture(context.textures->get(Textures::Player));	// Gets and Sets the texture from Resourse Holder
+	m_sprite.setTexture(context.textures->get(Textures::GameBackground));	// Gets and Sets the texture from Resourse Holder
 
 	m_shaders.load(Shaders::Shockwave, "../resources/shader/shockwave.vert", "../resources/shader/shockwave.frag");
 	m_shockwave = &m_shaders.get(Shaders::Shockwave);

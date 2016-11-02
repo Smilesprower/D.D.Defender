@@ -13,4 +13,6 @@ public:
 
 private:
 	sf::Text m_text;
+	sf::Sprite m_background;
+	sf::Sprite m_background2;
 };

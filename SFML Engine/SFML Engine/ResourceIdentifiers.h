@@ -13,7 +13,9 @@ namespace Textures
 {
 	enum ID
 	{
-		Player
+		GameBackground,
+		PauseBackground,
+		PauseBackgroundOpaque,
 	};
 }
 
