@@ -15,8 +15,10 @@ Application::Application()
 	m_window.setKeyRepeatEnabled(false);								// Disable repeat keys
 	m_window.setVerticalSyncEnabled(true);								// Enable vertical sync
 
-	m_fonts.load(Fonts::PS2P, "../resources/font/PressStart2P.ttf"); 	// Load Fonts
-	m_textures.load(Textures::Player, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	// Load Textures
+	m_fonts.load(Fonts::PS2P, "../resources/font/Digital.ttf"); 	// Load Fonts
+	m_textures.load(Textures::GameBackground, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	// Load Textures
+	m_textures.load(Textures::PauseBackground, "../resources/tex/Menu/PauseMenu.png");	// Load Textures
+	m_textures.load(Textures::PauseBackgroundOpaque, "../resources/tex/Menu/PauseMenu2.png");	// Load Textures
 
 	createScenes();														// Create all the scenes
 	m_sceneStack.pushScene(Scenes::Title);								// Add scene to the stack
