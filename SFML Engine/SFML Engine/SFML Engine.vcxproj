@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Astronaut.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="ResourceHolder.h" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Astronaut.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="SFML Engine.cpp" />
