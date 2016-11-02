@@ -16,9 +16,12 @@ Application::Application()
 	m_window.setVerticalSyncEnabled(true);								// Enable vertical sync
 
 	m_fonts.load(Fonts::PS2P, "../resources/font/Digital.ttf"); 	// Load Fonts
-	m_textures.load(Textures::GameBackground, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	// Load Textures
-	m_textures.load(Textures::PauseBackground, "../resources/tex/Menu/PauseMenu.png");	// Load Textures
-	m_textures.load(Textures::PauseBackgroundOpaque, "../resources/tex/Menu/PauseMenu2.png");	// Load Textures
+
+	m_textures.load(Textures::Astro, "../resources/tex/Game/Astro/astro.png");
+
+	m_textures.load(Textures::GameBackground, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	
+	m_textures.load(Textures::PauseBackground, "../resources/tex/Menu/PauseMenu.png");
+	m_textures.load(Textures::PauseBackgroundOpaque, "../resources/tex/Menu/PauseMenu2.png");
 
 	createScenes();														// Create all the scenes
 	m_sceneStack.pushScene(Scenes::Title);								// Add scene to the stack
