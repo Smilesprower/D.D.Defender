@@ -39,7 +39,7 @@ void GameScene::draw()
 		window.draw(m_sprite);
 
 	window.draw(m_astro.draw());
-	//window.draw(m_playo.draw());
+	window.draw(m_playo.draw());
 
 }
 
@@ -55,7 +55,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 	m_astro.update(deltaTime);
 
-	//m_playo.update(deltaTime);
+	m_playo.update(deltaTime);
 
 
 	return true;
