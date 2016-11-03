@@ -6,7 +6,7 @@
 Player::Player()
 	: m_velocity(0, 0)
 	, m_ACCELERATION(0.05)
-	, m_animatedSprite(sf::seconds(0.2f), true, false)
+	, m_animatedSprite(sf::seconds(0.1f), true, true)
 	, m_animations(NUM_OF_ANIMS)
 {
 }
@@ -20,22 +20,20 @@ void Player::init(sf::Texture & tex, sf::Vector2f pos)
 {
 	m_animations[Anims::MoveUp].setSpriteSheet(tex);
 	m_animations[Anims::MoveUp].addFrame(sf::IntRect(5, 100, 128, 72));
-	m_animations[Anims::MoveUp].addFrame(sf::IntRect(154, 88, 128, 90));
+	//m_animations[Anims::MoveUp].addFrame(sf::IntRect(154, 88, 128, 90));
 
 	m_animations[Anims::MoveDown].setSpriteSheet(tex);
 	m_animations[Anims::MoveDown].addFrame(sf::IntRect(5, 200, 128, 78));
-	m_animations[Anims::MoveDown].addFrame(sf::IntRect(154, 188, 128, 96));
+	//m_animations[Anims::MoveDown].addFrame(sf::IntRect(154, 188, 128, 96));
 
 
-	m_animations[Anims::MoveLeft].setSpriteSheet(tex);
-	m_animations[Anims::MoveLeft].addFrame(sf::IntRect(5, 4, 128, 69));
+	m_animations[Anims::MoveSideways].setSpriteSheet(tex);
+	m_animations[Anims::MoveSideways].addFrame(sf::IntRect(5, 4, 128, 69));
 
-	m_animations[Anims::MoveRight].setSpriteSheet(tex);
-	m_animations[Anims::MoveRight].addFrame(sf::IntRect(5, 4, 128, 69));
 
 	m_animatedSprite.setOrigin(64, 35);
 	m_animatedSprite.setPosition(pos);
-	m_currAnimation = &m_animations[Anims::MoveRight];
+	m_currAnimation = &m_animations[Anims::MoveSideways];
 }
 
 void Player::update(sf::Time deltaTime)
@@ -49,7 +47,7 @@ void Player::Move(sf::Time deltaTime)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		m_currAnimation = &m_animations[Anims::MoveLeft];
+		m_currAnimation = &m_animations[Anims::MoveSideways];
 		m_animatedSprite.setScale(-1, 1);
 		if (m_directionX == Right)
 		{
@@ -63,7 +61,7 @@ void Player::Move(sf::Time deltaTime)
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		m_currAnimation = &m_animations[Anims::MoveRight];
+		m_currAnimation = &m_animations[Anims::MoveSideways];
 		m_animatedSprite.setScale(1, 1);
 		if (m_directionX == Left)
 		{
@@ -114,7 +112,7 @@ void Player::Move(sf::Time deltaTime)
 	}
 	else
 	{
-		m_currAnimation = &m_animations[Anims::MoveLeft];
+		m_currAnimation = &m_animations[Anims::MoveSideways];
 		if (m_velocity.y != 0)
 		{
 			if (m_velocity.y < 0)
@@ -133,7 +131,7 @@ void Player::Move(sf::Time deltaTime)
 	}
 
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);
-	//m_animatedSprite.update(deltaTime);
+	m_animatedSprite.update(deltaTime);
 }
 
 AnimatedSprite Player::draw()

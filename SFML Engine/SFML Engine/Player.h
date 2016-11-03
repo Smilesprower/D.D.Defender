@@ -8,8 +8,7 @@ public:
 	{
 		MoveUp,
 		MoveDown,
-		MoveLeft,
-		MoveRight,
+		MoveSideways,
 	};
 	enum Direction
 	{
