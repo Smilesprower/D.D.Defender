@@ -1,9 +1,15 @@
 #include <SFML\Graphics.hpp>
+#include "AnimatedSprite.h"
 
 class Player
 {
 public:
-
+	enum Anims
+	{
+		MoveUp,
+		MoveDown,
+		MoveSideways,
+	};
 	enum Direction
 	{
 		Left,
@@ -18,7 +24,7 @@ public:
 	void init(sf::Texture & pTex, sf::Vector2f pPos);
 	void update(sf::Time deltaTime);
 	void Move(sf::Time deltaTime);
-	sf::Sprite draw();
+	AnimatedSprite draw();
 
 private:
 
@@ -26,9 +32,14 @@ private:
 	float m_ACCELERATION;
 	int m_directionX;
 	int m_directionY;
-
-	sf::Vector2f m_velocity;
-	sf::Sprite m_sprite;
-
 	const int MAX_SPEED = 5;
+	sf::Vector2f m_velocity;
+
+	int NUM_OF_ANIMS = 4;
+
+	sf::Time m_frameTime;
+	AnimatedSprite m_sprite;
+	std::vector<Animation> m_animations;
+	AnimatedSprite m_animatedSprite;
+	Animation* m_currAnimation;
 };

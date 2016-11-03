@@ -43,7 +43,7 @@ void Astronaut::update(sf::Time deltaTime)
 
 	if (m_state == Wander)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	/*	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			m_currAnimation = &m_animations[Anims::WalkLeft];
 			if (m_animatedSprite.getPosition().x <= 0)
@@ -54,11 +54,11 @@ void Astronaut::update(sf::Time deltaTime)
 			else
 			{
 				m_velocity.x = -MAX_SPEED;
-			}
+			}*/
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
-			m_currAnimation = &m_animations[Anims::WalkRight];
+		/*	m_currAnimation = &m_animations[Anims::WalkRight];
 			int x =m_animatedSprite.getLocalBounds().width;
 
 			if (m_animatedSprite.getPosition().x + m_animatedSprite.getLocalBounds().width >= 800)
@@ -76,7 +76,7 @@ void Astronaut::update(sf::Time deltaTime)
 			m_velocity.x = 0;
 			m_velocity.y = 0;
 			m_animatedSprite.stop();
-		}
+		}*/
 	}
 	else if (m_state == Falling)
 	{

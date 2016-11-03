@@ -18,7 +18,7 @@ Application::Application()
 	m_fonts.load(Fonts::PS2P, "../resources/font/Digital.ttf"); 	// Load Fonts
 
 	m_textures.load(Textures::Astro, "../resources/tex/Game/Astro/astro.png");
-	m_textures.load(Textures::Playo, "../resources/tex/Game/Player/playo.png");
+	m_textures.load(Textures::Playo, "../resources/tex/Game/Player/PlayerAtlas.png");
 
 	m_textures.load(Textures::GameBackground, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	
 	m_textures.load(Textures::PauseBackground, "../resources/tex/Menu/PauseMenu.png");
