@@ -41,7 +41,6 @@ void Player::init(sf::Texture & tex, sf::Vector2f pos)
 void Player::update(sf::Time deltaTime)
 {
 	m_animatedSprite.play(*m_currAnimation);
-
 	Move(deltaTime);
 }
 
@@ -115,6 +114,7 @@ void Player::Move(sf::Time deltaTime)
 	}
 	else
 	{
+		m_currAnimation = &m_animations[Anims::MoveLeft];
 		if (m_velocity.y != 0)
 		{
 			if (m_velocity.y < 0)
@@ -133,7 +133,7 @@ void Player::Move(sf::Time deltaTime)
 	}
 
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);
-	m_animatedSprite.update(deltaTime);
+	//m_animatedSprite.update(deltaTime);
 }
 
 AnimatedSprite Player::draw()
