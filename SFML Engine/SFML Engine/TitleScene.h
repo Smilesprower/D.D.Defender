@@ -14,5 +14,10 @@ public:
 private:
 	sf::Clock clock;
 	sf::Text m_text;
-	sf::Sprite m_sprite;
+	sf::Sprite m_background;
+
+	//	Buttons
+	sf::Sprite m_ButtonPlay;
+	sf::Sprite m_ButtonExit;
+	int m_selectedButton;
 };

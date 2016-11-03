@@ -18,6 +18,8 @@ namespace Textures
 		GameBackground,
 		PauseBackground,
 		PauseBackgroundOpaque,
+		MainMenuBG,
+		Button,
 	};
 }
 
