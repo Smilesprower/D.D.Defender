@@ -26,6 +26,8 @@ public:
 	void Move(sf::Time deltaTime);
 	AnimatedSprite draw();
 
+
+	AnimatedSprite m_animatedSprite;
 private:
 
 	bool m_health;
@@ -38,8 +40,6 @@ private:
 	int NUM_OF_ANIMS = 4;
 
 	sf::Time m_frameTime;
-	AnimatedSprite m_sprite;
 	std::vector<Animation> m_animations;
-	AnimatedSprite m_animatedSprite;
 	Animation* m_currAnimation;
 };

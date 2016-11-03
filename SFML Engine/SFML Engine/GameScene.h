@@ -3,6 +3,7 @@
 #include "AnimatedSprite.h"
 #include "Astronaut.h"
 #include "Player.h"
+#include "Camera.h"
 
 class GameScene : public Scene
 {
@@ -15,7 +16,6 @@ public:
 
 private:
 	sf::Vector2f m_screenSize;
-	sf::View m_view;
 	sf::Text m_text;
 	sf::Sprite m_sprite;
 	ShaderHolder m_shaders;
@@ -26,4 +26,7 @@ private:
 
 	Astronaut m_astro;
 	Player m_playo;
+	Camera m_camera;
+
+	const int NUMOFSCREENS = 3;
 };
