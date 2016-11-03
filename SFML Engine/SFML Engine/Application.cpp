@@ -32,6 +32,7 @@ Application::Application()
 
 	createScenes();														// Create all the scenes
 	m_sceneStack.pushScene(Scenes::Title);								// Add scene to the stack
+
 }
 
 void Application::run()
