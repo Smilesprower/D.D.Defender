@@ -7,7 +7,7 @@
 #include "SceneIdentifiers.h"
 
 Application::Application()
-	: m_window(sf::VideoMode(800, 800), "States")
+	: m_window(sf::VideoMode(1920, 1080), "States")
 	, m_textures()
 	, m_fonts()
 	, m_sceneStack(Scene::Context(m_window, m_textures, m_fonts))
@@ -23,6 +23,12 @@ Application::Application()
 	m_textures.load(Textures::GameBackground, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	
 	m_textures.load(Textures::PauseBackground, "../resources/tex/Menu/PauseMenu.png");
 	m_textures.load(Textures::PauseBackgroundOpaque, "../resources/tex/Menu/PauseMenu2.png");
+
+	//	MainMenu Textures
+	m_textures.load(Textures::MainMenuBG, "../resources/tex/Menu/MainMenuBG.png");
+
+	//	Button Texture
+	m_textures.load(Textures::Button, "../resources/tex/UI/Button.png");
 
 	createScenes();														// Create all the scenes
 	m_sceneStack.pushScene(Scenes::Title);								// Add scene to the stack
