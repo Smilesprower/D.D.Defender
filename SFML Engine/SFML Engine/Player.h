@@ -25,8 +25,6 @@ public:
 	void update(sf::Time deltaTime);
 	void Move(sf::Time deltaTime);
 	AnimatedSprite draw();
-
-
 	AnimatedSprite m_animatedSprite;
 private:
 
@@ -34,7 +32,7 @@ private:
 	float m_ACCELERATION;
 	int m_directionX;
 	int m_directionY;
-	const int MAX_SPEED = 5;
+	const int MAX_SPEED = 100;
 	sf::Vector2f m_velocity;
 
 	int NUM_OF_ANIMS = 4;

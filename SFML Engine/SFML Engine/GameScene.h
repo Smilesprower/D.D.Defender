@@ -15,18 +15,21 @@ public:
 	virtual bool handleEvent(const sf::Event& event);
 
 private:
-	sf::Vector2f m_screenSize;
-	sf::Text m_text;
+	const int OFFSET = 2;
+
+	int m_numOfScreens;
+	sf::Vector2i m_screenSize;
+	sf::Vector2i m_worldSize;
+	sf::Vector2i m_boundries;
+	Camera m_camera;
+
 	sf::Sprite m_sprite;
 	ShaderHolder m_shaders;
 	sf::Shader * m_shockwave;
 	sf::Clock m_clock;
-	sf::RectangleShape m_rect;
 	bool m_playShockwave;
 
 	Astronaut m_astro;
 	Player m_playo;
-	Camera m_camera;
-
-	const int NUMOFSCREENS = 3;
+	sf::Vector2f m_currPlayerPos;
 };

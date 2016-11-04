@@ -129,7 +129,8 @@ void Player::Move(sf::Time deltaTime)
 			}
 		}
 	}
-
+	m_velocity.x *= deltaTime.asSeconds();
+	m_velocity.y *= deltaTime.asSeconds();
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);
 	m_animatedSprite.update(deltaTime);
 }

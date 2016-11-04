@@ -2,11 +2,12 @@
 #include "Camera.h"
 
 
-Camera::Camera()
+Camera::Camera(sf::Vector2i worldSize, sf::Vector2i viewSize)
+	: m_worldSize(worldSize)
+	, m_viewSize(viewSize)
 {
-	m_view.reset(sf::FloatRect(0, 0, 1920, 1080));
+	m_view.reset(sf::FloatRect(0, 0, viewSize.x, viewSize.y));
 	m_view.setViewport(sf::FloatRect(0, 0, 1.0, 1.0));
-
 }
 
 
@@ -15,10 +16,9 @@ Camera::~Camera()
 
 }
 
-sf::View Camera::Update(float p_playerX, sf::Vector2u p_windowSize)
+sf::View Camera::Update(float xPosPlayer)
 {
-	m_viewPosition.x = p_playerX - (p_windowSize.x * 0.5);
-	m_view.reset(sf::FloatRect(m_viewPosition.x, m_viewPosition.y, 1920, 1080));
-
+	// Sets view to centre of the screen
+	m_view.reset(sf::FloatRect(m_viewPosition.x = xPosPlayer - (m_viewSize.x * 0.5), m_viewPosition.y, m_viewSize.x, m_viewSize.y));
 	return m_view;
 }
