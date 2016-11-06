@@ -33,8 +33,11 @@ void Astronaut::init(sf::Texture & tex, int xPos)
 	m_animations[Anims::Falling_Abducted].setSpriteSheet(tex);
 	m_animations[Anims::Falling_Abducted].addFrame(sf::IntRect(0,0,48,48));
 
-	m_animatedSprite.setPosition(sf::Vector2f(200, 300));
 	m_currAnimation = &m_animations[Anims::Falling_Abducted];
+	m_animatedSprite.play(*m_currAnimation);
+	m_animatedSprite.setPosition(sf::Vector2f(200, 300));
+	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
+
 }
 
 void Astronaut::update(sf::Time deltaTime)

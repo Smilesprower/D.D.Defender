@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "AnimatedSprite.h"
+#include "Bullet.h"
 #include "Astronaut.h"
 #include "Player.h"
 #include "Camera.h"
@@ -32,4 +33,5 @@ private:
 	Astronaut m_astro;
 	Player m_playo;
 	sf::Vector2f m_currPlayerPos;
+	Bullet m_testBullet;
 };

@@ -35,7 +35,7 @@ private:
 	int m_state;
 	sf::Vector2f m_velocity;
 
-	int GROUND = 500;
+	int GROUND = 925;
 	int RADIUS = 100;
 	int GRAVITY = 100;
 	int MAX_SPEED = 500;
@@ -45,5 +45,4 @@ private:
 	AnimatedSprite m_animatedSprite;
 	std::vector<Animation> m_animations;
 	Animation* m_currAnimation;
-
 };

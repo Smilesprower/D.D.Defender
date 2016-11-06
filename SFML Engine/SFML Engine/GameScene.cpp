@@ -19,6 +19,9 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	// Init Astro - Give the random Values
 	m_astro.init(context.textures->get(Textures::Astro), 960);
 
+	m_testBullet.init(context.textures->get(Textures::Astro));
+
+
 	//	Init Playo
 	//m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(960, 0));
 
@@ -60,6 +63,8 @@ void GameScene::draw()
 
 	window.draw(m_astro.draw());
 	//window.draw(m_playo.draw());
+	if (m_testBullet.isAlive())
+		window.draw(m_testBullet.draw());
 }
 
 bool GameScene::update(sf::Time deltaTime)
@@ -72,6 +77,10 @@ bool GameScene::update(sf::Time deltaTime)
 	}
 	m_astro.update(deltaTime);
 	//m_playo.update(deltaTime);
+
+	if(m_testBullet.isAlive())
+		m_testBullet.update(deltaTime, m_astro.draw().getPosition());
+
 	return true;
 }
 // Event Input
@@ -93,9 +102,13 @@ bool GameScene::handleEvent(const sf::Event& event)
 				m_shockwave->setUniform("shock_refraction", .5f);
 				m_shockwave->setUniform("shock_width", 0.15f);
 				m_shockwave->setUniform("resolution", sf::Vector2f(1920, 1080));
-				m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_currPlayerPos.y));
+				m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_screenSize.y * 0.5f));
 				m_playShockwave = true;
 			}
+		}
+		if (event.key.code == sf::Keyboard::F)
+		{
+			m_testBullet.setUpMissile(sf::Vector2f(100, 400), m_astro.draw().getPosition(), 2);
 		}
 		if (event.key.code == sf::Keyboard::P)
 		{
