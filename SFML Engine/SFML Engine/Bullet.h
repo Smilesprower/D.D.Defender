@@ -26,11 +26,13 @@ public:
 	AnimatedSprite draw();
 
 private:
-	const float MAX_ROTATION = 0.1f;
+	const float MAX_ROTATION = 2.f;
+	int x = 0;
 	const int MAX_FRAMES_EXPLOSION = 3;
 	const int MISSILE_SPEED = 100;
 	const int BULLET_SPEED = 500;
-	const int MISSILE_TTL = 10;
+	const int MISSILE_TTL = 2;
+	const int NUM_OF_EXP_FRAMES = 8;
 	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);
 	const int NUM_OF_ANIMS = 4;
 
@@ -42,6 +44,7 @@ private:
 	bool m_playerBullet;
 	float m_ttl;
 	float m_rotation;
+	float m_prevRotation;
 
 
 	sf::Vector2f m_velocity;
