@@ -56,7 +56,7 @@ void Player::Move(sf::Time deltaTime)
 
 		if (m_velocity.x > -MAX_SPEED)
 		{
-			m_velocity.x -= 0.1;
+			m_velocity.x -= 500;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
@@ -69,7 +69,7 @@ void Player::Move(sf::Time deltaTime)
 		}
 		if (m_velocity.x < MAX_SPEED)
 		{
-			m_velocity.x += 0.1;
+			m_velocity.x += 500;
 		}
 	}
 	else
@@ -78,16 +78,16 @@ void Player::Move(sf::Time deltaTime)
 		{
 			if (m_velocity.x < 0)
 			{
-				m_velocity.x += m_ACCELERATION;
+				m_velocity.x += m_ACCELERATION * deltaTime.asSeconds();
 			}
 			else if (m_velocity.x > 0)
 			{
-				m_velocity.x -= m_ACCELERATION;
+				m_velocity.x -= m_ACCELERATION * deltaTime.asSeconds();
 			}
-			if (m_velocity.x > -0.1 && m_velocity.x < 0.1)
+			/*if (m_velocity.x > -500 && m_velocity.x < 500)
 			{
 				m_velocity.x = 0;
-			}
+			}*/
 		}
 	}
 
@@ -98,7 +98,7 @@ void Player::Move(sf::Time deltaTime)
 		m_directionY = Up;
 		if (m_velocity.y > -MAX_SPEED)
 		{
-			m_velocity.y -= 0.5;
+			m_velocity.y -= 500;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
@@ -107,7 +107,7 @@ void Player::Move(sf::Time deltaTime)
 		m_directionY = Down;
 		if (m_velocity.y < MAX_SPEED)
 		{
-			m_velocity.y += 0.5;
+			m_velocity.y += 500;
 		}
 	}
 	else
@@ -117,18 +117,19 @@ void Player::Move(sf::Time deltaTime)
 		{
 			if (m_velocity.y < 0)
 			{
-				m_velocity.y += m_ACCELERATION;
+				m_velocity.y += m_ACCELERATION * deltaTime.asSeconds();
 			}
 			else if (m_velocity.y > 0)
 			{
-				m_velocity.y -= m_ACCELERATION;
+				m_velocity.y -= m_ACCELERATION * deltaTime.asSeconds();
 			}
-			if (m_velocity.y > -0.1 && m_velocity.y < 0.1)
+		    /*if (m_velocity.y > -500 && m_velocity.y < 500)
 			{
 				m_velocity.y = 0;
-			}
+			}*/
 		}
 	}
+
 	m_velocity.x *= deltaTime.asSeconds();
 	m_velocity.y *= deltaTime.asSeconds();
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);

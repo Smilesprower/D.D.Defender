@@ -17,13 +17,13 @@ GameScene::GameScene(SceneStack& stack, Context context)
 {
 
 	// Init Astro - Give the random Values
-	m_astro.init(context.textures->get(Textures::Astro), 960);
+	//m_astro.init(context.textures->get(Textures::Astro), 960);
 
 	m_testBullet.init(context.textures->get(Textures::Astro));
 
 
 	//	Init Playo
-	//m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(960, 0));
+	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(960, 0));
 
 	context.textures->get(Textures::GameBackground).setRepeated(true);
 	m_sprite.setTexture(context.textures->get(Textures::GameBackground));	// Gets and Sets the texture from Resourse Holder
@@ -37,20 +37,24 @@ GameScene::GameScene(SceneStack& stack, Context context)
 void GameScene::draw()
 {
 	// Get current Player Pos need for camera and Shaders etc
-	m_currPlayerPos.x = m_astro.draw().getPosition().x;
-	m_currPlayerPos.y = m_astro.draw().getPosition().y;
+	m_currPlayerPos.x = m_playo.m_animatedSprite.getPosition().x;
+	m_currPlayerPos.y = m_playo.m_animatedSprite.getPosition().y;
 	// Get our render window
 	sf::RenderWindow& window = *getContext().window;
 
 	// Check player world bounds " X value is MIN / Y value is MAX "
 	if (m_currPlayerPos.x > m_boundries.y)
+	{
 		m_currPlayerPos.x = m_boundries.x;
+	}
 	else if (m_currPlayerPos.x < m_boundries.x)
+	{
 		m_currPlayerPos.x = m_boundries.y;
+	}
 	
 	// Set players position 
 	//std::cout << "X POS " << playerPos.x << std::endl;
-	m_astro.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
+	m_playo.m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
 
 	// Set the camera view
 	window.setView(m_camera.Update(m_currPlayerPos.x));
@@ -61,8 +65,8 @@ void GameScene::draw()
 	else
 		window.draw(m_sprite);
 
-	window.draw(m_astro.draw());
-	//window.draw(m_playo.draw());
+	//window.draw(m_astro.draw());
+	window.draw(m_playo.draw());
 	if (m_testBullet.isAlive())
 		window.draw(m_testBullet.draw());
 }
@@ -75,8 +79,8 @@ bool GameScene::update(sf::Time deltaTime)
 		if (m_clock.getElapsedTime().asSeconds() > 5)
 			m_playShockwave = false;
 	}
-	m_astro.update(deltaTime);
-	//m_playo.update(deltaTime);
+	//m_astro.update(deltaTime);
+	m_playo.update(deltaTime);
 
 	if(m_testBullet.isAlive())
 		m_testBullet.update(deltaTime, m_astro.draw().getPosition());

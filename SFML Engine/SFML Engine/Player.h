@@ -32,7 +32,7 @@ private:
 	float m_ACCELERATION;
 	int m_directionX;
 	int m_directionY;
-	const int MAX_SPEED = 100;
+	const int MAX_SPEED = 10000;
 	sf::Vector2f m_velocity;
 
 	int NUM_OF_ANIMS = 4;
