@@ -53,7 +53,6 @@ void GameScene::draw()
 	}
 	
 	// Set players position 
-	//std::cout << "X POS " << playerPos.x << std::endl;
 	m_playo.m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
 
 	// Set the camera view
@@ -83,7 +82,7 @@ bool GameScene::update(sf::Time deltaTime)
 	m_playo.update(deltaTime);
 
 	if(m_testBullet.isAlive())
-		m_testBullet.update(deltaTime, m_astro.draw().getPosition());
+		m_testBullet.update(deltaTime, m_playo.draw().getPosition());
 
 	return true;
 }
@@ -112,7 +111,7 @@ bool GameScene::handleEvent(const sf::Event& event)
 		}
 		if (event.key.code == sf::Keyboard::F)
 		{
-			m_testBullet.setUpMissile(sf::Vector2f(100, 400), m_astro.draw().getPosition(), 2);
+			m_testBullet.setUpMissile(sf::Vector2f(100, 400), m_playo.draw().getPosition(), 2);
 		}
 		if (event.key.code == sf::Keyboard::P)
 		{

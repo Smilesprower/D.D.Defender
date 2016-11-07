@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "Player.h"
-
+#include <iostream>
 
 
 Player::Player()
 	: m_velocity(0, 0)
-	, m_ACCELERATION(0.05)
+	, m_accel(0,0)
 	, m_animatedSprite(sf::seconds(0.1f), true, true)
 	, m_animations(NUM_OF_ANIMS)
 {
@@ -49,91 +49,78 @@ void Player::Move(sf::Time deltaTime)
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
 		m_animatedSprite.setScale(-1, 1);
-		if (m_directionX == Right)
-		{
-			m_directionX = Left;
-		}
+		m_directionX = Left;
 
-		if (m_velocity.x > -MAX_SPEED)
+		if (m_accel.x > -MAX_SPEED)
 		{
-			m_velocity.x -= 500;
+			m_accel.x -= 10;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
 		m_animatedSprite.setScale(1, 1);
-		if (m_directionX == Left)
+		m_directionX = Right;
+
+		if (m_accel.x < MAX_SPEED)
 		{
-			m_directionX = Right;
-		}
-		if (m_velocity.x < MAX_SPEED)
-		{
-			m_velocity.x += 500;
+			m_accel.x += 10;
 		}
 	}
 	else
 	{
-		if (m_velocity.x != 0)
+		if (m_accel.x != 0)
 		{
-			if (m_velocity.x < 0)
+			if (m_accel.x < 0)
 			{
-				m_velocity.x += m_ACCELERATION * deltaTime.asSeconds();
+				m_accel.x += DE_ACCEL;
 			}
-			else if (m_velocity.x > 0)
+			else if (m_accel.x > 0)
 			{
-				m_velocity.x -= m_ACCELERATION * deltaTime.asSeconds();
+				m_accel.x -= DE_ACCEL;
 			}
-			/*if (m_velocity.x > -500 && m_velocity.x < 500)
-			{
-				m_velocity.x = 0;
-			}*/
 		}
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		m_currAnimation = &m_animations[Anims::MoveUp];
-
 		m_directionY = Up;
-		if (m_velocity.y > -MAX_SPEED)
+		if (m_accel.y > -MAX_SPEED)
 		{
-			m_velocity.y -= 500;
+			m_accel.y -= 10;
 		}
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		m_currAnimation = &m_animations[Anims::MoveDown];
 		m_directionY = Down;
-		if (m_velocity.y < MAX_SPEED)
+		if (m_accel.y < MAX_SPEED)
 		{
-			m_velocity.y += 500;
+			m_accel.y += 10;
 		}
 	}
 	else
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
-		if (m_velocity.y != 0)
+		if (m_accel.y != 0)
 		{
-			if (m_velocity.y < 0)
+			if (m_accel.y < 0)
 			{
-				m_velocity.y += m_ACCELERATION * deltaTime.asSeconds();
+				m_accel.y += DE_ACCEL;
 			}
-			else if (m_velocity.y > 0)
+			else if (m_accel.y > 0)
 			{
-				m_velocity.y -= m_ACCELERATION * deltaTime.asSeconds();
+				m_accel.y -= DE_ACCEL;
 			}
-		    /*if (m_velocity.y > -500 && m_velocity.y < 500)
-			{
-				m_velocity.y = 0;
-			}*/
 		}
 	}
 
-	m_velocity.x *= deltaTime.asSeconds();
-	m_velocity.y *= deltaTime.asSeconds();
+	m_velocity.x = m_accel.x * deltaTime.asSeconds();
+	m_velocity.y = m_accel.y * deltaTime.asSeconds();
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);
 	m_animatedSprite.update(deltaTime);
+	std::cout << MAX_SPEED * deltaTime.asSeconds() << std::endl;
 }
 
 AnimatedSprite Player::draw()

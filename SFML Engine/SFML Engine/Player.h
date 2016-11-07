@@ -29,10 +29,12 @@ public:
 private:
 
 	bool m_health;
-	float m_ACCELERATION;
+	
 	int m_directionX;
 	int m_directionY;
-	const int MAX_SPEED = 10000;
+	sf::Vector2f m_accel;
+	const float DE_ACCEL = 2.f;
+	const int MAX_SPEED = 900;
 	sf::Vector2f m_velocity;
 
 	int NUM_OF_ANIMS = 4;
