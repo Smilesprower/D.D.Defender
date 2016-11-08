@@ -27,6 +27,7 @@ PauseScene::PauseScene(SceneStack& stack, Context context)
 void PauseScene::draw()
 {
 	sf::RenderWindow& window = *getContext().window;	// Get Render Window
+	window.setView(window.getDefaultView());
 	window.draw(m_background);
 	window.draw(m_background2);
 	window.draw(m_text);
