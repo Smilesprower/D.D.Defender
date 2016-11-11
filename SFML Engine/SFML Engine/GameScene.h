@@ -20,8 +20,10 @@ private:
 
 	int m_numOfScreens;
 	sf::Vector2i m_screenSize;
+	sf::Vector2i m_halfScreenSize;
 	sf::Vector2i m_worldSize;
 	sf::Vector2i m_boundries;
+
 	Camera m_camera;
 
 	sf::Sprite m_sprite;

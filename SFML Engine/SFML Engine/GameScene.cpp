@@ -6,10 +6,11 @@
 
 GameScene::GameScene(SceneStack& stack, Context context)
 	: Scene(stack, context)
-	, m_numOfScreens(4) // Change for number of screens needed, variables will auto assign to allow bigger screens
+	, m_numOfScreens(3) // Change for number of screens needed, variables will auto assign to allow bigger screens
 	, m_screenSize(context.window->getSize())
+	, m_halfScreenSize(m_screenSize.x * 0.5f, m_screenSize.y * 0.5f)
 	, m_worldSize(-m_screenSize.x, m_screenSize.x * (m_numOfScreens - OFFSET))
-	, m_boundries(-m_screenSize.x * 0.5f, m_worldSize.y - (m_screenSize.x * 0.5f))
+	, m_boundries(-m_halfScreenSize.x, m_worldSize.y - m_halfScreenSize.x)
 	, m_camera(sf::Vector2i(m_worldSize.x, m_worldSize.y), sf::Vector2i(m_screenSize.x, m_screenSize.y))
 	, m_playShockwave(false)
 	, m_astro()
@@ -36,6 +37,9 @@ GameScene::GameScene(SceneStack& stack, Context context)
 }
 void GameScene::draw()
 {
+
+
+
 	// Get current Player Pos need for camera and Shaders etc
 	m_currPlayerPos.x = m_playo.m_animatedSprite.getPosition().x;
 	m_currPlayerPos.y = m_playo.m_animatedSprite.getPosition().y;
@@ -45,11 +49,31 @@ void GameScene::draw()
 	// Check player world bounds " X value is MIN / Y value is MAX "
 	if (m_currPlayerPos.x > m_boundries.y)
 	{
+		sf::Vector2f tempPos = m_testBullet.getPosition();
+		if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
+			&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
+		{
+			tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
+			m_testBullet.setPosition(tempPos);
+		}
+
 		m_currPlayerPos.x = m_boundries.x;
+		//for all entities in players view
+
 	}
 	else if (m_currPlayerPos.x < m_boundries.x)
 	{
+		//for every bullet Ai and Astro
+
+		sf::Vector2f tempPos = m_testBullet.getPosition();
+		if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
+			&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
+		{
+			tempPos.x = m_boundries.y - (m_currPlayerPos.x - tempPos.x);
+			m_testBullet.setPosition(tempPos);
+		}
 		m_currPlayerPos.x = m_boundries.y;
+
 	}
 	
 	// Set players position 
@@ -105,7 +129,7 @@ bool GameScene::handleEvent(const sf::Event& event)
 				m_shockwave->setUniform("shock_refraction", .5f);
 				m_shockwave->setUniform("shock_width", 0.15f);
 				m_shockwave->setUniform("resolution", sf::Vector2f(1920, 1080));
-				m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_screenSize.y * 0.5f));
+				m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_halfScreenSize.y));
 				m_playShockwave = true;
 			}
 		}

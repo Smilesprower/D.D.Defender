@@ -33,8 +33,8 @@ private:
 	int m_directionX;
 	int m_directionY;
 	sf::Vector2f m_accel;
-	const float DE_ACCEL = 2.f;
-	const int MAX_SPEED = 900;
+	const float DE_ACCEL = 4.f;
+	const int MAX_SPEED = 700;
 	sf::Vector2f m_velocity;
 
 	int NUM_OF_ANIMS = 4;
