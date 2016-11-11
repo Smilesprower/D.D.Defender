@@ -6,7 +6,7 @@
 
 GameScene::GameScene(SceneStack& stack, Context context)
 	: Scene(stack, context)
-	, m_numOfScreens(3) // Change for number of screens needed, variables will auto assign to allow bigger screens
+	, m_numOfScreens(4) // Change for number of screens needed, variables will auto assign to allow bigger screens
 	, m_screenSize(context.window->getSize())
 	, m_halfScreenSize(m_screenSize.x * 0.5f, m_screenSize.y * 0.5f)
 	, m_worldSize(-m_screenSize.x, m_screenSize.x * (m_numOfScreens - OFFSET))
@@ -17,6 +17,8 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_playo()
 {
 
+	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
+
 	// Init Astro - Give the random Values
 	//m_astro.init(context.textures->get(Textures::Astro), 960);
 
@@ -24,7 +26,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 
 	//	Init Playo
-	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(960, 0));
+	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
 
 	context.textures->get(Textures::GameBackground).setRepeated(true);
 	m_sprite.setTexture(context.textures->get(Textures::GameBackground));	// Gets and Sets the texture from Resourse Holder
@@ -46,7 +48,7 @@ void GameScene::draw()
 	// Get our render window
 	sf::RenderWindow& window = *getContext().window;
 
-	// Check player world bounds " X value is MIN / Y value is MAX "
+	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 	if (m_currPlayerPos.x > m_boundries.y)
 	{
 		sf::Vector2f tempPos = m_testBullet.getPosition();
@@ -129,7 +131,7 @@ bool GameScene::handleEvent(const sf::Event& event)
 				m_shockwave->setUniform("shock_refraction", .5f);
 				m_shockwave->setUniform("shock_width", 0.15f);
 				m_shockwave->setUniform("resolution", sf::Vector2f(1920, 1080));
-				m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_halfScreenSize.y));
+				m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_currPlayerPos.y));
 				m_playShockwave = true;
 			}
 		}

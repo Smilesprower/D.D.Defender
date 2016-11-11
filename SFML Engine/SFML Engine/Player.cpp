@@ -8,6 +8,7 @@ Player::Player()
 	, m_accel(0,0)
 	, m_animatedSprite(sf::seconds(0.1f), true, true)
 	, m_animations(NUM_OF_ANIMS)
+	, m_teleported(false)
 {
 }
 
@@ -16,8 +17,10 @@ Player::~Player()
 {
 }
 
-void Player::init(sf::Texture & tex, sf::Vector2f pos)
+void Player::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i tpBounds)
 {
+	m_teleportingBounds = tpBounds;
+
 	m_animations[Anims::MoveUp].setSpriteSheet(tex);
 	m_animations[Anims::MoveUp].addFrame(sf::IntRect(5, 100, 128, 72));
 	//m_animations[Anims::MoveUp].addFrame(sf::IntRect(154, 88, 128, 90));
@@ -49,6 +52,10 @@ void Player::Move(sf::Time deltaTime)
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
 		m_animatedSprite.setScale(-1, 1);
+		if (m_directionX == Right)
+		{
+			m_accel.x *= 0.5;
+		}
 		m_directionX = Left;
 
 		if (m_accel.x > -MAX_SPEED)
@@ -60,6 +67,10 @@ void Player::Move(sf::Time deltaTime)
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
 		m_animatedSprite.setScale(1, 1);
+		if (m_directionX == Left)
+		{
+			m_accel.x *= 0.5;
+		}
 		m_directionX = Right;
 
 		if (m_accel.x < MAX_SPEED)
@@ -85,25 +96,27 @@ void Player::Move(sf::Time deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		m_currAnimation = &m_animations[Anims::MoveUp];
-		m_directionY = Up;
-		if (m_accel.y > -MAX_SPEED)
+		m_directionY = Up; 
+		m_velocity.y = -MAX_SPEED * 0.5f;
+		/*if (m_accel.y > -MAX_SPEED)
 		{
 			m_accel.y -= 10;
-		}
+		}*/
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		m_currAnimation = &m_animations[Anims::MoveDown];
 		m_directionY = Down;
-		if (m_accel.y < MAX_SPEED)
+		m_velocity.y = MAX_SPEED * 0.5f;
+		/*if (m_accel.y < MAX_SPEED)
 		{
 			m_accel.y += 10;
-		}
+		}*/
 	}
 	else
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
-		if (m_accel.y != 0)
+		/*if (m_accel.y != 0)
 		{
 			if (m_accel.y < 0)
 			{
@@ -113,17 +126,28 @@ void Player::Move(sf::Time deltaTime)
 			{
 				m_accel.y -= DE_ACCEL;
 			}
-		}
+		}*/
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) && !m_teleported)
+	{
+		m_teleported = true;
+		teleport();
+	}
 	m_velocity.x = m_accel.x * deltaTime.asSeconds();
-	m_velocity.y = m_accel.y * deltaTime.asSeconds();
+	//m_velocity.y = m_accel.y * deltaTime.asSeconds();
+	m_velocity.y *= deltaTime.asSeconds();
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);
 	m_animatedSprite.update(deltaTime);
-	std::cout << MAX_SPEED * deltaTime.asSeconds() << std::endl;
 }
 
 AnimatedSprite Player::draw()
 {
 	return m_animatedSprite;
+}
+
+void Player::teleport()
+{
+	int randX = rand() % m_teleportingBounds.y + m_teleportingBounds.x;
+	m_animatedSprite.setPosition(randX, m_animatedSprite.getPosition().y);
 }
