@@ -33,13 +33,12 @@ private:
 	const float MAX_ROTATION = 2.f;
 	const int MAX_FRAMES_EXPLOSION = 3;
 	const int MISSILE_SPEED = 500;
-	const int BULLET_SPEED = 40;
-	const int BULLET_TTL = 40;
+	const int BULLET_SPEED = 1000;
+	const int BULLET_TTL = 2;
 	const int MISSILE_TTL = 40;
 	const int NUM_OF_EXP_FRAMES = 8;
 	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);
 	const int NUM_OF_ANIMS = 4;
-
 
 	int m_type;
 	int m_speed;

@@ -27,11 +27,14 @@ void BulletManager::init(sf::Texture tex, int MAX_BULLETS)
 	}
 }
 
-void BulletManager::update(sf::Time deltaTime, sf::Vector2f xScreenBounds)
+void BulletManager::update(sf::Time deltaTime)
 {
 	// Check if the bullet is enabled
-	for (int i = 0; i < m_maxBullets && m_bullets.at(i)->isEnabled(); i++)
+	for (int i = 0; i < m_maxBullets; i++)
 	{
+		if(m_bullets[i]->isEnabled())
+			m_bulletCount++;
+
 		if (m_bullets[i]->getType() == Missile)
 		{
 		}
@@ -39,23 +42,22 @@ void BulletManager::update(sf::Time deltaTime, sf::Vector2f xScreenBounds)
 		{
 			m_bullets.at(i)->update(deltaTime);
 		}
-		if (m_bullets.at(i)->getPosition().x < xScreenBounds.x || m_bullets.at(i)->getPosition().x > xScreenBounds.y)
-		{
-			m_bullets.at(i)->setEnabled(false);
-		}
 	}
+	std::cout << m_bulletCount << std::endl;
+	m_bulletCount = 0;
 }
 
-void BulletManager::createLaser(sf::Vector2f pos, int direction, int type, bool playerBullet)
+bool BulletManager::createLaser(sf::Vector2f pos, int direction, int type, bool playerBullet)
 {
 	for (int i = 0; i < m_maxBullets; i++)
 	{
 		if (!m_bullets.at(i)->isEnabled())
 		{
 			m_bullets.at(i)->setUpBullet(pos, direction, type, playerBullet);
-			break;
+			return true;
 		}
 	}
+	return false;
 }
 
 std::vector<Bullet*> BulletManager::getBullets()

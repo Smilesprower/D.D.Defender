@@ -1,5 +1,6 @@
 #pragma once
 #include "Bullet.h"
+#include <iostream>
 
 class BulletManager
 {
@@ -15,9 +16,9 @@ public:
 	static BulletManager * Instance();
 
 	void init(sf::Texture tex, int maxBullets);
-	void update(sf::Time deltaTime, sf::Vector2f xScreenBounds);
+	void update(sf::Time deltaTime);
 	void fireMissile();
-	void createLaser(sf::Vector2f pos, int direction, int type, bool playerBullet);
+	bool createLaser(sf::Vector2f pos, int direction, int type, bool playerBullet);
 	std::vector<Bullet*> getBullets();
 
 private:
@@ -31,6 +32,7 @@ private:
 	~BulletManager();
 
 	sf::Texture m_tex;
+	int m_bulletCount;
 	int m_maxBullets;
 	std::vector<Bullet*> m_bullets;
 };

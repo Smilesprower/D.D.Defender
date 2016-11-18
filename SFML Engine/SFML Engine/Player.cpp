@@ -124,8 +124,8 @@ void Player::Move(sf::Time deltaTime)
 	{
 		if (m_bulletTimer >= BULLET_RELOAD_TIME)
 		{
-			BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), m_directionX, 1, true);
-			m_bulletTimer = 0;
+			if(BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), m_directionX, 1, true))
+				m_bulletTimer = 0;
 		}
 	}
 	// One Time Teleporter
@@ -142,7 +142,6 @@ void Player::Move(sf::Time deltaTime)
 	}
 
 	m_velocity.x = m_accel.x * deltaTime.asSeconds();
-	//m_velocity.y = m_accel.y * deltaTime.asSeconds();
 	m_velocity.y *= deltaTime.asSeconds();
 
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);
@@ -177,7 +176,6 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 		m_smartBombTimer += deltaTime.asSeconds();
 		if (m_smartBombTimer >= SMART_BOMB_RELOAD_TIME)
 		{
-			//m_smartBombTimer = 0;
 			m_smartBombState = SmartBomb::Ready;
 		}
 	}

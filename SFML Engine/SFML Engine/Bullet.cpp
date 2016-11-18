@@ -76,12 +76,17 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 }
 void Bullet::update(sf::Time deltaTime)
 {
-	m_ttl += deltaTime.asSeconds();
-	if (m_ttl > BULLET_TTL)
-		m_enabled = false;
+	if (m_enabled)
+	{
+		m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
+		m_animatedSprite.update(deltaTime);
 
-	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
-	m_animatedSprite.update(deltaTime);
+		m_ttl += deltaTime.asSeconds();
+		if (m_ttl > BULLET_TTL)
+		{
+			m_enabled = false;
+		}
+	}
 }
 
 void Bullet::updateMissile(sf::Time deltaTime, sf::Vector2f playerPos)

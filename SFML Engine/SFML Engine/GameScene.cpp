@@ -88,10 +88,10 @@ void GameScene::draw()
 	else
 		window.draw(m_sprite);
 
-
 	std::vector<Bullet*> temp = BulletManager::Instance()->getBullets();
-	for (int i = 0; i < MAX_BULLETS && temp.at(i)->isEnabled(); i++)
-		window.draw(temp.at(i)->draw());
+	for (int i = 0; i < MAX_BULLETS; i++)
+		if(temp[i]->isEnabled())
+			window.draw(temp.at(i)->draw());
 
 	window.draw(m_playo.draw());
 	window.setView(window.getDefaultView());
@@ -118,8 +118,9 @@ bool GameScene::update(sf::Time deltaTime)
 	else
 	{
 		sf::Vector2f tempBounds(m_currPlayerPos.x - m_halfScreenSize.x, m_currPlayerPos.x + m_halfScreenSize.x);
-		for (int i = 0; i < MAX_BULLETS; i++)
-			BulletManager::Instance()->update(deltaTime, tempBounds);
+
+		// What the fuk was I at here hmmmmmmmmmmmmm
+		BulletManager::Instance()->update(deltaTime);
 
 		m_hud.update(deltaTime, m_playo.m_smartBombTimer);
 		m_playo.update(deltaTime);
@@ -156,4 +157,5 @@ void GameScene::setupShockwave(sf::Vector2f playerPos)
 	m_shockwave->setUniform("resolution", sf::Vector2f(1920, 1080));
 	m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_currPlayerPos.y));
 	m_playShockwave = true;
+	m_hud.reset();
 }
