@@ -20,6 +20,7 @@ namespace Textures
 		PauseBackgroundOpaque,
 		MainMenuBG,
 		Button,
+		HUD,
 	};
 }
 

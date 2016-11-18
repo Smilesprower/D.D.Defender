@@ -159,7 +159,7 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 		m_smartBombTimer += deltaTime.asSeconds();
 		if (m_smartBombTimer >= SMART_BOMB_RELOAD_TIME)
 		{
-			m_smartBombTimer = 0;
+			//m_smartBombTimer = 0;
 			m_smartBombState = SmartBomb::Ready;
 		}
 	}

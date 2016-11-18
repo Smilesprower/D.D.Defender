@@ -27,7 +27,8 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	//	Init Playo
 	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
-
+	// Init Hud
+	m_hud.init(context.textures->get(Textures::HUD), m_screenSize);
 	context.textures->get(Textures::GameBackground).setRepeated(true);
 	m_sprite.setTexture(context.textures->get(Textures::GameBackground));	// Gets and Sets the texture from Resourse Holder
 	m_sprite.setTextureRect(sf::IntRect(0, 0, m_screenSize.x * m_numOfScreens, m_screenSize.y));
@@ -39,9 +40,6 @@ GameScene::GameScene(SceneStack& stack, Context context)
 }
 void GameScene::draw()
 {
-
-
-
 	// Get current Player Pos need for camera and Shaders etc
 	m_currPlayerPos.x = m_playo.m_animatedSprite.getPosition().x;
 	m_currPlayerPos.y = m_playo.m_animatedSprite.getPosition().y;
@@ -83,7 +81,7 @@ void GameScene::draw()
 
 	// Set the camera view
 	window.setView(m_camera.Update(m_currPlayerPos.x));
-
+	
 	// Draw game entities
 	if(m_playShockwave)
 		window.draw(m_sprite, m_shockwave);
@@ -94,6 +92,10 @@ void GameScene::draw()
 	window.draw(m_playo.draw());
 	if (m_testBullet.isAlive())
 		window.draw(m_testBullet.draw());
+
+	window.setView(window.getDefaultView());
+	window.draw(m_hud.drawRectangle());
+	window.draw(m_hud.draw());
 }
 
 bool GameScene::update(sf::Time deltaTime)
@@ -113,6 +115,7 @@ bool GameScene::update(sf::Time deltaTime)
 	}
 	else
 	{
+		m_hud.update(deltaTime, m_playo.m_smartBombTimer);
 		m_playo.update(deltaTime);
 		//m_astro.update(deltaTime);
 		if(m_testBullet.isAlive())

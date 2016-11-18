@@ -17,6 +17,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Helper.cpp" />
+    <ClCompile Include="HUD.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Helper.h" />
+    <ClInclude Include="HUD.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl" />
