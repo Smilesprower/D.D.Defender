@@ -98,35 +98,16 @@ void Player::Move(sf::Time deltaTime)
 		m_currAnimation = &m_animations[Anims::MoveUp];
 		m_directionY = Up; 
 		m_velocity.y = -MAX_SPEED * 0.5f;
-		/*if (m_accel.y > -MAX_SPEED)
-		{
-			m_accel.y -= 10;
-		}*/
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		m_currAnimation = &m_animations[Anims::MoveDown];
 		m_directionY = Down;
 		m_velocity.y = MAX_SPEED * 0.5f;
-		/*if (m_accel.y < MAX_SPEED)
-		{
-			m_accel.y += 10;
-		}*/
 	}
 	else
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
-		/*if (m_accel.y != 0)
-		{
-			if (m_accel.y < 0)
-			{
-				m_accel.y += DE_ACCEL;
-			}
-			else if (m_accel.y > 0)
-			{
-				m_accel.y -= DE_ACCEL;
-			}
-		}*/
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) && !m_teleported)
