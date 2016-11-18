@@ -12,6 +12,7 @@ Player::Player()
 	, m_smartBombState(SmartBomb::Charging)
 	, m_smartBombTimer(0)
 	, m_bulletTimer(1)
+	, m_directionX(Right)
 {
 }
 
@@ -48,9 +49,9 @@ void Player::update(sf::Time deltaTime)
 	Move(deltaTime);
 	updateSmartBomb(deltaTime);
 
-	if (m_bulletTimer < 1)
+	if (m_bulletTimer < BULLET_RELOAD_TIME)
 	{
-		m_bulletTimer += deltaTime.asSeconds();
+		m_bulletTimer += deltaTime.asMilliseconds();
 	}
 }
 
@@ -121,7 +122,7 @@ void Player::Move(sf::Time deltaTime)
 	// Fire Lazers
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		if (m_bulletTimer >= 1)
+		if (m_bulletTimer >= BULLET_RELOAD_TIME)
 		{
 			BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), m_directionX, 1, true);
 			m_bulletTimer = 0;
@@ -143,6 +144,7 @@ void Player::Move(sf::Time deltaTime)
 	m_velocity.x = m_accel.x * deltaTime.asSeconds();
 	//m_velocity.y = m_accel.y * deltaTime.asSeconds();
 	m_velocity.y *= deltaTime.asSeconds();
+
 	m_animatedSprite.move(m_velocity.x, m_velocity.y);
 	m_animatedSprite.update(deltaTime);
 }

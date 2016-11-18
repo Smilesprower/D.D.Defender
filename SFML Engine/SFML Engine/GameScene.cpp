@@ -75,6 +75,7 @@ void GameScene::draw()
 		m_currPlayerPos.x = m_boundries.y;
 
 	}
+
 	// Set players position 
 	m_playo.m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
 
