@@ -22,8 +22,8 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	// Init Astro - Give the random Values
 	//m_astro.init(context.textures->get(Textures::Astro), 960);
 
-	m_testBullet.init(context.textures->get(Textures::Astro));
 
+	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
 
 	//	Init Playo
 	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
@@ -39,9 +39,6 @@ GameScene::GameScene(SceneStack& stack, Context context)
 }
 void GameScene::draw()
 {
-
-
-
 	// Get current Player Pos need for camera and Shaders etc
 	m_currPlayerPos.x = m_playo.m_animatedSprite.getPosition().x;
 	m_currPlayerPos.y = m_playo.m_animatedSprite.getPosition().y;
@@ -51,13 +48,13 @@ void GameScene::draw()
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 	if (m_currPlayerPos.x > m_boundries.y)
 	{
-		sf::Vector2f tempPos = m_testBullet.getPosition();
-		if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
-			&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
-		{
-			tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
-			m_testBullet.setPosition(tempPos);
-		}
+		////sf::Vector2f tempPos = m_testBullet.getPosition();
+		//if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
+		//	&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
+		//{
+		//	tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
+		//	m_testBullet.setPosition(tempPos);
+		//}
 
 		m_currPlayerPos.x = m_boundries.x;
 		//for all entities in players view
@@ -67,17 +64,16 @@ void GameScene::draw()
 	{
 		//for every bullet Ai and Astro
 
-		sf::Vector2f tempPos = m_testBullet.getPosition();
-		if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
-			&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
-		{
-			tempPos.x = m_boundries.y - (m_currPlayerPos.x - tempPos.x);
-			m_testBullet.setPosition(tempPos);
-		}
+		////sf::Vector2f tempPos = m_testBullet.getPosition();
+		//if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
+		//	&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
+		//{
+		//	tempPos.x = m_boundries.y - (m_currPlayerPos.x - tempPos.x);
+		//	m_testBullet.setPosition(tempPos);
+		//}
 		m_currPlayerPos.x = m_boundries.y;
 
 	}
-	
 	// Set players position 
 	m_playo.m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
 
@@ -90,10 +86,12 @@ void GameScene::draw()
 	else
 		window.draw(m_sprite);
 
-	//window.draw(m_astro.draw());
+
+	std::vector<Bullet*> temp = BulletManager::Instance()->getBullets();
+	for (int i = 0; i < MAX_BULLETS && temp.at(i)->isEnabled(); i++)
+		window.draw(temp.at(i)->draw());
+
 	window.draw(m_playo.draw());
-	if (m_testBullet.isAlive())
-		window.draw(m_testBullet.draw());
 }
 
 bool GameScene::update(sf::Time deltaTime)
@@ -113,10 +111,13 @@ bool GameScene::update(sf::Time deltaTime)
 	}
 	else
 	{
+		sf::Vector2f tempBounds(m_currPlayerPos.x - m_halfScreenSize.x, m_currPlayerPos.x + m_halfScreenSize.x);
+		for (int i = 0; i < MAX_BULLETS; i++)
+			BulletManager::Instance()->update(deltaTime, tempBounds);
 		m_playo.update(deltaTime);
 		//m_astro.update(deltaTime);
-		if(m_testBullet.isAlive())
-			m_testBullet.update(deltaTime, m_playo.draw().getPosition());
+		/*if(m_testBullet.isAlive())
+			m_testBullet.update(deltaTime, m_playo.draw().getPosition());*/
 	}
 	return true;
 }
@@ -128,14 +129,6 @@ bool GameScene::handleEvent(const sf::Event& event)
 		if (event.key.code == sf::Keyboard::Escape)
 		{
 			requestStackPop();
-		}
-		if (event.key.code == sf::Keyboard::Return)
-		{
-			
-		}
-		if (event.key.code == sf::Keyboard::F)
-		{
-			m_testBullet.setUpMissile(sf::Vector2f(100, 400), m_playo.draw().getPosition(), 2);
 		}
 		if (event.key.code == sf::Keyboard::P)
 		{

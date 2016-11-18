@@ -11,6 +11,7 @@ Player::Player()
 	, m_teleported(false)
 	, m_smartBombState(SmartBomb::Charging)
 	, m_smartBombTimer(0)
+	, m_bulletTimer(1)
 {
 }
 
@@ -46,6 +47,11 @@ void Player::update(sf::Time deltaTime)
 	m_animatedSprite.play(*m_currAnimation);
 	Move(deltaTime);
 	updateSmartBomb(deltaTime);
+
+	if (m_bulletTimer < 1)
+	{
+		m_bulletTimer += deltaTime.asSeconds();
+	}
 }
 
 void Player::Move(sf::Time deltaTime)
@@ -112,12 +118,22 @@ void Player::Move(sf::Time deltaTime)
 	{
 		m_currAnimation = &m_animations[Anims::MoveSideways];
 	}
-
+	// Fire Lazers
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		if (m_bulletTimer >= 1)
+		{
+			BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), m_directionX, 1, true);
+			m_bulletTimer = 0;
+		}
+	}
+	// One Time Teleporter
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) && !m_teleported)
 	{
 		m_teleported = true;
 		teleport();
 	}
+	// Smart Bomb
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && m_smartBombState == SmartBomb::Ready)
 	{
 		m_smartBombState = SmartBomb::Fired;

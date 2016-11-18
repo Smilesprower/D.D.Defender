@@ -1,0 +1,171 @@
+\hypertarget{class_animated_sprite}{}\section{Animated\+Sprite Class Reference}
+\label{class_animated_sprite}\index{Animated\+Sprite@{Animated\+Sprite}}
+
+
+{\ttfamily \#include $<$Animated\+Sprite.\+h$>$}
+
+Inheritance diagram for Animated\+Sprite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_animated_sprite}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_animated_sprite_a097ab8444824e7085d71a1f7144e7763}{Animated\+Sprite} (sf\+::\+Time frame\+Time=sf\+::seconds(0.\+2f), bool paused=false, bool looped=true)
+\item 
+void \hyperlink{class_animated_sprite_a17a41ff812631a9d8947d272933d6696}{update} (sf\+::\+Time delta\+Time)
+\item 
+void \hyperlink{class_animated_sprite_ab1afc57d90d57a0c4bc4f5b090f2dacf}{set\+Animation} (const \hyperlink{class_animation}{Animation} \&animation)
+\item 
+void \hyperlink{class_animated_sprite_af598fab5c3599ccc5ed1e2d4fefa68cc}{set\+Frame\+Time} (sf\+::\+Time time)
+\item 
+void \hyperlink{class_animated_sprite_a203b968f1cb374cca5dbc89716174020}{play} ()
+\item 
+void \hyperlink{class_animated_sprite_a9ea345649a4e012d096bc04aafe1ecb0}{play} (const \hyperlink{class_animation}{Animation} \&animation)
+\item 
+void \hyperlink{class_animated_sprite_a48384db59427423b5c1d98f6ee94fe45}{pause} ()
+\item 
+void \hyperlink{class_animated_sprite_af9734f4346d3d2370322b2dcaeef133c}{stop} ()
+\item 
+void \hyperlink{class_animated_sprite_a855a5a48ea2e1c51c7c9304857dd2f8c}{set\+Looped} (bool looped)
+\item 
+void \hyperlink{class_animated_sprite_a1a96a0f6570efddd2eb26f89bc5b6f50}{set\+Color} (const sf\+::\+Color \&color)
+\item 
+const \hyperlink{class_animation}{Animation} $\ast$ \hyperlink{class_animated_sprite_a03bacdbaf638cb6f7987e342980206c2}{get\+Animation} () const
+\item 
+sf\+::\+Float\+Rect \hyperlink{class_animated_sprite_ac4c88435c8698f452629c5cd78bfb3c9}{get\+Local\+Bounds} () const
+\item 
+sf\+::\+Float\+Rect \hyperlink{class_animated_sprite_a86dca0906c53b3e630aaeac2f0085a0e}{get\+Global\+Bounds} () const
+\item 
+bool \hyperlink{class_animated_sprite_aaf2c2fb0e1487e689af4a6bbeb7e3e85}{is\+Looped} () const
+\item 
+bool \hyperlink{class_animated_sprite_a55f450add05d45e5369a6ad24f9e438f}{is\+Playing} () const
+\item 
+sf\+::\+Time \hyperlink{class_animated_sprite_a5291f8e24fe2c6e4284bc7ff9499ef77}{get\+Frame\+Time} () const
+\item 
+void \hyperlink{class_animated_sprite_a0b3e38fffdc1d29f46fa08df9ef2a747}{set\+Frame} (std\+::size\+\_\+t new\+Frame, bool reset\+Time=true)
+\item 
+int \hyperlink{class_animated_sprite_a8e929c48b0ca713b7aac7dd769e4f00c}{get\+Frame} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_animated_sprite_a097ab8444824e7085d71a1f7144e7763}{}\label{class_animated_sprite_a097ab8444824e7085d71a1f7144e7763} 
+\index{Animated\+Sprite@{Animated\+Sprite}!Animated\+Sprite@{Animated\+Sprite}}
+\index{Animated\+Sprite@{Animated\+Sprite}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{Animated\+Sprite()}{AnimatedSprite()}}
+{\footnotesize\ttfamily Animated\+Sprite\+::\+Animated\+Sprite (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{frame\+Time = {\ttfamily sf\+:\+:seconds(0.2f)},  }\item[{bool}]{paused = {\ttfamily false},  }\item[{bool}]{looped = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_animated_sprite_a03bacdbaf638cb6f7987e342980206c2}{}\label{class_animated_sprite_a03bacdbaf638cb6f7987e342980206c2} 
+\index{Animated\+Sprite@{Animated\+Sprite}!get\+Animation@{get\+Animation}}
+\index{get\+Animation@{get\+Animation}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{get\+Animation()}{getAnimation()}}
+{\footnotesize\ttfamily const \hyperlink{class_animation}{Animation} $\ast$ Animated\+Sprite\+::get\+Animation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_animated_sprite_a8e929c48b0ca713b7aac7dd769e4f00c}{}\label{class_animated_sprite_a8e929c48b0ca713b7aac7dd769e4f00c} 
+\index{Animated\+Sprite@{Animated\+Sprite}!get\+Frame@{get\+Frame}}
+\index{get\+Frame@{get\+Frame}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{get\+Frame()}{getFrame()}}
+{\footnotesize\ttfamily int Animated\+Sprite\+::get\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_a5291f8e24fe2c6e4284bc7ff9499ef77}{}\label{class_animated_sprite_a5291f8e24fe2c6e4284bc7ff9499ef77} 
+\index{Animated\+Sprite@{Animated\+Sprite}!get\+Frame\+Time@{get\+Frame\+Time}}
+\index{get\+Frame\+Time@{get\+Frame\+Time}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{get\+Frame\+Time()}{getFrameTime()}}
+{\footnotesize\ttfamily sf\+::\+Time Animated\+Sprite\+::get\+Frame\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_animated_sprite_a86dca0906c53b3e630aaeac2f0085a0e}{}\label{class_animated_sprite_a86dca0906c53b3e630aaeac2f0085a0e} 
+\index{Animated\+Sprite@{Animated\+Sprite}!get\+Global\+Bounds@{get\+Global\+Bounds}}
+\index{get\+Global\+Bounds@{get\+Global\+Bounds}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{get\+Global\+Bounds()}{getGlobalBounds()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Animated\+Sprite\+::get\+Global\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_animated_sprite_ac4c88435c8698f452629c5cd78bfb3c9}{}\label{class_animated_sprite_ac4c88435c8698f452629c5cd78bfb3c9} 
+\index{Animated\+Sprite@{Animated\+Sprite}!get\+Local\+Bounds@{get\+Local\+Bounds}}
+\index{get\+Local\+Bounds@{get\+Local\+Bounds}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{get\+Local\+Bounds()}{getLocalBounds()}}
+{\footnotesize\ttfamily sf\+::\+Float\+Rect Animated\+Sprite\+::get\+Local\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_animated_sprite_aaf2c2fb0e1487e689af4a6bbeb7e3e85}{}\label{class_animated_sprite_aaf2c2fb0e1487e689af4a6bbeb7e3e85} 
+\index{Animated\+Sprite@{Animated\+Sprite}!is\+Looped@{is\+Looped}}
+\index{is\+Looped@{is\+Looped}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{is\+Looped()}{isLooped()}}
+{\footnotesize\ttfamily bool Animated\+Sprite\+::is\+Looped (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_animated_sprite_a55f450add05d45e5369a6ad24f9e438f}{}\label{class_animated_sprite_a55f450add05d45e5369a6ad24f9e438f} 
+\index{Animated\+Sprite@{Animated\+Sprite}!is\+Playing@{is\+Playing}}
+\index{is\+Playing@{is\+Playing}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{is\+Playing()}{isPlaying()}}
+{\footnotesize\ttfamily bool Animated\+Sprite\+::is\+Playing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_animated_sprite_a48384db59427423b5c1d98f6ee94fe45}{}\label{class_animated_sprite_a48384db59427423b5c1d98f6ee94fe45} 
+\index{Animated\+Sprite@{Animated\+Sprite}!pause@{pause}}
+\index{pause@{pause}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_a203b968f1cb374cca5dbc89716174020}{}\label{class_animated_sprite_a203b968f1cb374cca5dbc89716174020} 
+\index{Animated\+Sprite@{Animated\+Sprite}!play@{play}}
+\index{play@{play}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{play()}{play()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_a9ea345649a4e012d096bc04aafe1ecb0}{}\label{class_animated_sprite_a9ea345649a4e012d096bc04aafe1ecb0} 
+\index{Animated\+Sprite@{Animated\+Sprite}!play@{play}}
+\index{play@{play}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{play()}{play()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::play (\begin{DoxyParamCaption}\item[{const \hyperlink{class_animation}{Animation} \&}]{animation }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_ab1afc57d90d57a0c4bc4f5b090f2dacf}{}\label{class_animated_sprite_ab1afc57d90d57a0c4bc4f5b090f2dacf} 
+\index{Animated\+Sprite@{Animated\+Sprite}!set\+Animation@{set\+Animation}}
+\index{set\+Animation@{set\+Animation}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{set\+Animation()}{setAnimation()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::set\+Animation (\begin{DoxyParamCaption}\item[{const \hyperlink{class_animation}{Animation} \&}]{animation }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_a1a96a0f6570efddd2eb26f89bc5b6f50}{}\label{class_animated_sprite_a1a96a0f6570efddd2eb26f89bc5b6f50} 
+\index{Animated\+Sprite@{Animated\+Sprite}!set\+Color@{set\+Color}}
+\index{set\+Color@{set\+Color}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{set\+Color()}{setColor()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::set\+Color (\begin{DoxyParamCaption}\item[{const sf\+::\+Color \&}]{color }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_a0b3e38fffdc1d29f46fa08df9ef2a747}{}\label{class_animated_sprite_a0b3e38fffdc1d29f46fa08df9ef2a747} 
+\index{Animated\+Sprite@{Animated\+Sprite}!set\+Frame@{set\+Frame}}
+\index{set\+Frame@{set\+Frame}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{set\+Frame()}{setFrame()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::set\+Frame (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{new\+Frame,  }\item[{bool}]{reset\+Time = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_af598fab5c3599ccc5ed1e2d4fefa68cc}{}\label{class_animated_sprite_af598fab5c3599ccc5ed1e2d4fefa68cc} 
+\index{Animated\+Sprite@{Animated\+Sprite}!set\+Frame\+Time@{set\+Frame\+Time}}
+\index{set\+Frame\+Time@{set\+Frame\+Time}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{set\+Frame\+Time()}{setFrameTime()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::set\+Frame\+Time (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{time }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_a855a5a48ea2e1c51c7c9304857dd2f8c}{}\label{class_animated_sprite_a855a5a48ea2e1c51c7c9304857dd2f8c} 
+\index{Animated\+Sprite@{Animated\+Sprite}!set\+Looped@{set\+Looped}}
+\index{set\+Looped@{set\+Looped}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{set\+Looped()}{setLooped()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::set\+Looped (\begin{DoxyParamCaption}\item[{bool}]{looped }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_af9734f4346d3d2370322b2dcaeef133c}{}\label{class_animated_sprite_af9734f4346d3d2370322b2dcaeef133c} 
+\index{Animated\+Sprite@{Animated\+Sprite}!stop@{stop}}
+\index{stop@{stop}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_animated_sprite_a17a41ff812631a9d8947d272933d6696}{}\label{class_animated_sprite_a17a41ff812631a9d8947d272933d6696} 
+\index{Animated\+Sprite@{Animated\+Sprite}!update@{update}}
+\index{update@{update}!Animated\+Sprite@{Animated\+Sprite}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Animated\+Sprite\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_animated_sprite_8h}{Animated\+Sprite.\+h}\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_animated_sprite_8cpp}{Animated\+Sprite.\+cpp}\end{DoxyCompactItemize}

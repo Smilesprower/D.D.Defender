@@ -1,0 +1,131 @@
+\hypertarget{class_scene_stack}{}\section{Scene\+Stack Class Reference}
+\label{class_scene_stack}\index{Scene\+Stack@{Scene\+Stack}}
+
+
+{\ttfamily \#include $<$Scene\+Stack.\+h$>$}
+
+Inheritance diagram for Scene\+Stack\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_scene_stack}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9}{Action} \{ \hyperlink{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9a6cd7480d27e0a88a4b67e2186757358d}{Push}, 
+\hyperlink{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9a1d86b0e7cf0989e5717f70598e74fa95}{Pop}, 
+\hyperlink{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9af03df5d6746e57023c22bb3548b93779}{Clear}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_scene_stack_a7893580d1266ed06c9c690012137f799}{Scene\+Stack} (\hyperlink{struct_scene_1_1_context}{Scene\+::\+Context} context)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{class_scene_stack_a129b49c7bc280aeaf7c71235b3d9648d}{create\+Scene} (\hyperlink{namespace_scenes_a0ad7ab6856b1d77d498e3a251f6bb275}{Scenes\+::\+ID} scene\+ID)
+\item 
+void \hyperlink{class_scene_stack_acdea2588bbc85c2834608ebab6671866}{update} (sf\+::\+Time delta\+Time)
+\item 
+void \hyperlink{class_scene_stack_ab4a68b2247289ba1d934067aad35159d}{draw} ()
+\item 
+void \hyperlink{class_scene_stack_aecf75add55f527c31528043f4b28db44}{handle\+Event} (const sf\+::\+Event \&event)
+\item 
+void \hyperlink{class_scene_stack_a41366819a998558e3920fe7859d1f114}{push\+Scene} (\hyperlink{namespace_scenes_a0ad7ab6856b1d77d498e3a251f6bb275}{Scenes\+::\+ID} scene\+ID)
+\item 
+void \hyperlink{class_scene_stack_a0ea3309f9ec9120cf51a0bce3881e1e2}{pop\+Scene} ()
+\item 
+void \hyperlink{class_scene_stack_a70253c72c07f5d5c5d77861d064b8470}{clear\+Scene} ()
+\item 
+bool \hyperlink{class_scene_stack_ade95cce69229a18d169f63093289e865}{is\+Empty} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9}{}\label{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9} 
+\index{Scene\+Stack@{Scene\+Stack}!Action@{Action}}
+\index{Action@{Action}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{Action}{Action}}
+{\footnotesize\ttfamily enum \hyperlink{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9}{Scene\+Stack\+::\+Action}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Push@{Push}!Scene\+Stack@{Scene\+Stack}}\index{Scene\+Stack@{Scene\+Stack}!Push@{Push}}}\hypertarget{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9a6cd7480d27e0a88a4b67e2186757358d}{}\label{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9a6cd7480d27e0a88a4b67e2186757358d} 
+Push&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pop@{Pop}!Scene\+Stack@{Scene\+Stack}}\index{Scene\+Stack@{Scene\+Stack}!Pop@{Pop}}}\hypertarget{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9a1d86b0e7cf0989e5717f70598e74fa95}{}\label{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9a1d86b0e7cf0989e5717f70598e74fa95} 
+Pop&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Clear@{Clear}!Scene\+Stack@{Scene\+Stack}}\index{Scene\+Stack@{Scene\+Stack}!Clear@{Clear}}}\hypertarget{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9af03df5d6746e57023c22bb3548b93779}{}\label{class_scene_stack_ab8644e038aad992c6776dc3fb5fcc1f9af03df5d6746e57023c22bb3548b93779} 
+Clear&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_scene_stack_a7893580d1266ed06c9c690012137f799}{}\label{class_scene_stack_a7893580d1266ed06c9c690012137f799} 
+\index{Scene\+Stack@{Scene\+Stack}!Scene\+Stack@{Scene\+Stack}}
+\index{Scene\+Stack@{Scene\+Stack}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{Scene\+Stack()}{SceneStack()}}
+{\footnotesize\ttfamily Scene\+Stack\+::\+Scene\+Stack (\begin{DoxyParamCaption}\item[{\hyperlink{struct_scene_1_1_context}{Scene\+::\+Context}}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_scene_stack_a70253c72c07f5d5c5d77861d064b8470}{}\label{class_scene_stack_a70253c72c07f5d5c5d77861d064b8470} 
+\index{Scene\+Stack@{Scene\+Stack}!clear\+Scene@{clear\+Scene}}
+\index{clear\+Scene@{clear\+Scene}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{clear\+Scene()}{clearScene()}}
+{\footnotesize\ttfamily void Scene\+Stack\+::clear\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_scene_stack_a129b49c7bc280aeaf7c71235b3d9648d}{}\label{class_scene_stack_a129b49c7bc280aeaf7c71235b3d9648d} 
+\index{Scene\+Stack@{Scene\+Stack}!create\+Scene@{create\+Scene}}
+\index{create\+Scene@{create\+Scene}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{create\+Scene()}{createScene()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void Scene\+Stack\+::create\+Scene (\begin{DoxyParamCaption}\item[{\hyperlink{namespace_scenes_a0ad7ab6856b1d77d498e3a251f6bb275}{Scenes\+::\+ID}}]{scene\+ID }\end{DoxyParamCaption})}
+
+\hypertarget{class_scene_stack_ab4a68b2247289ba1d934067aad35159d}{}\label{class_scene_stack_ab4a68b2247289ba1d934067aad35159d} 
+\index{Scene\+Stack@{Scene\+Stack}!draw@{draw}}
+\index{draw@{draw}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Scene\+Stack\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_scene_stack_aecf75add55f527c31528043f4b28db44}{}\label{class_scene_stack_aecf75add55f527c31528043f4b28db44} 
+\index{Scene\+Stack@{Scene\+Stack}!handle\+Event@{handle\+Event}}
+\index{handle\+Event@{handle\+Event}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{handle\+Event()}{handleEvent()}}
+{\footnotesize\ttfamily void Scene\+Stack\+::handle\+Event (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event }\end{DoxyParamCaption})}
+
+\hypertarget{class_scene_stack_ade95cce69229a18d169f63093289e865}{}\label{class_scene_stack_ade95cce69229a18d169f63093289e865} 
+\index{Scene\+Stack@{Scene\+Stack}!is\+Empty@{is\+Empty}}
+\index{is\+Empty@{is\+Empty}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{is\+Empty()}{isEmpty()}}
+{\footnotesize\ttfamily bool Scene\+Stack\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{class_scene_stack_a0ea3309f9ec9120cf51a0bce3881e1e2}{}\label{class_scene_stack_a0ea3309f9ec9120cf51a0bce3881e1e2} 
+\index{Scene\+Stack@{Scene\+Stack}!pop\+Scene@{pop\+Scene}}
+\index{pop\+Scene@{pop\+Scene}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{pop\+Scene()}{popScene()}}
+{\footnotesize\ttfamily void Scene\+Stack\+::pop\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_scene_stack_a41366819a998558e3920fe7859d1f114}{}\label{class_scene_stack_a41366819a998558e3920fe7859d1f114} 
+\index{Scene\+Stack@{Scene\+Stack}!push\+Scene@{push\+Scene}}
+\index{push\+Scene@{push\+Scene}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{push\+Scene()}{pushScene()}}
+{\footnotesize\ttfamily void Scene\+Stack\+::push\+Scene (\begin{DoxyParamCaption}\item[{\hyperlink{namespace_scenes_a0ad7ab6856b1d77d498e3a251f6bb275}{Scenes\+::\+ID}}]{scene\+ID }\end{DoxyParamCaption})}
+
+\hypertarget{class_scene_stack_acdea2588bbc85c2834608ebab6671866}{}\label{class_scene_stack_acdea2588bbc85c2834608ebab6671866} 
+\index{Scene\+Stack@{Scene\+Stack}!update@{update}}
+\index{update@{update}!Scene\+Stack@{Scene\+Stack}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Scene\+Stack\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_scene_stack_8h}{Scene\+Stack.\+h}\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_scene_stack_8cpp}{Scene\+Stack.\+cpp}\end{DoxyCompactItemize}

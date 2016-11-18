@@ -5,6 +5,7 @@
 #include "Astronaut.h"
 #include "Player.h"
 #include "Camera.h"
+#include "BulletManager.h"
 
 class GameScene : public Scene
 {
@@ -37,5 +38,6 @@ private:
 	Astronaut m_astro;
 	Player m_playo;
 	sf::Vector2f m_currPlayerPos;
-	Bullet m_testBullet;
+
+	const int MAX_BULLETS = 50;
 };

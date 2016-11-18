@@ -1,0 +1,130 @@
+\hypertarget{class_astronaut}{}\section{Astronaut Class Reference}
+\label{class_astronaut}\index{Astronaut@{Astronaut}}
+
+
+{\ttfamily \#include $<$Astronaut.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3}{Anims} \{ \hyperlink{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3af5bc7e1f65137bfd2ca4f23291f282d8}{Walk\+Left}, 
+\hyperlink{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3ac615271362fc6d2058af61d13bc5d07a}{Walk\+Right}, 
+\hyperlink{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3af300bb1b0243d51a6a6e6ac48416b043}{Falling\+\_\+\+Abducted}
+ \}
+\item 
+enum \hyperlink{class_astronaut_ac8bdb05a39112336728de09ce0428c9f}{State} \{ \hyperlink{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa5cfbf42b26cd3105e16fdebca0e00f00}{Flee}, 
+\hyperlink{class_astronaut_ac8bdb05a39112336728de09ce0428c9fad608422fad91be9e6303f166e3774136}{Wander}, 
+\hyperlink{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa3318318cb25512762266bbc2a0cf3213}{Falling}, 
+\hyperlink{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa93070abd8f976010b6e4955962e63a48}{Abducted}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_astronaut_ac380c8593c980cf8671c9b482876c2a0}{Astronaut} ()
+\item 
+\hyperlink{class_astronaut_af31f9de205719a042df5f0a1879ee064}{$\sim$\+Astronaut} ()
+\item 
+void \hyperlink{class_astronaut_a2eb1049d06ec7546b5320648d573abbc}{init} (sf\+::\+Texture \&tex, int x\+Pos)
+\item 
+void \hyperlink{class_astronaut_a2df268d2fa9a1783fda0c772130cddd2}{update} (sf\+::\+Time delta\+Time)
+\item 
+void \hyperlink{class_astronaut_a2dff61a54b10d5fb38f68d2f63668387}{set\+Position} (sf\+::\+Vector2f)
+\item 
+\hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_astronaut_a0dca06c39c27c2f451de64bbc1785d0a}{draw} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3}{}\label{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3} 
+\index{Astronaut@{Astronaut}!Anims@{Anims}}
+\index{Anims@{Anims}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{Anims}{Anims}}
+{\footnotesize\ttfamily enum \hyperlink{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3}{Astronaut\+::\+Anims}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Walk\+Left@{Walk\+Left}!Astronaut@{Astronaut}}\index{Astronaut@{Astronaut}!Walk\+Left@{Walk\+Left}}}\hypertarget{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3af5bc7e1f65137bfd2ca4f23291f282d8}{}\label{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3af5bc7e1f65137bfd2ca4f23291f282d8} 
+Walk\+Left&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Walk\+Right@{Walk\+Right}!Astronaut@{Astronaut}}\index{Astronaut@{Astronaut}!Walk\+Right@{Walk\+Right}}}\hypertarget{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3ac615271362fc6d2058af61d13bc5d07a}{}\label{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3ac615271362fc6d2058af61d13bc5d07a} 
+Walk\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Falling\+\_\+\+Abducted@{Falling\+\_\+\+Abducted}!Astronaut@{Astronaut}}\index{Astronaut@{Astronaut}!Falling\+\_\+\+Abducted@{Falling\+\_\+\+Abducted}}}\hypertarget{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3af300bb1b0243d51a6a6e6ac48416b043}{}\label{class_astronaut_a36c4be46e5ecdf54256228b3f37d0ba3af300bb1b0243d51a6a6e6ac48416b043} 
+Falling\+\_\+\+Abducted&\\
+\hline
+
+\end{DoxyEnumFields}
+\hypertarget{class_astronaut_ac8bdb05a39112336728de09ce0428c9f}{}\label{class_astronaut_ac8bdb05a39112336728de09ce0428c9f} 
+\index{Astronaut@{Astronaut}!State@{State}}
+\index{State@{State}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily enum \hyperlink{class_astronaut_ac8bdb05a39112336728de09ce0428c9f}{Astronaut\+::\+State}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Flee@{Flee}!Astronaut@{Astronaut}}\index{Astronaut@{Astronaut}!Flee@{Flee}}}\hypertarget{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa5cfbf42b26cd3105e16fdebca0e00f00}{}\label{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa5cfbf42b26cd3105e16fdebca0e00f00} 
+Flee&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Wander@{Wander}!Astronaut@{Astronaut}}\index{Astronaut@{Astronaut}!Wander@{Wander}}}\hypertarget{class_astronaut_ac8bdb05a39112336728de09ce0428c9fad608422fad91be9e6303f166e3774136}{}\label{class_astronaut_ac8bdb05a39112336728de09ce0428c9fad608422fad91be9e6303f166e3774136} 
+Wander&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Falling@{Falling}!Astronaut@{Astronaut}}\index{Astronaut@{Astronaut}!Falling@{Falling}}}\hypertarget{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa3318318cb25512762266bbc2a0cf3213}{}\label{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa3318318cb25512762266bbc2a0cf3213} 
+Falling&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Abducted@{Abducted}!Astronaut@{Astronaut}}\index{Astronaut@{Astronaut}!Abducted@{Abducted}}}\hypertarget{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa93070abd8f976010b6e4955962e63a48}{}\label{class_astronaut_ac8bdb05a39112336728de09ce0428c9fa93070abd8f976010b6e4955962e63a48} 
+Abducted&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_astronaut_ac380c8593c980cf8671c9b482876c2a0}{}\label{class_astronaut_ac380c8593c980cf8671c9b482876c2a0} 
+\index{Astronaut@{Astronaut}!Astronaut@{Astronaut}}
+\index{Astronaut@{Astronaut}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{Astronaut()}{Astronaut()}}
+{\footnotesize\ttfamily Astronaut\+::\+Astronaut (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_astronaut_af31f9de205719a042df5f0a1879ee064}{}\label{class_astronaut_af31f9de205719a042df5f0a1879ee064} 
+\index{Astronaut@{Astronaut}!````~Astronaut@{$\sim$\+Astronaut}}
+\index{````~Astronaut@{$\sim$\+Astronaut}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{$\sim$\+Astronaut()}{~Astronaut()}}
+{\footnotesize\ttfamily Astronaut\+::$\sim$\+Astronaut (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_astronaut_a0dca06c39c27c2f451de64bbc1785d0a}{}\label{class_astronaut_a0dca06c39c27c2f451de64bbc1785d0a} 
+\index{Astronaut@{Astronaut}!draw@{draw}}
+\index{draw@{draw}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Astronaut\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{class_astronaut_a2eb1049d06ec7546b5320648d573abbc}{}\label{class_astronaut_a2eb1049d06ec7546b5320648d573abbc} 
+\index{Astronaut@{Astronaut}!init@{init}}
+\index{init@{init}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Astronaut\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{tex,  }\item[{int}]{x\+Pos }\end{DoxyParamCaption})}
+
+\hypertarget{class_astronaut_a2dff61a54b10d5fb38f68d2f63668387}{}\label{class_astronaut_a2dff61a54b10d5fb38f68d2f63668387} 
+\index{Astronaut@{Astronaut}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Astronaut\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{pos }\end{DoxyParamCaption})}
+
+\hypertarget{class_astronaut_a2df268d2fa9a1783fda0c772130cddd2}{}\label{class_astronaut_a2df268d2fa9a1783fda0c772130cddd2} 
+\index{Astronaut@{Astronaut}!update@{update}}
+\index{update@{update}!Astronaut@{Astronaut}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Astronaut\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_astronaut_8h}{Astronaut.\+h}\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_astronaut_8cpp}{Astronaut.\+cpp}\end{DoxyCompactItemize}

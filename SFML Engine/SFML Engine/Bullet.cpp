@@ -2,21 +2,14 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet()
-	: m_alive(false)
+Bullet::Bullet(sf::Texture & tex)
+	: m_enabled(false)
 	, m_rotation(0)
 	, m_prevRotation(0)
 	, m_animatedSprite(sf::seconds(0.1f), true, false)
 	, m_animations(NUM_OF_ANIMS)
 {
-}
-
-Bullet::~Bullet()
-{
-}
-
-void Bullet::init(sf::Texture & tex)
-{
+	
 	m_animations[Type::Lazer].setSpriteSheet(tex);
 	m_animations[Type::Lazer].addFrame(sf::IntRect(158, 0, 34, 9));
 
@@ -34,10 +27,19 @@ void Bullet::init(sf::Texture & tex)
 	m_animations[Type::Explosion].addFrame(sf::IntRect(280, 144, 40, 40));
 }
 
+Bullet::Bullet()
+{
+}
+
+Bullet::~Bullet()
+{
+}
+
 // bool playerBullet - decides if the player has fired or the com. Useful for collisions 
 void Bullet::setUpBullet(sf::Vector2f position, int direction, int type, bool playerBullet)
 {
-	m_alive = true;
+	m_enabled = true;
+	m_ttl = 0;
 	m_type = type;
 	m_playerBullet = playerBullet;
 	m_direction = direction;
@@ -59,7 +61,7 @@ void Bullet::setUpBullet(sf::Vector2f position, int direction, int type, bool pl
 
 void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, int type)
 {
-	m_alive = true;
+	m_enabled = true;
 	m_playerBullet = false;
 	m_type = type;
 	m_currAnimation = &m_animations[Type::Missile];
@@ -72,8 +74,17 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_rotation = std::atan2(m_velocity.y, m_velocity.x);
 	m_prevRotation = m_rotation;
 }
+void Bullet::update(sf::Time deltaTime)
+{
+	m_ttl += deltaTime.asSeconds();
+	if (m_ttl > BULLET_TTL)
+		m_enabled = false;
 
-void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos)
+	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
+	m_animatedSprite.update(deltaTime);
+}
+
+void Bullet::updateMissile(sf::Time deltaTime, sf::Vector2f playerPos)
 {
 	m_animatedSprite.play(*m_currAnimation);
 	if (m_type == Missile)
@@ -104,7 +115,7 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos)
 		if (m_animatedSprite.getFrame() > MAX_FRAMES_EXPLOSION)
 		{
 			m_ttl = 0;
-			m_alive = false;
+			m_enabled = false;
 		}
 	}
 	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
@@ -122,9 +133,14 @@ sf::Vector2f Bullet::getPosition()
 	return m_animatedSprite.getPosition();
 }
 
-bool Bullet::isAlive()
+void Bullet::setEnabled(bool enabled)
 {
-	return m_alive;
+	m_enabled = enabled;
+}
+
+bool Bullet::isEnabled()
+{
+	return m_enabled;
 }
 
 int Bullet::getType()

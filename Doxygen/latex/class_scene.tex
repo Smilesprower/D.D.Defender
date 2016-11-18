@@ -1,0 +1,119 @@
+\hypertarget{class_scene}{}\section{Scene Class Reference}
+\label{class_scene}\index{Scene@{Scene}}
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}
+
+Inheritance diagram for Scene\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_scene}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_scene_1_1_context}{Context}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_scene_a9834819a1140a2c066024927e6dc9692}{Scene} (\hyperlink{class_scene_stack}{Scene\+Stack} \&stack, \hyperlink{struct_scene_1_1_context}{Context} context)
+\item 
+virtual \hyperlink{class_scene_a3b8cec2e32546713915f8c6303c951f1}{$\sim$\+Scene} ()
+\item 
+virtual void \hyperlink{class_scene_a789c16961aa1e316b2a4a05b95187546}{draw} ()=0
+\item 
+virtual bool \hyperlink{class_scene_a72683c984a1da2ce4f757705e93730f2}{update} (sf\+::\+Time delta\+Time)=0
+\item 
+virtual bool \hyperlink{class_scene_af25e4d2c998aca4e95899fb67488e815}{handle\+Event} (const sf\+::\+Event \&event)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_scene_a38d36125a421eab649188edb740d1c36}{request\+Stack\+Push} (\hyperlink{namespace_scenes_a0ad7ab6856b1d77d498e3a251f6bb275}{Scenes\+::\+ID} scene\+ID)
+\item 
+void \hyperlink{class_scene_ad2f2093a8adc09c11e89cda6f94a3dd1}{request\+Stack\+Pop} ()
+\item 
+void \hyperlink{class_scene_a0cc91a92f27ba281b52c58168b7a000a}{request\+State\+Clear} ()
+\item 
+\hyperlink{struct_scene_1_1_context}{Context} \hyperlink{class_scene_acab4ecf24b21ffa8e423a8e4fd45c491}{get\+Context} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_scene_a9834819a1140a2c066024927e6dc9692}{}\label{class_scene_a9834819a1140a2c066024927e6dc9692} 
+\index{Scene@{Scene}!Scene@{Scene}}
+\index{Scene@{Scene}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{Scene()}{Scene()}}
+{\footnotesize\ttfamily Scene\+::\+Scene (\begin{DoxyParamCaption}\item[{\hyperlink{class_scene_stack}{Scene\+Stack} \&}]{stack,  }\item[{\hyperlink{struct_scene_1_1_context}{Context}}]{context }\end{DoxyParamCaption})}
+
+\hypertarget{class_scene_a3b8cec2e32546713915f8c6303c951f1}{}\label{class_scene_a3b8cec2e32546713915f8c6303c951f1} 
+\index{Scene@{Scene}!````~Scene@{$\sim$\+Scene}}
+\index{````~Scene@{$\sim$\+Scene}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{$\sim$\+Scene()}{~Scene()}}
+{\footnotesize\ttfamily Scene\+::$\sim$\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_scene_a789c16961aa1e316b2a4a05b95187546}{}\label{class_scene_a789c16961aa1e316b2a4a05b95187546} 
+\index{Scene@{Scene}!draw@{draw}}
+\index{draw@{draw}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual void Scene\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}{Game\+Scene}, \hyperlink{class_pause_scene_abfd1398a064a83b3ae6ac5fd98aebf05}{Pause\+Scene}, and \hyperlink{class_title_scene_a3e527255771f75a41c4fe8aaa35999dd}{Title\+Scene}.
+
+\hypertarget{class_scene_acab4ecf24b21ffa8e423a8e4fd45c491}{}\label{class_scene_acab4ecf24b21ffa8e423a8e4fd45c491} 
+\index{Scene@{Scene}!get\+Context@{get\+Context}}
+\index{get\+Context@{get\+Context}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{get\+Context()}{getContext()}}
+{\footnotesize\ttfamily \hyperlink{struct_scene_1_1_context}{Scene\+::\+Context} Scene\+::get\+Context (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_scene_af25e4d2c998aca4e95899fb67488e815}{}\label{class_scene_af25e4d2c998aca4e95899fb67488e815} 
+\index{Scene@{Scene}!handle\+Event@{handle\+Event}}
+\index{handle\+Event@{handle\+Event}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{handle\+Event()}{handleEvent()}}
+{\footnotesize\ttfamily virtual bool Scene\+::handle\+Event (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{class_game_scene_aa494372b1f451f3c3a268558fddb30f2}{Game\+Scene}, \hyperlink{class_pause_scene_adeb06e37e0a2afa297ddbe795c3cbe94}{Pause\+Scene}, and \hyperlink{class_title_scene_a1f019a83309ce967883b4b4d76b816af}{Title\+Scene}.
+
+\hypertarget{class_scene_ad2f2093a8adc09c11e89cda6f94a3dd1}{}\label{class_scene_ad2f2093a8adc09c11e89cda6f94a3dd1} 
+\index{Scene@{Scene}!request\+Stack\+Pop@{request\+Stack\+Pop}}
+\index{request\+Stack\+Pop@{request\+Stack\+Pop}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{request\+Stack\+Pop()}{requestStackPop()}}
+{\footnotesize\ttfamily void Scene\+::request\+Stack\+Pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_scene_a38d36125a421eab649188edb740d1c36}{}\label{class_scene_a38d36125a421eab649188edb740d1c36} 
+\index{Scene@{Scene}!request\+Stack\+Push@{request\+Stack\+Push}}
+\index{request\+Stack\+Push@{request\+Stack\+Push}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{request\+Stack\+Push()}{requestStackPush()}}
+{\footnotesize\ttfamily void Scene\+::request\+Stack\+Push (\begin{DoxyParamCaption}\item[{\hyperlink{namespace_scenes_a0ad7ab6856b1d77d498e3a251f6bb275}{Scenes\+::\+ID}}]{scene\+ID }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_scene_a0cc91a92f27ba281b52c58168b7a000a}{}\label{class_scene_a0cc91a92f27ba281b52c58168b7a000a} 
+\index{Scene@{Scene}!request\+State\+Clear@{request\+State\+Clear}}
+\index{request\+State\+Clear@{request\+State\+Clear}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{request\+State\+Clear()}{requestStateClear()}}
+{\footnotesize\ttfamily void Scene\+::request\+State\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{class_scene_a72683c984a1da2ce4f757705e93730f2}{}\label{class_scene_a72683c984a1da2ce4f757705e93730f2} 
+\index{Scene@{Scene}!update@{update}}
+\index{update@{update}!Scene@{Scene}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual bool Scene\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{class_game_scene_ae54628d2f041bcad66242584b2db10d6}{Game\+Scene}, \hyperlink{class_pause_scene_a8504260009b4dfb2380785e938e60b4b}{Pause\+Scene}, and \hyperlink{class_title_scene_a17ce1b5b9f6f8ca44a6ed3326e9e5d0a}{Title\+Scene}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_scene_8h}{Scene.\+h}\item 
+S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_scene_8cpp}{Scene.\+cpp}\end{DoxyCompactItemize}

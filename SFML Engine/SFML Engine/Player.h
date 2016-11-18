@@ -1,5 +1,6 @@
 #include <SFML\Graphics.hpp>
 #include "AnimatedSprite.h"
+#include "BulletManager.h"
 
 class Player
 {
@@ -32,8 +33,8 @@ private:
 	};
 	enum Direction
 	{
-		Left,
-		Right,
+		Left = -1,
+		Right = 1,
 		Up,
 		Down
 	};
@@ -42,6 +43,7 @@ private:
 	bool m_teleported;
 	int m_smartBombState;
 	float m_smartBombTimer;
+	float m_bulletTimer;
 
 
 	int m_directionX;
