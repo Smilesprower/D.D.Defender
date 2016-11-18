@@ -9,6 +9,8 @@ Player::Player()
 	, m_animatedSprite(sf::seconds(0.1f), true, true)
 	, m_animations(NUM_OF_ANIMS)
 	, m_teleported(false)
+	, m_smartBombState(SmartBomb::Charging)
+	, m_smartBombTimer(0)
 {
 }
 
@@ -43,6 +45,7 @@ void Player::update(sf::Time deltaTime)
 {
 	m_animatedSprite.play(*m_currAnimation);
 	Move(deltaTime);
+	updateSmartBomb(deltaTime);
 }
 
 void Player::Move(sf::Time deltaTime)
@@ -115,6 +118,12 @@ void Player::Move(sf::Time deltaTime)
 		m_teleported = true;
 		teleport();
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && m_smartBombState == SmartBomb::Ready)
+	{
+		m_smartBombState = SmartBomb::Fired;
+		m_smartBombTimer = 0;
+	}
+
 	m_velocity.x = m_accel.x * deltaTime.asSeconds();
 	//m_velocity.y = m_accel.y * deltaTime.asSeconds();
 	m_velocity.y *= deltaTime.asSeconds();
@@ -131,4 +140,27 @@ void Player::teleport()
 {
 	int randX = rand() % m_teleportingBounds.y + m_teleportingBounds.x;
 	m_animatedSprite.setPosition(randX, m_animatedSprite.getPosition().y);
+}
+
+int Player::getSmartBombState()
+{
+	return m_smartBombState;
+}
+
+void Player::chargeSmartBomb()
+{
+	m_smartBombState = SmartBomb::Charging;
+}
+
+void Player::updateSmartBomb(sf::Time deltaTime)
+{
+	if (m_smartBombState == SmartBomb::Charging)
+	{
+		m_smartBombTimer += deltaTime.asSeconds();
+		if (m_smartBombTimer >= SMART_BOMB_RELOAD_TIME)
+		{
+			m_smartBombTimer = 0;
+			m_smartBombState = SmartBomb::Ready;
+		}
+	}
 }

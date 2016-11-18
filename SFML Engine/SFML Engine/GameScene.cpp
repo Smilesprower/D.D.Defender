@@ -98,18 +98,26 @@ void GameScene::draw()
 
 bool GameScene::update(sf::Time deltaTime)
 {
+	if (!m_playShockwave && m_playo.getSmartBombState() == m_playo.Fired)
+	{
+		setupShockwave(m_currPlayerPos);
+	}
 	if (m_playShockwave)
 	{
 		m_shockwave->setUniform("time", m_clock.getElapsedTime().asSeconds() * 0.2f);
 		if (m_clock.getElapsedTime().asSeconds() > 5)
+		{
 			m_playShockwave = false;
+			m_playo.chargeSmartBomb();
+		}
 	}
-	//m_astro.update(deltaTime);
-	m_playo.update(deltaTime);
-
-	if(m_testBullet.isAlive())
-		m_testBullet.update(deltaTime, m_playo.draw().getPosition());
-
+	else
+	{
+		m_playo.update(deltaTime);
+		//m_astro.update(deltaTime);
+		if(m_testBullet.isAlive())
+			m_testBullet.update(deltaTime, m_playo.draw().getPosition());
+	}
 	return true;
 }
 // Event Input
@@ -123,17 +131,7 @@ bool GameScene::handleEvent(const sf::Event& event)
 		}
 		if (event.key.code == sf::Keyboard::Return)
 		{
-			if (!m_playShockwave)
-			{
-				SoundPlayer::Instance()->play(SoundEffect::Charge);
-				m_clock.restart();
-				m_shockwave->setUniform("shock_amplitude", 10.f);
-				m_shockwave->setUniform("shock_refraction", .5f);
-				m_shockwave->setUniform("shock_width", 0.15f);
-				m_shockwave->setUniform("resolution", sf::Vector2f(1920, 1080));
-				m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_currPlayerPos.y));
-				m_playShockwave = true;
-			}
+			
 		}
 		if (event.key.code == sf::Keyboard::F)
 		{
@@ -145,4 +143,16 @@ bool GameScene::handleEvent(const sf::Event& event)
 		}
 	}
 	return true;
+}
+
+void GameScene::setupShockwave(sf::Vector2f playerPos)
+{
+	//SoundPlayer::Instance()->play(SoundEffect::Charge);
+	m_clock.restart();
+	m_shockwave->setUniform("shock_amplitude", 10.f);
+	m_shockwave->setUniform("shock_refraction", .5f);
+	m_shockwave->setUniform("shock_width", 0.15f);
+	m_shockwave->setUniform("resolution", sf::Vector2f(1920, 1080));
+	m_shockwave->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_currPlayerPos.y));
+	m_playShockwave = true;
 }
