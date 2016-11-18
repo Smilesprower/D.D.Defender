@@ -15,6 +15,8 @@ public:
 	virtual bool update(sf::Time deltaTime);
 	virtual bool handleEvent(const sf::Event& event);
 
+	void setupShockwave(sf::Vector2f playerPos);
+
 private:
 	const int OFFSET = 2;
 

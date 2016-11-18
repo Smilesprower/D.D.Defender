@@ -4,6 +4,26 @@
 class Player
 {
 public:
+	
+	enum SmartBomb
+	{
+		Ready,
+		Charging,
+		Fired,
+	};
+	Player();
+	~Player();
+
+	void init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i tpBounds);
+	void update(sf::Time deltaTime);
+	void Move(sf::Time deltaTime);
+	AnimatedSprite draw();
+	void teleport();
+	int getSmartBombState();
+	void chargeSmartBomb();
+	void updateSmartBomb(sf::Time deltaTime);
+	AnimatedSprite m_animatedSprite;
+private:
 	enum Anims
 	{
 		MoveUp,
@@ -18,25 +38,18 @@ public:
 		Down
 	};
 
-	Player();
-	~Player();
-
-	void init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i tpBounds);
-	void update(sf::Time deltaTime);
-	void Move(sf::Time deltaTime);
-	AnimatedSprite draw();
-	void teleport();
-	AnimatedSprite m_animatedSprite;
-private:
-
 	bool m_health;
 	bool m_teleported;
+	int m_smartBombState;
+	float m_smartBombTimer;
+
 
 	int m_directionX;
 	int m_directionY;
 	sf::Vector2f m_accel;
 	const float DE_ACCEL = 4.f;
 	const int MAX_SPEED = 700;
+	const int SMART_BOMB_RELOAD_TIME = 11;
 	sf::Vector2f m_velocity;
 	sf::Vector2i m_teleportingBounds;
 
