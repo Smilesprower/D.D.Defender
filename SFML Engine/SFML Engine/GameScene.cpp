@@ -95,6 +95,8 @@ void GameScene::draw()
 
 	window.draw(m_playo.draw());
 	window.setView(window.getDefaultView());
+
+	
 	window.draw(m_hud.drawRectangle());
 	window.draw(m_hud.draw());
 
@@ -120,9 +122,10 @@ bool GameScene::update(sf::Time deltaTime)
 		sf::Vector2f tempBounds(m_currPlayerPos.x - m_halfScreenSize.x, m_currPlayerPos.x + m_halfScreenSize.x);
 
 		// What the fuk was I at here hmmmmmmmmmmmmm
+		// Do you really need to curse in the comments Jay? lol
 		BulletManager::Instance()->update(deltaTime);
 
-		m_hud.update(deltaTime, m_playo.m_smartBombTimer);
+		m_hud.update(deltaTime, m_playo.m_smartBombTimer, m_playo.getHealth());
 		m_playo.update(deltaTime);
 		//m_astro.update(deltaTime);
 		/*if(m_testBullet.isAlive())
