@@ -112,6 +112,16 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos)
 	m_prevRotation = m_rotation;
 }
 
+void Bullet::setPosition(sf::Vector2f newPosition)
+{
+	m_animatedSprite.setPosition(newPosition);
+}
+
+sf::Vector2f Bullet::getPosition()
+{
+	return m_animatedSprite.getPosition();
+}
+
 bool Bullet::isAlive()
 {
 	return m_alive;

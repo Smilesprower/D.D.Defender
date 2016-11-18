@@ -24,14 +24,14 @@ void SceneStack::update(sf::Time deltaTime)
 
 void SceneStack::draw()
 {
-	//for each (const std::unique_ptr<Scene>&state in mStack){
-	//	state->draw();
-	//}
-	if (!mStack.empty())
-	{
-		auto itr = mStack.rbegin();
-		(*itr)->draw();
+	for each (const std::unique_ptr<Scene>&state in mStack){
+		state->draw();
 	}
+	//if (!mStack.empty())
+	//{
+	//	auto itr = mStack.rbegin();
+	//	(*itr)->draw();
+	//}
 }
 
 void SceneStack::handleEvent(const sf::Event & event)
