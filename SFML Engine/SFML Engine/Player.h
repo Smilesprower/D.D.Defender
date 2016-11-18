@@ -24,6 +24,8 @@ public:
 	void chargeSmartBomb();
 	void updateSmartBomb(sf::Time deltaTime);
 	AnimatedSprite m_animatedSprite;
+	float m_smartBombTimer;
+
 private:
 	enum Anims
 	{
@@ -38,20 +40,17 @@ private:
 		Up,
 		Down
 	};
-
 	bool m_health;
 	bool m_teleported;
 	int m_smartBombState;
-	float m_smartBombTimer;
 	float m_bulletTimer;
-
 
 	int m_directionX;
 	int m_directionY;
 	sf::Vector2f m_accel;
 	const float DE_ACCEL = 4.f;
 	const int MAX_SPEED = 700;
-	const int SMART_BOMB_RELOAD_TIME = 11;
+	const int SMART_BOMB_RELOAD_TIME = 60;
 	sf::Vector2f m_velocity;
 	sf::Vector2i m_teleportingBounds;
 

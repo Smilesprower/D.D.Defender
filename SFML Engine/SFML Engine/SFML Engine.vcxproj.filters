@@ -17,7 +17,11 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Helper.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="BulletManager.cpp" />
+=======
+    <ClCompile Include="HUD.cpp" />
+>>>>>>> 318e9933556a8b1daceeb57ddce0a9737c16e123
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -39,7 +43,11 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Helper.h" />
+<<<<<<< HEAD
     <ClInclude Include="BulletManager.h" />
+=======
+    <ClInclude Include="HUD.h" />
+>>>>>>> 318e9933556a8b1daceeb57ddce0a9737c16e123
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl" />
