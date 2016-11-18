@@ -13,6 +13,7 @@ Player::Player()
 	, m_smartBombTimer(0)
 	, m_bulletTimer(1)
 	, m_directionX(Right)
+	, m_health(100)
 {
 }
 
@@ -179,4 +180,9 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 			m_smartBombState = SmartBomb::Ready;
 		}
 	}
+}
+
+int Player::getHealth()
+{
+	return m_health;
 }

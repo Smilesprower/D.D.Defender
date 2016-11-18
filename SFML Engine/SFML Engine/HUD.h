@@ -6,8 +6,9 @@ class HUD
 public:
 	HUD();
 	void init(sf::Texture & tex, sf::Vector2i screenSize);
-	void update(sf::Time deltaTime, float sbRectSize);
+	void update(sf::Time deltaTime, float sbRectSize, int healthRectSize);
 	void updateSmartBombRect(float size);
+	void updateHealthRect(int size);
 	void reset();
 	sf::Sprite draw();
 	sf::RectangleShape drawRectangle();
@@ -17,6 +18,9 @@ private:
 	sf::Sprite m_hud;
 
 	sf::RectangleShape m_smartBombRect;
-	sf::Vector3f m_colorA, m_colorB, m_interpolatedColor;
+	sf::RectangleShape m_healthRect;
+
+	
+	sf::Vector3f m_colorA, m_colorB, m_colorC, m_interpolatedColor;
 	float m_colorTimer;
 };

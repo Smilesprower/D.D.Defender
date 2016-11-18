@@ -23,6 +23,7 @@ public:
 	int getSmartBombState();
 	void chargeSmartBomb();
 	void updateSmartBomb(sf::Time deltaTime);
+	int getHealth();
 	AnimatedSprite m_animatedSprite;
 	float m_smartBombTimer;
 
@@ -40,7 +41,8 @@ private:
 		Up,
 		Down
 	};
-	bool m_health;
+
+	int m_health;
 	bool m_teleported;
 	int m_smartBombState;
 	float m_bulletTimer;
