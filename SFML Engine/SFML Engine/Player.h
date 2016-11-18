@@ -51,6 +51,7 @@ private:
 	const float DE_ACCEL = 4.f;
 	const int MAX_SPEED = 700;
 	const int SMART_BOMB_RELOAD_TIME = 60;
+	const float BULLET_RELOAD_TIME = 100.f;
 	sf::Vector2f m_velocity;
 	sf::Vector2i m_teleportingBounds;
 
