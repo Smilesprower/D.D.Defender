@@ -32,9 +32,6 @@ void BulletManager::update(sf::Time deltaTime)
 	// Check if the bullet is enabled
 	for (int i = 0; i < m_maxBullets; i++)
 	{
-		if(m_bullets[i]->isEnabled())
-			m_bulletCount++;
-
 		if (m_bullets[i]->getType() == Missile)
 		{
 		}
@@ -43,17 +40,15 @@ void BulletManager::update(sf::Time deltaTime)
 			m_bullets.at(i)->update(deltaTime);
 		}
 	}
-	std::cout << m_bulletCount << std::endl;
-	m_bulletCount = 0;
 }
 
-bool BulletManager::createLaser(sf::Vector2f pos, int direction, int type, bool playerBullet)
+bool BulletManager::createLaser(sf::Vector2f pos, float xSpeed, int direction, int type, bool playerBullet)
 {
 	for (int i = 0; i < m_maxBullets; i++)
 	{
 		if (!m_bullets.at(i)->isEnabled())
 		{
-			m_bullets.at(i)->setUpBullet(pos, direction, type, playerBullet);
+			m_bullets.at(i)->setUpBullet(pos, xSpeed, direction, type, playerBullet);
 			return true;
 		}
 	}

@@ -36,14 +36,14 @@ Bullet::~Bullet()
 }
 
 // bool playerBullet - decides if the player has fired or the com. Useful for collisions 
-void Bullet::setUpBullet(sf::Vector2f position, int direction, int type, bool playerBullet)
+void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int type, bool playerBullet)
 {
 	m_enabled = true;
 	m_ttl = 0;
 	m_type = type;
 	m_playerBullet = playerBullet;
 	m_direction = direction;
-	m_velocity.x = BULLET_SPEED * m_direction;
+	m_velocity.x = xSpeed + BULLET_SPEED * m_direction ;
 
 	if (m_type == Default)
 	{

@@ -18,7 +18,7 @@ public:
 	void init(sf::Texture tex, int maxBullets);
 	void update(sf::Time deltaTime);
 	void fireMissile();
-	bool createLaser(sf::Vector2f pos, int direction, int type, bool playerBullet);
+	bool createLaser(sf::Vector2f pos, float xSpeed, int direction, int type, bool playerBullet);
 	std::vector<Bullet*> getBullets();
 
 private:

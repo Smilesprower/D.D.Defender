@@ -125,7 +125,7 @@ void Player::Move(sf::Time deltaTime)
 	{
 		if (m_bulletTimer >= BULLET_RELOAD_TIME)
 		{
-			if(BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), m_directionX, 1, true))
+			if(BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), m_accel.x, m_directionX, 1, true))
 				m_bulletTimer = 0;
 		}
 	}

@@ -17,7 +17,7 @@ public:
 	Bullet(sf::Texture & tex);
 	Bullet();
 	~Bullet();
-	void setUpBullet(sf::Vector2f position, int direction, int type, bool playerBullet);
+	void setUpBullet(sf::Vector2f position, float xSpeed, int direction, int type, bool playerBullet);
 	void setUpMissile(sf::Vector2f position, sf::Vector2f playerPos, int type);
 	void updateMissile(sf::Time deltaTime, sf::Vector2f playerPos);
 	void update(sf::Time deltaTime);
