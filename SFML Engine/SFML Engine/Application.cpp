@@ -23,9 +23,8 @@ Application::Application()
 
 	m_textures.load(Textures::GameBackground, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	
 	m_textures.load(Textures::PauseBackground, "../resources/tex/Menu/PauseMenu.png");
-	m_textures.load(Textures::PauseBackgroundOpaque, "../resources/tex/Menu/PauseMenu2.png");
 
-	//	MainMenu Textures
+	//	MainMenu Texture
 	m_textures.load(Textures::MainMenuBG, "../resources/tex/Menu/MainMenuBG.png");
 
 	//	Button Texture
