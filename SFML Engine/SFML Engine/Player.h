@@ -11,6 +11,7 @@ public:
 		Ready,
 		Charging,
 		Fired,
+		Disable,
 	};
 	Player();
 	~Player();
@@ -20,6 +21,8 @@ public:
 	void Move(sf::Time deltaTime);
 	AnimatedSprite draw();
 	void teleport();
+	int getTeleport();
+	void disableTeleporter();
 	int getSmartBombState();
 	void chargeSmartBomb();
 	void updateSmartBomb(sf::Time deltaTime);
@@ -43,7 +46,7 @@ private:
 	};
 
 	int m_health;
-	bool m_teleported;
+	int m_teleportedState;
 	int m_smartBombState;
 	float m_bulletTimer;
 

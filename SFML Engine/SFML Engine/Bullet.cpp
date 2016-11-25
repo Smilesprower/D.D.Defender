@@ -43,7 +43,7 @@ void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int
 	m_type = type;
 	m_playerBullet = playerBullet;
 	m_direction = direction;
-	m_velocity.x = xSpeed + BULLET_SPEED * m_direction ;
+	m_velocity.x = (xSpeed + BULLET_SPEED) * m_direction ;
 
 	if (m_type == Default)
 	{

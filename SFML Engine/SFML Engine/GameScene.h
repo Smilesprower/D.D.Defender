@@ -19,6 +19,7 @@ public:
 	virtual bool handleEvent(const sf::Event& event);
 
 	void setupShockwave(sf::Vector2f playerPos);
+	void setupRipple(sf::Vector2f playerPos);
 
 private:
 	const int OFFSET = 2;
@@ -34,12 +35,16 @@ private:
 	sf::Sprite m_sprite;
 	ShaderHolder m_shaders;
 	sf::Shader * m_shockwave;
+	sf::Shader * m_ripple;
 	sf::Clock m_clock;
 	bool m_playShockwave;
+	bool m_playRipple;
 
 	Astronaut m_astro;
 	Player m_playo;
 	HUD m_hud;
 	sf::Vector2f m_currPlayerPos;
 	const int MAX_BULLETS = 50;
+	float m_shaderValue1;
+	float m_shaderValue2;
 };
