@@ -15,12 +15,6 @@ PauseScene::PauseScene(SceneStack& stack, Context context)
 	m_background.setOrigin(m_background.getTextureRect().width * 0.5, m_background.getTextureRect().height * 0.5);
 	m_background.setScale(0.5, 0.5);
 	m_background.setPosition(context.window->getSize().x * 0.5, context.window->getSize().y * 0.5);
-
-	m_background2.setTexture(context.textures->get(Textures::PauseBackgroundOpaque));
-	m_background2.setOrigin(m_background.getTextureRect().width * 0.5, m_background.getTextureRect().height * 0.5);
-	m_background2.setScale(0.5, 0.5);
-	m_background2.setPosition(context.window->getSize().x * 0.5, context.window->getSize().y * 0.5);
-	m_background2.setColor(sf::Color(255, 255, 255, 120));
 }
 
 

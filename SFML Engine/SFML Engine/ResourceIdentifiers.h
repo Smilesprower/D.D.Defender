@@ -17,7 +17,6 @@ namespace Textures
 		Astro,
 		GameBackground,
 		PauseBackground,
-		PauseBackgroundOpaque,
 		MainMenuBG,
 		Button,
 		HUD,
