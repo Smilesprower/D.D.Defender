@@ -186,7 +186,7 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 	if (m_smartBombState == SmartBomb::Charging)
 	{
 		m_smartBombTimer += deltaTime.asSeconds();
-		if (m_smartBombTimer >= 1)
+		if (m_smartBombTimer >= SMART_BOMB_RELOAD_TIME)
 		{
 			m_smartBombState = SmartBomb::Ready;
 		}

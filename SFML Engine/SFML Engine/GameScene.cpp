@@ -21,7 +21,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 
 	// Init Astro - Give the random Values
-	m_astro.init(context.textures->get(Textures::Astro), 960);
+	//m_astro.init(context.textures->get(Textures::Astro), 960);
 
 
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
@@ -111,7 +111,7 @@ void GameScene::draw()
 			window.draw(bulletCopy.at(i)->draw());
 
 	window.draw(m_playo.draw());
-	window.draw(m_astro.draw());
+	//window.draw(m_astro.draw());
 	window.setView(window.getDefaultView());
 
 	window.draw(m_hud.drawRectangle());
@@ -189,7 +189,7 @@ bool GameScene::handleEvent(const sf::Event& event)
 
 void GameScene::setupShockwave(sf::Vector2f playerPos)
 {
-	//SoundPlayer::Instance()->play(SoundEffect::Charge);
+	SoundPlayer::Instance()->play(SoundEffect::Charge);
 	m_clock.restart();
 	m_shockwave->setUniform("shock_amplitude", 10.f);
 	m_shockwave->setUniform("shock_refraction", .5f);
@@ -202,7 +202,7 @@ void GameScene::setupShockwave(sf::Vector2f playerPos)
 }
 void GameScene::setupRipple(sf::Vector2f playerPos)
 {
-	//SoundPlayer::Instance()->play(SoundEffect::Charge);
+	SoundPlayer::Instance()->play(SoundEffect::Charge);
 	m_clock.restart();
 	m_ripple->setUniform("wave_amount", 0.f);
 	m_ripple->setUniform("wave_distortion", 1.f);
