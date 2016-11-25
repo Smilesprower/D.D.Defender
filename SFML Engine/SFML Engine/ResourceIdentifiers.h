@@ -28,7 +28,8 @@ namespace Shaders
 {
 	enum ID
 	{
-		Shockwave
+		Shockwave,
+		Ripple,
 	};
 }
 
