@@ -15,6 +15,7 @@ namespace Textures
 	{
 		Playo,
 		Astro,
+		Nest,
 		GameBackground,
 		PauseBackground,
 		MainMenuBG,

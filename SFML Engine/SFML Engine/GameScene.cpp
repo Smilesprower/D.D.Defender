@@ -25,8 +25,9 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
 
-	m_nests.push_back(new Nest(sf::Vector2f(100,100), m_boundries));
-
+	//init nest
+	m_nests.push_back(new Nest());
+	m_nests[0]->init(context.textures->get(Textures::Nest), sf::Vector2f(100, 100), m_boundries);
 
 
 	//	Init Playo
@@ -115,6 +116,7 @@ void GameScene::draw()
 
 	window.draw(m_playo.draw());
 	//window.draw(m_astro.draw());
+	window.draw(m_nests[0]->draw());
 	window.setView(window.getDefaultView());
 
 	window.draw(m_hud.drawRectangle());
@@ -168,6 +170,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 		m_hud.update(deltaTime, m_playo.m_smartBombTimer, m_playo.getHealth());
 		m_playo.update(deltaTime);
+		m_nests[0]->update(deltaTime, m_playo.m_animatedSprite.getPosition());
 		//m_astro.update(deltaTime);
 
 	}
