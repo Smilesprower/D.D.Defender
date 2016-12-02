@@ -23,8 +23,11 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	// Init Astro - Give the random Values
 	//m_astro.init(context.textures->get(Textures::Astro), 960);
 
-
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
+
+	m_nests.push_back(new Nest(sf::Vector2f(100,100), m_boundries));
+
+
 
 	//	Init Playo
 	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));

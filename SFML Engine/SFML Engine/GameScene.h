@@ -4,6 +4,7 @@
 #include "Bullet.h"
 #include "Astronaut.h"
 #include "Player.h"
+#include "Nest.h"
 #include "Camera.h"
 #include "BulletManager.h"
 #include "HUD.h"
@@ -43,6 +44,7 @@ private:
 	Astronaut m_astro;
 	Player m_playo;
 	HUD m_hud;
+	std::vector<Nest*> m_nests;
 	sf::Vector2f m_currPlayerPos;
 	const int MAX_BULLETS = 50;
 	float m_shaderValue1;
