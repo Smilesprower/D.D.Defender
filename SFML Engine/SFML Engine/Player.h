@@ -20,7 +20,7 @@ public:
 	void update(sf::Time deltaTime);
 	void Move(sf::Time deltaTime);
 	AnimatedSprite draw();
-	void teleport();
+	void teleport(sf::Time deltaTime);
 	int getTeleport();
 	void disableTeleporter();
 	int getSmartBombState();

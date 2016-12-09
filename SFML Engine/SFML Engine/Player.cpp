@@ -24,6 +24,7 @@ Player::~Player()
 
 void Player::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i tpBounds)
 {
+
 	m_teleportingBounds = tpBounds;
 
 	m_animations[Anims::MoveUp].setSpriteSheet(tex);
@@ -133,7 +134,7 @@ void Player::Move(sf::Time deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) && m_teleportedState == SmartBomb::Ready)
 	{
 		m_teleportedState = SmartBomb::Fired;
-		teleport();
+		teleport(deltaTime);
 	}
 	// Smart Bomb
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && m_smartBombState == SmartBomb::Ready)
@@ -154,9 +155,9 @@ AnimatedSprite Player::draw()
 	return m_animatedSprite;
 }
 
-void Player::teleport()
+void Player::teleport(sf::Time deltaTime)
 {
-	int randX = rand() % m_teleportingBounds.y + m_teleportingBounds.x;
+	int randX = rand() % m_teleportingBounds.y;
 	m_animatedSprite.setPosition(randX, m_animatedSprite.getPosition().y);
 }
 
