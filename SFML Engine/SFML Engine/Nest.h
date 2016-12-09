@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "AnimatedSprite.h"
+#include "BulletManager.h"
+
 class Nest
 {
 	enum Anims
@@ -11,7 +13,7 @@ class Nest
 	enum States
 	{
 		Wander,
-		Flee,
+		Evade,
 	};
 	enum Direction
 	{
@@ -24,17 +26,24 @@ public:
 	~Nest();
 	void update(sf::Time deltaTime, sf::Vector2f playerPos);
 	void init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds);
-	void checkBounds(sf::Vector2f playerPos);
+	void checkBounds();
+	sf::Vector2f getPosition();
+	void setPosition(sf::Vector2f position);
 	AnimatedSprite draw();
+	sf::CircleShape drawEvade();
+	sf::CircleShape drawFire();
 
 private:
-	const int MAX_MISSILES = 2;
-	const int COOLDOWN_TIMER = 0;
+	const int COOLDOWN_TIMER = 10;
 	const int NUM_OF_ANIMS = 2;
 	const int MAX_VELOCITY = 200;
+	const int MAX_EVADE_VELOCITY = 400;
 	const int MAX_HEALTH = 500;
 	const int TIME_TO_SWITCH_DIRECTION = 10;
+	const int MISSILE_RANGE = 750;
+	const int EVADE_RANGE = 1000;
 
+	float m_missileReloadTimer;
 	float m_wanderTime;
 	int m_health;
 	bool m_alive;
@@ -43,6 +52,9 @@ private:
 	sf::Vector2i m_screenBounds;
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_acceleration;
+
+	sf::CircleShape m_missileRadius;
+	sf::CircleShape m_evadeRadius;
 
 	sf::Time m_frameTime;
 	AnimatedSprite m_animatedSprite;

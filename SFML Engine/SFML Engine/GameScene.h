@@ -49,4 +49,8 @@ private:
 	const int MAX_BULLETS = 50;
 	float m_shaderValue1;
 	float m_shaderValue2;
+
+	sf::RectangleShape m_screenView;
+	sf::RectangleShape m_playerCutOff;
+	sf::RectangleShape m_enemyCutOff;
 };

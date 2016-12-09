@@ -19,8 +19,7 @@ public:
 	~Bullet();
 	void setUpBullet(sf::Vector2f position, float xSpeed, int direction, int type, bool playerBullet);
 	void setUpMissile(sf::Vector2f position, sf::Vector2f playerPos, int type);
-	void updateMissile(sf::Time deltaTime, sf::Vector2f playerPos);
-	void update(sf::Time deltaTime);
+	void update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount);
 	void setPosition(sf::Vector2f position);
 	sf::Vector2f getPosition();
 	bool isEnabled();
@@ -35,7 +34,7 @@ private:
 	const int MISSILE_SPEED = 500;
 	const int BULLET_SPEED = 1000;
 	const int BULLET_TTL = 2;
-	const int MISSILE_TTL = 40;
+	const int MISSILE_TTL = 5;
 	const int NUM_OF_EXP_FRAMES = 8;
 	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);
 	const int NUM_OF_ANIMS = 4;

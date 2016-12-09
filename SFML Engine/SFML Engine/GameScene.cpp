@@ -10,13 +10,27 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_screenSize(context.window->getSize())
 	, m_halfScreenSize(m_screenSize.x * 0.5f, m_screenSize.y * 0.5f)
 	, m_worldSize(-m_screenSize.x, m_screenSize.x * (m_numOfScreens - OFFSET))
-	, m_boundries(-m_halfScreenSize.x, m_worldSize.y - m_halfScreenSize.x)
+	, m_boundries(-m_halfScreenSize.x, m_worldSize.y + m_halfScreenSize.x)
 	, m_camera(sf::Vector2i(m_worldSize.x, m_worldSize.y), sf::Vector2i(m_screenSize.x, m_screenSize.y))
 	, m_playShockwave(false)
 	, m_playRipple(false)
 	, m_astro()
 	, m_playo()
 {
+	// DEBUGGING CODE
+	/////////////////////////////////////////////
+	m_screenView = sf::RectangleShape(sf::Vector2f(m_screenSize.x, m_screenSize.y));
+	m_screenView.setFillColor(sf::Color::Transparent);
+	m_screenView.setOutlineThickness(3);
+	m_screenView.setOutlineColor(sf::Color::Green);
+
+	m_playerCutOff = sf::RectangleShape(sf::Vector2f(m_boundries.y + m_halfScreenSize.x, m_screenSize.y * 2));
+	m_playerCutOff.setFillColor(sf::Color::Transparent);
+	m_playerCutOff.setOutlineThickness(3);
+	m_playerCutOff.setOutlineColor(sf::Color::Red);
+	m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
+	/////////////////////////////////////////////
+
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 
@@ -27,7 +41,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	//init nest
 	m_nests.push_back(new Nest());
-	m_nests[0]->init(context.textures->get(Textures::Nest), sf::Vector2f(100, 100), m_boundries);
+	m_nests[0]->init(context.textures->get(Textures::Nest), sf::Vector2f(100, 100), m_worldSize);
 
 
 	//	Init Playo
@@ -61,6 +75,7 @@ void GameScene::draw()
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 	if (m_currPlayerPos.x > m_boundries.y)
 	{
+		int enemyNestSize = m_nests.size();
 		int bulletSize = bulletCopy.size();
 		for (int i = 0; i < bulletSize; i++)
 		{
@@ -75,10 +90,21 @@ void GameScene::draw()
 				}
 			}
 		}
+		for (int i = 0; i < enemyNestSize; i++)
+		{
+			sf::Vector2f tempPos = m_nests[i]->getPosition();
+			if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
+				&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
+				m_nests[i]->setPosition(tempPos);
+			}
+		}
 		m_currPlayerPos.x = m_boundries.x;
 	}
 	else if (m_currPlayerPos.x < m_boundries.x)
 	{
+		int enemyNestSize = m_nests.size();
 		int bulletSize = bulletCopy.size();
 		for (int i = 0; i < bulletSize; i++)
 		{
@@ -91,6 +117,16 @@ void GameScene::draw()
 					tempPos.x = m_boundries.y + (tempPos.x- m_currPlayerPos.x);
 					bulletCopy[i]->setPosition(tempPos);
 				}
+			}
+		}
+		for (int i = 0; i < enemyNestSize; i++)
+		{
+			sf::Vector2f tempPos = m_nests[i]->getPosition();
+			if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
+				&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.y + (tempPos.x - m_currPlayerPos.x);
+				m_nests[i]->setPosition(tempPos);
 			}
 		}
 		m_currPlayerPos.x = m_boundries.y;
@@ -117,8 +153,16 @@ void GameScene::draw()
 	window.draw(m_playo.draw());
 	//window.draw(m_astro.draw());
 	window.draw(m_nests[0]->draw());
-	window.setView(window.getDefaultView());
 
+	// DEBUGGING CODE
+	/////////////////////////////////////////////
+	window.draw(m_screenView);
+	window.draw(m_playerCutOff);
+	window.draw(m_nests[0]->drawEvade());
+	window.draw(m_nests[0]->drawFire());
+	/////////////////////////////////////////////
+
+	window.setView(window.getDefaultView());
 	window.draw(m_hud.drawRectangle());
 	window.draw(m_hud.draw());
 
@@ -165,15 +209,15 @@ bool GameScene::update(sf::Time deltaTime)
 	{
 		sf::Vector2f tempBounds(m_currPlayerPos.x - m_halfScreenSize.x, m_currPlayerPos.x + m_halfScreenSize.x);
 
-		// Do you really need to curse in the comments Jay? lol
-		BulletManager::Instance()->update(deltaTime);
+		BulletManager::Instance()->update(deltaTime, m_currPlayerPos);
 
 		m_hud.update(deltaTime, m_playo.m_smartBombTimer, m_playo.getHealth());
 		m_playo.update(deltaTime);
-		m_nests[0]->update(deltaTime, m_playo.m_animatedSprite.getPosition());
+		m_nests[0]->update(deltaTime, m_currPlayerPos);
 		//m_astro.update(deltaTime);
 
 	}
+	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
 	return true;
 }
 // Event Input

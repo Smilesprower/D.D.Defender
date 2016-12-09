@@ -74,58 +74,61 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_rotation = std::atan2(m_velocity.y, m_velocity.x);
 	m_prevRotation = m_rotation;
 }
-void Bullet::update(sf::Time deltaTime)
+void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount)
 {
 	if (m_enabled)
 	{
-		m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
-		m_animatedSprite.update(deltaTime);
-
-		m_ttl += deltaTime.asSeconds();
-		if (m_ttl > BULLET_TTL)
+		if(m_type != Missile && m_type != Explosion)
 		{
-			m_enabled = false;
-		}
-	}
-}
+			m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
+			m_animatedSprite.update(deltaTime);
 
-void Bullet::updateMissile(sf::Time deltaTime, sf::Vector2f playerPos)
-{
-	m_animatedSprite.play(*m_currAnimation);
-	if (m_type == Missile)
-	{
-		m_ttl += deltaTime.asSeconds();
-		if (m_ttl > MISSILE_TTL)
-		{
-			m_type = Explosion;
-			m_currAnimation = &m_animations[Type::Explosion];
-			m_velocity.x = 0;
-			m_velocity.y = 0;
+			m_ttl += deltaTime.asSeconds();
+			if (m_ttl > BULLET_TTL)
+			{
+				m_enabled = false;
+			}
 		}
 		else
 		{
-			m_velocity = playerPos - m_animatedSprite.getPosition();
-			m_velocity = Helper::GetInstance().Normalize(m_velocity);
-			m_velocity.x *= MISSILE_SPEED;
-			m_velocity.y *= MISSILE_SPEED;
-			m_rotation = std::atan2(m_velocity.y, m_velocity.x);
-		}
+			m_animatedSprite.play(*m_currAnimation);
+			if (m_type == Missile)
+			{
+				m_ttl += deltaTime.asSeconds();
+				if (m_ttl > MISSILE_TTL)
+				{
+					m_type = Explosion;
+					m_currAnimation = &m_animations[Type::Explosion];
+					m_velocity.x = 0;
+					m_velocity.y = 0;
+				}
+				else
+				{
+					m_velocity = playerPos - m_animatedSprite.getPosition();
+					m_velocity = Helper::GetInstance().Normalize(m_velocity);
+					m_velocity.x *= MISSILE_SPEED;
+					m_velocity.y *= MISSILE_SPEED;
+					m_rotation = std::atan2(m_velocity.y, m_velocity.x);
+				}
 
-		// Add some check to only rotate by a certain number
+				// Add some check to only rotate by a certain number
 
-		m_animatedSprite.setRotation(m_rotation * ANGLE_TO_RADS);
-	}
-	else if (m_type == Explosion)
-	{
-		if (m_animatedSprite.getFrame() > MAX_FRAMES_EXPLOSION)
-		{
-			m_ttl = 0;
-			m_enabled = false;
+				m_animatedSprite.setRotation(m_rotation * ANGLE_TO_RADS);
+			}
+			else if (m_type == Explosion)
+			{
+				if (m_animatedSprite.getFrame() > MAX_FRAMES_EXPLOSION)
+				{
+					m_ttl = 0;
+					m_enabled = false;
+					missleCount--;
+				}
+			}
+			m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
+			m_animatedSprite.update(deltaTime);
+			m_prevRotation = m_rotation;
 		}
 	}
-	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
-	m_animatedSprite.update(deltaTime);
-	m_prevRotation = m_rotation;
 }
 
 void Bullet::setPosition(sf::Vector2f newPosition)
