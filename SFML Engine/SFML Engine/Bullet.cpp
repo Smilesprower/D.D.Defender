@@ -17,14 +17,14 @@ Bullet::Bullet(sf::Texture & tex)
 	m_animations[Type::Missile].addFrame(sf::IntRect(94, 0, 50, 32));
 
 	m_animations[Type::Explosion].setSpriteSheet(tex);
-	m_animations[Type::Explosion].addFrame(sf::IntRect(0, 144, 40, 40));
-	m_animations[Type::Explosion].addFrame(sf::IntRect(40, 144, 40, 40));
-	m_animations[Type::Explosion].addFrame(sf::IntRect(80, 144, 40, 40));
-	m_animations[Type::Explosion].addFrame(sf::IntRect(120, 144, 40, 40));
-	m_animations[Type::Explosion].addFrame(sf::IntRect(160, 144, 40, 40));
-	m_animations[Type::Explosion].addFrame(sf::IntRect(200, 144, 40, 40));
-	m_animations[Type::Explosion].addFrame(sf::IntRect(240, 144, 40, 40));
-	m_animations[Type::Explosion].addFrame(sf::IntRect(280, 144, 40, 40));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(0, 144, 80, 80));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(80, 144, 80, 80));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(160, 144, 80, 80));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(240, 144, 80, 80));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(320, 144, 80, 80));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(400, 144, 80, 80));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(480, 144, 80, 80));
+	m_animations[Type::Explosion].addFrame(sf::IntRect(560, 144, 80, 80));
 }
 
 Bullet::Bullet()
@@ -44,7 +44,7 @@ void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int
 	m_playerBullet = playerBullet;
 	m_direction = direction;
 	m_velocity.x = (xSpeed + BULLET_SPEED) * m_direction ;
-
+	m_velocity.y = 0;
 	if (m_type == Default)
 	{
 		m_currAnimation = &m_animations[Type::Default];
@@ -56,7 +56,6 @@ void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
-
 }
 
 void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, int type)
@@ -72,7 +71,13 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_velocity = targetPosition - position;
 	m_velocity = Helper::GetInstance().Normalize(m_velocity);
 	m_rotation = std::atan2(m_velocity.y, m_velocity.x);
-	m_prevRotation = m_rotation;
+
+	/////////////// OUTLINE OF MISSILE
+	/*m_missileCollider = sf::CircleShape(MISSILE_RADIUS);
+	m_missileCollider.setFillColor(sf::Color::Transparent);
+	m_missileCollider.setOutlineThickness(3);
+	m_missileCollider.setOutlineColor(sf::Color::Blue);
+	m_missileCollider.setOrigin(MISSILE_RADIUS, MISSILE_RADIUS);*/
 }
 void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount)
 {
@@ -94,6 +99,7 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 			m_animatedSprite.play(*m_currAnimation);
 			if (m_type == Missile)
 			{
+				m_missileCollider.setPosition(m_animatedSprite.getPosition());
 				m_ttl += deltaTime.asSeconds();
 				if (m_ttl > MISSILE_TTL)
 				{
@@ -101,6 +107,7 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 					m_currAnimation = &m_animations[Type::Explosion];
 					m_velocity.x = 0;
 					m_velocity.y = 0;
+					m_rotation = 0;
 				}
 				else
 				{
@@ -126,7 +133,6 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 			}
 			m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 			m_animatedSprite.update(deltaTime);
-			m_prevRotation = m_rotation;
 		}
 	}
 }
@@ -156,7 +162,23 @@ int Bullet::getType()
 	return m_type;
 }
 
+void Bullet::setTTL(int ttl)
+{
+	m_ttl = ttl;
+}
+
+
+int Bullet::getRadius()
+{
+	return MISSILE_RADIUS;
+}
+
 AnimatedSprite Bullet::draw()
 {
 	return m_animatedSprite;
+}
+
+sf::CircleShape Bullet::drawMissileCollider()
+{
+	return m_missileCollider;
 }

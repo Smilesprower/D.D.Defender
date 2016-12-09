@@ -27,6 +27,9 @@ public:
 	void chargeSmartBomb();
 	void updateSmartBomb(sf::Time deltaTime);
 	int getHealth();
+	int getRadius();
+	sf::Vector2f getPosition();
+	sf::CircleShape drawPlayerOutline();
 	AnimatedSprite m_animatedSprite;
 	float m_smartBombTimer;
 
@@ -44,6 +47,8 @@ private:
 		Up,
 		Down
 	};
+
+	const int PLAYER_RADIUS = 35;
 
 	int m_health;
 	int m_teleportedState;
@@ -65,4 +70,7 @@ private:
 	sf::Time m_frameTime;
 	std::vector<Animation> m_animations;
 	Animation* m_currAnimation;
+
+
+	sf::CircleShape m_playerCollider;
 };

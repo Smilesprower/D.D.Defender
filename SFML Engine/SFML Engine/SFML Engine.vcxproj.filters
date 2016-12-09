@@ -21,6 +21,7 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Nest.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
@@ -46,6 +47,7 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="Nest.h" />
+    <ClInclude Include="CollisionManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl" />

@@ -3,11 +3,10 @@
 #include "AnimatedSprite.h"
 #include "Bullet.h"
 #include "Astronaut.h"
-#include "Player.h"
 #include "Nest.h"
 #include "Camera.h"
-#include "BulletManager.h"
 #include "HUD.h"
+#include "CollisionManager.h"
 
 
 class GameScene : public Scene
@@ -42,7 +41,8 @@ private:
 	bool m_playRipple;
 
 	Astronaut m_astro;
-	Player m_playo;
+	Player * m_playo;
+	CollisionManager m_collisionManager;
 	HUD m_hud;
 	std::vector<Nest*> m_nests;
 	sf::Vector2f m_currPlayerPos;

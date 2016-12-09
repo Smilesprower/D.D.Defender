@@ -43,6 +43,13 @@ void Player::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i tpBounds)
 	m_animatedSprite.setOrigin(64, 35);
 	m_animatedSprite.setPosition(pos);
 	m_currAnimation = &m_animations[Anims::MoveSideways];
+
+	/////////////// OUTLINE OF player
+	/*m_playerCollider = sf::CircleShape(PLAYER_RADIUS);
+	m_playerCollider.setFillColor(sf::Color::Transparent);
+	m_playerCollider.setOutlineThickness(3);
+	m_playerCollider.setOutlineColor(sf::Color::Cyan);
+	m_playerCollider.setOrigin(PLAYER_RADIUS, PLAYER_RADIUS);*/
 }
 
 void Player::update(sf::Time deltaTime)
@@ -50,7 +57,7 @@ void Player::update(sf::Time deltaTime)
 	m_animatedSprite.play(*m_currAnimation);
 	Move(deltaTime);
 	updateSmartBomb(deltaTime);
-
+	m_playerCollider.setPosition(m_animatedSprite.getPosition());
 	if (m_bulletTimer < BULLET_RELOAD_TIME)
 	{
 		m_bulletTimer += deltaTime.asMilliseconds();
@@ -197,4 +204,19 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 int Player::getHealth()
 {
 	return m_health;
+}
+
+int Player::getRadius()
+{
+	return PLAYER_RADIUS;
+}
+
+sf::Vector2f Player::getPosition()
+{
+	return m_animatedSprite.getPosition();
+}
+
+sf::CircleShape Player::drawPlayerOutline()
+{
+	return m_playerCollider;
 }

@@ -15,7 +15,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_playShockwave(false)
 	, m_playRipple(false)
 	, m_astro()
-	, m_playo()
+	, m_playo(new Player())
 {
 	// DEBUGGING CODE
 	/////////////////////////////////////////////
@@ -45,7 +45,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 
 	//	Init Playo
-	m_playo.init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
+	m_playo->init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
 	// Init Hud
 	m_hud.init(context.textures->get(Textures::HUD), m_screenSize);
 	context.textures->get(Textures::GameBackground).setRepeated(true);
@@ -67,8 +67,8 @@ void GameScene::draw()
 	std::vector<Bullet*> bulletCopy = BulletManager::Instance()->getBullets();
 
 	// Get current Player Pos need for camera and Shaders etc
-	m_currPlayerPos.x = m_playo.m_animatedSprite.getPosition().x;
-	m_currPlayerPos.y = m_playo.m_animatedSprite.getPosition().y;
+	m_currPlayerPos.x = m_playo->m_animatedSprite.getPosition().x;
+	m_currPlayerPos.y = m_playo->m_animatedSprite.getPosition().y;
 	// Get our render window
 	sf::RenderWindow& window = *getContext().window;
 
@@ -133,7 +133,7 @@ void GameScene::draw()
 	}
 
 	// Set players position 
-	m_playo.m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
+	m_playo->m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
 
 	// Set the camera view
 	window.setView(m_camera.Update(m_currPlayerPos.x));
@@ -146,11 +146,23 @@ void GameScene::draw()
 	else
 		window.draw(m_sprite);
 
-	for (int i = 0; i < MAX_BULLETS; i++)
-		if(bulletCopy[i]->isEnabled())
-			window.draw(bulletCopy.at(i)->draw());
 
-	window.draw(m_playo.draw());
+
+	window.draw(m_playo->draw());
+
+	for (int i = 0; i < MAX_BULLETS; i++)
+	{
+		if (bulletCopy[i]->isEnabled())
+		{
+			window.draw(bulletCopy.at(i)->draw());
+			if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
+			{
+				window.draw(bulletCopy[i]->drawMissileCollider());
+			}
+		}
+		
+	}
+
 	//window.draw(m_astro.draw());
 	window.draw(m_nests[0]->draw());
 
@@ -160,6 +172,7 @@ void GameScene::draw()
 	window.draw(m_playerCutOff);
 	window.draw(m_nests[0]->drawEvade());
 	window.draw(m_nests[0]->drawFire());
+	window.draw(m_playo->drawPlayerOutline());
 	/////////////////////////////////////////////
 
 	window.setView(window.getDefaultView());
@@ -170,9 +183,11 @@ void GameScene::draw()
 
 bool GameScene::update(sf::Time deltaTime)
 {
-	if (!m_playShockwave && !m_playRipple && m_playo.getSmartBombState() == m_playo.Fired)
+	std::vector<Bullet*> bullets = BulletManager::Instance()->getBullets();
+
+	if (!m_playShockwave && !m_playRipple && m_playo->getSmartBombState() == m_playo->Fired)
 		setupShockwave(m_currPlayerPos);
-	else if (!m_playRipple && !m_playShockwave && m_playo.getTeleport() == m_playo.Fired)
+	else if (!m_playRipple && !m_playShockwave && m_playo->getTeleport() == m_playo->Fired)
 		setupRipple(m_currPlayerPos);
 
 	if (m_playShockwave)
@@ -181,7 +196,7 @@ bool GameScene::update(sf::Time deltaTime)
 		if (m_clock.getElapsedTime().asSeconds() > 5)
 		{
 			m_playShockwave = false;
-			m_playo.chargeSmartBomb();
+			m_playo->chargeSmartBomb();
 		}
 	}
 	else if (m_playRipple)
@@ -202,7 +217,7 @@ bool GameScene::update(sf::Time deltaTime)
 		if (m_clock.getElapsedTime().asSeconds() > 5)
 		{
 			m_playRipple = false;
-			m_playo.disableTeleporter();
+			m_playo->disableTeleporter();
 		}
 	}
 	else
@@ -211,13 +226,14 @@ bool GameScene::update(sf::Time deltaTime)
 
 		BulletManager::Instance()->update(deltaTime, m_currPlayerPos);
 
-		m_hud.update(deltaTime, m_playo.m_smartBombTimer, m_playo.getHealth());
-		m_playo.update(deltaTime);
+		m_hud.update(deltaTime, m_playo->m_smartBombTimer, m_playo->getHealth());
+		m_playo->update(deltaTime);
 		m_nests[0]->update(deltaTime, m_currPlayerPos);
 		//m_astro.update(deltaTime);
 
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
+	m_collisionManager.checkCollision(m_playo, bullets);
 	return true;
 }
 // Event Input
