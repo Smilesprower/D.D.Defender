@@ -23,4 +23,5 @@ private:
 	
 	sf::Vector3f m_colorA, m_colorB, m_colorC, m_interpolatedColor;
 	float m_colorTimer;
+
 };

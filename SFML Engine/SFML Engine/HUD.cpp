@@ -18,7 +18,7 @@ void HUD::init(sf::Texture & smartBombReload, sf::Vector2i screenSize)
 	m_screenSize = screenSize;
 
 	m_hud.setTexture(smartBombReload);
-	m_smartBombRect.setPosition(screenSize.x * 0.885f, 20);
+	m_smartBombRect.setPosition(screenSize.x * 0.718f, screenSize.y * 0.94f);
 	m_healthRect.setPosition(screenSize.x * 0.885f, 100);
 }
 
