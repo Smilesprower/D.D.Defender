@@ -5,6 +5,7 @@
 
 class Bullet
 {
+public:
 	enum Type
 	{
 		Default,
@@ -13,7 +14,6 @@ class Bullet
 		Explosion
 	};
 
-public:
 	Bullet(sf::Texture & tex);
 	Bullet();
 	~Bullet();
@@ -26,7 +26,10 @@ public:
 	void setEnabled(bool);
 	void collided(bool);
 	int getType();
+	void setTTL(int ttl);
+	int getRadius();
 	AnimatedSprite draw();
+	sf::CircleShape drawMissileCollider();
 
 private:
 	const float MAX_ROTATION = 2.f;
@@ -35,6 +38,7 @@ private:
 	const int BULLET_SPEED = 1000;
 	const int BULLET_TTL = 2;
 	const int MISSILE_TTL = 5;
+	const int MISSILE_RADIUS = 20;
 	const int NUM_OF_EXP_FRAMES = 8;
 	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);
 	const int NUM_OF_ANIMS = 4;
@@ -54,5 +58,7 @@ private:
 	AnimatedSprite m_animatedSprite;
 	std::vector<Animation> m_animations;
 	Animation* m_currAnimation;
+
+	sf::CircleShape m_missileCollider;
 };
 

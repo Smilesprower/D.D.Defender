@@ -161,6 +161,7 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="HUD.h" />
@@ -186,6 +187,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="HUD.cpp" />
