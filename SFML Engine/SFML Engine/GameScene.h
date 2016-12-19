@@ -53,4 +53,10 @@ private:
 	sf::RectangleShape m_screenView;
 	sf::RectangleShape m_playerCutOff;
 	sf::RectangleShape m_enemyCutOff;
+
+	// RADAR
+	std::vector<sf::CircleShape> m_radarIcons;
+	sf::CircleShape m_playerRadar;
+	bool m_canUpdateRadar;
+	float m_radarTime;
 };

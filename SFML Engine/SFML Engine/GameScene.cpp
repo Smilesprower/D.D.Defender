@@ -6,7 +6,7 @@
 
 GameScene::GameScene(SceneStack& stack, Context context)
 	: Scene(stack, context)
-	, m_numOfScreens(4) // Change for number of screens needed, variables will auto assign to allow bigger screens
+	, m_numOfScreens(9) // Change for number of screens needed, variables will auto assign to allow bigger screens
 	, m_screenSize(context.window->getSize())
 	, m_halfScreenSize(m_screenSize.x * 0.5f, m_screenSize.y * 0.5f)
 	, m_worldSize(-m_screenSize.x, m_screenSize.x * (m_numOfScreens - OFFSET))
@@ -16,6 +16,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_playRipple(false)
 	, m_astro()
 	, m_playo(new Player())
+	, m_canUpdateRadar(false)
 {
 	// DEBUGGING CODE
 	/////////////////////////////////////////////
@@ -46,6 +47,11 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	//	Init Playo
 	m_playo->init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
+	// PLAYER RADAR
+	m_playerRadar.setFillColor(sf::Color::White);
+	m_playerRadar.setRadius(6);
+	m_playerRadar.setOrigin(3, 3);
+	
 	// Init Hud
 	m_hud.init(context.textures->get(Textures::HUD), m_screenSize);
 	context.textures->get(Textures::GameBackground).setRepeated(true);
@@ -64,6 +70,29 @@ GameScene::GameScene(SceneStack& stack, Context context)
 }
 void GameScene::draw()
 {
+	if (m_canUpdateRadar)
+	{
+		m_radarTime = 0;
+		m_canUpdateRadar = false;
+		m_radarIcons.clear();
+
+		sf::CircleShape temp;
+		temp.setOrigin(3, 3);
+		temp.setRadius(6);
+
+		// ENEMY RADAR
+		int enemyNestSize = m_nests.size();
+		temp.setFillColor(sf::Color::Red);
+		for (int i = 0; i < enemyNestSize; i++)
+		{
+			temp.setPosition((m_nests[i]->getPosition().x + m_screenSize.x) / 9, m_nests[i]->getPosition().y / 9);
+			if (temp.getPosition().x > 105 && temp.getPosition().x < m_screenSize.x - 105)
+			{
+				m_radarIcons.push_back(temp);
+			}
+		}
+	}
+
 	std::vector<Bullet*> bulletCopy = BulletManager::Instance()->getBullets();
 
 	// Get current Player Pos need for camera and Shaders etc
@@ -174,15 +203,26 @@ void GameScene::draw()
 	window.draw(m_nests[0]->drawFire());
 	window.draw(m_playo->drawPlayerOutline());
 	/////////////////////////////////////////////
-
+	
 	window.setView(window.getDefaultView());
 	window.draw(m_hud.drawRectangle());
 	window.draw(m_hud.draw());
 
+	for (int i = 0; i < m_radarIcons.size(); i++)
+	{
+		window.draw(m_radarIcons[i]);
+	}
+	m_playerRadar.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), (m_currPlayerPos.y / 9) + 10);
+	window.draw(m_playerRadar);
 }
 
 bool GameScene::update(sf::Time deltaTime)
 {
+	m_radarTime += deltaTime.asSeconds();
+	if (m_radarTime > 2)
+	{
+		m_canUpdateRadar = true;
+	}
 	std::vector<Bullet*> bullets = BulletManager::Instance()->getBullets();
 
 	if (!m_playShockwave && !m_playRipple && m_playo->getSmartBombState() == m_playo->Fired)
