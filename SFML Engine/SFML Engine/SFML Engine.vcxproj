@@ -168,6 +168,7 @@
     <ClInclude Include="Helper.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="Nest.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ResourceHolder.h" />
@@ -196,6 +197,7 @@
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Nest.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SFML Engine.cpp" />

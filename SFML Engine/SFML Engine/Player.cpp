@@ -14,6 +14,7 @@ Player::Player()
 	, m_bulletTimer(1)
 	, m_directionX(Right)
 	, m_health(100)
+	, m_gameOver(false)
 {
 }
 
@@ -28,33 +29,43 @@ void Player::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i tpBounds)
 	m_teleportingBounds = tpBounds;
 
 	m_animations[Anims::MoveUp].setSpriteSheet(tex);
-	m_animations[Anims::MoveUp].addFrame(sf::IntRect(5, 100, 128, 72));
+	m_animations[Anims::MoveUp].addFrame(sf::IntRect(5, 333, 128, 72));
 	//m_animations[Anims::MoveUp].addFrame(sf::IntRect(154, 88, 128, 90));
 
 	m_animations[Anims::MoveDown].setSpriteSheet(tex);
-	m_animations[Anims::MoveDown].addFrame(sf::IntRect(5, 200, 128, 78));
+	m_animations[Anims::MoveDown].addFrame(sf::IntRect(5, 433, 128, 78));
 	//m_animations[Anims::MoveDown].addFrame(sf::IntRect(154, 188, 128, 96));
 
 
 	m_animations[Anims::MoveSideways].setSpriteSheet(tex);
-	m_animations[Anims::MoveSideways].addFrame(sf::IntRect(5, 4, 128, 69));
+	m_animations[Anims::MoveSideways].addFrame(sf::IntRect(5, 237, 128, 69));
 
+	m_animations[Anims::Explosion].setSpriteSheet(tex);
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(0, 144, 80, 80));
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(80, 144, 80, 80));
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(160, 144, 80, 80));
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(240, 144, 80, 80));
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(320, 144, 80, 80));
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(400, 144, 80, 80));
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(480, 144, 80, 80));
+	m_animations[Anims::Explosion].addFrame(sf::IntRect(560, 144, 80, 80));
 
 	m_animatedSprite.setOrigin(64, 35);
 	m_animatedSprite.setPosition(pos);
 	m_currAnimation = &m_animations[Anims::MoveSideways];
 
 	/////////////// OUTLINE OF player
-	/*m_playerCollider = sf::CircleShape(PLAYER_RADIUS);
+	m_playerCollider = sf::CircleShape(PLAYER_RADIUS);
 	m_playerCollider.setFillColor(sf::Color::Transparent);
 	m_playerCollider.setOutlineThickness(3);
 	m_playerCollider.setOutlineColor(sf::Color::Cyan);
-	m_playerCollider.setOrigin(PLAYER_RADIUS, PLAYER_RADIUS);*/
+	m_playerCollider.setOrigin(PLAYER_RADIUS, PLAYER_RADIUS);
 }
 
 void Player::update(sf::Time deltaTime)
 {
 	m_animatedSprite.play(*m_currAnimation);
+
 	Move(deltaTime);
 	updateSmartBomb(deltaTime);
 	m_playerCollider.setPosition(m_animatedSprite.getPosition());
@@ -62,98 +73,108 @@ void Player::update(sf::Time deltaTime)
 	{
 		m_bulletTimer += deltaTime.asMilliseconds();
 	}
+	
 }
 
 void Player::Move(sf::Time deltaTime)
 {
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	if (m_currAnimation != &m_animations[Anims::Explosion])
 	{
-		m_currAnimation = &m_animations[Anims::MoveSideways];
-		m_animatedSprite.setScale(-1, 1);
-		if (m_directionX == Right)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
-			m_accel.x *= 0.5;
-		}
-		m_directionX = Left;
+			m_currAnimation = &m_animations[Anims::MoveSideways];
+			m_animatedSprite.setScale(-1, 1);
+			if (m_directionX == Right)
+			{
+				m_accel.x *= 0.5;
+			}
+			m_directionX = Left;
 
-		if (m_accel.x > -MAX_SPEED)
-		{
-			m_accel.x -= 10;
+			if (m_accel.x > -MAX_SPEED)
+			{
+				m_accel.x -= 10;
+			}
 		}
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		m_currAnimation = &m_animations[Anims::MoveSideways];
-		m_animatedSprite.setScale(1, 1);
-		if (m_directionX == Left)
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
-			m_accel.x *= 0.5;
-		}
-		m_directionX = Right;
+			m_currAnimation = &m_animations[Anims::MoveSideways];
+			m_animatedSprite.setScale(1, 1);
+			if (m_directionX == Left)
+			{
+				m_accel.x *= 0.5;
+			}
+			m_directionX = Right;
 
-		if (m_accel.x < MAX_SPEED)
-		{
-			m_accel.x += 10;
+			if (m_accel.x < MAX_SPEED)
+			{
+				m_accel.x += 10;
+			}
 		}
+		else
+		{
+			if (m_accel.x != 0)
+			{
+				if (m_accel.x < 0)
+				{
+					m_accel.x += DE_ACCEL;
+				}
+				else if (m_accel.x > 0)
+				{
+					m_accel.x -= DE_ACCEL;
+				}
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			m_currAnimation = &m_animations[Anims::MoveUp];
+			m_directionY = Up;
+			m_velocity.y = -MAX_SPEED * 0.5f;
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			m_currAnimation = &m_animations[Anims::MoveDown];
+			m_directionY = Down;
+			m_velocity.y = MAX_SPEED * 0.5f;
+		}
+		else
+		{
+			m_currAnimation = &m_animations[Anims::MoveSideways];
+		}
+		// Fire Lazers
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+		{
+			if (m_bulletTimer >= BULLET_RELOAD_TIME)
+			{
+				if (BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), MAX_SPEED, m_directionX, 1, true))
+					m_bulletTimer = 0;
+			}
+		}
+		// One Time Teleporter
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) && m_teleportedState == SmartBomb::Ready)
+		{
+			m_teleportedState = SmartBomb::Fired;
+			teleport(deltaTime);
+		}
+		// Smart Bomb
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && m_smartBombState == SmartBomb::Ready)
+		{
+			m_smartBombState = SmartBomb::Fired;
+			m_smartBombTimer = 0;
+		}
+
+		m_velocity.x = m_accel.x * deltaTime.asSeconds();
+		m_velocity.y *= deltaTime.asSeconds();
+
+		m_animatedSprite.move(m_velocity.x, m_velocity.y);
 	}
 	else
 	{
-		if (m_accel.x != 0)
+		if (m_animatedSprite.getFrame() >= MAX_FRAMES_EXPLOSION)
 		{
-			if (m_accel.x < 0)
-			{
-				m_accel.x += DE_ACCEL;
-			}
-			else if (m_accel.x > 0)
-			{
-				m_accel.x -= DE_ACCEL;
-			}
+			m_gameOver = true;
 		}
 	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		m_currAnimation = &m_animations[Anims::MoveUp];
-		m_directionY = Up; 
-		m_velocity.y = -MAX_SPEED * 0.5f;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		m_currAnimation = &m_animations[Anims::MoveDown];
-		m_directionY = Down;
-		m_velocity.y = MAX_SPEED * 0.5f;
-	}
-	else
-	{
-		m_currAnimation = &m_animations[Anims::MoveSideways];
-	}
-	// Fire Lazers
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-	{
-		if (m_bulletTimer >= BULLET_RELOAD_TIME)
-		{
-			if(BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), MAX_SPEED, m_directionX, 1, true))
-				m_bulletTimer = 0;
-		}
-	}
-	// One Time Teleporter
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T) && m_teleportedState == SmartBomb::Ready)
-	{
-		m_teleportedState = SmartBomb::Fired;
-		teleport(deltaTime);
-	}
-	// Smart Bomb
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) && m_smartBombState == SmartBomb::Ready)
-	{
-		m_smartBombState = SmartBomb::Fired;
-		m_smartBombTimer = 0;
-	}
-
-	m_velocity.x = m_accel.x * deltaTime.asSeconds();
-	m_velocity.y *= deltaTime.asSeconds();
-
-	m_animatedSprite.move(m_velocity.x, m_velocity.y);
 	m_animatedSprite.update(deltaTime);
 }
 
@@ -201,6 +222,19 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 	}
 }
 
+void Player::setDamage(int damage)
+{
+	m_health -= damage;
+	if (m_health <= 0)
+	{
+		m_currAnimation = &m_animations[Anims::Explosion];
+		m_animatedSprite.setOrigin(40, 40);
+		m_animatedSprite.setScale(2, 2);
+		m_health = 0;
+		m_animatedSprite.play(*m_currAnimation);
+	}
+}
+
 int Player::getHealth()
 {
 	return m_health;
@@ -210,6 +244,13 @@ int Player::getRadius()
 {
 	return PLAYER_RADIUS;
 }
+
+bool Player::gameOver()
+{
+	return m_gameOver;
+}
+
+
 
 sf::Vector2f Player::getPosition()
 {
