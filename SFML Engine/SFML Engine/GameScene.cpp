@@ -206,6 +206,7 @@ void GameScene::draw()
 	
 	window.setView(window.getDefaultView());
 	window.draw(m_hud.drawRectangle());
+	window.draw(m_hud.drawHealthRect());
 	window.draw(m_hud.draw());
 
 	for (int i = 0; i < m_radarIcons.size(); i++)

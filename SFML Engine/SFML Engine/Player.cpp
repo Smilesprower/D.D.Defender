@@ -201,6 +201,15 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 	}
 }
 
+void Player::setDamage(int damage)
+{
+	m_health -= damage;
+	if (m_health < 0)
+	{
+		m_health = 0;
+	}
+}
+
 int Player::getHealth()
 {
 	return m_health;
