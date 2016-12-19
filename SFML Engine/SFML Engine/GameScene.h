@@ -14,7 +14,7 @@ class GameScene : public Scene
 {
 public:
 	GameScene(SceneStack& stack, Context context);
-
+	~GameScene();
 	virtual void draw();
 	virtual bool update(sf::Time deltaTime);
 	virtual bool handleEvent(const sf::Event& event);

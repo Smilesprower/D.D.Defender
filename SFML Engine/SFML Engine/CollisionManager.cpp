@@ -24,13 +24,8 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> bulle
 			int distanceSquared = (dx*dx) + (dy*dy);
 			if (distanceSquared < (player->getRadius() + bullets[i]->getRadius()) * (player->getRadius() + bullets[i]->getRadius()))
 			{
-				// Collision
 				bullets[i]->setTTL(5);
-				// Minus player health
 				player->setDamage(100);
-				// Set player state to explode
-				// game over after explosion
-
 			}
 		}
 	}
@@ -42,11 +37,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> bulle
 		int distanceSquared = (dx*dx) + (dy*dy);
 		if (distanceSquared < ((player->getRadius() + gasClouds[i]->getRadius()) * (player->getRadius() + gasClouds[i]->getRadius())))
 		{
-			// Minus player health
-			player->setDamage(10);
-			// Set player state to explode
-			// game over after explosion
-
+			player->setDamage(1);
 		}
 	}
 
