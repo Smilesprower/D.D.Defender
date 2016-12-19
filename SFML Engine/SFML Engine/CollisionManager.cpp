@@ -26,6 +26,10 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> bulle
 				// Collision
 				bullets[i]->setTTL(5);
 				// Minus player health
+				player->setDamage(100);
+				// Set player state to explode
+				// game over after explosion
+
 			}
 		}
 	}

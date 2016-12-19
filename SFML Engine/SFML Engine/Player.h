@@ -26,6 +26,7 @@ public:
 	int getSmartBombState();
 	void chargeSmartBomb();
 	void updateSmartBomb(sf::Time deltaTime);
+	void setDamage(int damage);
 	int getHealth();
 	int getRadius();
 	sf::Vector2f getPosition();
