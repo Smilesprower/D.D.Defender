@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "HUD.h"
 #include "CollisionManager.h"
+#include "Obstacle.h"
 
 
 class GameScene : public Scene
@@ -23,7 +24,7 @@ public:
 
 private:
 	const int OFFSET = 2;
-
+	const int MAX_GAS_CLOUDS = 7;
 	int m_numOfScreens;
 	sf::Vector2i m_screenSize;
 	sf::Vector2i m_halfScreenSize;
@@ -45,6 +46,7 @@ private:
 	CollisionManager m_collisionManager;
 	HUD m_hud;
 	std::vector<Nest*> m_nests;
+	std::vector<Obstacle*> m_gasClouds;
 	sf::Vector2f m_currPlayerPos;
 	const int MAX_BULLETS = 50;
 	float m_shaderValue1;

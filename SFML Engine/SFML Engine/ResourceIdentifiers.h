@@ -21,6 +21,7 @@ namespace Textures
 		MainMenuBG,
 		Button,
 		HUD,
+		GasCloud,
 	};
 }
 

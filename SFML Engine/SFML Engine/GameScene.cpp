@@ -42,8 +42,13 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	//init nest
 	m_nests.push_back(new Nest());
-	m_nests[0]->init(context.textures->get(Textures::Nest), sf::Vector2f(100, 100), m_worldSize);
-
+	m_nests[0]->init(context.textures->get(Textures::Nest), sf::Vector2f(10000, 100), m_worldSize);
+	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
+	{
+		//init gas clouds
+		m_gasClouds.push_back(new Obstacle());
+		m_gasClouds[i]->init(context.textures->get(Textures::GasCloud), sf::Vector2f(i * 1920, 500), m_worldSize);
+	}
 
 	//	Init Playo
 	m_playo->init(context.textures->get(Textures::Playo), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
@@ -194,7 +199,11 @@ void GameScene::draw()
 
 	//window.draw(m_astro.draw());
 	window.draw(m_nests[0]->draw());
+	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
+	{
 
+		window.draw(m_gasClouds[i]->draw());
+	}
 	// DEBUGGING CODE
 	/////////////////////////////////////////////
 	window.draw(m_screenView);
@@ -202,13 +211,16 @@ void GameScene::draw()
 	window.draw(m_nests[0]->drawEvade());
 	window.draw(m_nests[0]->drawFire());
 	window.draw(m_playo->drawPlayerOutline());
+
+
+	window.draw(m_gasClouds[0]->drawOutline());
 	/////////////////////////////////////////////
 	
 	window.setView(window.getDefaultView());
 	window.draw(m_hud.drawRectangle());
 	window.draw(m_hud.drawHealthRect());
 	window.draw(m_hud.draw());
-
+	
 	for (int i = 0; i < m_radarIcons.size(); i++)
 	{
 		window.draw(m_radarIcons[i]);
@@ -274,7 +286,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, bullets);
+	m_collisionManager.checkCollision(m_playo, bullets, m_gasClouds);
 	return true;
 }
 // Event Input

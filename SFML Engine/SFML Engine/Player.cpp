@@ -45,11 +45,11 @@ void Player::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i tpBounds)
 	m_currAnimation = &m_animations[Anims::MoveSideways];
 
 	/////////////// OUTLINE OF player
-	/*m_playerCollider = sf::CircleShape(PLAYER_RADIUS);
+	m_playerCollider = sf::CircleShape(PLAYER_RADIUS);
 	m_playerCollider.setFillColor(sf::Color::Transparent);
 	m_playerCollider.setOutlineThickness(3);
 	m_playerCollider.setOutlineColor(sf::Color::Cyan);
-	m_playerCollider.setOrigin(PLAYER_RADIUS, PLAYER_RADIUS);*/
+	m_playerCollider.setOrigin(PLAYER_RADIUS, PLAYER_RADIUS);
 }
 
 void Player::update(sf::Time deltaTime)
