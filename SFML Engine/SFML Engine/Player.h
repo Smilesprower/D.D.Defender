@@ -29,6 +29,7 @@ public:
 	void setDamage(int damage);
 	int getHealth();
 	int getRadius();
+	bool gameOver();
 	sf::Vector2f getPosition();
 	sf::CircleShape drawPlayerOutline();
 	AnimatedSprite m_animatedSprite;
@@ -40,6 +41,7 @@ private:
 		MoveUp,
 		MoveDown,
 		MoveSideways,
+		Explosion,
 	};
 	enum Direction
 	{
@@ -48,9 +50,14 @@ private:
 		Up,
 		Down
 	};
-
+	const int MAX_SPEED = 700;
+	const int SMART_BOMB_RELOAD_TIME = 60;
 	const int PLAYER_RADIUS = 35;
+	const int MAX_FRAMES_EXPLOSION = 7;
+	const float DE_ACCEL = 4.f;
+	const float BULLET_RELOAD_TIME = 100.f;
 
+	bool m_gameOver;
 	int m_health;
 	int m_teleportedState;
 	int m_smartBombState;
@@ -58,11 +65,8 @@ private:
 
 	int m_directionX;
 	int m_directionY;
+
 	sf::Vector2f m_accel;
-	const float DE_ACCEL = 4.f;
-	const int MAX_SPEED = 700;
-	const int SMART_BOMB_RELOAD_TIME = 60;
-	const float BULLET_RELOAD_TIME = 100.f;
 	sf::Vector2f m_velocity;
 	sf::Vector2i m_teleportingBounds;
 
@@ -71,7 +75,5 @@ private:
 	sf::Time m_frameTime;
 	std::vector<Animation> m_animations;
 	Animation* m_currAnimation;
-
-
 	sf::CircleShape m_playerCollider;
 };

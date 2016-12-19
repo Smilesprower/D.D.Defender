@@ -25,7 +25,6 @@ TitleScene::TitleScene(SceneStack& stack, Context context)
 	m_ButtonExit.setPosition(context.window->getSize().x * 0.55, context.window->getSize().y * 0.4);
 }
 
-
 void TitleScene::draw()
 {	
 	sf::RenderWindow& window = *getContext().window;	// Get Render Window
