@@ -22,6 +22,8 @@
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="Nest.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="Flock.cpp" />
+    <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Obstacle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +51,8 @@
     <ClInclude Include="AI.h" />
     <ClInclude Include="Nest.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="Flock.h" />
+    <ClInclude Include="Alien.h" />
     <ClInclude Include="Obstacle.h" />
   </ItemGroup>
   <ItemGroup>
