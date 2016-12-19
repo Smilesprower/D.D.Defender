@@ -70,7 +70,10 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 
 	m_velocity = targetPosition - position;
 	m_velocity = Helper::GetInstance().Normalize(m_velocity);
+	m_velocity.x *= MISSILE_SPEED;
+	m_velocity.y *= MISSILE_SPEED;
 	m_rotation = std::atan2(m_velocity.y, m_velocity.x);
+	m_prevRotation = m_rotation;
 
 	/////////////// OUTLINE OF MISSILE
 	/*m_missileCollider = sf::CircleShape(MISSILE_RADIUS);
@@ -111,11 +114,29 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 				}
 				else
 				{
-					m_velocity = playerPos - m_animatedSprite.getPosition();
-					m_velocity = Helper::GetInstance().Normalize(m_velocity);
-					m_velocity.x *= MISSILE_SPEED;
-					m_velocity.y *= MISSILE_SPEED;
-					m_rotation = std::atan2(m_velocity.y, m_velocity.x);
+
+					//m_velocity = playerPos - m_animatedSprite.getPosition();
+					//m_velocity = Helper::GetInstance().Normalize(m_velocity);
+					//m_velocity.x *= MISSILE_SPEED;
+					//m_velocity.y *= MISSILE_SPEED;
+					//m_rotation = std::atan2(m_velocity.y, m_velocity.x);
+					//if (m_rotation > m_prevRotation)
+					//{
+					//	m_rotation += 0.02f;
+					//}
+					//else
+					//	m_rotation -= 0.02f;
+					sf::Vector2f temp = playerPos - m_animatedSprite.getPosition();
+					temp = Helper::GetInstance().Normalize(temp);
+					m_prevRotation = std::atan2(temp.y, temp.x);
+					if (m_rotation > m_prevRotation)
+					{
+						m_rotation += 0.05f;
+					}
+					else
+						m_rotation -= 0.05;
+					m_velocity = sf::Vector2f(cos(m_rotation) * MISSILE_SPEED, sin(m_rotation)*  MISSILE_SPEED);
+
 				}
 
 				// Add some check to only rotate by a certain number
