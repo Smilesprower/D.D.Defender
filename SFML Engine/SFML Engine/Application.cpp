@@ -31,6 +31,9 @@ Application::Application()
 	//	Button Texture
 	m_textures.load(Textures::Button, "../resources/tex/UI/Button.png");
 
+	// Gas Cloud Texture
+	m_textures.load(Textures::GasCloud, "../resources/tex/Game/Misc/GasCloud.png");
+
 	createScenes();														// Create all the scenes
 	m_sceneStack.pushScene(Scenes::Title);								// Add scene to the stack
 

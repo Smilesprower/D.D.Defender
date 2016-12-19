@@ -87,7 +87,7 @@ void Nest::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
 
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.play(*m_currAnimation);
-	m_animatedSprite.setPosition(sf::Vector2f(200, 300));
+	m_animatedSprite.setPosition(pos);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 
 
