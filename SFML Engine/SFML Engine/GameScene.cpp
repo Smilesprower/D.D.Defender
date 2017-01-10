@@ -53,6 +53,12 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	//	Init Playo
 	m_playo->init(context.textures->get(Textures::Astro), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
 	// PLAYER RADAR
+	m_radarScreen.setOutlineColor(sf::Color::White);
+	m_radarScreen.setOutlineThickness(2);
+	m_radarScreen.setFillColor(sf::Color::Transparent);
+	m_radarScreen.setSize(sf::Vector2f(190, 118));
+	m_radarScreen.setOrigin(sf::Vector2f(95, 59));
+
 	m_playerRadar.setFillColor(sf::Color::White);
 	m_playerRadar.setRadius(6);
 	m_playerRadar.setOrigin(3, 3);
@@ -99,21 +105,21 @@ void GameScene::draw()
 		m_canUpdateRadar = false;
 		m_radarIcons.clear();
 
-		sf::CircleShape temp;
-		temp.setOrigin(3, 3);
-		temp.setRadius(6);
+		//sf::CircleShape temp;
+		//temp.setOrigin(3, 3);
+		//temp.setRadius(6);
 
-		// ENEMY RADAR
-		int enemyNestSize = m_nests.size();
-		temp.setFillColor(sf::Color::Red);
-		for (int i = 0; i < enemyNestSize; i++)
-		{
-			temp.setPosition((m_nests[i]->getPosition().x + m_screenSize.x) / 9, m_nests[i]->getPosition().y / 9);
-			if (temp.getPosition().x > 105 && temp.getPosition().x < m_screenSize.x - 105)
-			{
-				m_radarIcons.push_back(temp);
-			}
-		}
+		//// ENEMY RADAR
+		//int enemyNestSize = m_nests.size();
+		//temp.setFillColor(sf::Color::Red);
+		//for (int i = 0; i < enemyNestSize; i++)
+		//{
+		//	temp.setPosition((m_nests[i]->getPosition().x + m_screenSize.x) / 9, m_nests[i]->getPosition().y / 9);
+		//	if (temp.getPosition().x > 105 && temp.getPosition().x < m_screenSize.x - 105)
+		//	{
+		//		m_radarIcons.push_back(temp);
+		//	}
+		//}
 	}
 
 	std::vector<Bullet*> bulletCopy = BulletManager::Instance()->getBullets();
@@ -219,7 +225,6 @@ void GameScene::draw()
 	window.draw(m_nests[0]->draw());
 	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 	{
-
 		window.draw(m_gasClouds[i]->draw());
 	}
 	// DEBUGGING CODE
@@ -239,12 +244,14 @@ void GameScene::draw()
 	window.draw(m_hud.drawHealthRect());
 	window.draw(m_hud.draw());
 	
-	for (int i = 0; i < m_radarIcons.size(); i++)
-	{
-		window.draw(m_radarIcons[i]);
-	}
+	//for (int i = 0; i < m_radarIcons.size(); i++)
+	//{
+	//	window.draw(m_radarIcons[i]);
+	//}
+	m_radarScreen.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), 69);
 	m_playerRadar.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), (m_currPlayerPos.y / 9) + 10);
 	window.draw(m_playerRadar);
+	window.draw(m_radarScreen);
 }
 
 bool GameScene::update(sf::Time deltaTime)
