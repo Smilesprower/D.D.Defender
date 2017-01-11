@@ -120,7 +120,7 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 					//m_velocity.x *= MISSILE_SPEED;
 					//m_velocity.y *= MISSILE_SPEED;
 					//m_rotation = std::atan2(m_velocity.y, m_velocity.x);
-					///*if (m_rotation > m_prevRotation)
+					//if (m_rotation > m_prevRotation)
 					//{
 					//	m_rotation += 0.02f;
 					//}

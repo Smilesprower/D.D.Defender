@@ -202,56 +202,58 @@ void GameScene::draw()
 	else if(m_playRipple)
 		window.draw(m_sprite, m_ripple);
 	else
+	{
 		window.draw(m_sprite);
 
 
 
-	window.draw(m_playo->draw());
+		window.draw(m_playo->draw());
 
-	for (int i = 0; i < MAX_BULLETS; i++)
-	{
-		if (bulletCopy[i]->isEnabled())
+		for (int i = 0; i < MAX_BULLETS; i++)
 		{
-			window.draw(bulletCopy.at(i)->draw());
-			if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
+			if (bulletCopy[i]->isEnabled())
 			{
-				window.draw(bulletCopy[i]->drawMissileCollider());
+				window.draw(bulletCopy.at(i)->draw());
+				if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
+				{
+					window.draw(bulletCopy[i]->drawMissileCollider());
+				}
 			}
+
 		}
-		
+
+		//window.draw(m_astro.draw());
+		window.draw(m_nests[0]->draw());
+		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
+		{
+			window.draw(m_gasClouds[i]->draw());
+		}
+		// DEBUGGING CODE
+		/////////////////////////////////////////////
+		window.draw(m_screenView);
+		window.draw(m_playerCutOff);
+		window.draw(m_nests[0]->drawEvade());
+		window.draw(m_nests[0]->drawFire());
+		window.draw(m_playo->drawPlayerOutline());
+
+
+		window.draw(m_gasClouds[0]->drawOutline());
+		/////////////////////////////////////////////
 	}
+		window.setView(window.getDefaultView());
+		window.draw(m_hud.drawRectangle());
+		window.draw(m_hud.drawHealthRect());
+		window.draw(m_hud.draw());
 
-	//window.draw(m_astro.draw());
-	window.draw(m_nests[0]->draw());
-	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
-	{
-		window.draw(m_gasClouds[i]->draw());
-	}
-	// DEBUGGING CODE
-	/////////////////////////////////////////////
-	window.draw(m_screenView);
-	window.draw(m_playerCutOff);
-	window.draw(m_nests[0]->drawEvade());
-	window.draw(m_nests[0]->drawFire());
-	window.draw(m_playo->drawPlayerOutline());
-
-
-	window.draw(m_gasClouds[0]->drawOutline());
-	/////////////////////////////////////////////
+		//for (int i = 0; i < m_radarIcons.size(); i++)
+		//{
+		//	window.draw(m_radarIcons[i]);
+		//}
+		m_radarScreen.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), 69);
+		m_playerRadar.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), (m_currPlayerPos.y / 9) + 10);
+		window.draw(m_playerRadar);
+		window.draw(m_radarScreen);
 	
-	window.setView(window.getDefaultView());
-	window.draw(m_hud.drawRectangle());
-	window.draw(m_hud.drawHealthRect());
-	window.draw(m_hud.draw());
-	
-	//for (int i = 0; i < m_radarIcons.size(); i++)
-	//{
-	//	window.draw(m_radarIcons[i]);
-	//}
-	m_radarScreen.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), 69);
-	m_playerRadar.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), (m_currPlayerPos.y / 9) + 10);
-	window.draw(m_playerRadar);
-	window.draw(m_radarScreen);
 }
 
 bool GameScene::update(sf::Time deltaTime)
