@@ -20,11 +20,11 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="AI.cpp" />
-    <ClCompile Include="Nest.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Flock.cpp" />
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="nest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
@@ -49,11 +49,11 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="AI.h" />
-    <ClInclude Include="Nest.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Flock.h" />
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Obstacle.h" />
+    <ClInclude Include="nest.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl" />

@@ -33,6 +33,12 @@ public:
 	sf::CircleShape drawEvade();
 	sf::CircleShape drawFire();
 
+	void setDamage(int damage);
+	int getHealth();
+	int getRadius();
+	bool isAlive();
+	void setAlive(bool alive);
+
 private:
 	const int COOLDOWN_TIMER = 10;
 	const int NUM_OF_ANIMS = 2;
@@ -42,6 +48,7 @@ private:
 	const int TIME_TO_SWITCH_DIRECTION = 10;
 	const int MISSILE_RANGE = 750;
 	const int EVADE_RANGE = 1000;
+	const int NEST_RADIUS = 50;
 
 	float m_missileReloadTimer;
 	float m_wanderTime;

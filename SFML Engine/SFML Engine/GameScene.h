@@ -3,7 +3,7 @@
 #include "AnimatedSprite.h"
 #include "Bullet.h"
 #include "Astronaut.h"
-#include "Nest.h"
+#include "nest.h"
 #include "Camera.h"
 #include "HUD.h"
 #include "CollisionManager.h"
