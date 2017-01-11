@@ -42,7 +42,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	//init nest
 	m_nests.push_back(new Nest());
-	m_nests[0]->init(context.textures->get(Textures::Nest), sf::Vector2f(10000, 100), m_worldSize);
+	m_nests[0]->init(context.textures->get(Textures::Astro), sf::Vector2f(10000, 100), m_worldSize);
 	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 	{
 		//init gas clouds
@@ -185,6 +185,7 @@ void GameScene::draw()
 			{
 				tempPos.x = m_boundries.y + (tempPos.x - m_currPlayerPos.x);
 				m_nests[i]->setPosition(tempPos);
+
 			}
 		}
 		m_currPlayerPos.x = m_boundries.y;
@@ -221,9 +222,15 @@ void GameScene::draw()
 			}
 
 		}
-
+		for (int i = 0; i < m_nests.size(); ++i)
+		{
+			if (m_nests[i]->isAlive() == true)
+			{
+				window.draw(m_nests[i]->draw());
+			}
+		}
 		//window.draw(m_astro.draw());
-		window.draw(m_nests[0]->draw());
+		
 		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 		{
 			window.draw(m_gasClouds[i]->draw());
@@ -317,12 +324,16 @@ bool GameScene::update(sf::Time deltaTime)
 
 		m_hud.update(deltaTime, m_playo->m_smartBombTimer, m_playo->getHealth());
 		m_playo->update(deltaTime);
-		m_nests[0]->update(deltaTime, m_currPlayerPos);
+		for (int i = 0; i < m_nests.size(); i++)
+		{
+			m_nests[i]->update(deltaTime, m_currPlayerPos);
+			
+		}
 		//m_astro.update(deltaTime);
 
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, bullets, m_gasClouds);
+	m_collisionManager.checkCollision(m_playo, bullets, m_gasClouds, m_nests);
 	return true;
 }
 // Event Input

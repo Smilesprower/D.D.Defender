@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Nest.h"
+#include "nest.h"
 
 Nest::Nest()
 	: m_alive(true)
@@ -8,6 +8,7 @@ Nest::Nest()
 	, m_animations(NUM_OF_ANIMS)
 	, m_wanderTime(0)
 	, m_missileReloadTimer(COOLDOWN_TIMER)
+	, m_health(MAX_HEALTH)
 {
 }
 
@@ -18,72 +19,87 @@ Nest::~Nest()
 
 void Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 {
-	m_missileReloadTimer += deltaTime.asSeconds();
-	float distanceSquared;
-	float dx = m_evadeRadius.getPosition().x - playerPos.x;
-	int dy = m_evadeRadius.getPosition().y - playerPos.y;
-	distanceSquared = (dx*dx) + (dy*dy);
-
-	if(distanceSquared < EVADE_RANGE * EVADE_RANGE)
+	if (m_alive)
 	{
-		m_state = Evade;
-		m_velocity.x = MAX_EVADE_VELOCITY;
-	}
-	else
-	{
-		m_state = Wander;
-		m_velocity.x = MAX_VELOCITY;
-	}
+		m_missileReloadTimer += deltaTime.asSeconds();
+		float distanceSquared;
+		float dx = m_evadeRadius.getPosition().x - playerPos.x;
+		int dy = m_evadeRadius.getPosition().y - playerPos.y;
+		distanceSquared = (dx*dx) + (dy*dy);
 
-	if (m_state == Wander)
-	{
-		m_wanderTime += deltaTime.asSeconds();
-
-		if (m_wanderTime >= TIME_TO_SWITCH_DIRECTION)
+		if (distanceSquared < EVADE_RANGE * EVADE_RANGE)
 		{
-			m_direction = m_direction * -1;
-			m_wanderTime = 0;
-		}
-	}
-	else if (m_state == Evade)
-	{
-		if(playerPos.x > m_animatedSprite.getPosition().x)
-		{
-			m_direction = Direction::Left;
+			m_state = Evade;
+			m_velocity.x = MAX_EVADE_VELOCITY;
 		}
 		else
 		{
-			m_direction = Direction::Right;
+			m_state = Wander;
+			m_velocity.x = MAX_VELOCITY;
 		}
 
-		if (distanceSquared < MISSILE_RANGE * MISSILE_RANGE)
+		if (m_state == Wander)
 		{
-			if (m_missileReloadTimer >= COOLDOWN_TIMER)
+			m_wanderTime += deltaTime.asSeconds();
+
+			if (m_wanderTime >= TIME_TO_SWITCH_DIRECTION)
 			{
-				if (BulletManager::Instance()->createMissile(m_animatedSprite.getPosition(), playerPos, 2));
+				m_direction = m_direction * -1;
+				m_wanderTime = 0;
+			}
+		}
+		else if (m_state == Evade)
+		{
+			if (playerPos.x > m_animatedSprite.getPosition().x)
+			{
+				m_direction = Direction::Left;
+			}
+			else
+			{
+				m_direction = Direction::Right;
+			}
+
+			if (distanceSquared < MISSILE_RANGE * MISSILE_RANGE)
+			{
+				if (m_missileReloadTimer >= COOLDOWN_TIMER)
 				{
-					m_missileReloadTimer = 0;
+					if (BulletManager::Instance()->createMissile(m_animatedSprite.getPosition(), playerPos, 2));
+					{
+						m_missileReloadTimer = 0;
+					}
 				}
 			}
 		}
+		std::cout << m_health << std::endl;
+		if (m_animatedSprite.getFrame() > 3)
+		{
+			m_alive = false;
+		}
+		m_velocity.x *= m_direction;
+		m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
+		m_animatedSprite.update(deltaTime);
+		checkBounds();
+		m_evadeRadius.setPosition(m_animatedSprite.getPosition());
+		m_missileRadius.setPosition(m_animatedSprite.getPosition());
 	}
-
-	m_velocity.x *= m_direction;
-	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
-	m_animatedSprite.update(deltaTime);
-	checkBounds();
-	m_evadeRadius.setPosition(m_animatedSprite.getPosition());
-	m_missileRadius.setPosition(m_animatedSprite.getPosition());
 }
 
 void Nest::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
 {
-
-
 	m_screenBounds = screenBounds;
 	m_screenBounds.y += abs(m_screenBounds.x);
 	m_animations[Anims::Default].setSpriteSheet(tex);
-	m_animations[Anims::Default].addFrame(sf::IntRect(0, 0, 400, 216));
+	m_animations[Anims::Default].addFrame(sf::IntRect(0, 525, 400, 216));
+
+	m_animations[Anims::Explode].setSpriteSheet(tex);
+	m_animations[Anims::Explode].addFrame(sf::IntRect(0, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(80, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(160, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(240, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(320, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(400, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(480, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(560, 144, 80, 80));
 
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.play(*m_currAnimation);
@@ -142,4 +158,37 @@ sf::CircleShape Nest::drawEvade()
 sf::CircleShape Nest::drawFire()
 {
 	return m_missileRadius;
+}
+
+void Nest::setDamage(int damage)
+{
+	m_health -= damage;
+	if (m_health <= 0)
+	{
+		m_currAnimation = &m_animations[Anims::Explode];
+		m_animatedSprite.setOrigin(40, 40);
+		m_animatedSprite.setScale(4, 4);
+		m_health = 0;
+		m_animatedSprite.play(*m_currAnimation);
+	}
+}
+
+int Nest::getHealth()
+{
+	return m_health;
+}
+
+int Nest::getRadius()
+{
+	return NEST_RADIUS;
+}
+
+bool Nest::isAlive()
+{
+	return m_alive;
+}
+
+void Nest::setAlive(bool alive)
+{
+	m_alive = alive;
 }

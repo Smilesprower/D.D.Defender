@@ -12,7 +12,7 @@ CollisionManager::~CollisionManager()
 {
 }
 
-void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> bullets, std::vector<Obstacle*> gasClouds)
+void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> bullets, std::vector<Obstacle*> gasClouds, std::vector<Nest*> nests)
 {
 	for (int i = 0; i < bullets.size(); i++)
 	{
@@ -28,6 +28,25 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> bulle
 				player->setDamage(100);
 			}
 		}
+		// if its a lazer
+		else if (bullets[i]->isEnabled() && bullets[i]->getType() == bullets[i]->Lazer)
+		{
+			// if bullet collides with a nest enemy
+			for (int j = 0; j < nests.size(); j++)
+			{
+				if (nests[j]->isAlive())
+				{
+					int dx = bullets[i]->getPosition().x - nests[j]->getPosition().x;
+					int dy = bullets[i]->getPosition().y - nests[j]->getPosition().y;
+					int distanceSquared = (dx*dx) + (dy*dy);
+					if (distanceSquared < ((bullets[i]->getRadius() + nests[j]->getRadius()) * (bullets[i]->getRadius() + nests[j]->getRadius())))
+					{
+						bullets[i]->setEnabled(false);
+						nests[j]->setDamage(20);
+					}
+				}
+			}
+		}
 	}
 
 	for (int i = 0; i < gasClouds.size(); i++)
@@ -40,5 +59,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> bulle
 			player->setDamage(1);
 		}
 	}
+
+
 
 }

@@ -19,7 +19,6 @@ Application::Application()
 
 	m_textures.load(Textures::Astro, "../resources/tex/Game/Astro/astro.png");
 	m_textures.load(Textures::Playo, "../resources/tex/Game/Player/PlayerAtlas.png");
-	m_textures.load(Textures::Nest, "../resources/tex/Game/Enemy/Nest.png");
 	m_textures.load(Textures::HUD, "../resources/tex/UI/HUD.png");
 
 	m_textures.load(Textures::GameBackground, "../resources/tex/Game/Backgrounds/SpaceBackground.png");	
