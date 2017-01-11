@@ -163,7 +163,6 @@
     <ClInclude Include="BulletManager.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
-    <ClInclude Include="Flock.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="HUD.h" />
@@ -171,6 +170,7 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Pvector.h" />
     <ClInclude Include="ResourceHolder.h" />
     <ClInclude Include="ResourceIdentifiers.h" />
     <ClInclude Include="Scene.h" />
@@ -192,14 +192,13 @@
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
-    <ClCompile Include="Flock.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="Nest.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Pvector.cpp" />
     <ClCompile Include="SFML Engine.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneStack.cpp" />

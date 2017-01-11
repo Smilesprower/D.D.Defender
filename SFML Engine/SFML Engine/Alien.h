@@ -1,37 +1,55 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "AnimatedSprite.h"
 #include "Helper.h"
+#include "Pvector.h"
 class Alien
 {
 public:
-	Alien(sf::Texture & tex, sf::Vector2f position);
+	enum Anims
+	{
+		Default,
+		Explode,
+	};
+
+	Alien();
 	~Alien();
+	void init(sf::Texture & tex, sf::Vector2f position, sf::Vector2f velocity);
 
-	void applyForce(sf::Vector2f force);
+	void applyForce(Pvector force);
 
-	// Three Laws that boids follow
-	sf::Vector2f separation(std::vector<Alien> alien);
-	sf::Vector2f alignment(std::vector<Alien> alien);
-	sf::Vector2f cohesion(std::vector<Alien> alien);
+	Pvector separation(std::vector<Alien*> *alien);
+	Pvector alignment(std::vector<Alien*> *alien);
+	Pvector cohesion(std::vector<Alien*> *alien);
+	Pvector seek(Pvector v);
 
-	//Functions involving SFML and visualisation linking
-	sf::Vector2f seek(sf::Vector2f v);
-
-	void run(std::vector<Alien> alien, sf::Time deltaTime);
+	void run(std::vector<Alien*> *alien, sf::Time deltaTime);
 	void update(sf::Time deltaTime);
 	void borders();
+	void flock(std::vector<Alien*> *alien);
 
-	void flock(std::vector<Alien> alien);
-	void swarm(std::vector<Alien> alien);
+	AnimatedSprite draw();
+	sf::CircleShape drawCirc();
 
 private:
+	// AI SHTUFF
+	///////////////////////////////////
 	const float STRENGHT_ATT = 1;
 	const float STRENGHT_REP = 2;
 	const float ATTENUATION_ATT = 4;
 	const float ATTENUATION_REP = 5;
-
-	bool predator;
 	float m_maxSpeed, m_maxForce;
-	sf::Vector2f m_position, m_velocity, m_accel;
+	Pvector m_location;
+	Pvector m_velocity;
+	Pvector m_acceleration;
+	///////////////////////////////////
+
+	int NUM_OF_ANIMS = 3;
+	sf::Time m_frameTime;
+	AnimatedSprite m_animatedSprite;
+	std::vector<Animation> m_animations;
+	Animation* m_currAnimation;
+	sf::CircleShape m_circ;
+
 };
 

@@ -32,12 +32,16 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
 	/////////////////////////////////////////////
 
-
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 
 	// Init Astro - Give the random Values
 	//m_astro.init(context.textures->get(Textures::Astro), 960);
+	for (int i = 0; i < 100; i++)
+	{
+		m_aliens.push_back(new Alien());
+		m_aliens[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(1000, 300), sf::Vector2f(0,0));
 
+	}
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
 
 	//init nest
@@ -81,8 +85,6 @@ GameScene::GameScene(SceneStack& stack, Context context)
 }
 GameScene::~GameScene()
 {
-	std::vector<Nest*> m_nests;
-	std::vector<Obstacle*> m_gasClouds;
 	for (int i = 0; i < m_nests.size(); i++)
 	{
 		delete m_nests[i];
@@ -99,28 +101,6 @@ GameScene::~GameScene()
 
 void GameScene::draw()
 {
-	if (m_canUpdateRadar)
-	{
-		m_radarTime = 0;
-		m_canUpdateRadar = false;
-		m_radarIcons.clear();
-
-		//sf::CircleShape temp;
-		//temp.setOrigin(3, 3);
-		//temp.setRadius(6);
-
-		//// ENEMY RADAR
-		//int enemyNestSize = m_nests.size();
-		//temp.setFillColor(sf::Color::Red);
-		//for (int i = 0; i < enemyNestSize; i++)
-		//{
-		//	temp.setPosition((m_nests[i]->getPosition().x + m_screenSize.x) / 9, m_nests[i]->getPosition().y / 9);
-		//	if (temp.getPosition().x > 105 && temp.getPosition().x < m_screenSize.x - 105)
-		//	{
-		//		m_radarIcons.push_back(temp);
-		//	}
-		//}
-	}
 
 	std::vector<Bullet*> bulletCopy = BulletManager::Instance()->getBullets();
 
@@ -190,6 +170,7 @@ void GameScene::draw()
 		m_currPlayerPos.x = m_boundries.y;
 	}
 
+
 	// Set players position 
 	m_playo->m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
 
@@ -204,9 +185,6 @@ void GameScene::draw()
 	else
 	{
 		window.draw(m_sprite);
-
-
-
 		window.draw(m_playo->draw());
 
 		for (int i = 0; i < MAX_BULLETS; i++)
@@ -221,8 +199,10 @@ void GameScene::draw()
 			}
 
 		}
-
-		//window.draw(m_astro.draw());
+		for (int i = 0; i < m_aliens.size(); i++)
+		{
+			window.draw(m_aliens[i]->drawCirc());
+		}
 		window.draw(m_nests[0]->draw());
 		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 		{
@@ -318,6 +298,11 @@ bool GameScene::update(sf::Time deltaTime)
 		m_hud.update(deltaTime, m_playo->m_smartBombTimer, m_playo->getHealth());
 		m_playo->update(deltaTime);
 		m_nests[0]->update(deltaTime, m_currPlayerPos);
+
+		for (int i = 0; i < m_aliens.size(); i++)
+		{
+			m_aliens[i]->run(&m_aliens, deltaTime);
+		}
 		//m_astro.update(deltaTime);
 
 	}

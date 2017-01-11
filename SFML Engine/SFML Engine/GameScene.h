@@ -8,6 +8,7 @@
 #include "HUD.h"
 #include "CollisionManager.h"
 #include "Obstacle.h"
+#include "Alien.h"
 
 
 class GameScene : public Scene
@@ -46,6 +47,7 @@ private:
 	CollisionManager m_collisionManager;
 	HUD m_hud;
 	std::vector<Nest*> m_nests;
+	std::vector<Alien*> m_aliens;
 	std::vector<Obstacle*> m_gasClouds;
 	sf::Vector2f m_currPlayerPos;
 	const int MAX_BULLETS = 50;

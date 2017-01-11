@@ -78,8 +78,6 @@ void Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 
 void Nest::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
 {
-
-
 	m_screenBounds = screenBounds;
 	m_screenBounds.y += abs(m_screenBounds.x);
 	m_animations[Anims::Default].setSpriteSheet(tex);
