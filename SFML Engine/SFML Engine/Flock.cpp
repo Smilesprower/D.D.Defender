@@ -11,17 +11,17 @@ Flock::~Flock()
 {
 }
 
-Alien * Flock::getAlien(int i)
+Alien Flock::getAlien(int i)
 {
 	return m_flock[i];
 }
 
 void Flock::addAlien(Alien alien)
 {
-	m_flock.push_back(new Alien(alien));
+	m_flock.push_back(Alien(alien));
 }
 
-void Flock::flocking()
+void Flock::flocking(sf::Time deltaTime)
 {
 	for (int i = 0; i < m_flock.size(); i++)
 	{
@@ -31,7 +31,7 @@ void Flock::flocking()
 	}
 }
 
-void Flock::swarming()
+void Flock::swarming(sf::Time deltaTime)
 {
 	for (int i = 0; i < m_flock.size(); i++)
 	{

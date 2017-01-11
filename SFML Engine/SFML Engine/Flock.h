@@ -9,10 +9,10 @@ public:
 
 
 private:
-	std::vector<Alien*> m_flock;
-	Alien * getAlien(int i);
+	std::vector<Alien> m_flock;
+	Alien getAlien(int i);
 	void addAlien(Alien alien);
-	void flocking();
-	void swarming();
+	void flocking(sf::Time deltaTime);
+	void swarming(sf::Time deltaTime);
 };
 
