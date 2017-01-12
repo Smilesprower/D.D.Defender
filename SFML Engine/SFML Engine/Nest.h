@@ -24,7 +24,7 @@ class Nest
 public:
 	Nest();
 	~Nest();
-	void update(sf::Time deltaTime, sf::Vector2f playerPos);
+	bool update(sf::Time deltaTime, sf::Vector2f playerPos);
 	void init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds);
 	void checkBounds();
 	sf::Vector2f getPosition();
@@ -48,7 +48,7 @@ private:
 	const int TIME_TO_SWITCH_DIRECTION = 10;
 	const int MISSILE_RANGE = 750;
 	const int EVADE_RANGE = 1000;
-	const int NEST_RADIUS = 50;
+	const int NEST_RADIUS = 150;
 
 	float m_missileReloadTimer;
 	float m_wanderTime;
@@ -56,6 +56,7 @@ private:
 	bool m_alive;
 	int m_state;
 	int m_direction;
+	float m_spawnTimer;
 	sf::Vector2i m_screenBounds;
 	sf::Vector2f m_velocity;
 	sf::Vector2f m_acceleration;

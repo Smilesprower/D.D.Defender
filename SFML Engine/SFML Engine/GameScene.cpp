@@ -38,15 +38,13 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	//m_astro.init(context.textures->get(Textures::Astro), 960);
 	for (int i = 0; i < 5; i++)
 	{
-		m_aliens.push_back(new Alien());
-		m_aliens[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(1000, 300), m_screenSize);
-		m_aliens[i]->setAlive(true);
+		m_aliens.push_back(new Alien(context.textures->get(Textures::Astro), m_screenSize));
 	}
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
 
 	//init nest
 	m_nests.push_back(new Nest());
-	m_nests[0]->init(context.textures->get(Textures::Astro), sf::Vector2f(10000, 100), m_worldSize);
+	m_nests[0]->init(context.textures->get(Textures::Astro), sf::Vector2f(10000, 200), m_worldSize);
 	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 	{
 		//init gas clouds
@@ -211,7 +209,10 @@ void GameScene::draw()
 
 		for (int i = 0; i < m_aliens.size(); i++)
 		{
-			window.draw(m_aliens[i]->draw());
+			if (m_aliens[i]->getAlive() == true)
+			{
+				window.draw(m_aliens[i]->draw());
+			}
 		}
 
 		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
@@ -310,7 +311,18 @@ bool GameScene::update(sf::Time deltaTime)
 
 		for (int i = 0; i < m_nests.size(); i++)
 		{
-			m_nests[i]->update(deltaTime, m_currPlayerPos);
+			if(m_nests[i]->update(deltaTime, m_currPlayerPos))
+			{
+				// spaen enemy
+				for (int j = 0; j < m_aliens.size(); j++)
+				{
+					if (m_aliens[j]->getAlive() == false)
+					{
+						m_aliens[j]->init(m_nests[i]->getPosition());
+						break;
+					}
+				}
+			}
 		}
 
 		for (int i = 0; i < m_aliens.size(); i++)
@@ -321,7 +333,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, bullets, m_gasClouds, m_nests);
+	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_nests, &m_aliens);
 	return true;
 }
 // Event Input
