@@ -26,6 +26,7 @@ Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds)
 
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.play(*m_currAnimation);
+
 }
 
 Alien::~Alien()
@@ -42,6 +43,7 @@ void Alien::init(sf::Vector2f position)
 	m_maxForce = 0.5;
 	m_location.x = position.x;
 	m_location.y = position.y;
+	m_health = 100;
 
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.setScale(1, 1);
