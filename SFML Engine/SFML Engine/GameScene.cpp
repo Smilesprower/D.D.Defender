@@ -14,7 +14,6 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_camera(sf::Vector2i(m_worldSize.x, m_worldSize.y), sf::Vector2i(m_screenSize.x, m_screenSize.y))
 	, m_playShockwave(false)
 	, m_playRipple(false)
-	, m_astro()
 	, m_playo(new Player())
 	, m_canUpdateRadar(false)
 {
@@ -34,8 +33,11 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 
-	// Init Astro - Give the random Values
-	//m_astro.init(context.textures->get(Textures::Astro), 960);
+	// Init Astros - Give the random Values
+	for (int i = 0; i < NUM_OF_ASTROS; i++)
+	{
+		m_astronauts.push_back(new Astronaut(context.textures->get(Textures::Astro), 500 * i));
+	}
 	for (int i = 0; i < 5; i++)
 	{
 		m_aliens.push_back(new Alien(context.textures->get(Textures::Astro), m_screenSize));
@@ -205,7 +207,10 @@ void GameScene::draw()
 				window.draw(m_nests[i]->draw());
 			}
 		}
-		//window.draw(m_astro.draw());
+		for (int i = 0; i < NUM_OF_ASTROS; i++)
+		{
+			window.draw(m_astronauts[i]->draw());
+		}
 
 		for (int i = 0; i < m_aliens.size(); i++)
 		{
@@ -329,7 +334,11 @@ bool GameScene::update(sf::Time deltaTime)
 		{
 			m_aliens[i]->run(&m_aliens, deltaTime);
 		}
-		//m_astro.update(deltaTime);
+
+		for (int i = 0; i < NUM_OF_ASTROS; i++)
+		{
+			m_astronauts[i]->update(deltaTime);
+		}
 
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
