@@ -126,6 +126,7 @@ AnimatedSprite Astronaut::draw()
 void Astronaut::setAbducted()
 {
 	m_state = Abducted;
+	m_currAnimation = &m_animations[Anims::Falling_Abducted];
 }
 
 int Astronaut::isAbducted()

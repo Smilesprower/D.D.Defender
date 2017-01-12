@@ -37,9 +37,8 @@ void Alien::init(sf::Vector2f position)
 	m_currentState = Flock;
 	m_alive = true;
 	m_acceleration = Pvector(0, 0);
-	m_velocity = Pvector(-10, 6);
-	//m_velocity = Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
-	m_maxSpeed = 10;
+	m_velocity = Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
+	m_maxSpeed = 3.5;
 	m_maxForce = 0.5;
 	m_location.x = position.x;
 	m_location.y = position.y;
