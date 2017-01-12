@@ -10,6 +10,7 @@ Astronaut::Astronaut(sf::Texture & tex, int xPos)
 	, m_animatedSprite(sf::seconds(0.2f),true, false)
 	, m_animations(NUM_OF_ANIMS)
 	, m_abductedVelocity(0, MAX_ABDUCTED_SPEED)
+	, m_direction(1)
 {
 	m_animations[Anims::WalkLeft].setSpriteSheet(tex);
 	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(48, 48, 48, 48));
@@ -55,21 +56,21 @@ void Astronaut::update(sf::Time deltaTime)
 
 	if (m_state == Wander)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			m_currAnimation = &m_animations[Anims::WalkLeft];
-			m_velocity.x = -MAX_SPEED;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		m_wanderTime += deltaTime.asSeconds();
+		if (m_direction == 1)
 		{
 			m_currAnimation = &m_animations[Anims::WalkRight];
-			m_velocity.x = MAX_SPEED;
 		}
 		else
 		{
-			m_velocity.x = 0;
-			m_velocity.y = 0;
-			m_animatedSprite.stop();
+			m_currAnimation = &m_animations[Anims::WalkLeft];
+		}
+		m_velocity.x = (MAX_SPEED * deltaTime.asSeconds())* m_direction;
+
+		if (m_wanderTime >= rand() % 50 + 10)
+		{
+			m_direction = m_direction * -1;
+			m_wanderTime = 0;
 		}
 	}
 	else if (m_state == Falling)

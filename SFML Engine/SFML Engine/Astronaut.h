@@ -47,9 +47,12 @@ private:
 	int GROUND = 925;
 	int RADIUS = 25;
 	int GRAVITY = 100;
-	int MAX_SPEED = 500;
+	int MAX_SPEED = 2000;
 	int NUM_OF_ANIMS = 3;
 	int MAX_ABDUCTED_SPEED = -100;
+	const int TIME_TO_SWITCH_DIRECTION = 10;
+
+	float m_wanderTime;
 
 	sf::Vector2f m_abductedVelocity;
 
