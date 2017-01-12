@@ -11,10 +11,16 @@ public:
 		Default,
 		Explode,
 	};
+	enum State
+	{
+		Capture,
+		Flock,
+		Dying,
+	};
 
 	Alien();
 	~Alien();
-	void init(sf::Texture & tex, sf::Vector2f position, sf::Vector2f velocity);
+	void init(sf::Texture & tex, sf::Vector2f position, sf::Vector2i screenBounds);
 
 	void applyForce(Pvector force);
 
@@ -24,12 +30,19 @@ public:
 	Pvector seek(Pvector v);
 
 	void run(std::vector<Alien*> *alien, sf::Time deltaTime);
-	void update(sf::Time deltaTime);
+	void updateFlocking(sf::Time deltaTime);
+	void updateCapture(sf::Time dt);
+	void updateDying(sf::Time dt);
 	void borders();
 	void flock(std::vector<Alien*> *alien);
 
+	bool getAlive();
+	void setAlive(bool alive);
+
+	int getState();
+	void setState(int state);
+
 	AnimatedSprite draw();
-	sf::CircleShape drawCirc();
 
 private:
 	// AI SHTUFF
@@ -42,14 +55,16 @@ private:
 	Pvector m_location;
 	Pvector m_velocity;
 	Pvector m_acceleration;
+	sf::Vector2i m_screenBounds;
 	///////////////////////////////////
 
+	bool m_alive;
+	int m_currentState;
 	int NUM_OF_ANIMS = 3;
 	sf::Time m_frameTime;
 	AnimatedSprite m_animatedSprite;
 	std::vector<Animation> m_animations;
 	Animation* m_currAnimation;
-	sf::CircleShape m_circ;
 
 };
 

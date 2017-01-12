@@ -36,11 +36,11 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	// Init Astro - Give the random Values
 	//m_astro.init(context.textures->get(Textures::Astro), 960);
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 5; i++)
 	{
 		m_aliens.push_back(new Alien());
-		m_aliens[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(1000, 300), sf::Vector2f(0,0));
-
+		m_aliens[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(1000, 300), m_screenSize);
+		m_aliens[i]->setAlive(true);
 	}
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
 
@@ -201,7 +201,7 @@ void GameScene::draw()
 		}
 		for (int i = 0; i < m_aliens.size(); i++)
 		{
-			window.draw(m_aliens[i]->drawCirc());
+			window.draw(m_aliens[i]->draw());
 		}
 		window.draw(m_nests[0]->draw());
 		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
