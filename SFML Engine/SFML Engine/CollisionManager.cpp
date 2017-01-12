@@ -82,17 +82,20 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 	{
 		for (int j = 0; j < aliens->size(); j++)
 		{
-			int dx = astronauts->at(i)->getPosition().x - aliens->at(j)->getPosition().x;
-			int dy = astronauts->at(i)->getPosition().y - aliens->at(j)->getPosition().y;
-			int distanceSquared = (dx*dx) + (dy*dy);
-			if (distanceSquared < ((astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius()) * (astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius())))
+			if (aliens->at(j)->getAlive())
 			{
-				// If astro is not targeted
-				if (!astronauts->at(i)->isTargeted())
+				int dx = astronauts->at(i)->getPosition().x - aliens->at(j)->getPosition().x;
+				int dy = astronauts->at(i)->getPosition().y - aliens->at(j)->getPosition().y;
+				int distanceSquared = (dx*dx) + (dy*dy);
+				if (distanceSquared < ((astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius()) * (astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius())))
 				{
-					aliens->at(j)->setState(aliens->at(j)->Target);
-					aliens->at(j)->setAstro(astronauts->at(i));
-					astronauts->at(i)->setTargeted(true);
+					// If astro is not targeted
+					if (!astronauts->at(i)->isTargeted())
+					{
+						aliens->at(j)->setState(aliens->at(j)->Target);
+						aliens->at(j)->setAstro(astronauts->at(i));
+						astronauts->at(i)->setTargeted(true);
+					}
 				}
 			}
 		}

@@ -258,6 +258,12 @@ void Alien::updateDying(sf::Time dt)
 	if (m_animatedSprite.getFrame() > 3)
 	{
 		m_alive = false;
+		if (m_astro != NULL)
+		{
+			m_astro->setFalling();
+			m_astro->setTargeted(false);
+			m_astro = NULL;
+		}
 	}
 }
 
@@ -321,11 +327,6 @@ void Alien::setDamage(int damage)
 		m_animatedSprite.setScale(2, 2);
 		m_health = 0;
 		m_animatedSprite.play(*m_currAnimation);
-		if(m_astro != NULL)
-		{ 
-			m_astro->setFalling();
-			m_astro = NULL;
-		}
 	}
 }
 
