@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "AnimatedSprite.h"
+#include "Astronaut.h"
 #include "Helper.h"
 #include "Pvector.h"
 class Alien
@@ -14,6 +15,7 @@ public:
 	enum State
 	{
 		Blank,
+		Target,
 		Capture,
 		Flock,
 		Dying,
@@ -32,7 +34,7 @@ public:
 
 	void run(std::vector<Alien*> *alien, sf::Time deltaTime);
 	void updateFlocking(sf::Time deltaTime);
-	void updateCapture(sf::Time dt);
+	void updateTargetCapture(sf::Time dt);
 	void updateDying(sf::Time dt);
 	void borders();
 	void flock(std::vector<Alien*> *alien);
@@ -51,7 +53,7 @@ public:
 
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f position);
-
+	void setAstro(Astronaut* astro);
 	AnimatedSprite draw();
 
 	//	DEBUGGING
@@ -74,7 +76,8 @@ private:
 
 	int m_health;
 	const int RADIUS = 50;
-	const int ABDUCT_RADIUS = 200;
+	const int ABDUCT_RADIUS = 400;
+	const int TARGET_SPEED = 200;
 	bool m_alive;
 	int m_currentState;
 	int NUM_OF_ANIMS = 3;
@@ -82,6 +85,6 @@ private:
 	AnimatedSprite m_animatedSprite;
 	std::vector<Animation> m_animations;
 	Animation* m_currAnimation;
-
+	Astronaut * m_astro;
 };
 

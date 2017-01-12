@@ -25,24 +25,31 @@ public:
 
 	void init(sf::Texture & tex, int xPos);
 	void update(sf::Time deltaTime);
-	void abducted(sf::Time deltaTime);
 	sf::Vector2f getPosition();
+	sf::Vector2f getAbductPosition();
 	void setPosition(sf::Vector2f position);
 	AnimatedSprite draw();
 
 	void setAbducted();
 	int isAbducted();
+
+	void setTargeted(bool targeted);
+	bool isTargeted();
+
 	int getRadius();
 
+	void setFalling();
 	//	DEBUGGING
 	sf::CircleShape drawCollisionRadius();
 	sf::CircleShape m_collisionRadius;
 
 private:
+	bool m_targeted;
 	bool m_alive;
 	int m_direction;
 	int m_state;
 	sf::Vector2f m_velocity;
+	sf::Vector2f m_abductPos;
 
 	int GROUND = 925;
 	int RADIUS = 25;

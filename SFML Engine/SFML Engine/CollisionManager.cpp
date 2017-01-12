@@ -87,7 +87,13 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			int distanceSquared = (dx*dx) + (dy*dy);
 			if (distanceSquared < ((astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius()) * (astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius())))
 			{
-				astronauts->at(i)->setAbducted();
+				// If astro is not targeted
+				if (!astronauts->at(i)->isTargeted())
+				{
+					aliens->at(j)->setState(aliens->at(j)->Target);
+					aliens->at(j)->setAstro(astronauts->at(i));
+					astronauts->at(i)->setTargeted(true);
+				}
 			}
 		}
 	}

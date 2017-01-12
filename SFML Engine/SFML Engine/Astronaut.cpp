@@ -93,23 +93,24 @@ void Astronaut::update(sf::Time deltaTime)
 	}
 	else if (m_state = Abducted)
 	{
-		abducted(deltaTime);
+		m_velocity = m_abductedVelocity;
 	}
 	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 	m_animatedSprite.update(deltaTime);
+	m_abductPos = m_animatedSprite.getPosition();
 
 	//debugging
 	m_collisionRadius.setPosition(m_animatedSprite.getPosition());
 }
 
-void Astronaut::abducted(sf::Time deltaTime)
-{
-	m_animatedSprite.move(m_abductedVelocity * deltaTime.asSeconds());
-}
-
 sf::Vector2f Astronaut::getPosition()
 {
 	return m_animatedSprite.getPosition();
+}
+
+sf::Vector2f Astronaut::getAbductPosition()
+{
+	return sf::Vector2f(m_abductPos.x, m_abductPos.y - 200);
 }
 
 void Astronaut::setPosition(sf::Vector2f pos)
@@ -132,9 +133,24 @@ int Astronaut::isAbducted()
 	return m_state;
 }
 
+void Astronaut::setTargeted(bool targeted)
+{
+	m_targeted = targeted;
+}
+
+bool Astronaut::isTargeted()
+{
+	return m_targeted;
+}
+
 int Astronaut::getRadius()
 {
 	return RADIUS;
+}
+
+void Astronaut::setFalling()
+{
+	m_state = Falling;
 }
 
 sf::CircleShape Astronaut::drawCollisionRadius()

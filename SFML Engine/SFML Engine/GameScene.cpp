@@ -46,7 +46,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	//init nest
 	m_nests.push_back(new Nest());
-	m_nests[0]->init(context.textures->get(Textures::Astro), sf::Vector2f(10000, 200), m_worldSize);
+	m_nests[0]->init(context.textures->get(Textures::Astro), sf::Vector2f(2000, 200), m_worldSize);
 	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 	{
 		//init gas clouds
