@@ -69,7 +69,7 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 
 	m_velocity = targetPosition - position;
-	m_velocity = Helper::GetInstance().Normalize(m_velocity);
+	m_velocity = Helper::Normalize(m_velocity);
 	m_velocity.x *= MISSILE_SPEED;
 	m_velocity.y *= MISSILE_SPEED;
 	m_rotation = std::atan2(m_velocity.y, m_velocity.x);
@@ -127,7 +127,7 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 					//else
 					//	m_rotation -= 0.02f;*/
 					sf::Vector2f temp = playerPos - m_animatedSprite.getPosition();
-					temp = Helper::GetInstance().Normalize(temp);
+					temp = Helper::Normalize(temp);
 					m_rotation = std::atan2(temp.y, temp.x);
 					/*if (m_rotation > m_prevRotation)
 					{

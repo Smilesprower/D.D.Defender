@@ -9,7 +9,6 @@
     <ClCompile Include="BulletManager.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameScene.cpp" />
-    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -21,10 +20,13 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="AI.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
-    <ClCompile Include="Flock.cpp" />
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="nest.cpp" />
+=======
+    <ClCompile Include="Pvector.cpp" />
+>>>>>>> newEnemies
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedSprite.h" />
@@ -50,10 +52,13 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="AI.h" />
     <ClInclude Include="CollisionManager.h" />
-    <ClInclude Include="Flock.h" />
     <ClInclude Include="Alien.h" />
     <ClInclude Include="Obstacle.h" />
+<<<<<<< HEAD
     <ClInclude Include="nest.h" />
+=======
+    <ClInclude Include="Pvector.h" />
+>>>>>>> newEnemies
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl" />

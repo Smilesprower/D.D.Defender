@@ -9,6 +9,7 @@ Nest::Nest()
 	, m_wanderTime(0)
 	, m_missileReloadTimer(COOLDOWN_TIMER)
 	, m_health(MAX_HEALTH)
+	, m_animatedSprite(sf::seconds(0.15f), true, false)
 {
 }
 
