@@ -10,6 +10,7 @@ Nest::Nest()
 	, m_missileReloadTimer(COOLDOWN_TIMER)
 	, m_health(MAX_HEALTH)
 	, m_animatedSprite(sf::seconds(0.15f), true, false)
+	, m_spawnTimer(0)
 {
 }
 
@@ -18,10 +19,11 @@ Nest::~Nest()
 {
 }
 
-void Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
+bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 {
 	if (m_alive)
 	{
+		m_spawnTimer += deltaTime.asSeconds();
 		m_missileReloadTimer += deltaTime.asSeconds();
 		float distanceSquared;
 		float dx = m_evadeRadius.getPosition().x - playerPos.x;
@@ -71,7 +73,7 @@ void Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 				}
 			}
 		}
-		std::cout << m_health << std::endl;
+
 		if (m_animatedSprite.getFrame() > 3)
 		{
 			m_alive = false;
@@ -82,7 +84,14 @@ void Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 		checkBounds();
 		m_evadeRadius.setPosition(m_animatedSprite.getPosition());
 		m_missileRadius.setPosition(m_animatedSprite.getPosition());
+
+		if (m_spawnTimer >= 5)
+		{
+			m_spawnTimer = 0;
+			return true;
+		}
 	}
+	return false;
 }
 
 void Nest::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
@@ -90,7 +99,7 @@ void Nest::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
 	m_screenBounds = screenBounds;
 	m_screenBounds.y += abs(m_screenBounds.x);
 	m_animations[Anims::Default].setSpriteSheet(tex);
-	m_animations[Anims::Default].addFrame(sf::IntRect(0, 525, 400, 216));
+	m_animations[Anims::Default].addFrame(sf::IntRect(0, 531, 431, 464));
 
 	m_animations[Anims::Explode].setSpriteSheet(tex);
 	m_animations[Anims::Explode].addFrame(sf::IntRect(0, 144, 80, 80));
