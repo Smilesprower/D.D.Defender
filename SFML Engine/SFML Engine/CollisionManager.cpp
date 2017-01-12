@@ -2,6 +2,7 @@
 #include "CollisionManager.h"
 #include "Obstacle.h"
 #include "Alien.h"
+#include "Astronaut.h"
 
 
 CollisionManager::CollisionManager()
@@ -13,7 +14,7 @@ CollisionManager::~CollisionManager()
 {
 }
 
-void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Nest*> *nests, std::vector<Alien*> *aliens)
+void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, std::vector<Astronaut*> *astronauts)
 {
 	for (int i = 0; i < bullets->size(); i++)
 	{
@@ -77,6 +78,18 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 		}
 	}
 
-
+	for (int i = 0; i < astronauts->size(); i++)
+	{
+		for (int j = 0; j < aliens->size(); j++)
+		{
+			int dx = astronauts->at(i)->getPosition().x - aliens->at(j)->getPosition().x;
+			int dy = astronauts->at(i)->getPosition().y - aliens->at(j)->getPosition().y;
+			int distanceSquared = (dx*dx) + (dy*dy);
+			if (distanceSquared < ((astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius()) * (astronauts->at(i)->getRadius() + aliens->at(j)->getAbductRadius())))
+			{
+				astronauts->at(i)->setAbducted();
+			}
+		}
+	}
 
 }

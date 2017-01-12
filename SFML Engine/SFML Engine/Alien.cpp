@@ -51,6 +51,15 @@ void Alien::init(sf::Vector2f position)
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 	m_animatedSprite.setScale(1, 1);
+
+
+	// DEBUGGING CODE
+	/////////////////////////////////////////////
+	m_collisionRadius = sf::CircleShape(ABDUCT_RADIUS);
+	m_collisionRadius.setFillColor(sf::Color::Transparent);
+	m_collisionRadius.setOutlineThickness(3);
+	m_collisionRadius.setOutlineColor(sf::Color::Yellow);
+	m_collisionRadius.setOrigin(ABDUCT_RADIUS, ABDUCT_RADIUS);
 }
 
 void Alien::applyForce(Pvector force)
@@ -181,6 +190,9 @@ void Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
 	{
 		updateDying(deltaTime);
 	}
+
+	//debugging
+	m_collisionRadius.setPosition(m_animatedSprite.getPosition());
 }
 
 void Alien::updateFlocking(sf::Time deltaTime)
@@ -262,6 +274,11 @@ int Alien::getRadius()
 	return RADIUS;
 }
 
+int Alien::getAbductRadius()
+{
+	return ABDUCT_RADIUS;
+}
+
 void Alien::setDamage(int damage)
 {
 	m_health -= damage;
@@ -299,5 +316,10 @@ int Alien::getState()
 AnimatedSprite Alien::draw()
 {
 	return m_animatedSprite;
+}
+
+sf::CircleShape Alien::drawCollisionRadius()
+{
+	return m_collisionRadius;
 }
 

@@ -30,6 +30,14 @@ Astronaut::Astronaut(sf::Texture & tex, int xPos)
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(sf::Vector2f(xPos, 900));
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
+
+	// DEBUGGING CODE
+	/////////////////////////////////////////////
+	m_collisionRadius = sf::CircleShape(RADIUS);
+	m_collisionRadius.setFillColor(sf::Color::Transparent);
+	m_collisionRadius.setOutlineThickness(3);
+	m_collisionRadius.setOutlineColor(sf::Color::Yellow);
+	m_collisionRadius.setOrigin(RADIUS, RADIUS);
 }
 
 Astronaut::~Astronaut()
@@ -88,11 +96,19 @@ void Astronaut::update(sf::Time deltaTime)
 	}
 	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 	m_animatedSprite.update(deltaTime);
+
+	//debugging
+	m_collisionRadius.setPosition(m_animatedSprite.getPosition());
 }
 
 void Astronaut::abducted(sf::Time deltaTime)
 {
 	m_animatedSprite.move(m_abductedVelocity * deltaTime.asSeconds());
+}
+
+sf::Vector2f Astronaut::getPosition()
+{
+	return m_animatedSprite.getPosition();
 }
 
 void Astronaut::setPosition(sf::Vector2f pos)
@@ -113,5 +129,15 @@ void Astronaut::setAbducted()
 int Astronaut::isAbducted()
 {
 	return m_state;
+}
+
+int Astronaut::getRadius()
+{
+	return RADIUS;
+}
+
+sf::CircleShape Astronaut::drawCollisionRadius()
+{
+	return m_collisionRadius;
 }
 

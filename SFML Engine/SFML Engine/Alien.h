@@ -44,6 +44,8 @@ public:
 	void setState(int state);
 
 	int getRadius();
+	int getAbductRadius();
+
 	void setDamage(int damage);
 	int getHealth();
 
@@ -51,6 +53,10 @@ public:
 	void setPosition(sf::Vector2f position);
 
 	AnimatedSprite draw();
+
+	//	DEBUGGING
+	sf::CircleShape drawCollisionRadius();
+	sf::CircleShape m_collisionRadius;
 
 private:
 	// AI SHTUFF
@@ -68,6 +74,7 @@ private:
 
 	int m_health;
 	const int RADIUS = 50;
+	const int ABDUCT_RADIUS = 200;
 	bool m_alive;
 	int m_currentState;
 	int NUM_OF_ANIMS = 3;

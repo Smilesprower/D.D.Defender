@@ -26,11 +26,18 @@ public:
 	void init(sf::Texture & tex, int xPos);
 	void update(sf::Time deltaTime);
 	void abducted(sf::Time deltaTime);
-	void setPosition(sf::Vector2f);
+	sf::Vector2f getPosition();
+	void setPosition(sf::Vector2f position);
 	AnimatedSprite draw();
 
 	void setAbducted();
 	int isAbducted();
+	int getRadius();
+
+	//	DEBUGGING
+	sf::CircleShape drawCollisionRadius();
+	sf::CircleShape m_collisionRadius;
+
 private:
 	bool m_alive;
 	int m_direction;
@@ -38,7 +45,7 @@ private:
 	sf::Vector2f m_velocity;
 
 	int GROUND = 925;
-	int RADIUS = 100;
+	int RADIUS = 25;
 	int GRAVITY = 100;
 	int MAX_SPEED = 500;
 	int NUM_OF_ANIMS = 3;

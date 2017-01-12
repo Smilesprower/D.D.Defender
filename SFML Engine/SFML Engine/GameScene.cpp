@@ -210,6 +210,7 @@ void GameScene::draw()
 		for (int i = 0; i < NUM_OF_ASTROS; i++)
 		{
 			window.draw(m_astronauts[i]->draw());
+			window.draw(m_astronauts[i]->drawCollisionRadius());
 		}
 
 		for (int i = 0; i < m_aliens.size(); i++)
@@ -217,6 +218,7 @@ void GameScene::draw()
 			if (m_aliens[i]->getAlive() == true)
 			{
 				window.draw(m_aliens[i]->draw());
+				window.draw(m_aliens[i]->drawCollisionRadius());
 			}
 		}
 
@@ -342,7 +344,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_nests, &m_aliens);
+	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_nests, &m_aliens, &m_astronauts);
 	return true;
 }
 // Event Input
