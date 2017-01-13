@@ -189,6 +189,15 @@ int Bullet::getRadius()
 	return MISSILE_RADIUS;
 }
 
+void Bullet::reset()
+{
+	m_velocity.x = 0;
+	m_velocity.y = 0;
+	m_rotation = 0;
+	m_enabled = false;
+	m_ttl = 0;
+}
+
 AnimatedSprite Bullet::draw()
 {
 	return m_animatedSprite;

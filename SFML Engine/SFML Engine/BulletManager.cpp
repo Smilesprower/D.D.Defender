@@ -81,7 +81,7 @@ void BulletManager::resetBullets()
 {
 	for (auto b : m_bullets)
 	{
-		b->setEnabled(false);
+		b->reset();
 	}
 }
 

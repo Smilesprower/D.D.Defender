@@ -21,16 +21,16 @@ GameScene::GameScene(SceneStack& stack, Context context)
 {
 	// DEBUGGING CODE
 	/////////////////////////////////////////////
-	m_screenView = sf::RectangleShape(sf::Vector2f(m_screenSize.x, m_screenSize.y));
-	m_screenView.setFillColor(sf::Color::Transparent);
-	m_screenView.setOutlineThickness(3);
-	m_screenView.setOutlineColor(sf::Color::Green);
+	//m_screenView = sf::RectangleShape(sf::Vector2f(m_screenSize.x, m_screenSize.y));
+	//m_screenView.setFillColor(sf::Color::Transparent);
+	//m_screenView.setOutlineThickness(3);
+	//m_screenView.setOutlineColor(sf::Color::Green);
 
-	m_playerCutOff = sf::RectangleShape(sf::Vector2f(m_boundries.y + m_halfScreenSize.x, m_screenSize.y * 2));
-	m_playerCutOff.setFillColor(sf::Color::Transparent);
-	m_playerCutOff.setOutlineThickness(3);
-	m_playerCutOff.setOutlineColor(sf::Color::Red);
-	m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
+	//m_playerCutOff = sf::RectangleShape(sf::Vector2f(m_boundries.y + m_halfScreenSize.x, m_screenSize.y * 2));
+	//m_playerCutOff.setFillColor(sf::Color::Transparent);
+	//m_playerCutOff.setOutlineThickness(3);
+	//m_playerCutOff.setOutlineColor(sf::Color::Red);
+	//m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
 	/////////////////////////////////////////////
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
@@ -201,7 +201,6 @@ void GameScene::draw()
 		}
 		m_currPlayerPos.x = m_boundries.y;
 	}
-
 
 	// Set players position 
 	m_playo->m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));

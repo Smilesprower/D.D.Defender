@@ -30,6 +30,7 @@ public:
 	int getType();
 	void setTTL(int ttl);
 	int getRadius();
+	void reset();
 	AnimatedSprite draw();
 	sf::CircleShape drawMissileCollider();
 
