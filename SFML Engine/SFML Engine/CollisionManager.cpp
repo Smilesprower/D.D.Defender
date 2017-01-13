@@ -89,7 +89,33 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			player->setDamage(1);
 		}
 	}
-
+	for (int i = 0; i < aliens->size(); i++)
+	{
+		// Check if the alien isn't mid explosion
+		if (aliens->at(i)->getCurrentState() != 4)
+		{
+			int dx = player->getPosition().x - aliens->at(i)->getPosition().x;
+			int dy = player->getPosition().y - aliens->at(i)->getPosition().y;
+			int distanceSquared = (dx*dx) + (dy*dy);
+			if (distanceSquared < ((player->getRadius() + aliens->at(i)->getRadius()) * (player->getRadius() + aliens->at(i)->getRadius())))
+			{
+				player->setDamage(50);
+				aliens->at(i)->setDamage(100);
+			}
+		}
+	}
+	for (int i = 0; i < nests->size(); i++)
+	{
+		int dx = player->getPosition().x - nests->at(i)->getPosition().x;
+		int dy = player->getPosition().y - nests->at(i)->getPosition().y;
+		int distanceSquared = (dx*dx) + (dy*dy);
+		if (distanceSquared < ((player->getRadius() + nests->at(i)->getRadius()) * (player->getRadius() + nests->at(i)->getRadius())))
+		{
+			player->setDamage(100);
+			nests->at(i)->setDamage(20);
+		}
+		
+	}
 	for (int i = 0; i < astronauts->size(); i++)
 	{
 		for (int j = 0; j < aliens->size(); j++)
@@ -112,5 +138,6 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			}
 		}
 	}
+
 
 }
