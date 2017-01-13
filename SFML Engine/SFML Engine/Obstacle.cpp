@@ -5,7 +5,7 @@
 Obstacle::Obstacle()
 	:m_type(0)
 	, m_animations(NUM_OF_ANIMS)
-	, m_alive(true)
+	, m_alive(false)
 {
 }
 

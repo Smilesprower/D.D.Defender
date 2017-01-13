@@ -354,6 +354,8 @@ void Alien::setDamage(int damage)
 		m_animatedSprite.setScale(2, 2);
 		m_health = 0;
 		m_animatedSprite.play(*m_currAnimation);
+		Score::Instance()->setKillStreak();
+
 	}
 }
 

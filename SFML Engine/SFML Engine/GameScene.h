@@ -57,7 +57,7 @@ private:
 	const int NUM_OF_HEALTH_PACKS = 10;
 	float m_shaderValue1;
 	float m_shaderValue2;
-
+	int m_streakCount;
 	sf::RectangleShape m_screenView;
 	sf::RectangleShape m_playerCutOff;
 	sf::RectangleShape m_enemyCutOff;
