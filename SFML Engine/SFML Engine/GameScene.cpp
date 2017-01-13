@@ -115,6 +115,16 @@ GameScene::~GameScene()
 		delete m_gasClouds[i];
 		m_gasClouds[i] = nullptr;
 	}
+	for (int i = 0; i < m_astronauts.size(); i++)
+	{
+		delete m_astronauts[i];
+		m_astronauts[i] = nullptr;
+	}
+	for (int i = 0; i < m_aliens.size(); i++)
+	{
+		delete m_aliens[i];
+		m_aliens[i] = nullptr;
+	}
 	delete m_playo;
 	m_playo = nullptr;
 }
