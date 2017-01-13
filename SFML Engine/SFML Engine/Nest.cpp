@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "nest.h"
 
-Nest::Nest()
-	: m_alive(true)
+Nest::Nest(sf::Texture & tex, sf::Vector2i screenBounds)
+	: m_alive(false)
 	, m_state(Wander)
 	, m_direction(Left)
 	, m_animations(NUM_OF_ANIMS)
@@ -11,7 +11,23 @@ Nest::Nest()
 	, m_health(MAX_HEALTH)
 	, m_animatedSprite(sf::seconds(0.15f), true, false)
 	, m_spawnTimer(0)
+	, m_screenBounds(sf::Vector2i(screenBounds.x, screenBounds.y + abs(screenBounds.x)))
 {
+	m_animations[Anims::Default].setSpriteSheet(tex);
+	m_animations[Anims::Default].addFrame(sf::IntRect(0, 531, 431, 464));
+
+	m_animations[Anims::Explode].setSpriteSheet(tex);
+	m_animations[Anims::Explode].addFrame(sf::IntRect(0, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(80, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(160, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(240, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(320, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(400, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(480, 144, 80, 80));
+	m_animations[Anims::Explode].addFrame(sf::IntRect(560, 144, 80, 80));
+
+	m_currAnimation = &m_animations[Anims::Default];
+	m_animatedSprite.play(*m_currAnimation);
 }
 
 
@@ -85,7 +101,7 @@ bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 		m_evadeRadius.setPosition(m_animatedSprite.getPosition());
 		m_missileRadius.setPosition(m_animatedSprite.getPosition());
 
-		if (m_spawnTimer >= 5)
+		if (m_spawnTimer >= 3)
 		{
 			m_spawnTimer = 0;
 			return true;
@@ -94,32 +110,23 @@ bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 	return false;
 }
 
-void Nest::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
+void Nest::init(sf::Vector2f pos)
 {
-	m_screenBounds = screenBounds;
-	m_screenBounds.y += abs(m_screenBounds.x);
-	m_animations[Anims::Default].setSpriteSheet(tex);
-	m_animations[Anims::Default].addFrame(sf::IntRect(0, 531, 431, 464));
+	m_alive = true;
 
-	m_animations[Anims::Explode].setSpriteSheet(tex);
-	m_animations[Anims::Explode].addFrame(sf::IntRect(0, 144, 80, 80));
-	m_animations[Anims::Explode].addFrame(sf::IntRect(80, 144, 80, 80));
-	m_animations[Anims::Explode].addFrame(sf::IntRect(160, 144, 80, 80));
-	m_animations[Anims::Explode].addFrame(sf::IntRect(240, 144, 80, 80));
-	m_animations[Anims::Explode].addFrame(sf::IntRect(320, 144, 80, 80));
-	m_animations[Anims::Explode].addFrame(sf::IntRect(400, 144, 80, 80));
-	m_animations[Anims::Explode].addFrame(sf::IntRect(480, 144, 80, 80));
-	m_animations[Anims::Explode].addFrame(sf::IntRect(560, 144, 80, 80));
+	m_missileReloadTimer = COOLDOWN_TIMER;
+	m_wanderTime = 0;
+	m_health = MAX_HEALTH;
+	m_state = Wander;
+	m_direction = Left;
+	m_spawnTimer = 0;
 
-	m_currAnimation = &m_animations[Anims::Default];
-	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(pos);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 
-
 	// DEBUGGING CODE
 	/////////////////////////////////////////////
-	m_evadeRadius = sf::CircleShape(EVADE_RANGE);
+	/*m_evadeRadius = sf::CircleShape(EVADE_RANGE);
 	m_evadeRadius.setFillColor(sf::Color::Transparent);
 	m_evadeRadius.setOutlineThickness(3);
 	m_evadeRadius.setOutlineColor(sf::Color::Yellow);
@@ -129,7 +136,7 @@ void Nest::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
 	m_missileRadius.setFillColor(sf::Color::Transparent);
 	m_missileRadius.setOutlineThickness(3);
 	m_missileRadius.setOutlineColor(sf::Color::Magenta);
-	m_missileRadius.setOrigin(MISSILE_RANGE, MISSILE_RANGE);
+	m_missileRadius.setOrigin(MISSILE_RANGE, MISSILE_RANGE);*/
 }
 
 void Nest::checkBounds()

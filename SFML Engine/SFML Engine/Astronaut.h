@@ -23,7 +23,7 @@ public:
 	Astronaut(sf::Texture & tex, int xPos);
 	~Astronaut();
 
-	void init(sf::Texture & tex, int xPos);
+	void init(sf::Vector2f pos);
 	void update(sf::Time deltaTime);
 	sf::Vector2f getPosition();
 	sf::Vector2f getAbductPosition();
@@ -31,7 +31,7 @@ public:
 	AnimatedSprite draw();
 
 	void setAbducted();
-	int isAbducted();
+	int getState();
 
 	void setTargeted(bool targeted);
 	bool isTargeted();
@@ -39,9 +39,10 @@ public:
 	int getRadius();
 
 	void setFalling();
-	//	DEBUGGING
-	sf::CircleShape drawCollisionRadius();
-	sf::CircleShape m_collisionRadius;
+
+	void setAlive(bool alive);
+	bool isAlive();
+
 
 private:
 	bool m_targeted;

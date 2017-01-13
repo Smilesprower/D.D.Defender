@@ -51,7 +51,7 @@ private:
 	std::vector<Obstacle*> m_gasClouds;
 	sf::Vector2f m_currPlayerPos;
 	const int MAX_BULLETS = 50;
-	const int NUM_OF_ASTROS = 5;
+	const int NUM_OF_ASTROS = 20;
 	float m_shaderValue1;
 	float m_shaderValue2;
 

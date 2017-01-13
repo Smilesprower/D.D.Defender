@@ -22,10 +22,10 @@ class Nest
 	};
 
 public:
-	Nest();
+	Nest(sf::Texture & tex, sf::Vector2i screenBounds);
 	~Nest();
 	bool update(sf::Time deltaTime, sf::Vector2f playerPos);
-	void init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds);
+	void init(sf::Vector2f pos);
 	void checkBounds();
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f position);

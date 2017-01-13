@@ -34,7 +34,7 @@ public:
 private:
 	const float MAX_ROTATION = 2.f;
 	const int MAX_FRAMES_EXPLOSION = 3;
-	const int MISSILE_SPEED = 500;
+	const int MISSILE_SPEED = 350;
 	const int BULLET_SPEED = 1000;
 	const int BULLET_TTL = 2;
 	const int MISSILE_TTL = 5;

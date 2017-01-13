@@ -2,12 +2,13 @@
 #include "Alien.h"
 
 
-Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds)
-	: m_animatedSprite(sf::seconds(0.2f), true, false)
+Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBounds)
+	: m_animatedSprite(sf::seconds(0.1f), true, false)
 	, m_animations(NUM_OF_ANIMS)
 	, m_acceleration(0,0)
 	, m_currentState(Blank)
 	, m_screenBounds(screenBounds)
+	, m_worldBounds(sf::Vector2i(worldBounds.x, worldBounds.y + abs(worldBounds.x)))
 	, m_alive(false)
 	, m_health(100)
 {
@@ -51,15 +52,6 @@ void Alien::init(sf::Vector2f position)
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 	m_animatedSprite.setScale(1, 1);
-
-
-	// DEBUGGING CODE
-	/////////////////////////////////////////////
-	m_collisionRadius = sf::CircleShape(ABDUCT_RADIUS);
-	m_collisionRadius.setFillColor(sf::Color::Transparent);
-	m_collisionRadius.setOutlineThickness(3);
-	m_collisionRadius.setOutlineColor(sf::Color::Yellow);
-	m_collisionRadius.setOrigin(ABDUCT_RADIUS, ABDUCT_RADIUS);
 }
 
 void Alien::applyForce(Pvector force)
@@ -177,25 +169,29 @@ Pvector Alien::seek(Pvector v)
 	return m_acceleration;
 }
 
-void Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
+bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
 {
-	if (m_currentState == Flock)
-	{
-		flock(alien);
-		updateFlocking(deltaTime);
-		borders();
-	}
-	else if (m_currentState == Capture || m_currentState == Target)
-	{
-		updateTargetCapture(deltaTime);
-	}
-	else
-	{
-		updateDying(deltaTime);
-	}
+	bool spawnMutant = false;
 
-	//debugging
-	m_collisionRadius.setPosition(m_animatedSprite.getPosition());
+	if (m_alive)
+	{
+		checkBounds();
+		if (m_currentState == Flock)
+		{
+			flock(alien);
+			updateFlocking(deltaTime);
+			borders();
+		}
+		else if (m_currentState == Capture || m_currentState == Target)
+		{
+			spawnMutant = updateTargetCapture(deltaTime);
+		}
+		else
+		{
+			updateDying(deltaTime);
+		}
+	}
+	return spawnMutant;
 }
 
 void Alien::updateFlocking(sf::Time deltaTime)
@@ -220,8 +216,9 @@ void Alien::updateFlocking(sf::Time deltaTime)
 	m_acceleration.mulScalar(0);
 }
 
-void Alien::updateTargetCapture(sf::Time dt)
+bool Alien::updateTargetCapture(sf::Time dt)
 {
+	bool outOfScreen = false;
 	sf::Vector2f vel;
 	if (m_currentState == Target)
 	{
@@ -250,8 +247,17 @@ void Alien::updateTargetCapture(sf::Time dt)
 		m_astro gives you access to the astronaut
 		make sure u set him to NULL when your done with him
 		*/
+		if (m_animatedSprite.getPosition().y < -200)
+		{
+			outOfScreen = true;
+			m_alive = false;
+			m_astro->setAlive(false);
+			m_astro = NULL;
+		}
+
 	}
 	m_animatedSprite.move(vel.x, vel.y);
+	return outOfScreen;
 }
 
 void Alien::updateDying(sf::Time dt)
@@ -362,8 +368,15 @@ AnimatedSprite Alien::draw()
 	return m_animatedSprite;
 }
 
-sf::CircleShape Alien::drawCollisionRadius()
+void Alien::checkBounds()
 {
-	return m_collisionRadius;
-}
 
+	if (m_animatedSprite.getPosition().x - m_animatedSprite.getLocalBounds().width * 0.5f >= m_worldBounds.y)
+	{
+		m_animatedSprite.setPosition(m_worldBounds.x - m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getPosition().y);
+	}
+	else if (m_animatedSprite.getPosition().x + m_animatedSprite.getLocalBounds().width * 0.5f <= m_worldBounds.x)
+	{
+		m_animatedSprite.setPosition(m_worldBounds.y + m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getPosition().y);
+	}
+}
