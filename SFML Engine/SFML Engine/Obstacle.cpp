@@ -3,6 +3,8 @@
 
 
 Obstacle::Obstacle()
+	:m_type(0)
+	, m_animations(NUM_OF_ANIMS)
 {
 }
 
@@ -16,31 +18,34 @@ void Obstacle::update()
 	
 }
 
-void Obstacle::init(sf::Texture & tex, sf::Vector2f pos, sf::Vector2i screenBounds)
+void Obstacle::init(sf::Texture & atlas, sf::Vector2f pos, sf::Vector2i screenBounds, int type)
 {
-	m_sprite.setTexture(tex);
+	m_type = type;
+
+	m_animations[Type::HealthPack].setSpriteSheet(atlas);
+	m_animations[Type::HealthPack].addFrame(sf::IntRect(260, 0, 140, 140));
+
+	m_animations[Type::GasCloud].setSpriteSheet(atlas);
+	m_animations[Type::GasCloud].addFrame(sf::IntRect(630, 0, 370, 200));
+
+	if (m_type == GasCloud)
+	{
+		m_currAnimation = &m_animations[Type::GasCloud];
+	}
+	else if (m_type == HealthPack)
+	{
+		m_currAnimation = &m_animations[Type::HealthPack];
+	}
+
+	m_animatedSprite.play(*m_currAnimation);
 	m_position = pos;
-	m_sprite.setOrigin(m_sprite.getLocalBounds().width * 0.5, m_sprite.getLocalBounds().height * 0.5);
-	m_sprite.setPosition(m_position);
-
-	//m_collider.setRadius(RADIUS);
-	//m_collider.setFillColor(sf::Color::Transparent);
-	//m_collider.setOutlineThickness(3);
-	//m_collider.setOutlineColor(sf::Color::Yellow);
-	//m_collider.setOrigin(RADIUS, RADIUS);
-	//m_collider.setPosition(pos);
-
-	m_collider = sf::CircleShape(RADIUS);
-	m_collider.setFillColor(sf::Color::Transparent);
-	m_collider.setOutlineThickness(3);
-	m_collider.setOutlineColor(sf::Color::Cyan);
-	m_collider.setOrigin(RADIUS, RADIUS);
-	m_collider.setPosition(pos);
+	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5, m_animatedSprite.getLocalBounds().height * 0.5);
+	m_animatedSprite.setPosition(m_position);
 }
 
-sf::Sprite Obstacle::draw()
+AnimatedSprite Obstacle::draw()
 {
-	return m_sprite;
+	return m_animatedSprite;
 }
 
 sf::CircleShape Obstacle::drawOutline()
