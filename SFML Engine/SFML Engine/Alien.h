@@ -58,7 +58,7 @@ public:
 	AnimatedSprite draw();
 
 	void checkBounds();
-
+	int getCurrentState();
 
 private:
 	// AI SHTUFF

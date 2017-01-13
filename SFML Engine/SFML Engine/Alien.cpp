@@ -399,3 +399,9 @@ void Alien::checkBounds()
 		m_animatedSprite.setPosition(m_worldBounds.y + m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getPosition().y);
 	}
 }
+
+int Alien::getCurrentState()
+{
+	return m_currentState;
+}
+
