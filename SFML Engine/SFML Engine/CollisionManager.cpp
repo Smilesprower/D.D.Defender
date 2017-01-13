@@ -14,7 +14,7 @@ CollisionManager::~CollisionManager()
 {
 }
 
-void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, std::vector<Astronaut*> *astronauts)
+void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Obstacle*> *healthPacks, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, std::vector<Astronaut*> *astronauts)
 {
 	for (int i = 0; i < bullets->size(); i++)
 	{
@@ -88,6 +88,23 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 		{
 			player->setDamage(1);
 		}
+		
+	}
+	for (int i = 0; i < healthPacks->size(); i++)
+	{
+		if (healthPacks->at(i)->isEnabled() == true)
+		{
+			int dx = player->getPosition().x - healthPacks->at(i)->getPosition().x;
+			int dy = player->getPosition().y - healthPacks->at(i)->getPosition().y;
+			int distanceSquared = (dx*dx) + (dy*dy);
+			if (distanceSquared < ((player->getRadius() + healthPacks->at(i)->getRadius()) * (player->getRadius() + healthPacks->at(i)->getRadius())))
+			{
+				player->setDamage(-25);
+				healthPacks->at(i)->setEnabled(false);
+
+			}
+		}
+			
 	}
 	for (int i = 0; i < aliens->size(); i++)
 	{

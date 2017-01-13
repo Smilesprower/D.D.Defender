@@ -12,6 +12,9 @@ public:
 	bool canDisplayAstroText();
 	void setDisplayAstroText(int can);
 
+	int getKillStreak();
+	void setKillStreak();
+	void resetKillStreak();
 private:
 	static Score *m_inst;
 
@@ -22,6 +25,7 @@ private:
 	int m_score;
 	int m_numOfAliveAstros;
 	bool m_displayAstroText;
+	int m_killSreak;
 
 	Score();
 	~Score();

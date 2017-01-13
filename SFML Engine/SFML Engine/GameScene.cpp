@@ -48,7 +48,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	{
 		m_astronauts.push_back(new Astronaut(context.textures->get(Textures::Astro), 700 * i - 100));
 	}
-	for (int i = 0; i < 20; i++)
+	for (int i = 0; i < NUM_OF_ALIENS; i++)
 	{
 		m_aliens.push_back(new Alien(context.textures->get(Textures::Astro), m_screenSize, m_worldSize));
 	}
@@ -64,7 +64,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	{
 		//init gas clouds
 		m_gasClouds.push_back(new Obstacle());
-		m_gasClouds[i]->init(context.textures->get(Textures::GasCloud), sf::Vector2f(i * 1920, rand() % 600 + 100), m_worldSize);
+		m_gasClouds[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(i * 1920, rand() % 600 + 100), m_worldSize, 0);
 	}
 	for (int i = 0; i < m_astronauts.size(); ++i)
 	{
@@ -73,6 +73,12 @@ GameScene::GameScene(SceneStack& stack, Context context)
 		icon.setRadius(8);
 		icon.setOrigin(4, 4);
 		m_radarIcons.push_back(icon);
+	}
+	for (int i = 0; i < NUM_OF_HEALTH_PACKS; i++)
+	{
+		//init health packs
+		m_healthPacks.push_back(new Obstacle());
+		m_healthPacks[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(i * 1920, rand() % 800 + 100), m_worldSize, 1);
 	}
 	//	Init Playo
 	m_playo->init(context.textures->get(Textures::Astro), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
@@ -258,6 +264,13 @@ void GameScene::draw()
 			{
 				window.draw(m_gasClouds[i]->draw());
 			}
+			for (int i = 0; i < NUM_OF_HEALTH_PACKS; i++)
+			{
+				if (m_healthPacks[i]->isEnabled())
+				{
+					window.draw(m_healthPacks[i]->draw());
+				}
+			}
 		}
 	}
 		
@@ -393,6 +406,7 @@ bool GameScene::update(sf::Time deltaTime)
 			{
 				// Spawn a new enemy
 			}
+
 		}
 
 		for (int i = 0; i < NUM_OF_ASTROS; i++)
@@ -403,9 +417,19 @@ bool GameScene::update(sf::Time deltaTime)
 			}
 		}
 
+		//	EANBLE HEALTH PACKS AFTER KILL STREAK
+		if (Score::Instance()->getKillStreak() >= 3)
+		{
+			Score::Instance()->resetKillStreak();
+			if (m_streakCount < NUM_OF_HEALTH_PACKS)
+			{
+				m_healthPacks[m_streakCount]->setEnabled(true);
+				m_streakCount++;
+			}
+		}
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_nests, &m_aliens, &m_astronauts);
+	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_healthPacks, &m_nests, &m_aliens, &m_astronauts);
 	return true;
 }
 // Event Input

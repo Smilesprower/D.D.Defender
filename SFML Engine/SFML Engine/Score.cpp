@@ -5,6 +5,7 @@ Score * Score::m_inst = nullptr;
 Score::Score()
 	: m_score(0)
 	, m_numOfAliveAstros(20)
+	, m_killSreak(0)
 {
 }
 Score::~Score()
@@ -49,4 +50,20 @@ bool Score::canDisplayAstroText()
 void Score::setDisplayAstroText(int can)
 {
 	m_displayAstroText = can;
+}
+
+
+int Score::getKillStreak()
+{
+	return m_killSreak;
+}
+
+void Score::resetKillStreak()
+{
+	m_killSreak = 0;
+}
+
+void Score::setKillStreak()
+{
+	m_killSreak++;
 }

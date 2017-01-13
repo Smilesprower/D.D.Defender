@@ -74,7 +74,6 @@ private:
 	const int BULLET_RANGE = 700;
 	float m_bulletReloadTimer;
 
-
 	int m_health;
 	const int RADIUS = 50;
 	const int ABDUCT_RADIUS = 400;
