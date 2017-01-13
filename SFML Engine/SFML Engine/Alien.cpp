@@ -170,7 +170,7 @@ Pvector Alien::seek(Pvector v)
 	return m_acceleration;
 }
 
-bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
+bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos)
 {
 	bool spawnMutant = false;
 
@@ -180,7 +180,7 @@ bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
 		if (m_currentState == Flock)
 		{
 			flock(alien);
-			updateFlocking(deltaTime);
+			updateFlocking(deltaTime, playerPos);
 			borders();
 		}
 		else if (m_currentState == Capture || m_currentState == Target)
@@ -195,8 +195,25 @@ bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
 	return spawnMutant;
 }
 
-void Alien::updateFlocking(sf::Time deltaTime)
+void Alien::updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos)
 {
+	m_bulletReloadTimer += deltaTime.asSeconds();
+	float distanceSquared;
+	float dx = m_animatedSprite.getPosition().x - playerPos.x;
+	float dy = m_animatedSprite.getPosition().y - playerPos.y;
+	distanceSquared = (dx*dx) + (dy*dy);
+
+	if (distanceSquared < BULLET_RANGE * BULLET_RANGE)
+	{
+		if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
+		{
+			if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 4, false));
+			{
+				m_bulletReloadTimer = 0;
+			}
+		}
+	}
+
 
 	//To make the slow down not as abrupt
 	m_acceleration.mulScalar(.9);
@@ -205,10 +222,6 @@ void Alien::updateFlocking(sf::Time deltaTime)
 	// Limit speed
 	m_velocity.limit(m_maxSpeed);
 	m_location.addVector(m_velocity);
-
-	//m_circ.setPosition(sf::Vector2f(m_location.x, m_location.y));
-
-
 	sf::Vector2f vel = sf::Vector2f(m_velocity.x, m_velocity.y);
 	m_animatedSprite.move(vel);
 	m_animatedSprite.update(deltaTime);

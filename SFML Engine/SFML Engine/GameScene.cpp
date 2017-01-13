@@ -390,7 +390,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 		for (int i = 0; i < m_aliens.size(); i++)
 		{
-			if(m_aliens[i]->run(&m_aliens, deltaTime))
+			if(m_aliens[i]->run(&m_aliens, deltaTime, m_currPlayerPos))
 			{
 				// Spawn a new enemy
 			}
