@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Alien.h"
+#include "Score.h"
 
 
 Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBounds)
@@ -253,6 +254,7 @@ bool Alien::updateTargetCapture(sf::Time dt)
 			m_alive = false;
 			m_astro->setAlive(false);
 			m_astro = NULL;
+			Score::Instance()->removeAstro();
 		}
 
 	}
@@ -329,6 +331,10 @@ void Alien::setDamage(int damage)
 	m_health -= damage;
 	if (m_health <= 0)
 	{
+		if (m_currAnimation != &m_animations[Anims::Explode])
+		{
+			Score::Instance()->increaseScore(50);
+		}
 		m_currentState = Dying;
 		m_currAnimation = &m_animations[Anims::Explode];
 		m_animatedSprite.setOrigin(40, 40);
