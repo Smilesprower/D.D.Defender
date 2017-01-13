@@ -102,7 +102,6 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 	{
 		if(m_type != Missile && m_type != Explosion)
 		{
-			m_animatedSprite.setRotation(m_rotation * ANGLE_TO_RADS);
 			m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 			m_animatedSprite.update(deltaTime);
 
