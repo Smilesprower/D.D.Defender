@@ -30,6 +30,18 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 				player->setDamage(100);
 			}
 		}
+		// If its a alien bullet
+		if (bullets->at(i)->isEnabled() && bullets->at(i)->getType() == bullets->at(i)->Ball)
+		{
+			int dx = player->getPosition().x - bullets->at(i)->getPosition().x;
+			int dy = player->getPosition().y - bullets->at(i)->getPosition().y;
+			int distanceSquared = (dx*dx) + (dy*dy);
+			if (distanceSquared < (player->getRadius() + bullets->at(i)->getRadius()) * (player->getRadius() + bullets->at(i)->getRadius()))
+			{
+				bullets->at(i)->setEnabled(false);
+				player->setDamage(10);
+			}
+		}
 		// if its a lazer
 		else if (bullets->at(i)->isEnabled() && bullets->at(i)->getType() == bullets->at(i)->Lazer)
 		{
