@@ -21,6 +21,7 @@ public:
 	bool createMissile(sf::Vector2f position, sf::Vector2f playerPos, int type);
 	bool createLaser(sf::Vector2f pos, float xSpeed, int direction, int type, bool playerBullet);
 	bool createEBullet(sf::Vector2f pos, sf::Vector2f playerPos, int type, bool playerBullet);
+	void resetBullets();
 	std::vector<Bullet*> getBullets();
 
 private:

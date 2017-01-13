@@ -105,6 +105,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 }
 GameScene::~GameScene()
 {
+	BulletManager::Instance()->resetBullets();
 	for (int i = 0; i < m_nests.size(); i++)
 	{
 		delete m_nests[i];
@@ -222,6 +223,17 @@ void GameScene::draw()
 
 		if (!m_playRipple)
 		{
+			for (int i = 0; i < MAX_BULLETS; i++)
+			{
+				if (bulletCopy[i]->isEnabled())
+				{
+					window.draw(bulletCopy.at(i)->draw());
+					if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
+					{
+						window.draw(bulletCopy[i]->drawMissileCollider());
+					}
+				}
+			}
 			for (int i = 0; i < m_nests.size(); ++i)
 			{
 				if (m_nests[i]->isAlive() == true)
@@ -243,19 +255,6 @@ void GameScene::draw()
 					window.draw(m_astronauts[i]->draw());
 				}
 			}
-
-			for (int i = 0; i < MAX_BULLETS; i++)
-			{
-				if (bulletCopy[i]->isEnabled())
-				{
-					window.draw(bulletCopy.at(i)->draw());
-					if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
-					{
-						window.draw(bulletCopy[i]->drawMissileCollider());
-					}
-				}
-
-			}
 			for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 			{
 				window.draw(m_gasClouds[i]->draw());
@@ -263,14 +262,14 @@ void GameScene::draw()
 		}
 	}
 		
-	// DEBUGGING CODE
-	/////////////////////////////////////////////
-	window.draw(m_screenView);
-	window.draw(m_playerCutOff);
-	window.draw(m_nests[0]->drawEvade());
-	window.draw(m_nests[0]->drawFire());
-	window.draw(m_playo->drawPlayerOutline());
-	/////////////////////////////////////////////
+	//// DEBUGGING CODE
+	///////////////////////////////////////////////
+	//window.draw(m_screenView);
+	//window.draw(m_playerCutOff);
+	//window.draw(m_nests[0]->drawEvade());
+	//window.draw(m_nests[0]->drawFire());
+	//window.draw(m_playo->drawPlayerOutline());
+	///////////////////////////////////////////////
 
 	window.setView(window.getDefaultView());
 	window.draw(m_hud.drawRectangle());
@@ -315,9 +314,6 @@ void GameScene::draw()
 			m_displayingAstroText = 0;
 		}
 	}
-
-
-	
 }
 
 bool GameScene::update(sf::Time deltaTime)
@@ -329,12 +325,6 @@ bool GameScene::update(sf::Time deltaTime)
 		requestStackPop();
 		// Make Game Over Scene
 		requestStackPush(Scenes::Title);
-	}
-
-	m_radarTime += deltaTime.asSeconds();
-	if (m_radarTime > 2)
-	{
-		m_canUpdateRadar = true;
 	}
 	std::vector<Bullet*> bullets = BulletManager::Instance()->getBullets();
 

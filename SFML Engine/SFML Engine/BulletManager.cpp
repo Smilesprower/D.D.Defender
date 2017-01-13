@@ -7,6 +7,7 @@ BulletManager::BulletManager()
 }
 BulletManager::~BulletManager()
 {
+
 }
 BulletManager * BulletManager::Instance()
 {
@@ -73,6 +74,14 @@ bool BulletManager::createEBullet(sf::Vector2f pos, sf::Vector2f playerPos, int 
 			m_bullets.at(i)->setUpEBullet(pos, playerPos, type, playerBullet);
 			return true;
 		}
+	}
+}
+
+void BulletManager::resetBullets()
+{
+	for (auto b : m_bullets)
+	{
+		b->setEnabled(false);
 	}
 }
 
