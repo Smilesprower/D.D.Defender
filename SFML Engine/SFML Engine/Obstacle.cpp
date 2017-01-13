@@ -5,6 +5,7 @@
 Obstacle::Obstacle()
 	:m_type(0)
 	, m_animations(NUM_OF_ANIMS)
+	, m_alive(true)
 {
 }
 
@@ -61,4 +62,19 @@ sf::Vector2f Obstacle::getPosition()
 int Obstacle::getRadius()
 {
 	return RADIUS;
+}
+
+int Obstacle::getType()
+{
+	return m_type;
+}
+
+void Obstacle::setEnabled(bool alive)
+{
+	m_alive = alive;
+}
+
+bool Obstacle::isEnabled()
+{
+	return m_alive;
 }

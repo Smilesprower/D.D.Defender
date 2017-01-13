@@ -25,10 +25,14 @@ public:
 	sf::CircleShape drawOutline();
 	sf::Vector2f getPosition();
 	int getRadius();
+	int getType();
+	void setEnabled(bool alive);
+	bool isEnabled();
 private:
 	int NUM_OF_ANIMS = 2;
 	const int RADIUS = 100;
 	int m_type;
+	bool m_alive;
 
 	AnimatedSprite m_animatedSprite;
 	std::vector<Animation> m_animations;

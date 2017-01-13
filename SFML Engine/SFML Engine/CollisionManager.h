@@ -12,6 +12,6 @@ public:
 	CollisionManager();
 	~CollisionManager();
 
-	void checkCollision(Player * player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, std::vector<Astronaut*> *astronauts);
+	void checkCollision(Player * player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Obstacle*> *healthPacks, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, std::vector<Astronaut*> *astronauts);
 };
 
