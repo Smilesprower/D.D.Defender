@@ -16,6 +16,9 @@ Bullet::Bullet(sf::Texture & tex)
 	m_animations[Type::Missile].setSpriteSheet(tex);
 	m_animations[Type::Missile].addFrame(sf::IntRect(94, 0, 50, 32));
 
+	m_animations[Type::Ball].setSpriteSheet(tex);
+	m_animations[Type::Ball].addFrame(sf::IntRect(223, 0, 26, 26));
+
 	m_animations[Type::Explosion].setSpriteSheet(tex);
 	m_animations[Type::Explosion].addFrame(sf::IntRect(0, 144, 80, 80));
 	m_animations[Type::Explosion].addFrame(sf::IntRect(80, 144, 80, 80));
@@ -33,6 +36,24 @@ Bullet::Bullet()
 
 Bullet::~Bullet()
 {
+}
+
+void Bullet::setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, int type, bool playerBullet)
+{
+	m_enabled = true;
+	m_ttl = 0;
+	m_type = type;
+	m_playerBullet = playerBullet;
+	m_currAnimation = &m_animations[Type::Ball];
+
+	sf::Vector2f temp = targetPosition - position;
+	temp = Helper::Normalize(temp);
+	m_rotation = std::atan2(temp.y, temp.x);
+	m_velocity = sf::Vector2f(cos(m_rotation) * MISSILE_SPEED, sin(m_rotation)*  MISSILE_SPEED);
+
+	m_animatedSprite.play(*m_currAnimation);
+	m_animatedSprite.setPosition(position);
+	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 }
 
 // bool playerBullet - decides if the player has fired or the com. Useful for collisions 
@@ -68,19 +89,12 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 
-	m_velocity = targetPosition - position;
-	m_velocity = Helper::Normalize(m_velocity);
-	m_velocity.x *= MISSILE_SPEED;
-	m_velocity.y *= MISSILE_SPEED;
-	m_rotation = std::atan2(m_velocity.y, m_velocity.x);
+	sf::Vector2f temp = targetPosition - position;
+	temp = Helper::Normalize(temp);
+	m_rotation = std::atan2(temp.y, temp.x);
+	m_velocity = sf::Vector2f(cos(m_rotation) * MISSILE_SPEED, sin(m_rotation)*  MISSILE_SPEED);
 	m_prevRotation = m_rotation;
 
-	/////////////// OUTLINE OF MISSILE
-	/*m_missileCollider = sf::CircleShape(MISSILE_RADIUS);
-	m_missileCollider.setFillColor(sf::Color::Transparent);
-	m_missileCollider.setOutlineThickness(3);
-	m_missileCollider.setOutlineColor(sf::Color::Blue);
-	m_missileCollider.setOrigin(MISSILE_RADIUS, MISSILE_RADIUS);*/
 }
 void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount)
 {
@@ -88,12 +102,16 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 	{
 		if(m_type != Missile && m_type != Explosion)
 		{
+			m_animatedSprite.setRotation(m_rotation * ANGLE_TO_RADS);
 			m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 			m_animatedSprite.update(deltaTime);
 
 			m_ttl += deltaTime.asSeconds();
 			if (m_ttl > BULLET_TTL)
 			{
+				m_velocity.x = 0;
+				m_velocity.y = 0;
+				m_rotation = 0;
 				m_enabled = false;
 			}
 		}

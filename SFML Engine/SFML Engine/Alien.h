@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "AnimatedSprite.h"
+#include "BulletManager.h"
 #include "Astronaut.h"
 #include "Helper.h"
 #include "Pvector.h"
@@ -32,8 +33,8 @@ public:
 	Pvector cohesion(std::vector<Alien*> *alien);
 	Pvector seek(Pvector v);
 
-	bool run(std::vector<Alien*> *alien, sf::Time deltaTime);
-	void updateFlocking(sf::Time deltaTime);
+	bool run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos);
+	void updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos);
 	bool updateTargetCapture(sf::Time dt);
 	void updateDying(sf::Time dt);
 	void borders();
@@ -69,6 +70,10 @@ private:
 	sf::Vector2i m_screenBounds;
 	sf::Vector2i m_worldBounds;
 	///////////////////////////////////
+	const int BULLET_COOLDOWN_TIMER = 2;
+	const int BULLET_RANGE = 700;
+	float m_bulletReloadTimer;
+
 
 	int m_health;
 	const int RADIUS = 50;

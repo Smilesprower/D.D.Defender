@@ -11,12 +11,14 @@ public:
 		Default,
 		Lazer,
 		Missile,
-		Explosion
+		Explosion,
+		Ball
 	};
 
 	Bullet(sf::Texture & tex);
 	Bullet();
 	~Bullet();
+	void setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, int type, bool playerBullet);
 	void setUpBullet(sf::Vector2f position, float xSpeed, int direction, int type, bool playerBullet);
 	void setUpMissile(sf::Vector2f position, sf::Vector2f playerPos, int type);
 	void update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount);
@@ -41,7 +43,7 @@ private:
 	const int MISSILE_RADIUS = 20;
 	const int NUM_OF_EXP_FRAMES = 8;
 	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);
-	const int NUM_OF_ANIMS = 4;
+	const int NUM_OF_ANIMS = 5;
 
 	int m_type;
 	int m_speed;

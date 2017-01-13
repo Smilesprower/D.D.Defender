@@ -64,6 +64,18 @@ bool BulletManager::createLaser(sf::Vector2f pos, float xSpeed, int direction, i
 	return false;
 }
 
+bool BulletManager::createEBullet(sf::Vector2f pos, sf::Vector2f playerPos, int type, bool playerBullet)
+{
+	for (int i = 0; i < m_maxBullets; i++)
+	{
+		if (!m_bullets.at(i)->isEnabled())
+		{
+			m_bullets.at(i)->setUpEBullet(pos, playerPos, type, playerBullet);
+			return true;
+		}
+	}
+}
+
 std::vector<Bullet*> BulletManager::getBullets()
 {
 	return m_bullets;
