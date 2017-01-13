@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GameScene.h"
 #include <iostream>
-
+#include "Score.h"
 
 
 GameScene::GameScene(SceneStack& stack, Context context)
@@ -16,6 +16,8 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_playRipple(false)
 	, m_playo(new Player())
 	, m_canUpdateRadar(false)
+	, m_score(0)
+	, m_displayingAstroText(0)
 {
 	// DEBUGGING CODE
 	/////////////////////////////////////////////
@@ -32,6 +34,14 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	/////////////////////////////////////////////
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
+
+	m_scoreText.setFont(context.fonts->get(Fonts::PS2P));				// Gets and Sets the font from Resourse Holder
+	m_scoreText.setCharacterSize(50);
+	m_scoreText.setPosition(context.window->getSize().x * 0.56, context.window->getSize().y * 0.925);
+
+	m_aliveAstrosText.setFont(context.fonts->get(Fonts::PS2P));				// Gets and Sets the font from Resourse Holder
+	m_aliveAstrosText.setCharacterSize(70);
+	m_aliveAstrosText.setPosition(context.window->getSize().x * 0.05, context.window->getSize().y * 0.91);
 
 	// Init Astros - Give the random Values
 	for (int i = 0; i < NUM_OF_ASTROS; i++)
@@ -187,6 +197,8 @@ void GameScene::draw()
 
 	// Set the camera view
 	window.setView(m_camera.Update(m_currPlayerPos.x));
+
+	//Add the score to the string
 	
 	// Draw game entities
 	if (m_playShockwave)
@@ -194,9 +206,10 @@ void GameScene::draw()
 	else if(m_playRipple)
 		window.draw(m_sprite, m_ripple);
 	else
+	{
 		window.draw(m_sprite);
 		window.draw(m_playo->draw());
-	
+
 		if (!m_playRipple)
 		{
 			for (int i = 0; i < m_nests.size(); ++i)
@@ -238,41 +251,62 @@ void GameScene::draw()
 				window.draw(m_gasClouds[i]->draw());
 			}
 		}
+	}
 		
-		// DEBUGGING CODE
-		/////////////////////////////////////////////
-		window.draw(m_screenView);
-		window.draw(m_playerCutOff);
-		window.draw(m_nests[0]->drawEvade());
-		window.draw(m_nests[0]->drawFire());
-		window.draw(m_playo->drawPlayerOutline());
-		/////////////////////////////////////////////
-	
-		window.setView(window.getDefaultView());
-		window.draw(m_hud.drawRectangle());
-		window.draw(m_hud.drawHealthRect());
-		window.draw(m_hud.draw());
+	// DEBUGGING CODE
+	/////////////////////////////////////////////
+	window.draw(m_screenView);
+	window.draw(m_playerCutOff);
+	window.draw(m_nests[0]->drawEvade());
+	window.draw(m_nests[0]->drawFire());
+	window.draw(m_playo->drawPlayerOutline());
+	/////////////////////////////////////////////
 
-		for (int i = 0; i < m_radarIcons.size(); i++)
+	window.setView(window.getDefaultView());
+	window.draw(m_hud.drawRectangle());
+	window.draw(m_hud.drawHealthRect());
+	window.draw(m_hud.draw());
+
+	for (int i = 0; i < m_radarIcons.size(); i++)
+	{
+		if (m_astronauts[i]->isAlive() == true)
 		{
-			if (m_astronauts[i]->isAlive() == true)
+			m_radarIcons[i].setPosition((m_astronauts[i]->getPosition().x + m_screenSize.x) / 9, (m_astronauts[i]->getPosition().y / 9) + 10);
+			if (m_astronauts[i]->getState() == m_astronauts[i]->Abducted)
 			{
-				m_radarIcons[i].setPosition((m_astronauts[i]->getPosition().x + m_screenSize.x) / 9, (m_astronauts[i]->getPosition().y /9) + 10);
-				if (m_astronauts[i]->getState() == m_astronauts[i]->Abducted)
-				{
-					m_radarIcons[i].setFillColor(sf::Color::Red);
-				}
-				else
-				{
-					m_radarIcons[i].setFillColor(sf::Color::Green);
-				}
-				window.draw(m_radarIcons[i]);
+				m_radarIcons[i].setFillColor(sf::Color::Red);
 			}
+			else
+			{
+				m_radarIcons[i].setFillColor(sf::Color::Green);
+			}
+			window.draw(m_radarIcons[i]);
 		}
-		m_radarScreen.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), 69);
-		m_playerRadar.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), (m_currPlayerPos.y / 9) + 10);
-		window.draw(m_playerRadar);
-		window.draw(m_radarScreen);
+	}
+	m_radarScreen.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), 69);
+	m_playerRadar.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), (m_currPlayerPos.y / 9) + 10);
+	window.draw(m_playerRadar);
+	window.draw(m_radarScreen);
+
+	std::string score = std::to_string(Score::Instance()->getScore());
+	m_scoreText.setString(score);
+	window.draw(m_scoreText);
+
+	if (Score::Instance()->canDisplayAstroText() == true)
+	{
+		m_displayingAstroText++;
+
+		std::string astrosRemaining = std::to_string(Score::Instance()->getAliveAstros());
+		m_aliveAstrosText.setString("Astronauts Remaining: " + astrosRemaining);
+		window.draw(m_aliveAstrosText);
+		if (m_displayingAstroText >= 50)
+		{
+			Score::Instance()->setDisplayAstroText(false);
+			m_displayingAstroText = 0;
+		}
+	}
+
+
 	
 }
 

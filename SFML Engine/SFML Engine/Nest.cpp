@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "nest.h"
+#include "Score.h"
 
 Nest::Nest(sf::Texture & tex, sf::Vector2i screenBounds)
 	: m_alive(false)
@@ -182,11 +183,16 @@ void Nest::setDamage(int damage)
 	m_health -= damage;
 	if (m_health <= 0)
 	{
+		if (m_currAnimation != &m_animations[Anims::Explode])
+		{
+			Score::Instance()->increaseScore(200);
+		}
 		m_currAnimation = &m_animations[Anims::Explode];
 		m_animatedSprite.setOrigin(40, 40);
 		m_animatedSprite.setScale(4, 4);
 		m_health = 0;
 		m_animatedSprite.play(*m_currAnimation);
+
 	}
 }
 

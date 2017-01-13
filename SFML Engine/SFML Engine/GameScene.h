@@ -59,6 +59,10 @@ private:
 	sf::RectangleShape m_playerCutOff;
 	sf::RectangleShape m_enemyCutOff;
 
+	int m_score;
+	sf::Text m_scoreText;
+	sf::Text m_aliveAstrosText;
+	float m_displayingAstroText;
 
 	// RADAR
 	std::vector<sf::CircleShape> m_radarIcons;
