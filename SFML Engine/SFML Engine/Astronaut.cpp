@@ -4,25 +4,19 @@
 
 
 
-Astronaut::Astronaut()
+Astronaut::Astronaut(sf::Texture & tex, int xPos)
 	: m_alive(true)
 	, m_state(Falling)
 	, m_animatedSprite(sf::seconds(0.2f),true, false)
 	, m_animations(NUM_OF_ANIMS)
-{
-}
-
-Astronaut::~Astronaut()
-{
-}
-
-void Astronaut::init(sf::Texture & tex, int xPos)
+	, m_abductedVelocity(0, MAX_ABDUCTED_SPEED)
+	, m_direction(1)
 {
 	m_animations[Anims::WalkLeft].setSpriteSheet(tex);
-	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(48,48,48,48));
-	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(0,48,48,48));
 	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(48, 48, 48, 48));
-	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(96,48,48,48));
+	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(0, 48, 48, 48));
+	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(48, 48, 48, 48));
+	m_animations[Anims::WalkLeft].addFrame(sf::IntRect(96, 48, 48, 48));
 
 	m_animations[Anims::WalkRight].setSpriteSheet(tex);
 	m_animations[Anims::WalkRight].addFrame(sf::IntRect(48, 96, 48, 48));
@@ -31,58 +25,87 @@ void Astronaut::init(sf::Texture & tex, int xPos)
 	m_animations[Anims::WalkRight].addFrame(sf::IntRect(96, 96, 48, 48));
 
 	m_animations[Anims::Falling_Abducted].setSpriteSheet(tex);
-	m_animations[Anims::Falling_Abducted].addFrame(sf::IntRect(0,0,48,48));
+	m_animations[Anims::Falling_Abducted].addFrame(sf::IntRect(0, 0, 48, 48));
 
 	m_currAnimation = &m_animations[Anims::Falling_Abducted];
 	m_animatedSprite.play(*m_currAnimation);
-	m_animatedSprite.setPosition(sf::Vector2f(200, 300));
+	m_animatedSprite.setPosition(sf::Vector2f(xPos, 900));
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
+
+}
+
+Astronaut::~Astronaut()
+{
+}
+
+void Astronaut::init(sf::Vector2f pos)
+{
 
 }
 
 void Astronaut::update(sf::Time deltaTime)
 {
-	m_animatedSprite.play(*m_currAnimation);
-
-	if (m_state == Wander)
+	if (m_alive)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			m_currAnimation = &m_animations[Anims::WalkLeft];
-			m_velocity.x = -MAX_SPEED;
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			m_currAnimation = &m_animations[Anims::WalkRight];
-			m_velocity.x = MAX_SPEED;
-		}
-		else
-		{
-			m_velocity.x = 0;
-			m_velocity.y = 0;
-			m_animatedSprite.stop();
-		}
-	}
-	else if (m_state == Falling)
-	{
-		m_currAnimation = &m_animations[Anims::Falling_Abducted];
-		if (m_animatedSprite.getPosition().y > GROUND)
-		{
-			int x = m_animatedSprite.getPosition().x;
-			int y = m_animatedSprite.getPosition().y;
 
-			m_animatedSprite.setPosition(sf::Vector2f(m_animatedSprite.getPosition().x, GROUND));
-			m_state = Wander;
-			m_velocity.y = 0;
-		}
-		else
+		m_animatedSprite.play(*m_currAnimation);
+
+		if (m_state == Wander)
 		{
-			m_velocity.x = 0;
-			m_velocity.y = GRAVITY;
+			m_wanderTime += deltaTime.asSeconds();
+			if (m_direction == 1)
+			{
+				m_currAnimation = &m_animations[Anims::WalkRight];
+			}
+			else
+			{
+				m_currAnimation = &m_animations[Anims::WalkLeft];
+			}
+			m_velocity.x = (MAX_SPEED * deltaTime.asSeconds())* m_direction;
+
+			if (m_wanderTime >= rand() % 50 + 10)
+			{
+				m_direction = m_direction * -1;
+				m_wanderTime = 0;
+			}
 		}
+		else if (m_state == Falling)
+		{
+			m_currAnimation = &m_animations[Anims::Falling_Abducted];
+			if (m_animatedSprite.getPosition().y > GROUND)
+			{
+				int x = m_animatedSprite.getPosition().x;
+				int y = m_animatedSprite.getPosition().y;
+
+				m_animatedSprite.setPosition(sf::Vector2f(m_animatedSprite.getPosition().x, GROUND));
+				m_state = Wander;
+				m_velocity.y = 0;
+			}
+			else
+			{
+				m_velocity.x = 0;
+				m_velocity.y = GRAVITY;
+			}
+		}
+		else if (m_state = Abducted)
+		{
+			m_velocity = m_abductedVelocity;
+		}
+		m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
+		m_animatedSprite.update(deltaTime);
+		m_abductPos = m_animatedSprite.getPosition();
+
 	}
-	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
-	m_animatedSprite.update(deltaTime);
+}
+
+sf::Vector2f Astronaut::getPosition()
+{
+	return m_animatedSprite.getPosition();
+}
+
+sf::Vector2f Astronaut::getAbductPosition()
+{
+	return sf::Vector2f(m_abductPos.x, m_abductPos.y - 200);
 }
 
 void Astronaut::setPosition(sf::Vector2f pos)
@@ -95,3 +118,43 @@ AnimatedSprite Astronaut::draw()
 	return m_animatedSprite;
 }
 
+void Astronaut::setAbducted()
+{
+	m_state = Abducted;
+	m_currAnimation = &m_animations[Anims::Falling_Abducted];
+}
+
+int Astronaut::getState()
+{
+	return m_state;
+}
+
+void Astronaut::setTargeted(bool targeted)
+{
+	m_targeted = targeted;
+}
+
+bool Astronaut::isTargeted()
+{
+	return m_targeted;
+}
+
+int Astronaut::getRadius()
+{
+	return RADIUS;
+}
+
+void Astronaut::setFalling()
+{
+	m_state = Falling;
+}
+
+void Astronaut::setAlive(bool alive)
+{
+	m_alive = alive;
+}
+
+bool Astronaut::isAlive()
+{
+	return m_alive;
+}

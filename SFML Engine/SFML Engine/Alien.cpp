@@ -2,14 +2,13 @@
 #include "Alien.h"
 
 
-Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds)
-	: m_animatedSprite(sf::seconds(0.2f), true, false)
+Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBounds)
+	: m_animatedSprite(sf::seconds(0.1f), true, false)
 	, m_animations(NUM_OF_ANIMS)
 	, m_acceleration(0,0)
-	, m_maxSpeed(3.5)
-	, m_maxForce(0.5)
 	, m_currentState(Blank)
 	, m_screenBounds(screenBounds)
+	, m_worldBounds(sf::Vector2i(worldBounds.x, worldBounds.y + abs(worldBounds.x)))
 	, m_alive(false)
 	, m_health(100)
 {
@@ -28,6 +27,7 @@ Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds)
 
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.play(*m_currAnimation);
+
 }
 
 Alien::~Alien()
@@ -44,6 +44,7 @@ void Alien::init(sf::Vector2f position)
 	m_maxForce = 0.5;
 	m_location.x = position.x;
 	m_location.y = position.y;
+	m_health = 100;
 
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.setScale(1, 1);
@@ -65,15 +66,18 @@ Pvector Alien::separation(std::vector<Alien*> *alien)
 	int count = 0;
 	for (int i = 0; i < alien->size(); i++)
 	{
-		float d = m_location.distance(alien->at(i)->m_location);
-		if ((d > 0) && (d < desiredseparation))
+		if (m_alive && m_currentState == Flock)
 		{
-			Pvector diff(0, 0);
-			diff = diff.subTwoVector(m_location, alien->at(i)->m_location);
-			diff.normalize();
-			diff.divScalar(d);     
-			steer.addVector(diff);
-			count++;
+			float d = m_location.distance(alien->at(i)->m_location);
+			if ((d > 0) && (d < desiredseparation))
+			{
+				Pvector diff(0, 0);
+				diff = diff.subTwoVector(m_location, alien->at(i)->m_location);
+				diff.normalize();
+				diff.divScalar(d);
+				steer.addVector(diff);
+				count++;
+			}
 		}
 	}
 	if (count > 0)
@@ -96,7 +100,7 @@ Pvector Alien::alignment(std::vector<Alien*> *alien)
 	int count = 0;
 	for (int i = 0; i < alien->size(); i++)
 	{
-		if (m_alive) 
+		if (m_alive && m_currentState == Flock) 
 		{
 			float d = m_location.distance(alien->at(i)->m_location);
 			if ((d > 0) && (d < neighbordist)) // 0 < d < 50
@@ -133,7 +137,7 @@ Pvector Alien::cohesion(std::vector<Alien*> *alien)
 	int count = 0;
 	for (int i = 0; i < alien->size(); i++)
 	{
-		if (m_alive)
+		if (m_alive && m_currentState == Flock)
 		{
 			float d = m_location.distance(alien->at(i)->m_location);
 			if ((d > 0) && (d < neighbordist))
@@ -165,22 +169,29 @@ Pvector Alien::seek(Pvector v)
 	return m_acceleration;
 }
 
-void Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
+bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime)
 {
-	if (m_currentState == Flock)
+	bool spawnMutant = false;
+
+	if (m_alive)
 	{
-		flock(alien);
-		updateFlocking(deltaTime);
-		borders();
+		checkBounds();
+		if (m_currentState == Flock)
+		{
+			flock(alien);
+			updateFlocking(deltaTime);
+			borders();
+		}
+		else if (m_currentState == Capture || m_currentState == Target)
+		{
+			spawnMutant = updateTargetCapture(deltaTime);
+		}
+		else
+		{
+			updateDying(deltaTime);
+		}
 	}
-	else if (m_currentState == Capture)
-	{
-		updateCapture(deltaTime);
-	}
-	else
-	{
-		updateDying(deltaTime);
-	}
+	return spawnMutant;
 }
 
 void Alien::updateFlocking(sf::Time deltaTime)
@@ -205,8 +216,48 @@ void Alien::updateFlocking(sf::Time deltaTime)
 	m_acceleration.mulScalar(0);
 }
 
-void Alien::updateCapture(sf::Time dt)
+bool Alien::updateTargetCapture(sf::Time dt)
 {
+	bool outOfScreen = false;
+	sf::Vector2f vel;
+	if (m_currentState == Target)
+	{
+		sf::Vector2f tPos = m_astro->getAbductPosition();
+		sf::Vector2f pos = m_animatedSprite.getPosition();
+		vel = tPos - pos;
+		vel = Helper::Normalize(vel);
+		vel = sf::Vector2f(vel.x * TARGET_SPEED * dt.asSeconds(), vel.y * TARGET_SPEED * dt.asSeconds());
+		m_animatedSprite.move(vel.x, vel.y);
+		if (pos.x > tPos.x - 10 && pos.x < tPos.x + 10 && pos.y > tPos.y - 10 && pos.y < tPos.y + 10)
+		{
+			m_currentState = Capture;
+			m_astro->setAbducted();
+			m_velocity = Pvector(0, 0);
+		}
+	
+	}
+	else if (m_currentState == Capture)
+	{
+		vel = sf::Vector2f(0, -100);
+		vel *= dt.asSeconds();
+
+		/*
+		ADD CODE HERE TO SAY IF OFF SCREEN
+
+		m_astro gives you access to the astronaut
+		make sure u set him to NULL when your done with him
+		*/
+		if (m_animatedSprite.getPosition().y < -200)
+		{
+			outOfScreen = true;
+			m_alive = false;
+			m_astro->setAlive(false);
+			m_astro = NULL;
+		}
+
+	}
+	m_animatedSprite.move(vel.x, vel.y);
+	return outOfScreen;
 }
 
 void Alien::updateDying(sf::Time dt)
@@ -215,6 +266,12 @@ void Alien::updateDying(sf::Time dt)
 	if (m_animatedSprite.getFrame() > 3)
 	{
 		m_alive = false;
+		if (m_astro != NULL)
+		{
+			m_astro->setFalling();
+			m_astro->setTargeted(false);
+			m_astro = NULL;
+		}
 	}
 }
 
@@ -262,6 +319,11 @@ int Alien::getRadius()
 	return RADIUS;
 }
 
+int Alien::getAbductRadius()
+{
+	return ABDUCT_RADIUS;
+}
+
 void Alien::setDamage(int damage)
 {
 	m_health -= damage;
@@ -291,6 +353,11 @@ void Alien::setPosition(sf::Vector2f position)
 	m_animatedSprite.setPosition(position);
 }
 
+void Alien::setAstro(Astronaut * astro)
+{
+	m_astro = astro;
+}
+
 int Alien::getState()
 {
 	return m_currentState;
@@ -301,3 +368,15 @@ AnimatedSprite Alien::draw()
 	return m_animatedSprite;
 }
 
+void Alien::checkBounds()
+{
+
+	if (m_animatedSprite.getPosition().x - m_animatedSprite.getLocalBounds().width * 0.5f >= m_worldBounds.y)
+	{
+		m_animatedSprite.setPosition(m_worldBounds.x - m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getPosition().y);
+	}
+	else if (m_animatedSprite.getPosition().x + m_animatedSprite.getLocalBounds().width * 0.5f <= m_worldBounds.x)
+	{
+		m_animatedSprite.setPosition(m_worldBounds.y + m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getPosition().y);
+	}
+}

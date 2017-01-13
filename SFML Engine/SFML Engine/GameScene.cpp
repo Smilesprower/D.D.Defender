@@ -14,7 +14,6 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	, m_camera(sf::Vector2i(m_worldSize.x, m_worldSize.y), sf::Vector2i(m_screenSize.x, m_screenSize.y))
 	, m_playShockwave(false)
 	, m_playRipple(false)
-	, m_astro()
 	, m_playo(new Player())
 	, m_canUpdateRadar(false)
 {
@@ -34,24 +33,37 @@ GameScene::GameScene(SceneStack& stack, Context context)
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
 
-	// Init Astro - Give the random Values
-	//m_astro.init(context.textures->get(Textures::Astro), 960);
-	for (int i = 0; i < 5; i++)
+	// Init Astros - Give the random Values
+	for (int i = 0; i < NUM_OF_ASTROS; i++)
 	{
-		m_aliens.push_back(new Alien(context.textures->get(Textures::Astro), m_screenSize));
+		m_astronauts.push_back(new Astronaut(context.textures->get(Textures::Astro), 700 * i - 100));
+	}
+	for (int i = 0; i < 20; i++)
+	{
+		m_aliens.push_back(new Alien(context.textures->get(Textures::Astro), m_screenSize, m_worldSize));
 	}
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
 
 	//init nest
-	m_nests.push_back(new Nest());
-	m_nests[0]->init(context.textures->get(Textures::Astro), sf::Vector2f(10000, 200), m_worldSize);
+	for (int i = 0; i < 3; i++)
+	{
+		m_nests.push_back(new Nest(context.textures->get(Textures::Astro), m_worldSize));
+		m_nests[i]->init(sf::Vector2f(2000 * i, 200));
+	}
 	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 	{
 		//init gas clouds
 		m_gasClouds.push_back(new Obstacle());
 		m_gasClouds[i]->init(context.textures->get(Textures::GasCloud), sf::Vector2f(i * 1920, rand() % 600 + 100), m_worldSize);
 	}
-
+	for (int i = 0; i < m_astronauts.size(); ++i)
+	{
+		sf::CircleShape icon;
+		icon.setFillColor(sf::Color::Green);
+		icon.setRadius(8);
+		icon.setOrigin(4, 4);
+		m_radarIcons.push_back(icon);
+	}
 	//	Init Playo
 	m_playo->init(context.textures->get(Textures::Astro), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
 	// PLAYER RADAR
@@ -182,43 +194,51 @@ void GameScene::draw()
 	else if(m_playRipple)
 		window.draw(m_sprite, m_ripple);
 	else
-	{
 		window.draw(m_sprite);
 		window.draw(m_playo->draw());
-
-		for (int i = 0; i < MAX_BULLETS; i++)
+	
+		if (!m_playRipple)
 		{
-			if (bulletCopy[i]->isEnabled())
+			for (int i = 0; i < m_nests.size(); ++i)
 			{
-				window.draw(bulletCopy.at(i)->draw());
-				if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
+				if (m_nests[i]->isAlive() == true)
 				{
-					window.draw(bulletCopy[i]->drawMissileCollider());
+					window.draw(m_nests[i]->draw());
+				}
+			}
+			for (int i = 0; i < m_aliens.size(); i++)
+			{
+				if (m_aliens[i]->getAlive() == true)
+				{
+					window.draw(m_aliens[i]->draw());
+				}
+			}
+			for (int i = 0; i < NUM_OF_ASTROS; i++)
+			{
+				if (m_astronauts[i]->isAlive())
+				{
+					window.draw(m_astronauts[i]->draw());
 				}
 			}
 
-		}
-		for (int i = 0; i < m_nests.size(); ++i)
-		{
-			if (m_nests[i]->isAlive() == true)
+			for (int i = 0; i < MAX_BULLETS; i++)
 			{
-				window.draw(m_nests[i]->draw());
+				if (bulletCopy[i]->isEnabled())
+				{
+					window.draw(bulletCopy.at(i)->draw());
+					if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
+					{
+						window.draw(bulletCopy[i]->drawMissileCollider());
+					}
+				}
+
+			}
+			for (int i = 0; i < MAX_GAS_CLOUDS; i++)
+			{
+				window.draw(m_gasClouds[i]->draw());
 			}
 		}
-		//window.draw(m_astro.draw());
-
-		for (int i = 0; i < m_aliens.size(); i++)
-		{
-			if (m_aliens[i]->getAlive() == true)
-			{
-				window.draw(m_aliens[i]->draw());
-			}
-		}
-
-		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
-		{
-			window.draw(m_gasClouds[i]->draw());
-		}
+		
 		// DEBUGGING CODE
 		/////////////////////////////////////////////
 		window.draw(m_screenView);
@@ -226,20 +246,29 @@ void GameScene::draw()
 		window.draw(m_nests[0]->drawEvade());
 		window.draw(m_nests[0]->drawFire());
 		window.draw(m_playo->drawPlayerOutline());
-
-
-		window.draw(m_gasClouds[0]->drawOutline());
 		/////////////////////////////////////////////
-	}
+	
 		window.setView(window.getDefaultView());
 		window.draw(m_hud.drawRectangle());
 		window.draw(m_hud.drawHealthRect());
 		window.draw(m_hud.draw());
 
-		//for (int i = 0; i < m_radarIcons.size(); i++)
-		//{
-		//	window.draw(m_radarIcons[i]);
-		//}
+		for (int i = 0; i < m_radarIcons.size(); i++)
+		{
+			if (m_astronauts[i]->isAlive() == true)
+			{
+				m_radarIcons[i].setPosition((m_astronauts[i]->getPosition().x + m_screenSize.x) / 9, (m_astronauts[i]->getPosition().y /9) + 10);
+				if (m_astronauts[i]->getState() == m_astronauts[i]->Abducted)
+				{
+					m_radarIcons[i].setFillColor(sf::Color::Red);
+				}
+				else
+				{
+					m_radarIcons[i].setFillColor(sf::Color::Green);
+				}
+				window.draw(m_radarIcons[i]);
+			}
+		}
 		m_radarScreen.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), 69);
 		m_playerRadar.setPosition(((m_currPlayerPos.x + m_screenSize.x) / 9), (m_currPlayerPos.y / 9) + 10);
 		window.draw(m_playerRadar);
@@ -313,7 +342,7 @@ bool GameScene::update(sf::Time deltaTime)
 		{
 			if(m_nests[i]->update(deltaTime, m_currPlayerPos))
 			{
-				// spaen enemy
+				// spawn enemy
 				for (int j = 0; j < m_aliens.size(); j++)
 				{
 					if (m_aliens[j]->getAlive() == false)
@@ -327,13 +356,23 @@ bool GameScene::update(sf::Time deltaTime)
 
 		for (int i = 0; i < m_aliens.size(); i++)
 		{
-			m_aliens[i]->run(&m_aliens, deltaTime);
+			if(m_aliens[i]->run(&m_aliens, deltaTime))
+			{
+				// Spawn a new enemy
+			}
 		}
-		//m_astro.update(deltaTime);
+
+		for (int i = 0; i < NUM_OF_ASTROS; i++)
+		{
+			if (m_astronauts[i]->isAlive())
+			{
+				m_astronauts[i]->update(deltaTime);
+			}
+		}
 
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_nests, &m_aliens);
+	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_nests, &m_aliens, &m_astronauts);
 	return true;
 }
 // Event Input
