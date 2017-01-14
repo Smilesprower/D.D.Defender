@@ -9,6 +9,7 @@ namespace Scenes
 		Game,
 		Loading,
 		Pause,
-		Settings
+		Settings,
+		Gameover
 	};
 }

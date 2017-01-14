@@ -4,6 +4,7 @@
 #include "TitleScene.h"
 #include "GameScene.h"
 #include "PauseScene.h"
+#include "GameoverScene.h"
 #include "SceneIdentifiers.h"
 
 Application::Application()
@@ -91,5 +92,7 @@ void Application::createScenes()
 {
 	m_sceneStack.createScene<TitleScene>(Scenes::Title);
 	m_sceneStack.createScene<GameScene>(Scenes::Game);
+	m_sceneStack.createScene<GameoverScene>(Scenes::Gameover);
 	m_sceneStack.createScene<PauseScene>(Scenes::Pause);
+
 }

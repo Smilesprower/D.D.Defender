@@ -25,6 +25,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Score.cpp" />
+    <ClCompile Include="GameoverScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -55,6 +56,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Score.h" />
+    <ClInclude Include="GameoverScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl" />

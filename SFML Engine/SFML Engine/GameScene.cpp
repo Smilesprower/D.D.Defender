@@ -336,8 +336,7 @@ bool GameScene::update(sf::Time deltaTime)
 	if(m_playo->gameOver())
 	{
 		requestStackPop();
-		// Make Game Over Scene
-		requestStackPush(Scenes::Title);
+		requestStackPush(Scenes::Gameover);
 	}
 	std::vector<Bullet*> bullets = BulletManager::Instance()->getBullets();
 
