@@ -28,6 +28,9 @@ Application::Application()
 	//	MainMenu Texture
 	m_textures.load(Textures::MainMenuBG, "../resources/tex/Menu/MainMenuBG.png");
 
+	//	Gameover Texture
+	m_textures.load(Textures::GameOverBG, "../resources/tex/Menu/GameOverBG.png");
+
 	//	Button Texture
 	m_textures.load(Textures::Button, "../resources/tex/UI/Button.png");
 
