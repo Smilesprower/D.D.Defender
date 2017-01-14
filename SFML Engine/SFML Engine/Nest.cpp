@@ -40,54 +40,62 @@ bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 {
 	if (m_alive)
 	{
-		m_spawnTimer += deltaTime.asSeconds();
-		m_missileReloadTimer += deltaTime.asSeconds();
-		float distanceSquared;
-		float dx = m_evadeRadius.getPosition().x - playerPos.x;
-		int dy = m_evadeRadius.getPosition().y - playerPos.y;
-		distanceSquared = (dx*dx) + (dy*dy);
-
-		if (distanceSquared < EVADE_RANGE * EVADE_RANGE)
+		if (m_currAnimation != &m_animations[Anims::Explode])
 		{
-			m_state = Evade;
-			m_velocity.x = MAX_EVADE_VELOCITY;
-		}
-		else
-		{
-			m_state = Wander;
-			m_velocity.x = MAX_VELOCITY;
-		}
+			m_spawnTimer += deltaTime.asSeconds();
+			m_missileReloadTimer += deltaTime.asSeconds();
+			float distanceSquared;
+			float dx = m_evadeRadius.getPosition().x - playerPos.x;
+			int dy = m_evadeRadius.getPosition().y - playerPos.y;
+			distanceSquared = (dx*dx) + (dy*dy);
 
-		if (m_state == Wander)
-		{
-			m_wanderTime += deltaTime.asSeconds();
-
-			if (m_wanderTime >= TIME_TO_SWITCH_DIRECTION)
+			if (distanceSquared < EVADE_RANGE * EVADE_RANGE)
 			{
-				m_direction = m_direction * -1;
-				m_wanderTime = 0;
-			}
-		}
-		else if (m_state == Evade)
-		{
-			if (playerPos.x > m_animatedSprite.getPosition().x)
-			{
-				m_direction = Direction::Left;
+				m_state = Evade;
+				m_velocity.x = MAX_EVADE_VELOCITY;
 			}
 			else
 			{
-				m_direction = Direction::Right;
+				m_state = Wander;
+				m_velocity.x = MAX_VELOCITY;
 			}
 
-			if (distanceSquared < MISSILE_RANGE * MISSILE_RANGE)
+			if (m_state == Wander)
 			{
-				if (m_missileReloadTimer >= COOLDOWN_TIMER)
+				m_wanderTime += deltaTime.asSeconds();
+
+				if (m_wanderTime >= TIME_TO_SWITCH_DIRECTION)
 				{
-					if (BulletManager::Instance()->createMissile(m_animatedSprite.getPosition(), playerPos, 2));
+					m_direction = m_direction * -1;
+					m_wanderTime = 0;
+				}
+			}
+			else if (m_state == Evade)
+			{
+				if (playerPos.x > m_animatedSprite.getPosition().x)
+				{
+					m_direction = Direction::Left;
+				}
+				else
+				{
+					m_direction = Direction::Right;
+				}
+
+				if (distanceSquared < MISSILE_RANGE * MISSILE_RANGE)
+				{
+					if (m_missileReloadTimer >= COOLDOWN_TIMER)
 					{
-						m_missileReloadTimer = 0;
+						if (BulletManager::Instance()->createMissile(m_animatedSprite.getPosition(), playerPos, 2));
+						{
+							m_missileReloadTimer = 0;
+						}
 					}
 				}
+			}
+			if (m_spawnTimer >= 3)
+			{
+				m_spawnTimer = 0;
+				return true;
 			}
 		}
 
@@ -102,11 +110,6 @@ bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 		m_evadeRadius.setPosition(m_animatedSprite.getPosition());
 		m_missileRadius.setPosition(m_animatedSprite.getPosition());
 
-		if (m_spawnTimer >= 3)
-		{
-			m_spawnTimer = 0;
-			return true;
-		}
 	}
 	return false;
 }
@@ -183,6 +186,7 @@ void Nest::setDamage(int damage)
 	m_health -= damage;
 	if (m_health <= 0)
 	{
+		m_velocity = sf::Vector2f(0, 0);
 		if (m_currAnimation != &m_animations[Anims::Explode])
 		{
 			Score::Instance()->increaseScore(200);
@@ -192,7 +196,6 @@ void Nest::setDamage(int damage)
 		m_animatedSprite.setScale(4, 4);
 		m_health = 0;
 		m_animatedSprite.play(*m_currAnimation);
-
 	}
 }
 
