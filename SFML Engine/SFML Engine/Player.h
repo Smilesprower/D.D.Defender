@@ -52,7 +52,7 @@ private:
 		Down
 	};
 	const int MAX_SPEED = 700;
-	const int SMART_BOMB_RELOAD_TIME = 60;
+	const int SMART_BOMB_RELOAD_TIME = 1;
 	const int PLAYER_RADIUS = 35;
 	const int MAX_FRAMES_EXPLOSION = 7;
 	const float DE_ACCEL = 4.f;

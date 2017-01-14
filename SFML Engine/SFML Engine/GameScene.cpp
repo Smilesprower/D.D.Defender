@@ -224,54 +224,55 @@ void GameScene::draw()
 	else
 	{
 		window.draw(m_sprite);
+	}
 		window.draw(m_playo->draw());
 
-		if (!m_playRipple)
+	if (!m_playRipple)
+	{
+		for (int i = 0; i < MAX_BULLETS; i++)
 		{
-			for (int i = 0; i < MAX_BULLETS; i++)
+			if (bulletCopy[i]->isEnabled())
 			{
-				if (bulletCopy[i]->isEnabled())
+				window.draw(bulletCopy.at(i)->draw());
+				if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
 				{
-					window.draw(bulletCopy.at(i)->draw());
-					if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
-					{
-						window.draw(bulletCopy[i]->drawMissileCollider());
-					}
-				}
-			}
-			for (int i = 0; i < m_nests.size(); ++i)
-			{
-				if (m_nests[i]->isAlive() == true)
-				{
-					window.draw(m_nests[i]->draw());
-				}
-			}
-			for (int i = 0; i < m_aliens.size(); i++)
-			{
-				if (m_aliens[i]->getAlive() == true)
-				{
-					window.draw(m_aliens[i]->draw());
-				}
-			}
-			for (int i = 0; i < NUM_OF_ASTROS; i++)
-			{
-				if (m_astronauts[i]->isAlive())
-				{
-					window.draw(m_astronauts[i]->draw());
-				}
-			}
-			for (int i = 0; i < MAX_GAS_CLOUDS; i++)
-			{
-				window.draw(m_gasClouds[i]->draw());
-			}
-			for (int i = 0; i < NUM_OF_HEALTH_PACKS; i++)
-			{
-				if (m_healthPacks[i]->isEnabled())
-				{
-					window.draw(m_healthPacks[i]->draw());
+					window.draw(bulletCopy[i]->drawMissileCollider());
 				}
 			}
 		}
+		for (int i = 0; i < m_nests.size(); ++i)
+		{
+			if (m_nests[i]->isAlive() == true)
+			{
+				window.draw(m_nests[i]->draw());
+			}
+		}
+		for (int i = 0; i < m_aliens.size(); i++)
+		{
+			if (m_aliens[i]->getAlive() == true)
+			{
+				window.draw(m_aliens[i]->draw());
+			}
+		}
+		for (int i = 0; i < NUM_OF_ASTROS; i++)
+		{
+			if (m_astronauts[i]->isAlive())
+			{
+				window.draw(m_astronauts[i]->draw());
+			}
+		}
+		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
+		{
+			window.draw(m_gasClouds[i]->draw());
+		}
+		for (int i = 0; i < NUM_OF_HEALTH_PACKS; i++)
+		{
+			if (m_healthPacks[i]->isEnabled())
+			{
+				window.draw(m_healthPacks[i]->draw());
+			}
+		}
+		
 	}
 		
 	//// DEBUGGING CODE
@@ -352,6 +353,34 @@ bool GameScene::update(sf::Time deltaTime)
 		{
 			m_playShockwave = false;
 			m_playo->chargeSmartBomb();
+			for (int i = 0; i < m_nests.size(); ++i)
+			{
+				if (m_nests[i]->isAlive() == true)
+				{
+					m_nests[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
+				}
+			}
+			for (int i = 0; i < m_aliens.size(); i++)
+			{
+				if (m_aliens[i]->getAlive() == true)
+				{
+					m_aliens[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
+				}
+			}
+			for (int i = 0; i < bullets.size(); i++)
+			{
+				if (bullets[i]->isEnabled() == true)
+				{
+					if (bullets[i]->getType() == bullets[i]->Missile)
+					{
+						bullets[i]->setTTL(5);
+					}
+					else
+					{
+						bullets[i]->setEnabled(false);
+					}
+				}
+			}
 		}
 	}
 	else if (m_playRipple)
