@@ -262,6 +262,11 @@ sf::Vector2f Player::getPosition()
 	return m_animatedSprite.getPosition();
 }
 
+void Player::setPosition(sf::Vector2f pos)
+{
+	m_animatedSprite.setPosition(pos);
+}
+
 sf::CircleShape Player::drawPlayerOutline()
 {
 	return m_playerCollider;

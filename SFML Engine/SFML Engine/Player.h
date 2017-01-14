@@ -31,6 +31,7 @@ public:
 	int getRadius();
 	bool gameOver();
 	sf::Vector2f getPosition();
+	void setPosition(sf::Vector2f pos);
 	sf::CircleShape drawPlayerOutline();
 	AnimatedSprite m_animatedSprite;
 	float m_smartBombTimer;

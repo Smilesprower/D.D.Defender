@@ -156,5 +156,21 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 		}
 	}
 
+	//	PLAYER BOUNDRIES
+	if (player->getPosition().y < 0)
+	{
+		sf::Vector2f temp;
+		temp.x = player->getPosition().x;
+		temp.y = 0;
+		player->setPosition(temp);
+	}
+	else if (player->getPosition().y > 900)
+	{
+		sf::Vector2f temp;
+		temp.x = player->getPosition().x;
+		temp.y = 900;
+		player->setPosition(temp);
+	}
+
 
 }
