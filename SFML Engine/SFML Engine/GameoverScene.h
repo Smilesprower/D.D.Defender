@@ -15,6 +15,7 @@ public:
 private:
 	sf::Text m_text;
 	sf::Text m_score;
+	sf::Text m_time;
 	sf::Sprite m_background;
 
 	//	Buttons

@@ -405,6 +405,8 @@ bool GameScene::update(sf::Time deltaTime)
 	}
 	else
 	{
+		Score::Instance()->updatePlayTime(deltaTime.asSeconds());
+
 		sf::Vector2f tempBounds(m_currPlayerPos.x - m_halfScreenSize.x, m_currPlayerPos.x + m_halfScreenSize.x);
 
 		BulletManager::Instance()->update(deltaTime, m_currPlayerPos);

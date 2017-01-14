@@ -19,6 +19,10 @@ GameoverScene::GameoverScene(SceneStack & stack, Context context)
 	m_score.setCharacterSize(70);
 	m_score.setPosition(context.window->getSize().x * 0.365, context.window->getSize().y * 0.48);
 
+	m_time.setFont(context.fonts->get(Fonts::PS2P));				// Gets and Sets the font from Resourse Holder
+	m_time.setCharacterSize(70);
+	m_time.setPosition(context.window->getSize().x * 0.365, context.window->getSize().y * 0.395);
+
 	m_background.setTexture(context.textures->get(Textures::GameOverBG));
 	m_background.setOrigin(m_background.getTextureRect().width * 0.5, m_background.getTextureRect().height * 0.5);
 	m_background.setPosition(context.window->getSize().x * 0.5, context.window->getSize().y * 0.5);
@@ -40,12 +44,15 @@ void GameoverScene::draw()
 	window.draw(m_ButtonExit);
 	window.draw(m_text);
 	window.draw(m_score);
+	window.draw(m_time);
 }
 
 bool GameoverScene::update(sf::Time deltaTime)
 {
 	std::string score = std::to_string(Score::Instance()->getScore());
 	m_score.setString(score);
+	std::string time = std::to_string(Score::Instance()->getPlayTime());
+	m_time.setString(time);
 
 	if (m_selectedButton == 1)
 	{

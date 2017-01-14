@@ -15,6 +15,9 @@ public:
 	int getKillStreak();
 	void setKillStreak();
 	void resetKillStreak();
+
+	void updatePlayTime(float time);
+	float getPlayTime();
 private:
 	static Score *m_inst;
 
@@ -26,6 +29,7 @@ private:
 	int m_numOfAliveAstros;
 	bool m_displayAstroText;
 	int m_killSreak;
+	float m_playTime;
 
 	Score();
 	~Score();

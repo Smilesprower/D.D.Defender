@@ -6,6 +6,7 @@ Score::Score()
 	: m_score(0)
 	, m_numOfAliveAstros(20)
 	, m_killSreak(0)
+	, m_playTime(0)
 {
 }
 Score::~Score()
@@ -61,6 +62,16 @@ int Score::getKillStreak()
 void Score::resetKillStreak()
 {
 	m_killSreak = 0;
+}
+
+void Score::updatePlayTime(float time)
+{
+	m_playTime += time;
+}
+
+float Score::getPlayTime()
+{
+	return m_playTime;
 }
 
 void Score::setKillStreak()
