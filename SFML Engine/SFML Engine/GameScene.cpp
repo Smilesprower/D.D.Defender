@@ -355,21 +355,21 @@ bool GameScene::update(sf::Time deltaTime)
 			m_playo->chargeSmartBomb();
 			for (int i = 0; i < m_nests.size(); ++i)
 			{
-				if (m_nests[i]->isAlive() == true)
+				if (m_nests[i]->isAlive() == true && (m_nests[i]->getPosition().x > (m_currPlayerPos.x - m_halfScreenSize.x) && (m_nests[i]->getPosition().x < (m_currPlayerPos.x + m_halfScreenSize.x))))
 				{
 					m_nests[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
 				}
 			}
 			for (int i = 0; i < m_aliens.size(); i++)
 			{
-				if (m_aliens[i]->getAlive() == true)
+				if (m_aliens[i]->getAlive() == true && (m_aliens[i]->getPosition().x >(m_currPlayerPos.x - m_halfScreenSize.x) && (m_aliens[i]->getPosition().x < (m_currPlayerPos.x + m_halfScreenSize.x))))
 				{
 					m_aliens[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
 				}
 			}
 			for (int i = 0; i < bullets.size(); i++)
 			{
-				if (bullets[i]->isEnabled() == true)
+				if (bullets[i]->isEnabled() == true && (bullets[i]->getPosition().x >(m_currPlayerPos.x - m_halfScreenSize.x) && (bullets[i]->getPosition().x < (m_currPlayerPos.x + m_halfScreenSize.x))))
 				{
 					if (bullets[i]->getType() == bullets[i]->Missile)
 					{
