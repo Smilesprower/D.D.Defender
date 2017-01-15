@@ -9,6 +9,7 @@
 #include "CollisionManager.h"
 #include "Obstacle.h"
 #include "Alien.h"
+#include "Mutant.h"
 
 
 class GameScene : public Scene
@@ -48,6 +49,7 @@ private:
 	std::vector<Astronaut*> m_astronauts;
 	std::vector<Nest*> m_nests;
 	std::vector<Alien*> m_aliens;
+	std::vector<Mutant*> m_mutants;
 	std::vector<Obstacle*> m_gasClouds;
 	std::vector<Obstacle*> m_healthPacks;
 	sf::Vector2f m_currPlayerPos;

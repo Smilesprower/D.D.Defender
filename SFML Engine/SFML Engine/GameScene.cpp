@@ -50,6 +50,10 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	}
 	for (int i = 0; i < NUM_OF_ALIENS; i++)
 	{
+		m_mutants.push_back(new Mutant(context.textures->get(Textures::Astro), m_screenSize, m_worldSize));
+	}
+	for (int i = 0; i < NUM_OF_ALIENS; i++)
+	{
 		m_aliens.push_back(new Alien(context.textures->get(Textures::Astro), m_screenSize, m_worldSize));
 	}
 	BulletManager::Instance()->init(context.textures->get(Textures::Astro), MAX_BULLETS);
@@ -253,6 +257,10 @@ void GameScene::draw()
 			{
 				window.draw(m_aliens[i]->draw());
 			}
+			if (m_mutants[i]->isAlive() == true)
+			{
+				window.draw(m_mutants[i]->draw());
+			}
 		}
 		for (int i = 0; i < NUM_OF_ASTROS; i++)
 		{
@@ -359,11 +367,15 @@ bool GameScene::update(sf::Time deltaTime)
 					m_nests[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
 				}
 			}
-			for (int i = 0; i < m_aliens.size(); i++)
+			for (int i = 0; i < NUM_OF_ALIENS; i++)
 			{
 				if (m_aliens[i]->getAlive() == true && (m_aliens[i]->getPosition().x >(m_currPlayerPos.x - m_halfScreenSize.x) && (m_aliens[i]->getPosition().x < (m_currPlayerPos.x + m_halfScreenSize.x))))
 				{
 					m_aliens[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
+				}
+				if (m_mutants[i]->isAlive() == true && (m_mutants[i]->getPosition().x >(m_currPlayerPos.x - m_halfScreenSize.x) && (m_mutants[i]->getPosition().x < (m_currPlayerPos.x + m_halfScreenSize.x))))
+				{
+					m_mutants[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
 				}
 			}
 			for (int i = 0; i < bullets.size(); i++)
@@ -419,7 +431,7 @@ bool GameScene::update(sf::Time deltaTime)
 			if(m_nests[i]->update(deltaTime, m_currPlayerPos))
 			{
 				// spawn enemy
-				for (int j = 0; j < m_aliens.size(); j++)
+				for (int j = 0; j < NUM_OF_ALIENS; j++)
 				{
 					if (m_aliens[j]->getAlive() == false)
 					{
@@ -430,11 +442,22 @@ bool GameScene::update(sf::Time deltaTime)
 			}
 		}
 
-		for (int i = 0; i < m_aliens.size(); i++)
+		for (int i = 0; i < NUM_OF_ALIENS; i++)
 		{
+			if (m_mutants[i]->isAlive())
+			{
+				m_mutants[i]->update(deltaTime, m_currPlayerPos);
+			}
 			if(m_aliens[i]->run(&m_aliens, deltaTime, m_currPlayerPos))
 			{
-				// Spawn a new enemy
+				for (int j = 0; j < NUM_OF_ALIENS; j++)
+				{
+					if (m_mutants[j]->isAlive() == false)
+					{
+						m_mutants[j]->init(m_aliens[i]->getPosition());
+						break;
+					}
+				}
 			}
 
 		}

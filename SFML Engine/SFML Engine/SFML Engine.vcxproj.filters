@@ -26,6 +26,7 @@
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="GameoverScene.cpp" />
+    <ClCompile Include="Mutant.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.h" />
@@ -57,6 +58,7 @@
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="GameoverScene.h" />
+    <ClInclude Include="Mutant.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ResourceHolder.inl" />
