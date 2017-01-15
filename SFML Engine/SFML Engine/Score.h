@@ -18,6 +18,9 @@ public:
 
 	void updatePlayTime(float time);
 	float getPlayTime();
+
+	void reset();
+
 private:
 	static Score *m_inst;
 

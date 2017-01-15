@@ -74,6 +74,15 @@ float Score::getPlayTime()
 	return m_playTime;
 }
 
+void Score::reset()
+{
+	m_score = 0;
+	m_numOfAliveAstros = 20;
+	m_displayAstroText = false;
+	m_killSreak = 0;
+	m_playTime = 0;
+}
+
 void Score::setKillStreak()
 {
 	m_killSreak++;

@@ -75,6 +75,7 @@ bool GameoverScene::handleEvent(const sf::Event & event)
 		{
 			requestStackPop();					// Removes current Scene from Stack
 			requestStackPush(Scenes::Game);		// Push Game Scene to the Stack
+			Score::Instance()->reset();v
 		}
 		else if (m_selectedButton == 2)
 		{
