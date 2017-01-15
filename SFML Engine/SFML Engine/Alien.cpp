@@ -17,7 +17,7 @@ Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBou
 	m_animations[Anims::Default].addFrame(sf::IntRect(287, 231, 173, 105));
 
 	m_animations[Anims::Abduct].setSpriteSheet(tex);
-	m_animations[Anims::Abduct].addFrame(sf::IntRect(462, 231, 174, 330));
+	m_animations[Anims::Abduct].addFrame(sf::IntRect(462, 231, 174, 380));
 
 	m_animations[Anims::Explode].setSpriteSheet(tex);
 	m_animations[Anims::Explode].addFrame(sf::IntRect(0, 144, 80, 80));
