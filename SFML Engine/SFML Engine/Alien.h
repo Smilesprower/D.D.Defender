@@ -12,6 +12,7 @@ public:
 	{
 		Default,
 		Explode,
+		Abduct,
 	};
 	enum State
 	{

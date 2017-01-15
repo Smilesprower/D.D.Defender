@@ -16,6 +16,9 @@ Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBou
 	m_animations[Anims::Default].setSpriteSheet(tex);
 	m_animations[Anims::Default].addFrame(sf::IntRect(287, 231, 173, 105));
 
+	m_animations[Anims::Abduct].setSpriteSheet(tex);
+	m_animations[Anims::Abduct].addFrame(sf::IntRect(462, 231, 174, 330));
+
 	m_animations[Anims::Explode].setSpriteSheet(tex);
 	m_animations[Anims::Explode].addFrame(sf::IntRect(0, 144, 80, 80));
 	m_animations[Anims::Explode].addFrame(sf::IntRect(80, 144, 80, 80));
@@ -245,6 +248,8 @@ bool Alien::updateTargetCapture(sf::Time dt)
 		if (pos.x > tPos.x - 10 && pos.x < tPos.x + 10 && pos.y > tPos.y - 10 && pos.y < tPos.y + 10)
 		{
 			m_currentState = Capture;
+			m_currAnimation = &m_animations[Anims::Abduct];
+			m_animatedSprite.play(*m_currAnimation);
 			m_astro->setAbducted();
 			m_velocity = Pvector(0, 0);
 		}
