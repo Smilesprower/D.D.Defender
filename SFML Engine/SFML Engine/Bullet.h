@@ -12,7 +12,8 @@ public:
 		Lazer,
 		Missile,
 		Explosion,
-		Ball
+		Ball,
+		Ball2
 	};
 
 	Bullet(sf::Texture & tex);
@@ -44,7 +45,7 @@ private:
 	const int MISSILE_RADIUS = 20;
 	const int NUM_OF_EXP_FRAMES = 8;
 	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);
-	const int NUM_OF_ANIMS = 5;
+	const int NUM_OF_ANIMS = 6;
 
 	int m_type;
 	int m_speed;

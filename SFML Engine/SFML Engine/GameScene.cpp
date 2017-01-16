@@ -48,10 +48,10 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	{
 		m_astronauts.push_back(new Astronaut(context.textures->get(Textures::Astro), 700 * i - 100));
 	}
-	for (int i = 0; i < NUM_OF_ALIENS; i++)
+	for (int i = 0; i < NUM_OF_MUTANTS; i++)
 	{
 		m_mutants.push_back(new Mutant(context.textures->get(Textures::Astro), m_screenSize, m_worldSize));
-		m_mutants[i]->init(sf::Vector2f(0, 0));
+		//m_mutants[i]->init(sf::Vector2f(0, 0));
 	}
 	for (int i = 0; i < NUM_OF_ALIENS; i++)
 	{
@@ -259,6 +259,9 @@ void GameScene::draw()
 			{
 				window.draw(m_aliens[i]->draw());
 			}
+		}
+		for (int i = 0; i < NUM_OF_MUTANTS; i++)
+		{
 			if (m_mutants[i]->isAlive() == true)
 			{
 				window.draw(m_mutants[i]->draw());
@@ -350,17 +353,15 @@ bool GameScene::update(sf::Time deltaTime)
 	}
 	std::vector<Bullet*> bullets = BulletManager::Instance()->getBullets();
 
-	int leader = -1;
 	std::vector<int> m_mutantSize;
-	for (int i = 0; i < NUM_OF_ALIENS; i++)
+	for (int i = 0; i < NUM_OF_MUTANTS; i++)
 	{
 		if (m_mutants[i]->isAlive())
 		{
-			if (leader < 0)
-				leader = i;
 			m_mutantSize.push_back(i);
 		}
 	}
+	std::cout << m_mutantSize.size();
 
 	if (!m_playShockwave && !m_playRipple && m_playo->getSmartBombState() == m_playo->Fired)
 		setupShockwave(m_currPlayerPos);
@@ -387,6 +388,9 @@ bool GameScene::update(sf::Time deltaTime)
 				{
 					m_aliens[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
 				}
+			}
+			for (int i = 0; i < NUM_OF_MUTANTS; i++)
+			{
 				if (m_mutants[i]->isAlive() == true && (m_mutants[i]->getPosition().x >(m_currPlayerPos.x - m_halfScreenSize.x) && (m_mutants[i]->getPosition().x < (m_currPlayerPos.x + m_halfScreenSize.x))))
 				{
 					m_mutants[i]->setDamage(MAX_SMARTBOMB_DAMAGE);
@@ -455,18 +459,12 @@ bool GameScene::update(sf::Time deltaTime)
 				}
 			}
 		}
-		for (int i = 0; i < m_mutantSize.size(); i++)
-		{
-			if (i == leader)
-				m_mutants[i]->update(m_mutants[leader], m_mutantSize.size() -1, true, i,  deltaTime, m_currPlayerPos);
-			else
-				m_mutants[i]->update(m_mutants[leader], m_mutantSize.size() -1, false, i,  deltaTime, m_currPlayerPos);
-		}
+
 		for (int i = 0; i < NUM_OF_ALIENS; i++)
 		{
 			if(m_aliens[i]->run(&m_aliens, deltaTime, m_currPlayerPos))
 			{
-				for (int j = 0; j < NUM_OF_ALIENS; j++)
+				for (int j = 0; j < NUM_OF_MUTANTS; j++)
 				{
 					if (m_mutants[j]->isAlive() == false)
 					{
@@ -475,9 +473,11 @@ bool GameScene::update(sf::Time deltaTime)
 					}
 				}
 			}
-
 		}
-
+		for (int i = 0; i < NUM_OF_MUTANTS; i++)
+		{
+			m_mutants[i]->update(m_mutantSize.size() - 1, i, deltaTime, m_currPlayerPos, m_playo->getAccel());
+		}
 		for (int i = 0; i < NUM_OF_ASTROS; i++)
 		{
 			if (m_astronauts[i]->isAlive())

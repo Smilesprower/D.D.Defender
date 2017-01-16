@@ -19,6 +19,9 @@ Bullet::Bullet(sf::Texture & tex)
 	m_animations[Type::Ball].setSpriteSheet(tex);
 	m_animations[Type::Ball].addFrame(sf::IntRect(223, 0, 26, 26));
 
+	m_animations[Type::Ball2].setSpriteSheet(tex);
+	m_animations[Type::Ball2].addFrame(sf::IntRect(249, 0, 26, 26));
+
 	m_animations[Type::Explosion].setSpriteSheet(tex);
 	m_animations[Type::Explosion].addFrame(sf::IntRect(0, 144, 80, 80));
 	m_animations[Type::Explosion].addFrame(sf::IntRect(80, 144, 80, 80));

@@ -271,3 +271,13 @@ sf::CircleShape Player::drawPlayerOutline()
 {
 	return m_playerCollider;
 }
+
+sf::Vector2f Player::getVel()
+{
+	return m_velocity;
+}
+
+sf::Vector2f Player::getAccel()
+{
+	return m_accel;
+}

@@ -35,7 +35,8 @@ public:
 	sf::CircleShape drawPlayerOutline();
 	AnimatedSprite m_animatedSprite;
 	float m_smartBombTimer;
-
+	sf::Vector2f getVel();
+	sf::Vector2f getAccel();
 private:
 	enum Anims
 	{

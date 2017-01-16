@@ -57,6 +57,7 @@ private:
 	const int MAX_BULLETS = 50;
 	const int NUM_OF_ASTROS = 20;
 	const int NUM_OF_ALIENS = 20;
+	const int NUM_OF_MUTANTS = 10;
 	const int NUM_OF_HEALTH_PACKS = 10;
 	float m_shaderValue1;
 	float m_shaderValue2;

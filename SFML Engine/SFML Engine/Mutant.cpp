@@ -10,6 +10,7 @@ Mutant::Mutant(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldB
 	, m_worldBounds(sf::Vector2i(worldBounds.x, worldBounds.y + abs(worldBounds.x)))
 	, m_alive(false)
 	, m_health(0)
+	, m_kamikazeTimer(0)
 {
 	m_animations[Anims::Default].setSpriteSheet(tex);
 	m_animations[Anims::Default].addFrame(sf::IntRect(417, 0, 98, 98));
@@ -33,11 +34,11 @@ Mutant::~Mutant()
 }
 void Mutant::init(sf::Vector2f pos)
 {
-	m_location = Pvector(pos.x, pos.y);
+	m_position = pos;
 	m_maxSpeed = 20;
 	m_alive = true;
 	m_health = 100;
-	m_velocity = Pvector(0,300);
+	m_velocity = sf::Vector2f{ 0,300 };
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.setScale(1, 1);
 	m_animatedSprite.play(*m_currAnimation);
@@ -45,73 +46,82 @@ void Mutant::init(sf::Vector2f pos)
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
 	m_animatedSprite.setScale(1, 1);
 }
-void Mutant::update(Mutant *mutant, int mutantSize, bool leader, int currentMutant, sf::Time deltaTime, sf::Vector2f playerPos)
+void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::Vector2f playerPos, sf::Vector2f playerVel)
 {
-	bool changeVel = true;
+	mutantSize += 1;
+	m_bulletReloadTimer += deltaTime.asSeconds();
 	if (m_state == Start)
 	{
 		if (m_animatedSprite.getPosition().y > 200)
 		{
-			m_velocity.y = 0;
+			m_velocity = sf::Vector2f(0, 0);
 			m_state = FormationA;
 		}
 	}
+	// Piss player off
 	else if (m_state == FormationA)
 	{
-		Pvector	sub(0, 0);
-		Pvector sum(0, 0);
-		int npcRadius = 60;
-		int closeEnough = 30;
-		float angleAroundCircle = 0.0;
-		Pvector targetSlot(0, 0);
-
-		//if (leader)
-		//{
-		//	float temp = abs(m_location.x - playerPos.x - m_location.y - playerPos.y);
-		//	if (temp > 100 || -temp < 100)
-		//	{
-		//		m_acceleration = seek(playerPos);
-		//	}
-		//	m_velocity.normalize();
-		//	m_velocity.mulScalar(m_maxSpeed);
-		//	applyForce(sum);
-		//}
-		//else
-		//{
-			angleAroundCircle = (float)currentMutant / (mutantSize);
-			angleAroundCircle = angleAroundCircle * pi * 2;
-			float radius = npcRadius / sin(pi / (mutantSize));
-
-			targetSlot = Pvector(playerPos.x , playerPos.y);
-			targetSlot.x = targetSlot.x + radius * cos(angleAroundCircle);
-			targetSlot.y = targetSlot.y + radius * sin(angleAroundCircle);
-			sub = sub.subTwoVector(targetSlot, m_location);
-			float D = sub.magnitude();
-			if (D > closeEnough)
-			{
-				sum = sub;
-				sum.normalize();
-				sum.mulScalar(m_maxSpeed);
-				applyForce(sum);
-			}
-			else
-			{
-				//m_velocity = mutant->getVelocity();
-				changeVel = false;
-				m_velocity = Pvector{ 0,0 };
-			}
-		/*}*/
+		if (mutantSize + 1 > 2)
+		{
+			m_state = FormationB;
+		}
 	}
-	if (changeVel)
+	// Circle Formation
+	else if (m_state == FormationB)
 	{
-		m_acceleration.mulScalar(.9);
-		m_velocity.addVector(m_acceleration);
-		m_velocity.limit(m_maxSpeed);
-		m_location.addVector(m_velocity);
-	}
+		if (m_health < 25)
+		{
+			m_state = FormationC;
+		}
+	
+		sf::Vector2f targetSlot;
+		int npcRadius = 175;
+		int closeEnough = 50;
+		float angleAroundCircle = 0.0;
 
-	sf::Vector2f vel{ m_velocity.x , m_velocity.y };
-	m_animatedSprite.move(vel);
+		angleAroundCircle = ((float)currentMutant)/ (mutantSize);
+		angleAroundCircle = angleAroundCircle * pi * 2;
+		float radius = npcRadius / sin(pi / (mutantSize));
+
+		targetSlot = playerPos;
+		targetSlot.x = targetSlot.x + radius * cos(angleAroundCircle);
+		targetSlot.y = targetSlot.y + radius * sin(angleAroundCircle);
+
+		m_velocity = targetSlot - m_animatedSprite.getPosition();
+		float distance = Helper::Length(m_velocity);
+
+		if (distance > closeEnough)
+		{
+			m_velocity = Helper::Normalize(m_velocity) * 500.0f;
+		}
+		else
+		{
+			float distanceSquared;
+			float dx = m_animatedSprite.getPosition().x - playerPos.x;
+			float dy = m_animatedSprite.getPosition().y - playerPos.y;
+			distanceSquared = (dx*dx) + (dy*dy);
+
+			if (distanceSquared < BULLET_RANGE * BULLET_RANGE)
+			{
+				if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
+				{
+					if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 5, false));
+					{
+						m_bulletReloadTimer = 0;
+					}
+				}
+			}
+			m_velocity = sf::Vector2f(0, 0);
+		}
+	}
+	// Suicide Bomber
+	else if (m_state == FormationC)
+	{
+		m_velocity = playerPos - m_animatedSprite.getPosition();
+		float distance = Helper::Length(m_velocity);
+		m_velocity = Helper::Normalize(m_velocity) * 1000.f;
+	}
+	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 	m_animatedSprite.update(deltaTime);
 }
 
@@ -160,24 +170,75 @@ void Mutant::setAlive(bool alive)
 	m_alive = alive;
 }
 
-void Mutant::applyForce(Pvector force)
-{
-	m_acceleration.addVector(force);
-}
+//void Mutant::applyForce(Pvector force)
+//{
+//	m_acceleration.addVector(force);
+//}
 
-Pvector Mutant::seek(sf::Vector2f playerpos)
-{
-	Pvector desired{ playerpos.x, playerpos.y};
-	desired.subVector(m_location);
-	desired.normalize();
-	desired.mulScalar(m_maxSpeed);
-	desired.subVector(m_velocity);
-	m_acceleration = desired;
-	m_acceleration.limit(m_maxForce);
-	return m_acceleration;
-}
+//Pvector Mutant::seek(sf::Vector2f playerpos)
+//{
+//	//Pvector desired{ playerpos.x, playerpos.y};
+//	//desired.subVector(m_location);
+//	//desired.normalize();
+//	//desired.mulScalar(m_maxSpeed);
+//	//desired.subVector(m_velocity);
+//	//m_acceleration = desired;
+//	//m_acceleration.limit(m_maxForce);
+//	return m_acceleration;
+//}
+//
+//Pvector Mutant::getVelocity()
+//{
+//	return m_velocity;
+//}
+//	Pvector	sub(0, 0);
+//	Pvector sum(0, 0);
+//	int npcRadius = 60;
+//	int closeEnough = 30;
+//	float angleAroundCircle = 0.0;
+//	Pvector targetSlot(0, 0);
 
-Pvector Mutant::getVelocity()
-{
-	return m_velocity;
-}
+//	//if (leader)
+//	//{
+//	//	float temp = abs(m_location.x - playerPos.x - m_location.y - playerPos.y);
+//	//	if (temp > 100 || -temp < 100)
+//	//	{
+//	//		m_acceleration = seek(playerPos);
+//	//	}
+//	//	m_velocity.normalize();
+//	//	m_velocity.mulScalar(m_maxSpeed);
+//	//	applyForce(sum);
+//	//}
+//	//else
+//	//{
+//		angleAroundCircle = (float)currentMutant / (mutantSize);
+//		angleAroundCircle = angleAroundCircle * pi * 2;
+//		float radius = npcRadius / sin(pi / (mutantSize));
+
+//		targetSlot = Pvector(playerPos.x , playerPos.y);
+//		targetSlot.x = targetSlot.x + radius * cos(angleAroundCircle);
+//		targetSlot.y = targetSlot.y + radius * sin(angleAroundCircle);
+//		sub = sub.subTwoVector(targetSlot, m_location);
+//		float D = sub.magnitude();
+//		if (D > closeEnough)
+//		{
+//			sum = sub;
+//			sum.normalize();
+//			sum.mulScalar(m_maxSpeed);
+//			applyForce(sum);
+//		}
+//		else
+//		{
+//			//m_velocity = mutant->getVelocity();
+//			changeVel = false;
+//			m_velocity = Pvector{ 0,0 };
+//		}
+//	/*}*/
+//}
+//if (changeVel)
+//{
+//	m_acceleration.mulScalar(.9);
+//	m_velocity.addVector(m_acceleration);
+//	m_velocity.limit(m_maxSpeed);
+//	m_location.addVector(m_velocity);
+//}
