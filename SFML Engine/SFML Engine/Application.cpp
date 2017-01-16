@@ -8,7 +8,7 @@
 #include "SceneIdentifiers.h"
 
 Application::Application()
-	: m_window(sf::VideoMode(1920, 1080), "States")
+	: m_window(sf::VideoMode(1920, 1080), "DEFENDER - AI PROJECT - JASON & JAMIE")
 	, m_textures()
 	, m_fonts()
 	, m_sceneStack(Scene::Context(m_window, m_textures, m_fonts))
