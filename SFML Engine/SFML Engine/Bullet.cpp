@@ -17,10 +17,10 @@ Bullet::Bullet(sf::Texture & tex)
 	m_animations[Type::Missile].addFrame(sf::IntRect(94, 0, 50, 32));
 
 	m_animations[Type::Ball].setSpriteSheet(tex);
-	m_animations[Type::Ball].addFrame(sf::IntRect(223, 0, 26, 26));
+	m_animations[Type::Ball].addFrame(sf::IntRect(197, 0, 26, 26));
 
 	m_animations[Type::Ball2].setSpriteSheet(tex);
-	m_animations[Type::Ball2].addFrame(sf::IntRect(249, 0, 26, 26));
+	m_animations[Type::Ball2].addFrame(sf::IntRect(224, 0, 26, 26));
 
 	m_animations[Type::Explosion].setSpriteSheet(tex);
 	m_animations[Type::Explosion].addFrame(sf::IntRect(0, 144, 80, 80));
@@ -47,7 +47,7 @@ void Bullet::setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_ttl = 0;
 	m_type = type;
 	m_playerBullet = playerBullet;
-	m_currAnimation = &m_animations[Type::Ball];
+	m_currAnimation = &m_animations[type];
 
 	sf::Vector2f temp = targetPosition - position;
 	temp = Helper::Normalize(temp);
@@ -71,7 +71,7 @@ void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int
 	m_velocity.y = 0;
 	if (m_type == Default)
 	{
-		m_currAnimation = &m_animations[Type::Default];
+		m_currAnimation = &m_animations[Type::Ball];
 	}
 	else if (m_type == Lazer)
 	{

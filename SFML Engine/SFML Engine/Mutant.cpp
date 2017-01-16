@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Mutant.h"
+#include "Score.h"
 
 float pi = 3.141592653589793;
 
@@ -48,81 +49,94 @@ void Mutant::init(sf::Vector2f pos)
 }
 void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::Vector2f playerPos, sf::Vector2f playerVel)
 {
-	mutantSize += 1;
-	m_bulletReloadTimer += deltaTime.asSeconds();
-	if (m_state == Start)
+	if (m_alive)
 	{
-		if (m_animatedSprite.getPosition().y > 200)
-		{
-			m_velocity = sf::Vector2f(0, 0);
-			m_state = FormationA;
-		}
-	}
-	// Piss player off
-	else if (m_state == FormationA)
-	{
-		if (mutantSize + 1 > 2)
-		{
-			m_state = FormationB;
-		}
-	}
-	// Circle Formation
-	else if (m_state == FormationB)
-	{
-		if (m_health < 25)
-		{
-			m_state = FormationC;
-		}
-	
-		sf::Vector2f targetSlot;
-		int npcRadius = 175;
-		int closeEnough = 50;
-		float angleAroundCircle = 0.0;
 
-		angleAroundCircle = ((float)currentMutant)/ (mutantSize);
-		angleAroundCircle = angleAroundCircle * pi * 2;
-		float radius = npcRadius / sin(pi / (mutantSize));
-
-		targetSlot = playerPos;
-		targetSlot.x = targetSlot.x + radius * cos(angleAroundCircle);
-		targetSlot.y = targetSlot.y + radius * sin(angleAroundCircle);
-
-		m_velocity = targetSlot - m_animatedSprite.getPosition();
-		float distance = Helper::Length(m_velocity);
-
-		if (distance > closeEnough)
+		mutantSize += 1;
+		m_bulletReloadTimer += deltaTime.asSeconds();
+		if (m_state == Start)
 		{
-			m_velocity = Helper::Normalize(m_velocity) * 500.0f;
-		}
-		else
-		{
-			float distanceSquared;
-			float dx = m_animatedSprite.getPosition().x - playerPos.x;
-			float dy = m_animatedSprite.getPosition().y - playerPos.y;
-			distanceSquared = (dx*dx) + (dy*dy);
-
-			if (distanceSquared < BULLET_RANGE * BULLET_RANGE)
+			if (m_animatedSprite.getPosition().y > 200)
 			{
-				if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
+				m_velocity = sf::Vector2f(0, 0);
+				m_state = FormationA;
+			}
+		}
+		// Piss player off
+		else if (m_state == FormationA)
+		{
+			if (mutantSize > 3)
+			{
+				m_state = FormationB;
+			}
+		}
+		// Circle Formation
+		else if (m_state == FormationB)
+		{
+			if (m_health < 15)
+				m_state = FormationC;
+			else if (mutantSize < 2)
+			{
+				m_state = FormationC;
+			}
+
+			sf::Vector2f targetSlot;
+			int npcRadius = 100;
+			int closeEnough = 50;
+			float angleAroundCircle = 0.0;
+
+			angleAroundCircle = ((float)currentMutant) / (mutantSize);
+			angleAroundCircle = angleAroundCircle * pi * 2;
+			float radius = npcRadius / sin(pi / (mutantSize));
+
+			targetSlot = playerPos;
+			targetSlot.x = targetSlot.x + radius * cos(angleAroundCircle);
+			targetSlot.y = targetSlot.y + radius * sin(angleAroundCircle);
+
+			m_velocity = targetSlot - m_animatedSprite.getPosition();
+			float distance = Helper::Length(m_velocity);
+
+			if (distance > closeEnough)
+			{
+				m_velocity = Helper::Normalize(m_velocity) * 500.0f;
+			}
+			else
+			{
+				float distanceSquared;
+				float dx = m_animatedSprite.getPosition().x - playerPos.x;
+				float dy = m_animatedSprite.getPosition().y - playerPos.y;
+				distanceSquared = (dx*dx) + (dy*dy);
+
+				if (distanceSquared < BULLET_RANGE * BULLET_RANGE)
 				{
-					if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 5, false));
+					if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
 					{
-						m_bulletReloadTimer = 0;
+						if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 5, false));
+						{
+							m_bulletReloadTimer = 0;
+						}
 					}
 				}
+				m_velocity = sf::Vector2f(0, 0);
 			}
-			m_velocity = sf::Vector2f(0, 0);
 		}
+		// Suicide Bomber
+		else if (m_state == FormationC)
+		{
+			m_velocity = playerPos - m_animatedSprite.getPosition();
+			float distance = Helper::Length(m_velocity);
+			m_velocity = Helper::Normalize(m_velocity) * 1000.f;
+		}
+		else if (m_state == Dying)
+		{
+			if (m_animatedSprite.getFrame() > 3)
+			{
+				m_alive = false;
+			}
+		}
+		m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
+		m_animatedSprite.update(deltaTime);
 	}
-	// Suicide Bomber
-	else if (m_state == FormationC)
-	{
-		m_velocity = playerPos - m_animatedSprite.getPosition();
-		float distance = Helper::Length(m_velocity);
-		m_velocity = Helper::Normalize(m_velocity) * 1000.f;
-	}
-	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
-	m_animatedSprite.update(deltaTime);
 }
 
 
@@ -148,6 +162,22 @@ AnimatedSprite Mutant::draw()
 
 void Mutant::setDamage(int damage)
 {
+	m_health -= damage;
+	if (m_health <= 0)
+	{
+		if (m_currAnimation != &m_animations[Anims::Explode])
+		{
+			Score::Instance()->increaseScore(50);
+		}
+
+		m_state = Dying;
+		m_currAnimation = &m_animations[Anims::Explode];
+		m_animatedSprite.setOrigin(40, 40);
+		m_animatedSprite.setScale(2, 2);
+		m_health = 0;
+		m_animatedSprite.play(*m_currAnimation);
+		m_velocity = sf::Vector2f(0, 0);
+	}
 }
 
 int Mutant::getHealth()
@@ -168,6 +198,11 @@ bool Mutant::isAlive()
 void Mutant::setAlive(bool alive)
 {
 	m_alive = alive;
+}
+
+int Mutant::getCurrentState()
+{
+	return m_state;
 }
 
 //void Mutant::applyForce(Pvector force)

@@ -234,17 +234,6 @@ void GameScene::draw()
 
 	if (!m_playRipple)
 	{
-		for (int i = 0; i < MAX_BULLETS; i++)
-		{
-			if (bulletCopy[i]->isEnabled())
-			{
-				window.draw(bulletCopy.at(i)->draw());
-				if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
-				{
-					window.draw(bulletCopy[i]->drawMissileCollider());
-				}
-			}
-		}
 		for (int i = 0; i < m_nests.size(); ++i)
 		{
 			if (m_nests[i]->isAlive() == true)
@@ -285,7 +274,17 @@ void GameScene::draw()
 				window.draw(m_healthPacks[i]->draw());
 			}
 		}
-		
+		for (int i = 0; i < MAX_BULLETS; i++)
+		{
+			if (bulletCopy[i]->isEnabled())
+			{
+				window.draw(bulletCopy.at(i)->draw());
+				if (bulletCopy[i]->getType() == bulletCopy[i]->Missile)
+				{
+					window.draw(bulletCopy[i]->drawMissileCollider());
+				}
+			}
+		}
 	}
 		
 	//// DEBUGGING CODE
@@ -361,7 +360,6 @@ bool GameScene::update(sf::Time deltaTime)
 			m_mutantSize.push_back(i);
 		}
 	}
-	std::cout << m_mutantSize.size();
 
 	if (!m_playShockwave && !m_playRipple && m_playo->getSmartBombState() == m_playo->Fired)
 		setupShockwave(m_currPlayerPos);
@@ -498,7 +496,7 @@ bool GameScene::update(sf::Time deltaTime)
 		}
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_healthPacks, &m_nests, &m_aliens, &m_astronauts);
+	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_healthPacks, &m_nests, &m_aliens, &m_astronauts, &m_mutants);
 	return true;
 }
 // Event Input

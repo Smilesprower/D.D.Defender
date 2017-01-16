@@ -14,7 +14,7 @@ CollisionManager::~CollisionManager()
 {
 }
 
-void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Obstacle*> *healthPacks, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, std::vector<Astronaut*> *astronauts)
+void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds, std::vector<Obstacle*> *healthPacks, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, std::vector<Astronaut*> *astronauts, std::vector<Mutant*> *mutants)
 {
 	for (int i = 0; i < bullets->size(); i++)
 	{
@@ -31,7 +31,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			}
 		}
 		// If its a alien bullet
-		if (bullets->at(i)->isEnabled() && bullets->at(i)->getType() == bullets->at(i)->Ball)
+		if (bullets->at(i)->isEnabled() && (bullets->at(i)->getType() == bullets->at(i)->Ball  || bullets->at(i)->getType() == bullets->at(i)->Ball2))
 		{
 			int dx = player->getPosition().x - bullets->at(i)->getPosition().x;
 			int dy = player->getPosition().y - bullets->at(i)->getPosition().y;
@@ -73,6 +73,22 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 					{
 						bullets->at(i)->setEnabled(false);
 						aliens->at(j)->setDamage(20);
+					}
+				}
+			}
+
+			// if bullet collides with a mutant enemy
+			for (int j = 0; j < mutants->size(); j++)
+			{
+				if (mutants->at(j)->isAlive())
+				{
+					int dx = bullets->at(i)->getPosition().x - mutants->at(j)->getPosition().x;
+					int dy = bullets->at(i)->getPosition().y - mutants->at(j)->getPosition().y;
+					int distanceSquared = (dx*dx) + (dy*dy);
+					if (distanceSquared < ((bullets->at(i)->getRadius() + mutants->at(j)->getRadius()) * (bullets->at(i)->getRadius() + mutants->at(j)->getRadius())))
+					{
+						bullets->at(i)->setEnabled(false);
+						mutants->at(j)->setDamage(10);
 					}
 				}
 			}
@@ -134,6 +150,21 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 				nests->at(i)->setDamage(20);
 			}
 		}
+	}
+	for (int i = 0; i < mutants->size(); i++)
+	{
+		if (mutants->at(i)->getCurrentState() != 1 && mutants->at(i)->isAlive())
+		{
+			int dx = player->getPosition().x - mutants->at(i)->getPosition().x;
+			int dy = player->getPosition().y - mutants->at(i)->getPosition().y;
+			int distanceSquared = (dx*dx) + (dy*dy);
+			if (distanceSquared < ((player->getRadius() + mutants->at(i)->getRadius()) * (player->getRadius() + mutants->at(i)->getRadius())))
+			{
+				player->setDamage(50);
+				mutants->at(i)->setDamage(100);
+			}
+		}
+
 	}
 	for (int i = 0; i < astronauts->size(); i++)
 	{

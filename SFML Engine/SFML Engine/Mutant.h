@@ -16,7 +16,7 @@ public:
 	enum States
 	{
 		Start, 
-
+		Dying,
 		FormationA,
 		FormationB,
 		FormationC,
@@ -39,6 +39,8 @@ public:
 	bool isAlive();
 	void setAlive(bool alive);
 
+	int getCurrentState();
+
 	//void applyForce(Pvector force);
 	//Pvector seek(sf::Vector2f playerpos);
 	//Pvector getVelocity();
@@ -50,7 +52,7 @@ private:
 
 
 	int NUM_OF_ANIMS = 3;
-	const int COLLISION_RADIUS = 150;
+	const int COLLISION_RADIUS = 50;
 	const int BULLET_COOLDOWN_TIMER = 2;
 	const int BULLET_RANGE = 700;
 	float m_bulletReloadTimer;
