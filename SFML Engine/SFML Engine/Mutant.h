@@ -1,6 +1,8 @@
 #pragma once
 #include "AnimatedSprite.h"
+#include "Pvector.h"
 #include "BulletManager.h"
+#include <math.h>
 class Mutant
 {
 public:
@@ -12,7 +14,7 @@ public:
 	enum States
 	{
 		Start, 
-		Seek,
+
 		FormationA,
 		FormationB,
 		FormationC,
@@ -21,7 +23,7 @@ public:
 	Mutant(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBounds);
 	~Mutant();
 
-	void update(sf::Time deltaTime, sf::Vector2f playerPos);
+	void update(Mutant *mutant, int mutantSize, bool leader,int currentMutant, sf::Time deltaTime, sf::Vector2f playerPos);
 	void init(sf::Vector2f pos);
 	void checkBounds();
 	sf::Vector2f getPosition();
@@ -31,11 +33,20 @@ public:
 	void setDamage(int damage);
 	int getHealth();
 	int getRadius();
+
 	bool isAlive();
 	void setAlive(bool alive);
 
-
+	void applyForce(Pvector force);
+	Pvector seek(sf::Vector2f playerpos);
+	Pvector getVelocity();
 private:
+	float m_maxSpeed, m_maxForce;
+	Pvector m_location;
+	Pvector m_velocity;
+	Pvector m_acceleration;
+
+
 	int NUM_OF_ANIMS = 3;
 	const int COLLISION_RADIUS = 150;
 	const int BULLET_COOLDOWN_TIMER = 2;
@@ -46,8 +57,8 @@ private:
 	int m_state;
 	sf::Vector2i m_screenBounds;
 	sf::Vector2i m_worldBounds;
-	sf::Vector2f m_velocity;
-	sf::Vector2f m_acceleration;
+	//sf::Vector2f m_velocity;
+	//sf::Vector2f m_acceleration;
 
 	sf::Time m_frameTime;
 	AnimatedSprite m_animatedSprite;

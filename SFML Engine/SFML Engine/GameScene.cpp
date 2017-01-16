@@ -51,6 +51,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	for (int i = 0; i < NUM_OF_ALIENS; i++)
 	{
 		m_mutants.push_back(new Mutant(context.textures->get(Textures::Astro), m_screenSize, m_worldSize));
+		m_mutants[i]->init(sf::Vector2f(0, 0));
 	}
 	for (int i = 0; i < NUM_OF_ALIENS; i++)
 	{
@@ -348,6 +349,18 @@ bool GameScene::update(sf::Time deltaTime)
 	}
 	std::vector<Bullet*> bullets = BulletManager::Instance()->getBullets();
 
+	int leader = -1;
+	std::vector<int> m_mutantSize;
+	for (int i = 0; i < NUM_OF_ALIENS; i++)
+	{
+		if (m_mutants[i]->isAlive())
+		{
+			if (leader < 0)
+				leader = i;
+			m_mutantSize.push_back(i);
+		}
+	}
+
 	if (!m_playShockwave && !m_playRipple && m_playo->getSmartBombState() == m_playo->Fired)
 		setupShockwave(m_currPlayerPos);
 	else if (!m_playRipple && !m_playShockwave && m_playo->getTeleport() == m_playo->Fired)
@@ -441,13 +454,15 @@ bool GameScene::update(sf::Time deltaTime)
 				}
 			}
 		}
-
+		for (int i = 0; i < m_mutantSize.size(); i++)
+		{
+			if (i == leader)
+				m_mutants[i]->update(m_mutants[leader], m_mutantSize.size() -1, true, i,  deltaTime, m_currPlayerPos);
+			else
+				m_mutants[i]->update(m_mutants[leader], m_mutantSize.size() -1, false, i,  deltaTime, m_currPlayerPos);
+		}
 		for (int i = 0; i < NUM_OF_ALIENS; i++)
 		{
-			if (m_mutants[i]->isAlive())
-			{
-				m_mutants[i]->update(deltaTime, m_currPlayerPos);
-			}
 			if(m_aliens[i]->run(&m_aliens, deltaTime, m_currPlayerPos))
 			{
 				for (int j = 0; j < NUM_OF_ALIENS; j++)
