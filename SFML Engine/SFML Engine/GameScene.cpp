@@ -63,7 +63,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	for (int i = 0; i < 3; i++)
 	{
 		m_nests.push_back(new Nest(context.textures->get(Textures::Astro), m_worldSize));
-		m_nests[i]->init(sf::Vector2f(2000 * i, 200));
+		m_nests[i]->init(sf::Vector2f(6000 * i, 200));
 	}
 	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 	{
@@ -86,7 +86,8 @@ GameScene::GameScene(SceneStack& stack, Context context)
 		m_healthPacks[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(i * 1920, rand() % 800 + 100), m_worldSize, 1);
 	}
 	//	Init Playo
-	m_playo->init(context.textures->get(Textures::Astro), sf::Vector2f(m_halfScreenSize.x, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
+	m_playo->init(context.textures->get(Textures::Astro), sf::Vector2f(m_worldSize.y * 0.5f, m_halfScreenSize.y), sf::Vector2i(m_worldSize.x + m_screenSize.x, m_worldSize.y - m_screenSize.x));
+
 	// PLAYER RADAR
 	m_radarScreen.setOutlineColor(sf::Color::White);
 	m_radarScreen.setOutlineThickness(2);
