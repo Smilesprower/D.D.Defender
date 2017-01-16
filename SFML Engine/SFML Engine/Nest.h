@@ -9,6 +9,7 @@ class Nest
 	{
 		Default,
 		Explode,
+		Electricity,
 	};
 	enum States
 	{
@@ -30,6 +31,7 @@ public:
 	sf::Vector2f getPosition();
 	void setPosition(sf::Vector2f position);
 	AnimatedSprite draw();
+	AnimatedSprite drawElectricity();
 	sf::CircleShape drawEvade();
 	sf::CircleShape drawFire();
 
@@ -66,7 +68,10 @@ private:
 
 	sf::Time m_frameTime;
 	AnimatedSprite m_animatedSprite;
+	AnimatedSprite m_animatedSprite1;
 	std::vector<Animation> m_animations;
 	Animation* m_currAnimation;
+	std::vector<Animation> m_animations1;
+	Animation* m_currAnimation1;
 };
 

@@ -7,15 +7,22 @@ Nest::Nest(sf::Texture & tex, sf::Vector2i screenBounds)
 	, m_state(Wander)
 	, m_direction(Left)
 	, m_animations(NUM_OF_ANIMS)
+	, m_animations1(1)
 	, m_wanderTime(0)
 	, m_missileReloadTimer(COOLDOWN_TIMER)
 	, m_health(MAX_HEALTH)
 	, m_animatedSprite(sf::seconds(0.15f), true, false)
+	, m_animatedSprite1(sf::seconds(0.15f), true, true)
 	, m_spawnTimer(0)
 	, m_screenBounds(sf::Vector2i(screenBounds.x, screenBounds.y + abs(screenBounds.x)))
 {
 	m_animations[Anims::Default].setSpriteSheet(tex);
 	m_animations[Anims::Default].addFrame(sf::IntRect(0, 531, 431, 464));
+
+	m_animations1[0].setSpriteSheet(tex);
+	m_animations1[0].addFrame(sf::IntRect(640, 634, 360, 95));
+	m_animations1[0].addFrame(sf::IntRect(640, 754, 360, 95));
+	m_animations1[0].addFrame(sf::IntRect(640, 879, 360, 95));
 
 	m_animations[Anims::Explode].setSpriteSheet(tex);
 	m_animations[Anims::Explode].addFrame(sf::IntRect(0, 144, 80, 80));
@@ -29,6 +36,10 @@ Nest::Nest(sf::Texture & tex, sf::Vector2i screenBounds)
 
 	m_currAnimation = &m_animations[Anims::Default];
 	m_animatedSprite.play(*m_currAnimation);
+
+	m_currAnimation1 = &m_animations1[0];
+	m_animatedSprite1.play(*m_currAnimation1);
+
 }
 
 
@@ -106,6 +117,8 @@ bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 		m_velocity.x *= m_direction;
 		m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 		m_animatedSprite.update(deltaTime);
+		m_animatedSprite1.setPosition(m_animatedSprite.getPosition().x, m_animatedSprite.getPosition().y + 100);
+		m_animatedSprite1.update(deltaTime);
 		checkBounds();
 		m_evadeRadius.setPosition(m_animatedSprite.getPosition());
 		m_missileRadius.setPosition(m_animatedSprite.getPosition());
@@ -127,6 +140,8 @@ void Nest::init(sf::Vector2f pos)
 
 	m_animatedSprite.setPosition(pos);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
+
+	m_animatedSprite1.setOrigin(m_animatedSprite1.getLocalBounds().width * 0.5f, m_animatedSprite1.getLocalBounds().height * 0.5f);
 
 	// DEBUGGING CODE
 	/////////////////////////////////////////////
@@ -169,6 +184,11 @@ void Nest::setPosition(sf::Vector2f position)
 AnimatedSprite Nest::draw()
 {
 	return m_animatedSprite;
+}
+
+AnimatedSprite Nest::drawElectricity()
+{
+	return m_animatedSprite1;
 }
 
 sf::CircleShape Nest::drawEvade()

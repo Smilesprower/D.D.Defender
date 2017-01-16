@@ -249,6 +249,7 @@ void GameScene::draw()
 		{
 			if (m_nests[i]->isAlive() == true)
 			{
+				window.draw(m_nests[i]->drawElectricity());
 				window.draw(m_nests[i]->draw());
 			}
 		}
