@@ -166,15 +166,15 @@ void GameScene::draw()
 	
 	// Draw game entities
 	if (m_playShockwave)
-		window.draw(m_sprite, m_shockwave);
-	else if(m_playRipple)
-		window.draw(m_sprite, m_ripple);
-	else
 	{
-		window.draw(m_sprite);
+		window.draw(m_sprite, m_shockwave);
 	}
-		window.draw(m_playo->draw());
-
+	else if (m_playRipple)
+	{
+		window.draw(m_sprite, m_ripple);
+	}
+	else
+		window.draw(m_sprite);
 	if (!m_playRipple)
 	{
 		for (int i = 0; i < m_nests.size(); ++i)
@@ -228,6 +228,7 @@ void GameScene::draw()
 				}
 			}
 		}
+		window.draw(m_playo->draw());
 	}
 		
 	//// DEBUGGING CODE

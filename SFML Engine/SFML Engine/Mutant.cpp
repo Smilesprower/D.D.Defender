@@ -65,7 +65,7 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 			if (m_animatedSprite.getPosition().y > 200)
 			{
 				m_velocity = sf::Vector2f(0, 0);
-				m_state = FormationA;
+				m_state = FormationB;
 			}
 		}
 		else if (m_state == FormationA)
@@ -86,8 +86,8 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 			}
 
 			sf::Vector2f targetSlot;
-			int npcRadius = 100;
-			int closeEnough = 100;
+			int npcRadius = 175;
+			int closeEnough = 175;
 			float angleAroundCircle = 0.0;
 
 			angleAroundCircle = ((float)currentMutant) / (mutantSize);

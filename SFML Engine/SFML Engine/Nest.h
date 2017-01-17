@@ -45,7 +45,7 @@ private:
 	const int COOLDOWN_TIMER = 10;
 	const int NUM_OF_ANIMS = 2;
 	const int MAX_VELOCITY = 200;
-	const int MAX_EVADE_VELOCITY = 400;
+	const int MAX_EVADE_VELOCITY = 300;
 	const int MAX_HEALTH = 500;
 	const int TIME_TO_SWITCH_DIRECTION = 10;
 	const int MISSILE_RANGE = 750;

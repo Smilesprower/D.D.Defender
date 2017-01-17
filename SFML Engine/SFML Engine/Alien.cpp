@@ -41,7 +41,7 @@ void Alien::init(sf::Vector2f position)
 {
 	m_currentState = Flock;
 	m_alive = true;
-	m_velocity = sf::Vector2f(rand() % 101 + (-50) , rand() % 101 + (-50)); // Allows for range of -2 -> 2
+	m_velocity = sf::Vector2f(rand() % 201 + (-100) , rand() % 201 + (-100)); // Allows for range of -2 -> 2
 	m_position = position;
 	m_health = 100;
 
@@ -55,7 +55,7 @@ void Alien::init(sf::Vector2f position)
 
 sf::Vector2f Alien::separation(std::vector<Alien*>* alien, int index)
 {
-	sf::Vector2f steer;
+	sf::Vector2f steer{ 0,0 };
 	int neighbourCount = 0;
 	float neighbordist = 175;
 
@@ -86,13 +86,13 @@ sf::Vector2f Alien::separation(std::vector<Alien*>* alien, int index)
 
 sf::Vector2f Alien::alignment(std::vector<Alien*>* alien, int index)
 {
-	sf::Vector2f vel;
+	sf::Vector2f vel{ 0,0 };
 	int neighbourCount = 0;
 	float neighbordist = 200;
 
 	for (int i = 0; i < alien->size(); i++)
 	{
-		if (m_alive && m_currentState == Flock )
+		if (m_alive && m_currentState == Flock)
 		{
 			if (Helper::Distance(m_animatedSprite.getPosition(), alien->at(i)->getPosition()) < neighbordist)
 			{
@@ -114,7 +114,7 @@ sf::Vector2f Alien::alignment(std::vector<Alien*>* alien, int index)
 
 sf::Vector2f Alien::cohesion(std::vector<Alien*>* alien, int index)
 {
-	sf::Vector2f pos;
+	sf::Vector2f pos{ 0,0 };
 	int neighbourCount = 0;
 	float neighbordist = 200;
 
