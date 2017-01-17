@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['falling',['Falling',['../class_astronaut.html#ac8bdb05a39112336728de09ce0428c9fa3318318cb25512762266bbc2a0cf3213',1,'Astronaut']]],
-  ['falling_5fabducted',['Falling_Abducted',['../class_astronaut.html#a36c4be46e5ecdf54256228b3f37d0ba3af300bb1b0243d51a6a6e6ac48416b043',1,'Astronaut']]],
-  ['flee',['Flee',['../class_astronaut.html#ac8bdb05a39112336728de09ce0428c9fa5cfbf42b26cd3105e16fdebca0e00f00',1,'Astronaut']]],
-  ['fontholder',['FontHolder',['../_resource_identifiers_8h.html#ac2733d29d4a4d26a739742097fc51ede',1,'ResourceIdentifiers.h']]],
-  ['fonts',['Fonts',['../namespace_fonts.html',1,'Fonts'],['../struct_scene_1_1_context.html#ae8a09bf6b99a1081940f2f2d73db0272',1,'Scene::Context::fonts()']]]
+  ['explode',['Explode',['../class_alien.html#a46333b42b6e6dff962c3236b7012ec8ca04a2fe3761bed6d947586432c4747a1c',1,'Alien::Explode()'],['../class_mutant.html#a0b6d537f129ebc093f65e745a25eaf6aa1883289f1eacf499d4142bf779202949',1,'Mutant::Explode()']]],
+  ['explosion',['Explosion',['../class_bullet.html#adec43a70f99a7264217f71d4299796c3a28fbf11ec068c08b1eec3f886d0be8b5',1,'Bullet::Explosion()'],['../class_bullet_manager.html#af49df9c4e5e7d87c13f2660851090580a1e6c03478820ae36f239253d3b389268',1,'BulletManager::Explosion()']]]
 ];

@@ -1,0 +1,99 @@
+\hypertarget{class_a_i}{}\section{AI Class Reference}
+\label{class_a_i}\index{AI@{AI}}
+
+
+{\ttfamily \#include $<$A\+I.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_a_i_a66a8645f0c27285cd75346f2c2bbfb14}{$\sim$\+AI} ()
+\item 
+\hyperlink{class_a_i_a64ec60281e9eb8496f16525615db54b7}{AI} ()
+\item 
+virtual void \hyperlink{class_a_i_ac80497af3767e78d7167317f9f7708d3}{Init} ()=0
+\item 
+virtual void \hyperlink{class_a_i_a2e99f0dce9e1daa938ab4604dabb60f0}{Update} (sf\+::\+Time p\+Time, sf\+::\+Vector2f p\+Target\+Position)=0
+\item 
+virtual \hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_a_i_ae6dd19104a86c350d521ccd5d3c928c5}{draw} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+sf\+::\+Vector2f \hyperlink{class_a_i_a4bf027954217b1a88e7aeb154e569be8}{m\+\_\+position}
+\item 
+sf\+::\+Vector2f \hyperlink{class_a_i_a0cdbc2caf054dd4dce2d51357ee98d17}{m\+\_\+velocity}
+\item 
+sf\+::\+Vector2f \hyperlink{class_a_i_a2527c9a48210634111f73ed4695f31c8}{m\+\_\+acceleration}
+\item 
+\hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_a_i_a1110fa8ed47f193fb4c035ea92ac39dc}{m\+\_\+sprite}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_a_i_a66a8645f0c27285cd75346f2c2bbfb14}\label{class_a_i_a66a8645f0c27285cd75346f2c2bbfb14}} 
+\index{AI@{AI}!````~AI@{$\sim$\+AI}}
+\index{````~AI@{$\sim$\+AI}!AI@{AI}}
+\subsubsection{\texorpdfstring{$\sim$\+A\+I()}{~AI()}}
+{\footnotesize\ttfamily A\+I\+::$\sim$\+AI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_a_i_a64ec60281e9eb8496f16525615db54b7}\label{class_a_i_a64ec60281e9eb8496f16525615db54b7}} 
+\index{AI@{AI}!AI@{AI}}
+\index{AI@{AI}!AI@{AI}}
+\subsubsection{\texorpdfstring{A\+I()}{AI()}}
+{\footnotesize\ttfamily A\+I\+::\+AI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_a_i_ae6dd19104a86c350d521ccd5d3c928c5}\label{class_a_i_ae6dd19104a86c350d521ccd5d3c928c5}} 
+\index{AI@{AI}!draw@{draw}}
+\index{draw@{draw}!AI@{AI}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual \hyperlink{class_animated_sprite}{Animated\+Sprite} A\+I\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{class_a_i_ac80497af3767e78d7167317f9f7708d3}\label{class_a_i_ac80497af3767e78d7167317f9f7708d3}} 
+\index{AI@{AI}!Init@{Init}}
+\index{Init@{Init}!AI@{AI}}
+\subsubsection{\texorpdfstring{Init()}{Init()}}
+{\footnotesize\ttfamily virtual void A\+I\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\mbox{\Hypertarget{class_a_i_a2e99f0dce9e1daa938ab4604dabb60f0}\label{class_a_i_a2e99f0dce9e1daa938ab4604dabb60f0}} 
+\index{AI@{AI}!Update@{Update}}
+\index{Update@{Update}!AI@{AI}}
+\subsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily virtual void A\+I\+::\+Update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{p\+Time,  }\item[{sf\+::\+Vector2f}]{p\+Target\+Position }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_a_i_a2527c9a48210634111f73ed4695f31c8}\label{class_a_i_a2527c9a48210634111f73ed4695f31c8}} 
+\index{AI@{AI}!m\+\_\+acceleration@{m\+\_\+acceleration}}
+\index{m\+\_\+acceleration@{m\+\_\+acceleration}!AI@{AI}}
+\subsubsection{\texorpdfstring{m\+\_\+acceleration}{m\_acceleration}}
+{\footnotesize\ttfamily sf\+::\+Vector2f A\+I\+::m\+\_\+acceleration\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_a_i_a4bf027954217b1a88e7aeb154e569be8}\label{class_a_i_a4bf027954217b1a88e7aeb154e569be8}} 
+\index{AI@{AI}!m\+\_\+position@{m\+\_\+position}}
+\index{m\+\_\+position@{m\+\_\+position}!AI@{AI}}
+\subsubsection{\texorpdfstring{m\+\_\+position}{m\_position}}
+{\footnotesize\ttfamily sf\+::\+Vector2f A\+I\+::m\+\_\+position\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_a_i_a1110fa8ed47f193fb4c035ea92ac39dc}\label{class_a_i_a1110fa8ed47f193fb4c035ea92ac39dc}} 
+\index{AI@{AI}!m\+\_\+sprite@{m\+\_\+sprite}}
+\index{m\+\_\+sprite@{m\+\_\+sprite}!AI@{AI}}
+\subsubsection{\texorpdfstring{m\+\_\+sprite}{m\_sprite}}
+{\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} A\+I\+::m\+\_\+sprite\hspace{0.3cm}{\ttfamily [protected]}}
+
+\mbox{\Hypertarget{class_a_i_a0cdbc2caf054dd4dce2d51357ee98d17}\label{class_a_i_a0cdbc2caf054dd4dce2d51357ee98d17}} 
+\index{AI@{AI}!m\+\_\+velocity@{m\+\_\+velocity}}
+\index{m\+\_\+velocity@{m\+\_\+velocity}!AI@{AI}}
+\subsubsection{\texorpdfstring{m\+\_\+velocity}{m\_velocity}}
+{\footnotesize\ttfamily sf\+::\+Vector2f A\+I\+::m\+\_\+velocity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+F\+M\+L Engine/\hyperlink{_a_i_8h}{A\+I.\+h}\item 
+S\+F\+M\+L Engine/\hyperlink{_a_i_8cpp}{A\+I.\+cpp}\end{DoxyCompactItemize}

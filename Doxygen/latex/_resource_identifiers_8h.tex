@@ -1,5 +1,5 @@
-\hypertarget{_resource_identifiers_8h}{}\section{S\+F\+ML Engine/\+S\+F\+ML Engine/\+Resource\+Identifiers.h File Reference}
-\label{_resource_identifiers_8h}\index{S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\+Resource\+Identifiers.\+h@{S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\+Resource\+Identifiers.\+h}}
+\hypertarget{_resource_identifiers_8h}{}\section{S\+F\+ML Engine/\+Resource\+Identifiers.h File Reference}
+\label{_resource_identifiers_8h}\index{S\+F\+M\+L Engine/\+Resource\+Identifiers.\+h@{S\+F\+M\+L Engine/\+Resource\+Identifiers.\+h}}
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -37,15 +37,20 @@ typedef \hyperlink{class_resource_holder}{Resource\+Holder}$<$ sf\+::\+Sound\+Bu
 enum \hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5}{Textures\+::\+ID} \{ \newline
 \hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5aa7eca1b35d39c70635eb67e8d21dc819}{Textures\+::\+Playo}, 
 \hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5a61cbf1132258cda586a6130a03e804c9}{Textures\+::\+Astro}, 
+\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5ae0de724966274dc241ef3de7eadc396d}{Textures\+::\+Nest}, 
 \hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5a52aa97e3cdb226168982426b7ab0aa2d}{Textures\+::\+Game\+Background}, 
-\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5aa39a5e3bca9832daaaa9cbf31b8961f9}{Textures\+::\+Pause\+Background}, 
 \newline
-\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5a7b0d808a2186b3245e46459706c4bb7f}{Textures\+::\+Pause\+Background\+Opaque}, 
+\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5aa39a5e3bca9832daaaa9cbf31b8961f9}{Textures\+::\+Pause\+Background}, 
 \hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5aa7d0eb38e6c55469c163efe01cb88695}{Textures\+::\+Main\+Menu\+BG}, 
-\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5ac583013e9c40cfacce00147270928966}{Textures\+::\+Button}
+\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5a24f167674de87c1108c92fffd3837cd0}{Textures\+::\+Game\+Over\+BG}, 
+\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5ac583013e9c40cfacce00147270928966}{Textures\+::\+Button}, 
+\newline
+\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5a34760cfde35030b2a2e35c8e81d6602a}{Textures\+::\+H\+UD}, 
+\hyperlink{namespace_textures_a2cfe2099537d4e80b08437b4978301a5aa9db10d857958d53d192c3165dead752}{Textures\+::\+Gas\+Cloud}
  \}
 \item 
-enum \hyperlink{namespace_shaders_ac69c86b4e324fdda75990b34e9a1dc7e}{Shaders\+::\+ID} \{ \hyperlink{namespace_shaders_ac69c86b4e324fdda75990b34e9a1dc7eaf02a64b9b6206367e82aae811cd52d1b}{Shaders\+::\+Shockwave}
+enum \hyperlink{namespace_shaders_ac69c86b4e324fdda75990b34e9a1dc7e}{Shaders\+::\+ID} \{ \hyperlink{namespace_shaders_ac69c86b4e324fdda75990b34e9a1dc7eaf02a64b9b6206367e82aae811cd52d1b}{Shaders\+::\+Shockwave}, 
+\hyperlink{namespace_shaders_ac69c86b4e324fdda75990b34e9a1dc7eaa670629dfa701b0829eec82754034c35}{Shaders\+::\+Ripple}
  \}
 \item 
 enum \hyperlink{namespace_fonts_a240717ec0dc75e98501af734a02c396d}{Fonts\+::\+ID} \{ \hyperlink{namespace_fonts_a240717ec0dc75e98501af734a02c396dab947c11fcf1d458feb7709e9c3733e65}{Fonts\+::\+P\+S2P}
@@ -60,25 +65,25 @@ enum \hyperlink{namespace_music_ad5e0c8c2e2e7bdcbffbb125051531b86}{Music\+::\+ID
 
 
 \subsection{Typedef Documentation}
-\hypertarget{_resource_identifiers_8h_ac2733d29d4a4d26a739742097fc51ede}{}\label{_resource_identifiers_8h_ac2733d29d4a4d26a739742097fc51ede} 
+\mbox{\Hypertarget{_resource_identifiers_8h_ac2733d29d4a4d26a739742097fc51ede}\label{_resource_identifiers_8h_ac2733d29d4a4d26a739742097fc51ede}} 
 \index{Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}!Font\+Holder@{Font\+Holder}}
 \index{Font\+Holder@{Font\+Holder}!Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}}
 \subsubsection{\texorpdfstring{Font\+Holder}{FontHolder}}
 {\footnotesize\ttfamily typedef \hyperlink{class_resource_holder}{Resource\+Holder}$<$sf\+::\+Font, \hyperlink{namespace_fonts_a240717ec0dc75e98501af734a02c396d}{Fonts\+::\+ID}$>$ \hyperlink{_resource_identifiers_8h_ac2733d29d4a4d26a739742097fc51ede}{Font\+Holder}}
 
-\hypertarget{_resource_identifiers_8h_a4706ce8b6fb3fa40eb84ae53d373e07a}{}\label{_resource_identifiers_8h_a4706ce8b6fb3fa40eb84ae53d373e07a} 
+\mbox{\Hypertarget{_resource_identifiers_8h_a4706ce8b6fb3fa40eb84ae53d373e07a}\label{_resource_identifiers_8h_a4706ce8b6fb3fa40eb84ae53d373e07a}} 
 \index{Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}!Shader\+Holder@{Shader\+Holder}}
 \index{Shader\+Holder@{Shader\+Holder}!Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}}
 \subsubsection{\texorpdfstring{Shader\+Holder}{ShaderHolder}}
 {\footnotesize\ttfamily typedef \hyperlink{class_resource_holder}{Resource\+Holder}$<$sf\+::\+Shader, \hyperlink{namespace_shaders_ac69c86b4e324fdda75990b34e9a1dc7e}{Shaders\+::\+ID}$>$ \hyperlink{_resource_identifiers_8h_a4706ce8b6fb3fa40eb84ae53d373e07a}{Shader\+Holder}}
 
-\hypertarget{_resource_identifiers_8h_a25bbea8ba43bc0b029a11f80acd7b145}{}\label{_resource_identifiers_8h_a25bbea8ba43bc0b029a11f80acd7b145} 
+\mbox{\Hypertarget{_resource_identifiers_8h_a25bbea8ba43bc0b029a11f80acd7b145}\label{_resource_identifiers_8h_a25bbea8ba43bc0b029a11f80acd7b145}} 
 \index{Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}!Sound\+Buffer\+Holder@{Sound\+Buffer\+Holder}}
 \index{Sound\+Buffer\+Holder@{Sound\+Buffer\+Holder}!Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}}
 \subsubsection{\texorpdfstring{Sound\+Buffer\+Holder}{SoundBufferHolder}}
 {\footnotesize\ttfamily typedef \hyperlink{class_resource_holder}{Resource\+Holder}$<$sf\+::\+Sound\+Buffer, \hyperlink{namespace_sound_effect_a11ffbf1eb89e85a34cbfd5a59b2cd9cb}{Sound\+Effect\+::\+ID}$>$ \hyperlink{_resource_identifiers_8h_a25bbea8ba43bc0b029a11f80acd7b145}{Sound\+Buffer\+Holder}}
 
-\hypertarget{_resource_identifiers_8h_a96220f9135333a0209f9367a28b7da13}{}\label{_resource_identifiers_8h_a96220f9135333a0209f9367a28b7da13} 
+\mbox{\Hypertarget{_resource_identifiers_8h_a96220f9135333a0209f9367a28b7da13}\label{_resource_identifiers_8h_a96220f9135333a0209f9367a28b7da13}} 
 \index{Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}!Texture\+Holder@{Texture\+Holder}}
 \index{Texture\+Holder@{Texture\+Holder}!Resource\+Identifiers.\+h@{Resource\+Identifiers.\+h}}
 \subsubsection{\texorpdfstring{Texture\+Holder}{TextureHolder}}

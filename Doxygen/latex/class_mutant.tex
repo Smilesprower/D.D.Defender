@@ -1,0 +1,196 @@
+\hypertarget{class_mutant}{}\section{Mutant Class Reference}
+\label{class_mutant}\index{Mutant@{Mutant}}
+
+
+{\ttfamily \#include $<$Mutant.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_mutant_a0b6d537f129ebc093f65e745a25eaf6a}{Anims} \{ \hyperlink{class_mutant_a0b6d537f129ebc093f65e745a25eaf6aa73a5536e612268909b171724bbb2a002}{Default}, 
+\hyperlink{class_mutant_a0b6d537f129ebc093f65e745a25eaf6aa1883289f1eacf499d4142bf779202949}{Explode}
+ \}
+\item 
+enum \hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209}{States} \{ \newline
+\hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209a8d0b9823bfe10057d91ac5222ef86bfc}{Start}, 
+\hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209ae11da7182d95dacee973bbb21c0693ad}{Dying}, 
+\hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209a7fab13c7c339486920f8372a69f1e541}{FormationA}, 
+\hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209af42129159ef9e4228065426e0db479e7}{FormationB}, 
+\newline
+\hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209ae5caa138a87f21ff544dac38f1475eb5}{FormationC}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_mutant_a2c80776724cca166b639e5e433deda42}{Mutant} (sf\+::\+Texture \&tex, sf\+::\+Vector2i screen\+Bounds, sf\+::\+Vector2i world\+Bounds)
+\item 
+\hyperlink{class_mutant_a03dc2cf4d08ea08bea6cd4ded784dfc1}{$\sim$\+Mutant} ()
+\item 
+void \hyperlink{class_mutant_aa334f3574bc0a367e0cc722a900b35da}{update} (int mutant\+Size, int current\+Mutant, sf\+::\+Time delta\+Time, sf\+::\+Vector2f player\+Pos, sf\+::\+Vector2f player\+Vel)
+\item 
+void \hyperlink{class_mutant_a43fe449ecbb708a19095cd030b399cee}{init} (sf\+::\+Vector2f pos)
+\item 
+void \hyperlink{class_mutant_a46424e3134923fed261aec4cfeee43d5}{check\+Bounds} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_mutant_ab20f22800bae3c7587beb641248412ac}{get\+Position} ()
+\item 
+void \hyperlink{class_mutant_a10a34b2ddc9177b0da17fa8bc77d48c7}{set\+Position} (sf\+::\+Vector2f position)
+\item 
+\hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_mutant_ad085db34f2e45e82b6b7bb6bfc4be1c7}{draw} ()
+\item 
+void \hyperlink{class_mutant_a7632057c37a56ed27df3d692b5357c6a}{set\+Damage} (int damage)
+\item 
+int \hyperlink{class_mutant_ae80452778ea58cf79ff76a1a481712af}{get\+Health} ()
+\item 
+int \hyperlink{class_mutant_afb53c9562d5e98d5f6749024d09d132e}{get\+Radius} ()
+\item 
+bool \hyperlink{class_mutant_ab92626e4168187b7bf49073e0626e071}{is\+Alive} ()
+\item 
+void \hyperlink{class_mutant_ae31d5187569549ce0c6346c8bef31bd4}{set\+Alive} (bool alive)
+\item 
+int \hyperlink{class_mutant_a07b88089382dcc84f261ee3d3d9a009b}{get\+Current\+State} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_mutant_a0b6d537f129ebc093f65e745a25eaf6a}\label{class_mutant_a0b6d537f129ebc093f65e745a25eaf6a}} 
+\index{Mutant@{Mutant}!Anims@{Anims}}
+\index{Anims@{Anims}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{Anims}{Anims}}
+{\footnotesize\ttfamily enum \hyperlink{class_mutant_a0b6d537f129ebc093f65e745a25eaf6a}{Mutant\+::\+Anims}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Default@{Default}!Mutant@{Mutant}}\index{Mutant@{Mutant}!Default@{Default}}}\mbox{\Hypertarget{class_mutant_a0b6d537f129ebc093f65e745a25eaf6aa73a5536e612268909b171724bbb2a002}\label{class_mutant_a0b6d537f129ebc093f65e745a25eaf6aa73a5536e612268909b171724bbb2a002}} 
+Default&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Explode@{Explode}!Mutant@{Mutant}}\index{Mutant@{Mutant}!Explode@{Explode}}}\mbox{\Hypertarget{class_mutant_a0b6d537f129ebc093f65e745a25eaf6aa1883289f1eacf499d4142bf779202949}\label{class_mutant_a0b6d537f129ebc093f65e745a25eaf6aa1883289f1eacf499d4142bf779202949}} 
+Explode&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209}\label{class_mutant_a508d3c9d254807091259a620bbf77209}} 
+\index{Mutant@{Mutant}!States@{States}}
+\index{States@{States}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{States}{States}}
+{\footnotesize\ttfamily enum \hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209}{Mutant\+::\+States}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Start@{Start}!Mutant@{Mutant}}\index{Mutant@{Mutant}!Start@{Start}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209a8d0b9823bfe10057d91ac5222ef86bfc}\label{class_mutant_a508d3c9d254807091259a620bbf77209a8d0b9823bfe10057d91ac5222ef86bfc}} 
+Start&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dying@{Dying}!Mutant@{Mutant}}\index{Mutant@{Mutant}!Dying@{Dying}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209ae11da7182d95dacee973bbb21c0693ad}\label{class_mutant_a508d3c9d254807091259a620bbf77209ae11da7182d95dacee973bbb21c0693ad}} 
+Dying&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FormationA@{FormationA}!Mutant@{Mutant}}\index{Mutant@{Mutant}!FormationA@{FormationA}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209a7fab13c7c339486920f8372a69f1e541}\label{class_mutant_a508d3c9d254807091259a620bbf77209a7fab13c7c339486920f8372a69f1e541}} 
+FormationA&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FormationB@{FormationB}!Mutant@{Mutant}}\index{Mutant@{Mutant}!FormationB@{FormationB}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209af42129159ef9e4228065426e0db479e7}\label{class_mutant_a508d3c9d254807091259a620bbf77209af42129159ef9e4228065426e0db479e7}} 
+FormationB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FormationC@{FormationC}!Mutant@{Mutant}}\index{Mutant@{Mutant}!FormationC@{FormationC}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209ae5caa138a87f21ff544dac38f1475eb5}\label{class_mutant_a508d3c9d254807091259a620bbf77209ae5caa138a87f21ff544dac38f1475eb5}} 
+FormationC&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_mutant_a2c80776724cca166b639e5e433deda42}\label{class_mutant_a2c80776724cca166b639e5e433deda42}} 
+\index{Mutant@{Mutant}!Mutant@{Mutant}}
+\index{Mutant@{Mutant}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{Mutant()}{Mutant()}}
+{\footnotesize\ttfamily Mutant\+::\+Mutant (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{tex,  }\item[{sf\+::\+Vector2i}]{screen\+Bounds,  }\item[{sf\+::\+Vector2i}]{world\+Bounds }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_a03dc2cf4d08ea08bea6cd4ded784dfc1}\label{class_mutant_a03dc2cf4d08ea08bea6cd4ded784dfc1}} 
+\index{Mutant@{Mutant}!````~Mutant@{$\sim$\+Mutant}}
+\index{````~Mutant@{$\sim$\+Mutant}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{$\sim$\+Mutant()}{~Mutant()}}
+{\footnotesize\ttfamily Mutant\+::$\sim$\+Mutant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_mutant_a46424e3134923fed261aec4cfeee43d5}\label{class_mutant_a46424e3134923fed261aec4cfeee43d5}} 
+\index{Mutant@{Mutant}!check\+Bounds@{check\+Bounds}}
+\index{check\+Bounds@{check\+Bounds}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{check\+Bounds()}{checkBounds()}}
+{\footnotesize\ttfamily void Mutant\+::check\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_ad085db34f2e45e82b6b7bb6bfc4be1c7}\label{class_mutant_ad085db34f2e45e82b6b7bb6bfc4be1c7}} 
+\index{Mutant@{Mutant}!draw@{draw}}
+\index{draw@{draw}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Mutant\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_a07b88089382dcc84f261ee3d3d9a009b}\label{class_mutant_a07b88089382dcc84f261ee3d3d9a009b}} 
+\index{Mutant@{Mutant}!get\+Current\+State@{get\+Current\+State}}
+\index{get\+Current\+State@{get\+Current\+State}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{get\+Current\+State()}{getCurrentState()}}
+{\footnotesize\ttfamily int Mutant\+::get\+Current\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_ae80452778ea58cf79ff76a1a481712af}\label{class_mutant_ae80452778ea58cf79ff76a1a481712af}} 
+\index{Mutant@{Mutant}!get\+Health@{get\+Health}}
+\index{get\+Health@{get\+Health}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
+{\footnotesize\ttfamily int Mutant\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_ab20f22800bae3c7587beb641248412ac}\label{class_mutant_ab20f22800bae3c7587beb641248412ac}} 
+\index{Mutant@{Mutant}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Mutant\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_afb53c9562d5e98d5f6749024d09d132e}\label{class_mutant_afb53c9562d5e98d5f6749024d09d132e}} 
+\index{Mutant@{Mutant}!get\+Radius@{get\+Radius}}
+\index{get\+Radius@{get\+Radius}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{get\+Radius()}{getRadius()}}
+{\footnotesize\ttfamily int Mutant\+::get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_a43fe449ecbb708a19095cd030b399cee}\label{class_mutant_a43fe449ecbb708a19095cd030b399cee}} 
+\index{Mutant@{Mutant}!init@{init}}
+\index{init@{init}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Mutant\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_ab92626e4168187b7bf49073e0626e071}\label{class_mutant_ab92626e4168187b7bf49073e0626e071}} 
+\index{Mutant@{Mutant}!is\+Alive@{is\+Alive}}
+\index{is\+Alive@{is\+Alive}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{is\+Alive()}{isAlive()}}
+{\footnotesize\ttfamily bool Mutant\+::is\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_ae31d5187569549ce0c6346c8bef31bd4}\label{class_mutant_ae31d5187569549ce0c6346c8bef31bd4}} 
+\index{Mutant@{Mutant}!set\+Alive@{set\+Alive}}
+\index{set\+Alive@{set\+Alive}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{set\+Alive()}{setAlive()}}
+{\footnotesize\ttfamily void Mutant\+::set\+Alive (\begin{DoxyParamCaption}\item[{bool}]{alive }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_a7632057c37a56ed27df3d692b5357c6a}\label{class_mutant_a7632057c37a56ed27df3d692b5357c6a}} 
+\index{Mutant@{Mutant}!set\+Damage@{set\+Damage}}
+\index{set\+Damage@{set\+Damage}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{set\+Damage()}{setDamage()}}
+{\footnotesize\ttfamily void Mutant\+::set\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_a10a34b2ddc9177b0da17fa8bc77d48c7}\label{class_mutant_a10a34b2ddc9177b0da17fa8bc77d48c7}} 
+\index{Mutant@{Mutant}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Mutant\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_mutant_aa334f3574bc0a367e0cc722a900b35da}\label{class_mutant_aa334f3574bc0a367e0cc722a900b35da}} 
+\index{Mutant@{Mutant}!update@{update}}
+\index{update@{update}!Mutant@{Mutant}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Mutant\+::update (\begin{DoxyParamCaption}\item[{int}]{mutant\+Size,  }\item[{int}]{current\+Mutant,  }\item[{sf\+::\+Time}]{delta\+Time,  }\item[{sf\+::\+Vector2f}]{player\+Pos,  }\item[{sf\+::\+Vector2f}]{player\+Vel }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+F\+M\+L Engine/\hyperlink{_mutant_8h}{Mutant.\+h}\item 
+S\+F\+M\+L Engine/\hyperlink{_mutant_8cpp}{Mutant.\+cpp}\end{DoxyCompactItemize}

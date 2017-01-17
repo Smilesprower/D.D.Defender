@@ -15,26 +15,40 @@ Inheritance diagram for Game\+Scene\+:\begin{figure}[H]
 \item 
 \hyperlink{class_game_scene_a09ae1eacea6ea92074d008c016e0ed1f}{Game\+Scene} (\hyperlink{class_scene_stack}{Scene\+Stack} \&stack, \hyperlink{struct_scene_1_1_context}{Context} context)
 \item 
+\hyperlink{class_game_scene_add5bc48c372aaa7f526c02558a8adf00}{$\sim$\+Game\+Scene} ()
+\item 
 virtual void \hyperlink{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}{draw} ()
 \item 
 virtual bool \hyperlink{class_game_scene_ae54628d2f041bcad66242584b2db10d6}{update} (sf\+::\+Time delta\+Time)
 \item 
 virtual bool \hyperlink{class_game_scene_aa494372b1f451f3c3a268558fddb30f2}{handle\+Event} (const sf\+::\+Event \&event)
+\item 
+void \hyperlink{class_game_scene_a67664e1bbce6bec9eda855a9b109d9ec}{setup\+Shockwave} (sf\+::\+Vector2f player\+Pos)
+\item 
+void \hyperlink{class_game_scene_aca0b30f731595929fb7182e2f65941b1}{setup\+Ripple} (sf\+::\+Vector2f player\+Pos)
+\item 
+void \hyperlink{class_game_scene_a030583d6469d9f44fda3fc5777c46a08}{screen\+Switch} (std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$$>$ bullets)
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_game_scene_a09ae1eacea6ea92074d008c016e0ed1f}{}\label{class_game_scene_a09ae1eacea6ea92074d008c016e0ed1f} 
+\mbox{\Hypertarget{class_game_scene_a09ae1eacea6ea92074d008c016e0ed1f}\label{class_game_scene_a09ae1eacea6ea92074d008c016e0ed1f}} 
 \index{Game\+Scene@{Game\+Scene}!Game\+Scene@{Game\+Scene}}
 \index{Game\+Scene@{Game\+Scene}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{Game\+Scene()}{GameScene()}}
 {\footnotesize\ttfamily Game\+Scene\+::\+Game\+Scene (\begin{DoxyParamCaption}\item[{\hyperlink{class_scene_stack}{Scene\+Stack} \&}]{stack,  }\item[{\hyperlink{struct_scene_1_1_context}{Context}}]{context }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{class_game_scene_add5bc48c372aaa7f526c02558a8adf00}\label{class_game_scene_add5bc48c372aaa7f526c02558a8adf00}} 
+\index{Game\+Scene@{Game\+Scene}!````~Game\+Scene@{$\sim$\+Game\+Scene}}
+\index{````~Game\+Scene@{$\sim$\+Game\+Scene}!Game\+Scene@{Game\+Scene}}
+\subsubsection{\texorpdfstring{$\sim$\+Game\+Scene()}{~GameScene()}}
+{\footnotesize\ttfamily Game\+Scene\+::$\sim$\+Game\+Scene (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}{}\label{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426} 
+\mbox{\Hypertarget{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}\label{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}} 
 \index{Game\+Scene@{Game\+Scene}!draw@{draw}}
 \index{draw@{draw}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{draw()}{draw()}}
@@ -44,7 +58,7 @@ virtual bool \hyperlink{class_game_scene_aa494372b1f451f3c3a268558fddb30f2}{hand
 
 Implements \hyperlink{class_scene_a789c16961aa1e316b2a4a05b95187546}{Scene}.
 
-\hypertarget{class_game_scene_aa494372b1f451f3c3a268558fddb30f2}{}\label{class_game_scene_aa494372b1f451f3c3a268558fddb30f2} 
+\mbox{\Hypertarget{class_game_scene_aa494372b1f451f3c3a268558fddb30f2}\label{class_game_scene_aa494372b1f451f3c3a268558fddb30f2}} 
 \index{Game\+Scene@{Game\+Scene}!handle\+Event@{handle\+Event}}
 \index{handle\+Event@{handle\+Event}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{handle\+Event()}{handleEvent()}}
@@ -54,7 +68,25 @@ Implements \hyperlink{class_scene_a789c16961aa1e316b2a4a05b95187546}{Scene}.
 
 Implements \hyperlink{class_scene_af25e4d2c998aca4e95899fb67488e815}{Scene}.
 
-\hypertarget{class_game_scene_ae54628d2f041bcad66242584b2db10d6}{}\label{class_game_scene_ae54628d2f041bcad66242584b2db10d6} 
+\mbox{\Hypertarget{class_game_scene_a030583d6469d9f44fda3fc5777c46a08}\label{class_game_scene_a030583d6469d9f44fda3fc5777c46a08}} 
+\index{Game\+Scene@{Game\+Scene}!screen\+Switch@{screen\+Switch}}
+\index{screen\+Switch@{screen\+Switch}!Game\+Scene@{Game\+Scene}}
+\subsubsection{\texorpdfstring{screen\+Switch()}{screenSwitch()}}
+{\footnotesize\ttfamily void Game\+Scene\+::screen\+Switch (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$$>$}]{bullets }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_scene_aca0b30f731595929fb7182e2f65941b1}\label{class_game_scene_aca0b30f731595929fb7182e2f65941b1}} 
+\index{Game\+Scene@{Game\+Scene}!setup\+Ripple@{setup\+Ripple}}
+\index{setup\+Ripple@{setup\+Ripple}!Game\+Scene@{Game\+Scene}}
+\subsubsection{\texorpdfstring{setup\+Ripple()}{setupRipple()}}
+{\footnotesize\ttfamily void Game\+Scene\+::setup\+Ripple (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_scene_a67664e1bbce6bec9eda855a9b109d9ec}\label{class_game_scene_a67664e1bbce6bec9eda855a9b109d9ec}} 
+\index{Game\+Scene@{Game\+Scene}!setup\+Shockwave@{setup\+Shockwave}}
+\index{setup\+Shockwave@{setup\+Shockwave}!Game\+Scene@{Game\+Scene}}
+\subsubsection{\texorpdfstring{setup\+Shockwave()}{setupShockwave()}}
+{\footnotesize\ttfamily void Game\+Scene\+::setup\+Shockwave (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_game_scene_ae54628d2f041bcad66242584b2db10d6}\label{class_game_scene_ae54628d2f041bcad66242584b2db10d6}} 
 \index{Game\+Scene@{Game\+Scene}!update@{update}}
 \index{update@{update}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{update()}{update()}}
@@ -68,5 +100,5 @@ Implements \hyperlink{class_scene_a72683c984a1da2ce4f757705e93730f2}{Scene}.
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_game_scene_8h}{Game\+Scene.\+h}\item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_game_scene_8cpp}{Game\+Scene.\+cpp}\end{DoxyCompactItemize}
+S\+F\+M\+L Engine/\hyperlink{_game_scene_8h}{Game\+Scene.\+h}\item 
+S\+F\+M\+L Engine/\hyperlink{_game_scene_8cpp}{Game\+Scene.\+cpp}\end{DoxyCompactItemize}

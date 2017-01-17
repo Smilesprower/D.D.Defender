@@ -7,15 +7,10 @@
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{class_player_a1b51e48b90ffe011fc7af564f81b0a7f}{Anims} \{ \hyperlink{class_player_a1b51e48b90ffe011fc7af564f81b0a7fa6c74df21e9d4e850dd175a23b78c6540}{Move\+Up}, 
-\hyperlink{class_player_a1b51e48b90ffe011fc7af564f81b0a7fa685fada3f0a5111b3b8e56f5357a05b0}{Move\+Down}, 
-\hyperlink{class_player_a1b51e48b90ffe011fc7af564f81b0a7faf9fe61ee0da8fbb87e4b53da9a6e9a03}{Move\+Sideways}
- \}
-\item 
-enum \hyperlink{class_player_ad1b5932229b5d87c3dbca5bfcacb6936}{Direction} \{ \hyperlink{class_player_ad1b5932229b5d87c3dbca5bfcacb6936a52a7540bc447dcd5b888131396d3980e}{Left}, 
-\hyperlink{class_player_ad1b5932229b5d87c3dbca5bfcacb6936ae36562fe9960c3bdac70addfd9694b97}{Right}, 
-\hyperlink{class_player_ad1b5932229b5d87c3dbca5bfcacb6936a086ad5e6686e1540d2e0a09ca9ffc624}{Up}, 
-\hyperlink{class_player_ad1b5932229b5d87c3dbca5bfcacb6936af654e304331768c532162a09347a597f}{Down}
+enum \hyperlink{class_player_afd539a18e0e4c3bbf07c820914c0511e}{Smart\+Bomb} \{ \hyperlink{class_player_afd539a18e0e4c3bbf07c820914c0511ea62fc7d85d72db94f418347b5e3a25d28}{Ready}, 
+\hyperlink{class_player_afd539a18e0e4c3bbf07c820914c0511ea86d19f9b31edc54d666dd859955f2ae4}{Charging}, 
+\hyperlink{class_player_afd539a18e0e4c3bbf07c820914c0511eaefb39c3c6842102cf73bd0203e41b338}{Fired}, 
+\hyperlink{class_player_afd539a18e0e4c3bbf07c820914c0511ea0dc1ade8c7310201d494698675fd011d}{Disable}
  \}
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
@@ -25,76 +20,88 @@ enum \hyperlink{class_player_ad1b5932229b5d87c3dbca5bfcacb6936}{Direction} \{ \h
 \item 
 \hyperlink{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{$\sim$\+Player} ()
 \item 
-void \hyperlink{class_player_a66ab1b1a0569de7d1e83350e939a1d40}{init} (sf\+::\+Texture \&p\+Tex, sf\+::\+Vector2f p\+Pos)
+void \hyperlink{class_player_ad088063876ac0e5c3eb59fc7c4806929}{init} (sf\+::\+Texture \&tex, sf\+::\+Vector2f pos, sf\+::\+Vector2i tp\+Bounds)
 \item 
 void \hyperlink{class_player_aeb1ca63f5401afa5d6aef2f308481672}{update} (sf\+::\+Time delta\+Time)
 \item 
 void \hyperlink{class_player_aab4ff61041f937e6c3d560863fa46f56}{Move} (sf\+::\+Time delta\+Time)
 \item 
 \hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_player_af9e361fd707a32d86ff1a0f75fb2c3b2}{draw} ()
+\item 
+void \hyperlink{class_player_ad975c53e4e2e21b597079e59c1ed0262}{teleport} (sf\+::\+Time delta\+Time)
+\item 
+int \hyperlink{class_player_a995b03fe2b8f0b47aa526c975a3b8254}{get\+Teleport} ()
+\item 
+void \hyperlink{class_player_a805a8d4ae2c5eddaee1ff7c716467f2c}{disable\+Teleporter} ()
+\item 
+int \hyperlink{class_player_a5aaef7be6b70ec6069a861add36b5e2c}{get\+Smart\+Bomb\+State} ()
+\item 
+void \hyperlink{class_player_a2c704d0bed9de1dc0b3512113f42bb97}{charge\+Smart\+Bomb} ()
+\item 
+void \hyperlink{class_player_a41a1a1a4f50f7a878ee22c92b42fd2b1}{update\+Smart\+Bomb} (sf\+::\+Time delta\+Time)
+\item 
+void \hyperlink{class_player_a065d28e46d0660eff17bad53f2efd622}{set\+Damage} (int damage)
+\item 
+int \hyperlink{class_player_abcb15d249bed9a4ab0ab86b52b0d747a}{get\+Health} ()
+\item 
+int \hyperlink{class_player_a96b2c2aa27ba5d756b12fddb2a841cc8}{get\+Radius} ()
+\item 
+bool \hyperlink{class_player_a98dff5ba148838f3db6d9934048c33d9}{game\+Over} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_player_a23356f99a9de86d3d47eadb679b332dc}{get\+Position} ()
+\item 
+void \hyperlink{class_player_a04a1bb340ea6d425fb2927c397e96e4e}{set\+Position} (sf\+::\+Vector2f pos)
+\item 
+sf\+::\+Circle\+Shape \hyperlink{class_player_ae47cf3c74c1e396d82c3266290871852}{draw\+Player\+Outline} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_player_a0ec9b337a29a388ca7ce6dc9de93ca76}{get\+Vel} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_player_acd90a76e6bf73c5a7d2ff168965c3467}{get\+Accel} ()
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_player_a6d6dfb4b46e5aa9eac78fd8cced73825}{m\+\_\+animated\+Sprite}
+\item 
+float \hyperlink{class_player_adb6552419db92fdbc9aeda36e807c6ec}{m\+\_\+smart\+Bomb\+Timer}
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Enumeration Documentation}
-\hypertarget{class_player_a1b51e48b90ffe011fc7af564f81b0a7f}{}\label{class_player_a1b51e48b90ffe011fc7af564f81b0a7f} 
-\index{Player@{Player}!Anims@{Anims}}
-\index{Anims@{Anims}!Player@{Player}}
-\subsubsection{\texorpdfstring{Anims}{Anims}}
-{\footnotesize\ttfamily enum \hyperlink{class_player_a1b51e48b90ffe011fc7af564f81b0a7f}{Player\+::\+Anims}}
+\mbox{\Hypertarget{class_player_afd539a18e0e4c3bbf07c820914c0511e}\label{class_player_afd539a18e0e4c3bbf07c820914c0511e}} 
+\index{Player@{Player}!Smart\+Bomb@{Smart\+Bomb}}
+\index{Smart\+Bomb@{Smart\+Bomb}!Player@{Player}}
+\subsubsection{\texorpdfstring{Smart\+Bomb}{SmartBomb}}
+{\footnotesize\ttfamily enum \hyperlink{class_player_afd539a18e0e4c3bbf07c820914c0511e}{Player\+::\+Smart\+Bomb}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Move\+Up@{Move\+Up}!Player@{Player}}\index{Player@{Player}!Move\+Up@{Move\+Up}}}\hypertarget{class_player_a1b51e48b90ffe011fc7af564f81b0a7fa6c74df21e9d4e850dd175a23b78c6540}{}\label{class_player_a1b51e48b90ffe011fc7af564f81b0a7fa6c74df21e9d4e850dd175a23b78c6540} 
-Move\+Up&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ready@{Ready}!Player@{Player}}\index{Player@{Player}!Ready@{Ready}}}\mbox{\Hypertarget{class_player_afd539a18e0e4c3bbf07c820914c0511ea62fc7d85d72db94f418347b5e3a25d28}\label{class_player_afd539a18e0e4c3bbf07c820914c0511ea62fc7d85d72db94f418347b5e3a25d28}} 
+Ready&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Move\+Down@{Move\+Down}!Player@{Player}}\index{Player@{Player}!Move\+Down@{Move\+Down}}}\hypertarget{class_player_a1b51e48b90ffe011fc7af564f81b0a7fa685fada3f0a5111b3b8e56f5357a05b0}{}\label{class_player_a1b51e48b90ffe011fc7af564f81b0a7fa685fada3f0a5111b3b8e56f5357a05b0} 
-Move\+Down&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Charging@{Charging}!Player@{Player}}\index{Player@{Player}!Charging@{Charging}}}\mbox{\Hypertarget{class_player_afd539a18e0e4c3bbf07c820914c0511ea86d19f9b31edc54d666dd859955f2ae4}\label{class_player_afd539a18e0e4c3bbf07c820914c0511ea86d19f9b31edc54d666dd859955f2ae4}} 
+Charging&\\
 \hline
 
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Move\+Sideways@{Move\+Sideways}!Player@{Player}}\index{Player@{Player}!Move\+Sideways@{Move\+Sideways}}}\hypertarget{class_player_a1b51e48b90ffe011fc7af564f81b0a7faf9fe61ee0da8fbb87e4b53da9a6e9a03}{}\label{class_player_a1b51e48b90ffe011fc7af564f81b0a7faf9fe61ee0da8fbb87e4b53da9a6e9a03} 
-Move\+Sideways&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Fired@{Fired}!Player@{Player}}\index{Player@{Player}!Fired@{Fired}}}\mbox{\Hypertarget{class_player_afd539a18e0e4c3bbf07c820914c0511eaefb39c3c6842102cf73bd0203e41b338}\label{class_player_afd539a18e0e4c3bbf07c820914c0511eaefb39c3c6842102cf73bd0203e41b338}} 
+Fired&\\
 \hline
 
-\end{DoxyEnumFields}
-\hypertarget{class_player_ad1b5932229b5d87c3dbca5bfcacb6936}{}\label{class_player_ad1b5932229b5d87c3dbca5bfcacb6936} 
-\index{Player@{Player}!Direction@{Direction}}
-\index{Direction@{Direction}!Player@{Player}}
-\subsubsection{\texorpdfstring{Direction}{Direction}}
-{\footnotesize\ttfamily enum \hyperlink{class_player_ad1b5932229b5d87c3dbca5bfcacb6936}{Player\+::\+Direction}}
-
-\begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Left@{Left}!Player@{Player}}\index{Player@{Player}!Left@{Left}}}\hypertarget{class_player_ad1b5932229b5d87c3dbca5bfcacb6936a52a7540bc447dcd5b888131396d3980e}{}\label{class_player_ad1b5932229b5d87c3dbca5bfcacb6936a52a7540bc447dcd5b888131396d3980e} 
-Left&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Right@{Right}!Player@{Player}}\index{Player@{Player}!Right@{Right}}}\hypertarget{class_player_ad1b5932229b5d87c3dbca5bfcacb6936ae36562fe9960c3bdac70addfd9694b97}{}\label{class_player_ad1b5932229b5d87c3dbca5bfcacb6936ae36562fe9960c3bdac70addfd9694b97} 
-Right&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Up@{Up}!Player@{Player}}\index{Player@{Player}!Up@{Up}}}\hypertarget{class_player_ad1b5932229b5d87c3dbca5bfcacb6936a086ad5e6686e1540d2e0a09ca9ffc624}{}\label{class_player_ad1b5932229b5d87c3dbca5bfcacb6936a086ad5e6686e1540d2e0a09ca9ffc624} 
-Up&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{Down@{Down}!Player@{Player}}\index{Player@{Player}!Down@{Down}}}\hypertarget{class_player_ad1b5932229b5d87c3dbca5bfcacb6936af654e304331768c532162a09347a597f}{}\label{class_player_ad1b5932229b5d87c3dbca5bfcacb6936af654e304331768c532162a09347a597f} 
-Down&\\
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Disable@{Disable}!Player@{Player}}\index{Player@{Player}!Disable@{Disable}}}\mbox{\Hypertarget{class_player_afd539a18e0e4c3bbf07c820914c0511ea0dc1ade8c7310201d494698675fd011d}\label{class_player_afd539a18e0e4c3bbf07c820914c0511ea0dc1ade8c7310201d494698675fd011d}} 
+Disable&\\
 \hline
 
 \end{DoxyEnumFields}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}{}\label{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8} 
+\mbox{\Hypertarget{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}\label{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}} 
 \index{Player@{Player}!Player@{Player}}
 \index{Player@{Player}!Player@{Player}}
 \subsubsection{\texorpdfstring{Player()}{Player()}}
 {\footnotesize\ttfamily Player\+::\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_player_a749d2c00e1fe0f5c2746f7505a58c062}{}\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062} 
+\mbox{\Hypertarget{class_player_a749d2c00e1fe0f5c2746f7505a58c062}\label{class_player_a749d2c00e1fe0f5c2746f7505a58c062}} 
 \index{Player@{Player}!````~Player@{$\sim$\+Player}}
 \index{````~Player@{$\sim$\+Player}!Player@{Player}}
 \subsubsection{\texorpdfstring{$\sim$\+Player()}{~Player()}}
@@ -103,42 +110,138 @@ Down&\\
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_player_af9e361fd707a32d86ff1a0f75fb2c3b2}{}\label{class_player_af9e361fd707a32d86ff1a0f75fb2c3b2} 
+\mbox{\Hypertarget{class_player_a2c704d0bed9de1dc0b3512113f42bb97}\label{class_player_a2c704d0bed9de1dc0b3512113f42bb97}} 
+\index{Player@{Player}!charge\+Smart\+Bomb@{charge\+Smart\+Bomb}}
+\index{charge\+Smart\+Bomb@{charge\+Smart\+Bomb}!Player@{Player}}
+\subsubsection{\texorpdfstring{charge\+Smart\+Bomb()}{chargeSmartBomb()}}
+{\footnotesize\ttfamily void Player\+::charge\+Smart\+Bomb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a805a8d4ae2c5eddaee1ff7c716467f2c}\label{class_player_a805a8d4ae2c5eddaee1ff7c716467f2c}} 
+\index{Player@{Player}!disable\+Teleporter@{disable\+Teleporter}}
+\index{disable\+Teleporter@{disable\+Teleporter}!Player@{Player}}
+\subsubsection{\texorpdfstring{disable\+Teleporter()}{disableTeleporter()}}
+{\footnotesize\ttfamily void Player\+::disable\+Teleporter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_af9e361fd707a32d86ff1a0f75fb2c3b2}\label{class_player_af9e361fd707a32d86ff1a0f75fb2c3b2}} 
 \index{Player@{Player}!draw@{draw}}
 \index{draw@{draw}!Player@{Player}}
 \subsubsection{\texorpdfstring{draw()}{draw()}}
 {\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Player\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_player_a66ab1b1a0569de7d1e83350e939a1d40}{}\label{class_player_a66ab1b1a0569de7d1e83350e939a1d40} 
+\mbox{\Hypertarget{class_player_ae47cf3c74c1e396d82c3266290871852}\label{class_player_ae47cf3c74c1e396d82c3266290871852}} 
+\index{Player@{Player}!draw\+Player\+Outline@{draw\+Player\+Outline}}
+\index{draw\+Player\+Outline@{draw\+Player\+Outline}!Player@{Player}}
+\subsubsection{\texorpdfstring{draw\+Player\+Outline()}{drawPlayerOutline()}}
+{\footnotesize\ttfamily sf\+::\+Circle\+Shape Player\+::draw\+Player\+Outline (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a98dff5ba148838f3db6d9934048c33d9}\label{class_player_a98dff5ba148838f3db6d9934048c33d9}} 
+\index{Player@{Player}!game\+Over@{game\+Over}}
+\index{game\+Over@{game\+Over}!Player@{Player}}
+\subsubsection{\texorpdfstring{game\+Over()}{gameOver()}}
+{\footnotesize\ttfamily bool Player\+::game\+Over (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_acd90a76e6bf73c5a7d2ff168965c3467}\label{class_player_acd90a76e6bf73c5a7d2ff168965c3467}} 
+\index{Player@{Player}!get\+Accel@{get\+Accel}}
+\index{get\+Accel@{get\+Accel}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Accel()}{getAccel()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Player\+::get\+Accel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_abcb15d249bed9a4ab0ab86b52b0d747a}\label{class_player_abcb15d249bed9a4ab0ab86b52b0d747a}} 
+\index{Player@{Player}!get\+Health@{get\+Health}}
+\index{get\+Health@{get\+Health}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
+{\footnotesize\ttfamily int Player\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a23356f99a9de86d3d47eadb679b332dc}\label{class_player_a23356f99a9de86d3d47eadb679b332dc}} 
+\index{Player@{Player}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Player\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a96b2c2aa27ba5d756b12fddb2a841cc8}\label{class_player_a96b2c2aa27ba5d756b12fddb2a841cc8}} 
+\index{Player@{Player}!get\+Radius@{get\+Radius}}
+\index{get\+Radius@{get\+Radius}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Radius()}{getRadius()}}
+{\footnotesize\ttfamily int Player\+::get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a5aaef7be6b70ec6069a861add36b5e2c}\label{class_player_a5aaef7be6b70ec6069a861add36b5e2c}} 
+\index{Player@{Player}!get\+Smart\+Bomb\+State@{get\+Smart\+Bomb\+State}}
+\index{get\+Smart\+Bomb\+State@{get\+Smart\+Bomb\+State}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Smart\+Bomb\+State()}{getSmartBombState()}}
+{\footnotesize\ttfamily int Player\+::get\+Smart\+Bomb\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a995b03fe2b8f0b47aa526c975a3b8254}\label{class_player_a995b03fe2b8f0b47aa526c975a3b8254}} 
+\index{Player@{Player}!get\+Teleport@{get\+Teleport}}
+\index{get\+Teleport@{get\+Teleport}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Teleport()}{getTeleport()}}
+{\footnotesize\ttfamily int Player\+::get\+Teleport (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a0ec9b337a29a388ca7ce6dc9de93ca76}\label{class_player_a0ec9b337a29a388ca7ce6dc9de93ca76}} 
+\index{Player@{Player}!get\+Vel@{get\+Vel}}
+\index{get\+Vel@{get\+Vel}!Player@{Player}}
+\subsubsection{\texorpdfstring{get\+Vel()}{getVel()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Player\+::get\+Vel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_ad088063876ac0e5c3eb59fc7c4806929}\label{class_player_ad088063876ac0e5c3eb59fc7c4806929}} 
 \index{Player@{Player}!init@{init}}
 \index{init@{init}!Player@{Player}}
 \subsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily void Player\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{p\+Tex,  }\item[{sf\+::\+Vector2f}]{p\+Pos }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Player\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{tex,  }\item[{sf\+::\+Vector2f}]{pos,  }\item[{sf\+::\+Vector2i}]{tp\+Bounds }\end{DoxyParamCaption})}
 
-\hypertarget{class_player_aab4ff61041f937e6c3d560863fa46f56}{}\label{class_player_aab4ff61041f937e6c3d560863fa46f56} 
+\mbox{\Hypertarget{class_player_aab4ff61041f937e6c3d560863fa46f56}\label{class_player_aab4ff61041f937e6c3d560863fa46f56}} 
 \index{Player@{Player}!Move@{Move}}
 \index{Move@{Move}!Player@{Player}}
 \subsubsection{\texorpdfstring{Move()}{Move()}}
 {\footnotesize\ttfamily void Player\+::\+Move (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})}
 
-\hypertarget{class_player_aeb1ca63f5401afa5d6aef2f308481672}{}\label{class_player_aeb1ca63f5401afa5d6aef2f308481672} 
+\mbox{\Hypertarget{class_player_a065d28e46d0660eff17bad53f2efd622}\label{class_player_a065d28e46d0660eff17bad53f2efd622}} 
+\index{Player@{Player}!set\+Damage@{set\+Damage}}
+\index{set\+Damage@{set\+Damage}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Damage()}{setDamage()}}
+{\footnotesize\ttfamily void Player\+::set\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_a04a1bb340ea6d425fb2927c397e96e4e}\label{class_player_a04a1bb340ea6d425fb2927c397e96e4e}} 
+\index{Player@{Player}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Player@{Player}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Player\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_ad975c53e4e2e21b597079e59c1ed0262}\label{class_player_ad975c53e4e2e21b597079e59c1ed0262}} 
+\index{Player@{Player}!teleport@{teleport}}
+\index{teleport@{teleport}!Player@{Player}}
+\subsubsection{\texorpdfstring{teleport()}{teleport()}}
+{\footnotesize\ttfamily void Player\+::teleport (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_player_aeb1ca63f5401afa5d6aef2f308481672}\label{class_player_aeb1ca63f5401afa5d6aef2f308481672}} 
 \index{Player@{Player}!update@{update}}
 \index{update@{update}!Player@{Player}}
 \subsubsection{\texorpdfstring{update()}{update()}}
 {\footnotesize\ttfamily void Player\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{class_player_a41a1a1a4f50f7a878ee22c92b42fd2b1}\label{class_player_a41a1a1a4f50f7a878ee22c92b42fd2b1}} 
+\index{Player@{Player}!update\+Smart\+Bomb@{update\+Smart\+Bomb}}
+\index{update\+Smart\+Bomb@{update\+Smart\+Bomb}!Player@{Player}}
+\subsubsection{\texorpdfstring{update\+Smart\+Bomb()}{updateSmartBomb()}}
+{\footnotesize\ttfamily void Player\+::update\+Smart\+Bomb (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})}
+
 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_player_a6d6dfb4b46e5aa9eac78fd8cced73825}{}\label{class_player_a6d6dfb4b46e5aa9eac78fd8cced73825} 
+\mbox{\Hypertarget{class_player_a6d6dfb4b46e5aa9eac78fd8cced73825}\label{class_player_a6d6dfb4b46e5aa9eac78fd8cced73825}} 
 \index{Player@{Player}!m\+\_\+animated\+Sprite@{m\+\_\+animated\+Sprite}}
 \index{m\+\_\+animated\+Sprite@{m\+\_\+animated\+Sprite}!Player@{Player}}
 \subsubsection{\texorpdfstring{m\+\_\+animated\+Sprite}{m\_animatedSprite}}
 {\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Player\+::m\+\_\+animated\+Sprite}
 
+\mbox{\Hypertarget{class_player_adb6552419db92fdbc9aeda36e807c6ec}\label{class_player_adb6552419db92fdbc9aeda36e807c6ec}} 
+\index{Player@{Player}!m\+\_\+smart\+Bomb\+Timer@{m\+\_\+smart\+Bomb\+Timer}}
+\index{m\+\_\+smart\+Bomb\+Timer@{m\+\_\+smart\+Bomb\+Timer}!Player@{Player}}
+\subsubsection{\texorpdfstring{m\+\_\+smart\+Bomb\+Timer}{m\_smartBombTimer}}
+{\footnotesize\ttfamily float Player\+::m\+\_\+smart\+Bomb\+Timer}
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_player_8h}{Player.\+h}\item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_player_8cpp}{Player.\+cpp}\end{DoxyCompactItemize}
+S\+F\+M\+L Engine/\hyperlink{_player_8h}{Player.\+h}\item 
+S\+F\+M\+L Engine/\hyperlink{_player_8cpp}{Player.\+cpp}\end{DoxyCompactItemize}

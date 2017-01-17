@@ -1,15 +1,10 @@
 var searchData=
 [
-  ['scene',['Scene',['../class_scene.html#a9834819a1140a2c066024927e6dc9692',1,'Scene']]],
-  ['scenestack',['SceneStack',['../class_scene_stack.html#a7893580d1266ed06c9c690012137f799',1,'SceneStack']]],
-  ['setanimation',['setAnimation',['../class_animated_sprite.html#ab1afc57d90d57a0c4bc4f5b090f2dacf',1,'AnimatedSprite']]],
-  ['setcolor',['setColor',['../class_animated_sprite.html#a1a96a0f6570efddd2eb26f89bc5b6f50',1,'AnimatedSprite']]],
-  ['setframe',['setFrame',['../class_animated_sprite.html#a0b3e38fffdc1d29f46fa08df9ef2a747',1,'AnimatedSprite']]],
-  ['setframetime',['setFrameTime',['../class_animated_sprite.html#af598fab5c3599ccc5ed1e2d4fefa68cc',1,'AnimatedSprite']]],
-  ['setlooped',['setLooped',['../class_animated_sprite.html#a855a5a48ea2e1c51c7c9304857dd2f8c',1,'AnimatedSprite']]],
-  ['setposition',['setPosition',['../class_astronaut.html#a2dff61a54b10d5fb38f68d2f63668387',1,'Astronaut::setPosition()'],['../class_bullet.html#a143a06245534960d6af5ffb10b101750',1,'Bullet::setPosition()']]],
-  ['setspritesheet',['setSpriteSheet',['../class_animation.html#a2fb16f452a323d51a0104c0aa454cab3',1,'Animation']]],
-  ['setupbullet',['setUpBullet',['../class_bullet.html#a94a279bd2d28fa50c0c639915300b52f',1,'Bullet']]],
-  ['setupmissile',['setUpMissile',['../class_bullet.html#a5ee57e44e79f829920f4c117937d5f97',1,'Bullet']]],
-  ['stop',['stop',['../class_animated_sprite.html#af9734f4346d3d2370322b2dcaeef133c',1,'AnimatedSprite']]]
+  ['pause',['pause',['../class_animated_sprite.html#a48384db59427423b5c1d98f6ee94fe45',1,'AnimatedSprite']]],
+  ['pausescene',['PauseScene',['../class_pause_scene.html#a65ac2aa9fca0b1027481e60417749c4f',1,'PauseScene']]],
+  ['play',['play',['../class_animated_sprite.html#a203b968f1cb374cca5dbc89716174020',1,'AnimatedSprite::play()'],['../class_animated_sprite.html#a9ea345649a4e012d096bc04aafe1ecb0',1,'AnimatedSprite::play(const Animation &amp;animation)'],['../class_sound_player.html#aa0b85f15f5b13bc41c71eeee6b0a7779',1,'SoundPlayer::play()']]],
+  ['player',['Player',['../class_player.html#affe0cc3cb714f6deb4e62f0c0d3f1fd8',1,'Player']]],
+  ['popscene',['popScene',['../class_scene_stack.html#a0ea3309f9ec9120cf51a0bce3881e1e2',1,'SceneStack']]],
+  ['pushscene',['pushScene',['../class_scene_stack.html#a41366819a998558e3920fe7859d1f114',1,'SceneStack']]],
+  ['pvector',['Pvector',['../class_pvector.html#adbfc55ed132fa66b441510d2f6c74cb5',1,'Pvector::Pvector()'],['../class_pvector.html#ada1a9423d48f67838d625ddf62149bcf',1,'Pvector::Pvector(float xComp, float yComp)']]]
 ];

@@ -4,43 +4,109 @@
 
 {\ttfamily \#include $<$Bullet.\+h$>$}
 
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3}{Type} \{ \newline
+\hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3a4b20d6d9b77e501c9a41cef53b3f99b9}{Default}, 
+\hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3aba34aa5cf5a49291cee710ffa9774f55}{Lazer}, 
+\hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3a879dee304f28c3bc708ead5da2ee84e6}{Missile}, 
+\hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3a28fbf11ec068c08b1eec3f886d0be8b5}{Explosion}, 
+\newline
+\hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3a30345037f1b00902f2667bb0a2638183}{Ball}, 
+\hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3a4404b4dbb15a2d4584ccbe3495266060}{Ball2}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_bullet_aa63b471d62d662e9015d18c7c7972db0}{Bullet} (sf\+::\+Texture \&tex)
 \item 
 \hyperlink{class_bullet_acd7befc0bc18907cc1d871d37bbdddeb}{Bullet} ()
 \item 
 \hyperlink{class_bullet_aaeb5cb41d7db89f49007b08b41f1bfcf}{$\sim$\+Bullet} ()
 \item 
-void \hyperlink{class_bullet_a0a0740a3138524771a496847f7198cf4}{init} (sf\+::\+Texture \&tex)
+void \hyperlink{class_bullet_afa7788ce043c909b96c37a0265755000}{set\+Up\+E\+Bullet} (sf\+::\+Vector2f position, sf\+::\+Vector2f target\+Position, int type, bool player\+Bullet)
 \item 
-void \hyperlink{class_bullet_a94a279bd2d28fa50c0c639915300b52f}{set\+Up\+Bullet} (sf\+::\+Vector2f position, int direction, int type, bool player\+Bullet)
+void \hyperlink{class_bullet_a2ac1e1ac43af3bbd0d7c2a72e0e17e51}{set\+Up\+Bullet} (sf\+::\+Vector2f position, float x\+Speed, int direction, int type, bool player\+Bullet)
 \item 
 void \hyperlink{class_bullet_a5ee57e44e79f829920f4c117937d5f97}{set\+Up\+Missile} (sf\+::\+Vector2f position, sf\+::\+Vector2f player\+Pos, int type)
 \item 
-void \hyperlink{class_bullet_a9da6e150f1e7586f0f934b1ee029bc1a}{update} (sf\+::\+Time delta\+Time, sf\+::\+Vector2f player\+Pos)
+void \hyperlink{class_bullet_ac1793d563983d2503cc562e0b3e1eee7}{update} (sf\+::\+Time delta\+Time, sf\+::\+Vector2f player\+Pos, int \&missle\+Count)
 \item 
 void \hyperlink{class_bullet_a143a06245534960d6af5ffb10b101750}{set\+Position} (sf\+::\+Vector2f position)
 \item 
 sf\+::\+Vector2f \hyperlink{class_bullet_a64e4ce634f62ab31d338bd142c1987c9}{get\+Position} ()
 \item 
-bool \hyperlink{class_bullet_ae23f1f04ccd644d823184feb0da3c6b2}{is\+Alive} ()
+bool \hyperlink{class_bullet_a459d9d3adb6bdd2899965e1916eafb49}{is\+Enabled} ()
+\item 
+void \hyperlink{class_bullet_a31f36da7eb69fdf357670f2ac7bbae85}{set\+Enabled} (bool)
 \item 
 void \hyperlink{class_bullet_a49da1f5862bcb89f36588ead6e620c06}{collided} (bool)
 \item 
 int \hyperlink{class_bullet_a73634149134359bca3f2201fb6284707}{get\+Type} ()
 \item 
+void \hyperlink{class_bullet_abbf2bd440aade1c9f0f8f61d333ca64a}{set\+T\+TL} (int ttl)
+\item 
+int \hyperlink{class_bullet_a781ca8ccaf366435ece65eacd79e8b44}{get\+Radius} ()
+\item 
+void \hyperlink{class_bullet_af2e8a6860232266f180efbdb2a68f8c9}{reset} ()
+\item 
 \hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_bullet_abd80643d0485e32232ad46cc2087de40}{draw} ()
+\item 
+sf\+::\+Circle\+Shape \hyperlink{class_bullet_ac8c9c18e09ff7ef97313aa0c805c9846}{draw\+Missile\+Collider} ()
 \end{DoxyCompactItemize}
 
 
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_bullet_adec43a70f99a7264217f71d4299796c3}\label{class_bullet_adec43a70f99a7264217f71d4299796c3}} 
+\index{Bullet@{Bullet}!Type@{Type}}
+\index{Type@{Type}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{Type}{Type}}
+{\footnotesize\ttfamily enum \hyperlink{class_bullet_adec43a70f99a7264217f71d4299796c3}{Bullet\+::\+Type}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Default@{Default}!Bullet@{Bullet}}\index{Bullet@{Bullet}!Default@{Default}}}\mbox{\Hypertarget{class_bullet_adec43a70f99a7264217f71d4299796c3a4b20d6d9b77e501c9a41cef53b3f99b9}\label{class_bullet_adec43a70f99a7264217f71d4299796c3a4b20d6d9b77e501c9a41cef53b3f99b9}} 
+Default&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Lazer@{Lazer}!Bullet@{Bullet}}\index{Bullet@{Bullet}!Lazer@{Lazer}}}\mbox{\Hypertarget{class_bullet_adec43a70f99a7264217f71d4299796c3aba34aa5cf5a49291cee710ffa9774f55}\label{class_bullet_adec43a70f99a7264217f71d4299796c3aba34aa5cf5a49291cee710ffa9774f55}} 
+Lazer&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Missile@{Missile}!Bullet@{Bullet}}\index{Bullet@{Bullet}!Missile@{Missile}}}\mbox{\Hypertarget{class_bullet_adec43a70f99a7264217f71d4299796c3a879dee304f28c3bc708ead5da2ee84e6}\label{class_bullet_adec43a70f99a7264217f71d4299796c3a879dee304f28c3bc708ead5da2ee84e6}} 
+Missile&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Explosion@{Explosion}!Bullet@{Bullet}}\index{Bullet@{Bullet}!Explosion@{Explosion}}}\mbox{\Hypertarget{class_bullet_adec43a70f99a7264217f71d4299796c3a28fbf11ec068c08b1eec3f886d0be8b5}\label{class_bullet_adec43a70f99a7264217f71d4299796c3a28fbf11ec068c08b1eec3f886d0be8b5}} 
+Explosion&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ball@{Ball}!Bullet@{Bullet}}\index{Bullet@{Bullet}!Ball@{Ball}}}\mbox{\Hypertarget{class_bullet_adec43a70f99a7264217f71d4299796c3a30345037f1b00902f2667bb0a2638183}\label{class_bullet_adec43a70f99a7264217f71d4299796c3a30345037f1b00902f2667bb0a2638183}} 
+Ball&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ball2@{Ball2}!Bullet@{Bullet}}\index{Bullet@{Bullet}!Ball2@{Ball2}}}\mbox{\Hypertarget{class_bullet_adec43a70f99a7264217f71d4299796c3a4404b4dbb15a2d4584ccbe3495266060}\label{class_bullet_adec43a70f99a7264217f71d4299796c3a4404b4dbb15a2d4584ccbe3495266060}} 
+Ball2&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_bullet_acd7befc0bc18907cc1d871d37bbdddeb}{}\label{class_bullet_acd7befc0bc18907cc1d871d37bbdddeb} 
+\mbox{\Hypertarget{class_bullet_aa63b471d62d662e9015d18c7c7972db0}\label{class_bullet_aa63b471d62d662e9015d18c7c7972db0}} 
 \index{Bullet@{Bullet}!Bullet@{Bullet}}
 \index{Bullet@{Bullet}!Bullet@{Bullet}}
-\subsubsection{\texorpdfstring{Bullet()}{Bullet()}}
+\subsubsection{\texorpdfstring{Bullet()}{Bullet()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Bullet\+::\+Bullet (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{tex }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_bullet_acd7befc0bc18907cc1d871d37bbdddeb}\label{class_bullet_acd7befc0bc18907cc1d871d37bbdddeb}} 
+\index{Bullet@{Bullet}!Bullet@{Bullet}}
+\index{Bullet@{Bullet}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{Bullet()}{Bullet()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Bullet\+::\+Bullet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_aaeb5cb41d7db89f49007b08b41f1bfcf}{}\label{class_bullet_aaeb5cb41d7db89f49007b08b41f1bfcf} 
+\mbox{\Hypertarget{class_bullet_aaeb5cb41d7db89f49007b08b41f1bfcf}\label{class_bullet_aaeb5cb41d7db89f49007b08b41f1bfcf}} 
 \index{Bullet@{Bullet}!````~Bullet@{$\sim$\+Bullet}}
 \index{````~Bullet@{$\sim$\+Bullet}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{$\sim$\+Bullet()}{~Bullet()}}
@@ -49,69 +115,99 @@ int \hyperlink{class_bullet_a73634149134359bca3f2201fb6284707}{get\+Type} ()
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_bullet_a49da1f5862bcb89f36588ead6e620c06}{}\label{class_bullet_a49da1f5862bcb89f36588ead6e620c06} 
+\mbox{\Hypertarget{class_bullet_a49da1f5862bcb89f36588ead6e620c06}\label{class_bullet_a49da1f5862bcb89f36588ead6e620c06}} 
 \index{Bullet@{Bullet}!collided@{collided}}
 \index{collided@{collided}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{collided()}{collided()}}
 {\footnotesize\ttfamily void Bullet\+::collided (\begin{DoxyParamCaption}\item[{bool}]{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_abd80643d0485e32232ad46cc2087de40}{}\label{class_bullet_abd80643d0485e32232ad46cc2087de40} 
+\mbox{\Hypertarget{class_bullet_abd80643d0485e32232ad46cc2087de40}\label{class_bullet_abd80643d0485e32232ad46cc2087de40}} 
 \index{Bullet@{Bullet}!draw@{draw}}
 \index{draw@{draw}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{draw()}{draw()}}
 {\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Bullet\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_a64e4ce634f62ab31d338bd142c1987c9}{}\label{class_bullet_a64e4ce634f62ab31d338bd142c1987c9} 
+\mbox{\Hypertarget{class_bullet_ac8c9c18e09ff7ef97313aa0c805c9846}\label{class_bullet_ac8c9c18e09ff7ef97313aa0c805c9846}} 
+\index{Bullet@{Bullet}!draw\+Missile\+Collider@{draw\+Missile\+Collider}}
+\index{draw\+Missile\+Collider@{draw\+Missile\+Collider}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{draw\+Missile\+Collider()}{drawMissileCollider()}}
+{\footnotesize\ttfamily sf\+::\+Circle\+Shape Bullet\+::draw\+Missile\+Collider (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_bullet_a64e4ce634f62ab31d338bd142c1987c9}\label{class_bullet_a64e4ce634f62ab31d338bd142c1987c9}} 
 \index{Bullet@{Bullet}!get\+Position@{get\+Position}}
 \index{get\+Position@{get\+Position}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
 {\footnotesize\ttfamily sf\+::\+Vector2f Bullet\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_a73634149134359bca3f2201fb6284707}{}\label{class_bullet_a73634149134359bca3f2201fb6284707} 
+\mbox{\Hypertarget{class_bullet_a781ca8ccaf366435ece65eacd79e8b44}\label{class_bullet_a781ca8ccaf366435ece65eacd79e8b44}} 
+\index{Bullet@{Bullet}!get\+Radius@{get\+Radius}}
+\index{get\+Radius@{get\+Radius}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{get\+Radius()}{getRadius()}}
+{\footnotesize\ttfamily int Bullet\+::get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_bullet_a73634149134359bca3f2201fb6284707}\label{class_bullet_a73634149134359bca3f2201fb6284707}} 
 \index{Bullet@{Bullet}!get\+Type@{get\+Type}}
 \index{get\+Type@{get\+Type}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{get\+Type()}{getType()}}
 {\footnotesize\ttfamily int Bullet\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_a0a0740a3138524771a496847f7198cf4}{}\label{class_bullet_a0a0740a3138524771a496847f7198cf4} 
-\index{Bullet@{Bullet}!init@{init}}
-\index{init@{init}!Bullet@{Bullet}}
-\subsubsection{\texorpdfstring{init()}{init()}}
-{\footnotesize\ttfamily void Bullet\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{tex }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_bullet_a459d9d3adb6bdd2899965e1916eafb49}\label{class_bullet_a459d9d3adb6bdd2899965e1916eafb49}} 
+\index{Bullet@{Bullet}!is\+Enabled@{is\+Enabled}}
+\index{is\+Enabled@{is\+Enabled}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{is\+Enabled()}{isEnabled()}}
+{\footnotesize\ttfamily bool Bullet\+::is\+Enabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_ae23f1f04ccd644d823184feb0da3c6b2}{}\label{class_bullet_ae23f1f04ccd644d823184feb0da3c6b2} 
-\index{Bullet@{Bullet}!is\+Alive@{is\+Alive}}
-\index{is\+Alive@{is\+Alive}!Bullet@{Bullet}}
-\subsubsection{\texorpdfstring{is\+Alive()}{isAlive()}}
-{\footnotesize\ttfamily bool Bullet\+::is\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{class_bullet_af2e8a6860232266f180efbdb2a68f8c9}\label{class_bullet_af2e8a6860232266f180efbdb2a68f8c9}} 
+\index{Bullet@{Bullet}!reset@{reset}}
+\index{reset@{reset}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Bullet\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_a143a06245534960d6af5ffb10b101750}{}\label{class_bullet_a143a06245534960d6af5ffb10b101750} 
+\mbox{\Hypertarget{class_bullet_a31f36da7eb69fdf357670f2ac7bbae85}\label{class_bullet_a31f36da7eb69fdf357670f2ac7bbae85}} 
+\index{Bullet@{Bullet}!set\+Enabled@{set\+Enabled}}
+\index{set\+Enabled@{set\+Enabled}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{set\+Enabled()}{setEnabled()}}
+{\footnotesize\ttfamily void Bullet\+::set\+Enabled (\begin{DoxyParamCaption}\item[{bool}]{enabled }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_bullet_a143a06245534960d6af5ffb10b101750}\label{class_bullet_a143a06245534960d6af5ffb10b101750}} 
 \index{Bullet@{Bullet}!set\+Position@{set\+Position}}
 \index{set\+Position@{set\+Position}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
 {\footnotesize\ttfamily void Bullet\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_a94a279bd2d28fa50c0c639915300b52f}{}\label{class_bullet_a94a279bd2d28fa50c0c639915300b52f} 
+\mbox{\Hypertarget{class_bullet_abbf2bd440aade1c9f0f8f61d333ca64a}\label{class_bullet_abbf2bd440aade1c9f0f8f61d333ca64a}} 
+\index{Bullet@{Bullet}!set\+T\+TL@{set\+T\+TL}}
+\index{set\+T\+TL@{set\+T\+TL}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{set\+T\+T\+L()}{setTTL()}}
+{\footnotesize\ttfamily void Bullet\+::set\+T\+TL (\begin{DoxyParamCaption}\item[{int}]{ttl }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_bullet_a2ac1e1ac43af3bbd0d7c2a72e0e17e51}\label{class_bullet_a2ac1e1ac43af3bbd0d7c2a72e0e17e51}} 
 \index{Bullet@{Bullet}!set\+Up\+Bullet@{set\+Up\+Bullet}}
 \index{set\+Up\+Bullet@{set\+Up\+Bullet}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{set\+Up\+Bullet()}{setUpBullet()}}
-{\footnotesize\ttfamily void Bullet\+::set\+Up\+Bullet (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position,  }\item[{int}]{direction,  }\item[{int}]{type,  }\item[{bool}]{player\+Bullet }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Bullet\+::set\+Up\+Bullet (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position,  }\item[{float}]{x\+Speed,  }\item[{int}]{direction,  }\item[{int}]{type,  }\item[{bool}]{player\+Bullet }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_a5ee57e44e79f829920f4c117937d5f97}{}\label{class_bullet_a5ee57e44e79f829920f4c117937d5f97} 
+\mbox{\Hypertarget{class_bullet_afa7788ce043c909b96c37a0265755000}\label{class_bullet_afa7788ce043c909b96c37a0265755000}} 
+\index{Bullet@{Bullet}!set\+Up\+E\+Bullet@{set\+Up\+E\+Bullet}}
+\index{set\+Up\+E\+Bullet@{set\+Up\+E\+Bullet}!Bullet@{Bullet}}
+\subsubsection{\texorpdfstring{set\+Up\+E\+Bullet()}{setUpEBullet()}}
+{\footnotesize\ttfamily void Bullet\+::set\+Up\+E\+Bullet (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position,  }\item[{sf\+::\+Vector2f}]{target\+Position,  }\item[{int}]{type,  }\item[{bool}]{player\+Bullet }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_bullet_a5ee57e44e79f829920f4c117937d5f97}\label{class_bullet_a5ee57e44e79f829920f4c117937d5f97}} 
 \index{Bullet@{Bullet}!set\+Up\+Missile@{set\+Up\+Missile}}
 \index{set\+Up\+Missile@{set\+Up\+Missile}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{set\+Up\+Missile()}{setUpMissile()}}
 {\footnotesize\ttfamily void Bullet\+::set\+Up\+Missile (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position,  }\item[{sf\+::\+Vector2f}]{player\+Pos,  }\item[{int}]{type }\end{DoxyParamCaption})}
 
-\hypertarget{class_bullet_a9da6e150f1e7586f0f934b1ee029bc1a}{}\label{class_bullet_a9da6e150f1e7586f0f934b1ee029bc1a} 
+\mbox{\Hypertarget{class_bullet_ac1793d563983d2503cc562e0b3e1eee7}\label{class_bullet_ac1793d563983d2503cc562e0b3e1eee7}} 
 \index{Bullet@{Bullet}!update@{update}}
 \index{update@{update}!Bullet@{Bullet}}
 \subsubsection{\texorpdfstring{update()}{update()}}
-{\footnotesize\ttfamily void Bullet\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time,  }\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Bullet\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time,  }\item[{sf\+::\+Vector2f}]{player\+Pos,  }\item[{int \&}]{missle\+Count }\end{DoxyParamCaption})}
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_bullet_8h}{Bullet.\+h}\item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_bullet_8cpp}{Bullet.\+cpp}\end{DoxyCompactItemize}
+S\+F\+M\+L Engine/\hyperlink{_bullet_8h}{Bullet.\+h}\item 
+S\+F\+M\+L Engine/\hyperlink{_bullet_8cpp}{Bullet.\+cpp}\end{DoxyCompactItemize}

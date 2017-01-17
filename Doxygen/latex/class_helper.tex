@@ -4,61 +4,70 @@
 
 {\ttfamily \#include $<$Helper.\+h$>$}
 
-\subsection*{Public Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{class_helper_ad714e92b4bc40bee681e0713503c9b27}{$\sim$\+Helper} ()
-\item 
-float \hyperlink{class_helper_a0cde798c2e2940f733c0d82062a32994}{Length} (sf\+::\+Vector2f) const
-\item 
-float \hyperlink{class_helper_a7f7c47be61f23ba30a71119f9dbbf847}{Length\+Squared} (sf\+::\+Vector2f) const
-\item 
-sf\+::\+Vector2f \hyperlink{class_helper_a7b3164a812d73c432b84e9ea1d2df507}{Normalize} (sf\+::\+Vector2f)
-\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static \hyperlink{class_helper}{Helper} \& \hyperlink{class_helper_a2efdc8231bed2315ec951558af552f31}{Get\+Instance} ()
+static float \hyperlink{class_helper_ad2b13a8d9fff4f913a57db9903df7709}{Length} (sf\+::\+Vector2f v)
+\item 
+static float \hyperlink{class_helper_ad6c52dd3a1875fbffc268196a6a6a887}{Length\+Squared} (sf\+::\+Vector2f v)
+\item 
+static sf\+::\+Vector2f \hyperlink{class_helper_a1a431211d082593425ccfafe077dd5bc}{Div\+Scaler} (sf\+::\+Vector2f v, float s)
+\item 
+static float \hyperlink{class_helper_aabf497b73c8aedbaf02b0f579ce73704}{Distance} (sf\+::\+Vector2f v, sf\+::\+Vector2f v2)
+\item 
+static sf\+::\+Vector2f \hyperlink{class_helper_a7565c8f3c91f44e139d7a4aaef6e0e34}{Normalize} (sf\+::\+Vector2f v)
+\item 
+static float \hyperlink{class_helper_a7a1497494599fe9b5bc68718c812d903}{dot\+Product} (sf\+::\+Vector2f v, sf\+::\+Vector2f v2)
+\item 
+static float \hyperlink{class_helper_a0a21ce7bbd26f902abbe5fe078b20044}{angle\+Between} (sf\+::\+Vector2f v, sf\+::\+Vector2f v2)
 \end{DoxyCompactItemize}
 
 
-\subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_helper_ad714e92b4bc40bee681e0713503c9b27}{}\label{class_helper_ad714e92b4bc40bee681e0713503c9b27} 
-\index{Helper@{Helper}!````~Helper@{$\sim$\+Helper}}
-\index{````~Helper@{$\sim$\+Helper}!Helper@{Helper}}
-\subsubsection{\texorpdfstring{$\sim$\+Helper()}{~Helper()}}
-{\footnotesize\ttfamily Helper\+::$\sim$\+Helper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
 \subsection{Member Function Documentation}
-\hypertarget{class_helper_a2efdc8231bed2315ec951558af552f31}{}\label{class_helper_a2efdc8231bed2315ec951558af552f31} 
-\index{Helper@{Helper}!Get\+Instance@{Get\+Instance}}
-\index{Get\+Instance@{Get\+Instance}!Helper@{Helper}}
-\subsubsection{\texorpdfstring{Get\+Instance()}{GetInstance()}}
-{\footnotesize\ttfamily \hyperlink{class_helper}{Helper} \& Helper\+::\+Get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+\mbox{\Hypertarget{class_helper_a0a21ce7bbd26f902abbe5fe078b20044}\label{class_helper_a0a21ce7bbd26f902abbe5fe078b20044}} 
+\index{Helper@{Helper}!angle\+Between@{angle\+Between}}
+\index{angle\+Between@{angle\+Between}!Helper@{Helper}}
+\subsubsection{\texorpdfstring{angle\+Between()}{angleBetween()}}
+{\footnotesize\ttfamily static float Helper\+::angle\+Between (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{v,  }\item[{sf\+::\+Vector2f}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
-\hypertarget{class_helper_a0cde798c2e2940f733c0d82062a32994}{}\label{class_helper_a0cde798c2e2940f733c0d82062a32994} 
+\mbox{\Hypertarget{class_helper_aabf497b73c8aedbaf02b0f579ce73704}\label{class_helper_aabf497b73c8aedbaf02b0f579ce73704}} 
+\index{Helper@{Helper}!Distance@{Distance}}
+\index{Distance@{Distance}!Helper@{Helper}}
+\subsubsection{\texorpdfstring{Distance()}{Distance()}}
+{\footnotesize\ttfamily static float Helper\+::\+Distance (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{v,  }\item[{sf\+::\+Vector2f}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_helper_a1a431211d082593425ccfafe077dd5bc}\label{class_helper_a1a431211d082593425ccfafe077dd5bc}} 
+\index{Helper@{Helper}!Div\+Scaler@{Div\+Scaler}}
+\index{Div\+Scaler@{Div\+Scaler}!Helper@{Helper}}
+\subsubsection{\texorpdfstring{Div\+Scaler()}{DivScaler()}}
+{\footnotesize\ttfamily static sf\+::\+Vector2f Helper\+::\+Div\+Scaler (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{v,  }\item[{float}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_helper_a7a1497494599fe9b5bc68718c812d903}\label{class_helper_a7a1497494599fe9b5bc68718c812d903}} 
+\index{Helper@{Helper}!dot\+Product@{dot\+Product}}
+\index{dot\+Product@{dot\+Product}!Helper@{Helper}}
+\subsubsection{\texorpdfstring{dot\+Product()}{dotProduct()}}
+{\footnotesize\ttfamily static float Helper\+::dot\+Product (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{v,  }\item[{sf\+::\+Vector2f}]{v2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{class_helper_ad2b13a8d9fff4f913a57db9903df7709}\label{class_helper_ad2b13a8d9fff4f913a57db9903df7709}} 
 \index{Helper@{Helper}!Length@{Length}}
 \index{Length@{Length}!Helper@{Helper}}
 \subsubsection{\texorpdfstring{Length()}{Length()}}
-{\footnotesize\ttfamily float Helper\+::\+Length (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{p\+Vel }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily static float Helper\+::\+Length (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
-\hypertarget{class_helper_a7f7c47be61f23ba30a71119f9dbbf847}{}\label{class_helper_a7f7c47be61f23ba30a71119f9dbbf847} 
+\mbox{\Hypertarget{class_helper_ad6c52dd3a1875fbffc268196a6a6a887}\label{class_helper_ad6c52dd3a1875fbffc268196a6a6a887}} 
 \index{Helper@{Helper}!Length\+Squared@{Length\+Squared}}
 \index{Length\+Squared@{Length\+Squared}!Helper@{Helper}}
 \subsubsection{\texorpdfstring{Length\+Squared()}{LengthSquared()}}
-{\footnotesize\ttfamily float Helper\+::\+Length\+Squared (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{p\+Vel }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily static float Helper\+::\+Length\+Squared (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
-\hypertarget{class_helper_a7b3164a812d73c432b84e9ea1d2df507}{}\label{class_helper_a7b3164a812d73c432b84e9ea1d2df507} 
+\mbox{\Hypertarget{class_helper_a7565c8f3c91f44e139d7a4aaef6e0e34}\label{class_helper_a7565c8f3c91f44e139d7a4aaef6e0e34}} 
 \index{Helper@{Helper}!Normalize@{Normalize}}
 \index{Normalize@{Normalize}!Helper@{Helper}}
 \subsubsection{\texorpdfstring{Normalize()}{Normalize()}}
-{\footnotesize\ttfamily sf\+::\+Vector2f Helper\+::\+Normalize (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{p\+Vel }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily static sf\+::\+Vector2f Helper\+::\+Normalize (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_helper_8h}{Helper.\+h}\item 
-S\+F\+M\+L Engine/\+S\+F\+M\+L Engine/\hyperlink{_helper_8cpp}{Helper.\+cpp}\end{DoxyCompactItemize}
+S\+F\+M\+L Engine/\hyperlink{_helper_8h}{Helper.\+h}\end{DoxyCompactItemize}

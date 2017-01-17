@@ -1,0 +1,313 @@
+\hypertarget{class_alien}{}\section{Alien Class Reference}
+\label{class_alien}\index{Alien@{Alien}}
+
+
+{\ttfamily \#include $<$Alien.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{class_alien_a46333b42b6e6dff962c3236b7012ec8c}{Anims} \{ \hyperlink{class_alien_a46333b42b6e6dff962c3236b7012ec8ca7a4a36a6254d3844899e487586e46337}{Default}, 
+\hyperlink{class_alien_a46333b42b6e6dff962c3236b7012ec8ca04a2fe3761bed6d947586432c4747a1c}{Explode}, 
+\hyperlink{class_alien_a46333b42b6e6dff962c3236b7012ec8ca44b86fba8c2c960652279d9e807061c4}{Abduct}
+ \}
+\item 
+enum \hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400d}{State} \{ \newline
+\hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400da816f7fd79da3c3d0d394fb4e3930f5d8}{Blank}, 
+\hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08}{Target}, 
+\hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400dae02a372972a7b4862d4840321e663e31}{Capture}, 
+\hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400da5f2f5d641e92fc16ce133da2ca32f709}{Flock}, 
+\newline
+\hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400da90dc39d1c949da5f9fb7703938b99c53}{Dying}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_alien_aa2c356638e31ea4bbd42c2aa2a8cb5f4}{Alien} (sf\+::\+Texture \&tex, sf\+::\+Vector2i screen\+Bounds, sf\+::\+Vector2i world\+Bounds)
+\item 
+\hyperlink{class_alien_a7cdfd79d84b51a18003bf41585aedd43}{$\sim$\+Alien} ()
+\item 
+void \hyperlink{class_alien_a516b6245841735741f287b38c20b8853}{init} (sf\+::\+Vector2f position)
+\item 
+void \hyperlink{class_alien_a0b57e5b389ab46700ceee75c3b174d0f}{apply\+Force} (\hyperlink{class_pvector}{Pvector} force)
+\item 
+\hyperlink{class_pvector}{Pvector} \hyperlink{class_alien_a9ff194fbdb318bb84153e55051c5af8e}{separation} (std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$alien)
+\item 
+\hyperlink{class_pvector}{Pvector} \hyperlink{class_alien_ae1e91676d1f4bef69397a21d6ba4867a}{alignment} (std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$alien)
+\item 
+\hyperlink{class_pvector}{Pvector} \hyperlink{class_alien_aa4d875c73cb6899cb9854bca83443ce4}{cohesion} (std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$alien)
+\item 
+\hyperlink{class_pvector}{Pvector} \hyperlink{class_alien_aadb10553ae97d31376dba97e0b0599a8}{seek} (\hyperlink{class_pvector}{Pvector} v)
+\item 
+bool \hyperlink{class_alien_a7ae22c9eb89a6b1896bc7c237880b9ba}{run} (std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$alien, sf\+::\+Time delta\+Time, sf\+::\+Vector2f player\+Pos)
+\item 
+void \hyperlink{class_alien_a37c8acacf468919027cb84593a0fc284}{update\+Flocking} (sf\+::\+Time delta\+Time, sf\+::\+Vector2f player\+Pos)
+\item 
+bool \hyperlink{class_alien_a6081c8a068679e203e6e920b9197e4de}{update\+Target\+Capture} (sf\+::\+Time dt)
+\item 
+void \hyperlink{class_alien_aa85a70c1e7ed8d7d728df94ad47b83a2}{update\+Dying} (sf\+::\+Time dt)
+\item 
+void \hyperlink{class_alien_a768bd4e8f7b409f8a7c3b4ac6cdd598f}{borders} ()
+\item 
+void \hyperlink{class_alien_a087d886ecd8b70d2554bb54fae81528d}{flock} (std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$alien)
+\item 
+bool \hyperlink{class_alien_a6da0e947ec0c70d429e54511d67ad608}{get\+Alive} ()
+\item 
+void \hyperlink{class_alien_a1f8e8072e38c88e7299867ce08e169f4}{set\+Alive} (bool alive)
+\item 
+int \hyperlink{class_alien_a4954611d3a021f57a02564f17a3b0efc}{get\+State} ()
+\item 
+void \hyperlink{class_alien_aead215fe05108897f31e12c9e58b0d90}{set\+State} (int state)
+\item 
+int \hyperlink{class_alien_ab649dc3a1c86463c29b32931683685ab}{get\+Radius} ()
+\item 
+int \hyperlink{class_alien_a9dbe59b6c7ec7ad946e113f0f05f7427}{get\+Abduct\+Radius} ()
+\item 
+void \hyperlink{class_alien_a5f1364d7d592e43230971365bb58d5a3}{set\+Damage} (int damage)
+\item 
+int \hyperlink{class_alien_aa83dd26e21c40429865e3f84018545a0}{get\+Health} ()
+\item 
+sf\+::\+Vector2f \hyperlink{class_alien_a52dc07105cf8ff2a25961ecebf9fbbe1}{get\+Position} ()
+\item 
+void \hyperlink{class_alien_a751c54dcc0d77d92c6540b05b0fef50a}{set\+Position} (sf\+::\+Vector2f position)
+\item 
+void \hyperlink{class_alien_a23b7f6d84b71e233834a36ee37e90b14}{set\+Astro} (\hyperlink{class_astronaut}{Astronaut} $\ast$astro)
+\item 
+\hyperlink{class_animated_sprite}{Animated\+Sprite} \hyperlink{class_alien_a518e51803e638c46d0452ba283f2aad6}{draw} ()
+\item 
+void \hyperlink{class_alien_a1f94914265a34170958fbf0cc4dbf187}{check\+Bounds} ()
+\item 
+int \hyperlink{class_alien_a3165f3c2c824c3784dd0054d48fd5c5a}{get\+Current\+State} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Enumeration Documentation}
+\mbox{\Hypertarget{class_alien_a46333b42b6e6dff962c3236b7012ec8c}\label{class_alien_a46333b42b6e6dff962c3236b7012ec8c}} 
+\index{Alien@{Alien}!Anims@{Anims}}
+\index{Anims@{Anims}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{Anims}{Anims}}
+{\footnotesize\ttfamily enum \hyperlink{class_alien_a46333b42b6e6dff962c3236b7012ec8c}{Alien\+::\+Anims}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Default@{Default}!Alien@{Alien}}\index{Alien@{Alien}!Default@{Default}}}\mbox{\Hypertarget{class_alien_a46333b42b6e6dff962c3236b7012ec8ca7a4a36a6254d3844899e487586e46337}\label{class_alien_a46333b42b6e6dff962c3236b7012ec8ca7a4a36a6254d3844899e487586e46337}} 
+Default&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Explode@{Explode}!Alien@{Alien}}\index{Alien@{Alien}!Explode@{Explode}}}\mbox{\Hypertarget{class_alien_a46333b42b6e6dff962c3236b7012ec8ca04a2fe3761bed6d947586432c4747a1c}\label{class_alien_a46333b42b6e6dff962c3236b7012ec8ca04a2fe3761bed6d947586432c4747a1c}} 
+Explode&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Abduct@{Abduct}!Alien@{Alien}}\index{Alien@{Alien}!Abduct@{Abduct}}}\mbox{\Hypertarget{class_alien_a46333b42b6e6dff962c3236b7012ec8ca44b86fba8c2c960652279d9e807061c4}\label{class_alien_a46333b42b6e6dff962c3236b7012ec8ca44b86fba8c2c960652279d9e807061c4}} 
+Abduct&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400d}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400d}} 
+\index{Alien@{Alien}!State@{State}}
+\index{State@{State}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{State}{State}}
+{\footnotesize\ttfamily enum \hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400d}{Alien\+::\+State}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Blank@{Blank}!Alien@{Alien}}\index{Alien@{Alien}!Blank@{Blank}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400da816f7fd79da3c3d0d394fb4e3930f5d8}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400da816f7fd79da3c3d0d394fb4e3930f5d8}} 
+Blank&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Target@{Target}!Alien@{Alien}}\index{Alien@{Alien}!Target@{Target}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08}} 
+Target&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Capture@{Capture}!Alien@{Alien}}\index{Alien@{Alien}!Capture@{Capture}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400dae02a372972a7b4862d4840321e663e31}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400dae02a372972a7b4862d4840321e663e31}} 
+Capture&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Flock@{Flock}!Alien@{Alien}}\index{Alien@{Alien}!Flock@{Flock}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400da5f2f5d641e92fc16ce133da2ca32f709}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400da5f2f5d641e92fc16ce133da2ca32f709}} 
+Flock&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Dying@{Dying}!Alien@{Alien}}\index{Alien@{Alien}!Dying@{Dying}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400da90dc39d1c949da5f9fb7703938b99c53}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400da90dc39d1c949da5f9fb7703938b99c53}} 
+Dying&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_alien_aa2c356638e31ea4bbd42c2aa2a8cb5f4}\label{class_alien_aa2c356638e31ea4bbd42c2aa2a8cb5f4}} 
+\index{Alien@{Alien}!Alien@{Alien}}
+\index{Alien@{Alien}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{Alien()}{Alien()}}
+{\footnotesize\ttfamily Alien\+::\+Alien (\begin{DoxyParamCaption}\item[{sf\+::\+Texture \&}]{tex,  }\item[{sf\+::\+Vector2i}]{screen\+Bounds,  }\item[{sf\+::\+Vector2i}]{world\+Bounds }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a7cdfd79d84b51a18003bf41585aedd43}\label{class_alien_a7cdfd79d84b51a18003bf41585aedd43}} 
+\index{Alien@{Alien}!````~Alien@{$\sim$\+Alien}}
+\index{````~Alien@{$\sim$\+Alien}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{$\sim$\+Alien()}{~Alien()}}
+{\footnotesize\ttfamily Alien\+::$\sim$\+Alien (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_alien_ae1e91676d1f4bef69397a21d6ba4867a}\label{class_alien_ae1e91676d1f4bef69397a21d6ba4867a}} 
+\index{Alien@{Alien}!alignment@{alignment}}
+\index{alignment@{alignment}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{alignment()}{alignment()}}
+{\footnotesize\ttfamily \hyperlink{class_pvector}{Pvector} Alien\+::alignment (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$}]{alien }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a0b57e5b389ab46700ceee75c3b174d0f}\label{class_alien_a0b57e5b389ab46700ceee75c3b174d0f}} 
+\index{Alien@{Alien}!apply\+Force@{apply\+Force}}
+\index{apply\+Force@{apply\+Force}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{apply\+Force()}{applyForce()}}
+{\footnotesize\ttfamily void Alien\+::apply\+Force (\begin{DoxyParamCaption}\item[{\hyperlink{class_pvector}{Pvector}}]{force }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a768bd4e8f7b409f8a7c3b4ac6cdd598f}\label{class_alien_a768bd4e8f7b409f8a7c3b4ac6cdd598f}} 
+\index{Alien@{Alien}!borders@{borders}}
+\index{borders@{borders}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{borders()}{borders()}}
+{\footnotesize\ttfamily void Alien\+::borders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a1f94914265a34170958fbf0cc4dbf187}\label{class_alien_a1f94914265a34170958fbf0cc4dbf187}} 
+\index{Alien@{Alien}!check\+Bounds@{check\+Bounds}}
+\index{check\+Bounds@{check\+Bounds}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{check\+Bounds()}{checkBounds()}}
+{\footnotesize\ttfamily void Alien\+::check\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_aa4d875c73cb6899cb9854bca83443ce4}\label{class_alien_aa4d875c73cb6899cb9854bca83443ce4}} 
+\index{Alien@{Alien}!cohesion@{cohesion}}
+\index{cohesion@{cohesion}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{cohesion()}{cohesion()}}
+{\footnotesize\ttfamily \hyperlink{class_pvector}{Pvector} Alien\+::cohesion (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$}]{alien }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a518e51803e638c46d0452ba283f2aad6}\label{class_alien_a518e51803e638c46d0452ba283f2aad6}} 
+\index{Alien@{Alien}!draw@{draw}}
+\index{draw@{draw}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Alien\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a087d886ecd8b70d2554bb54fae81528d}\label{class_alien_a087d886ecd8b70d2554bb54fae81528d}} 
+\index{Alien@{Alien}!flock@{flock}}
+\index{flock@{flock}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{flock()}{flock()}}
+{\footnotesize\ttfamily void Alien\+::flock (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$}]{alien }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a9dbe59b6c7ec7ad946e113f0f05f7427}\label{class_alien_a9dbe59b6c7ec7ad946e113f0f05f7427}} 
+\index{Alien@{Alien}!get\+Abduct\+Radius@{get\+Abduct\+Radius}}
+\index{get\+Abduct\+Radius@{get\+Abduct\+Radius}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{get\+Abduct\+Radius()}{getAbductRadius()}}
+{\footnotesize\ttfamily int Alien\+::get\+Abduct\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a6da0e947ec0c70d429e54511d67ad608}\label{class_alien_a6da0e947ec0c70d429e54511d67ad608}} 
+\index{Alien@{Alien}!get\+Alive@{get\+Alive}}
+\index{get\+Alive@{get\+Alive}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{get\+Alive()}{getAlive()}}
+{\footnotesize\ttfamily bool Alien\+::get\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a3165f3c2c824c3784dd0054d48fd5c5a}\label{class_alien_a3165f3c2c824c3784dd0054d48fd5c5a}} 
+\index{Alien@{Alien}!get\+Current\+State@{get\+Current\+State}}
+\index{get\+Current\+State@{get\+Current\+State}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{get\+Current\+State()}{getCurrentState()}}
+{\footnotesize\ttfamily int Alien\+::get\+Current\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_aa83dd26e21c40429865e3f84018545a0}\label{class_alien_aa83dd26e21c40429865e3f84018545a0}} 
+\index{Alien@{Alien}!get\+Health@{get\+Health}}
+\index{get\+Health@{get\+Health}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
+{\footnotesize\ttfamily int Alien\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a52dc07105cf8ff2a25961ecebf9fbbe1}\label{class_alien_a52dc07105cf8ff2a25961ecebf9fbbe1}} 
+\index{Alien@{Alien}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Alien\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_ab649dc3a1c86463c29b32931683685ab}\label{class_alien_ab649dc3a1c86463c29b32931683685ab}} 
+\index{Alien@{Alien}!get\+Radius@{get\+Radius}}
+\index{get\+Radius@{get\+Radius}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{get\+Radius()}{getRadius()}}
+{\footnotesize\ttfamily int Alien\+::get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a4954611d3a021f57a02564f17a3b0efc}\label{class_alien_a4954611d3a021f57a02564f17a3b0efc}} 
+\index{Alien@{Alien}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{get\+State()}{getState()}}
+{\footnotesize\ttfamily int Alien\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a516b6245841735741f287b38c20b8853}\label{class_alien_a516b6245841735741f287b38c20b8853}} 
+\index{Alien@{Alien}!init@{init}}
+\index{init@{init}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Alien\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a7ae22c9eb89a6b1896bc7c237880b9ba}\label{class_alien_a7ae22c9eb89a6b1896bc7c237880b9ba}} 
+\index{Alien@{Alien}!run@{run}}
+\index{run@{run}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily bool Alien\+::run (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$}]{alien,  }\item[{sf\+::\+Time}]{delta\+Time,  }\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_aadb10553ae97d31376dba97e0b0599a8}\label{class_alien_aadb10553ae97d31376dba97e0b0599a8}} 
+\index{Alien@{Alien}!seek@{seek}}
+\index{seek@{seek}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{seek()}{seek()}}
+{\footnotesize\ttfamily \hyperlink{class_pvector}{Pvector} Alien\+::seek (\begin{DoxyParamCaption}\item[{\hyperlink{class_pvector}{Pvector}}]{v }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a9ff194fbdb318bb84153e55051c5af8e}\label{class_alien_a9ff194fbdb318bb84153e55051c5af8e}} 
+\index{Alien@{Alien}!separation@{separation}}
+\index{separation@{separation}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{separation()}{separation()}}
+{\footnotesize\ttfamily \hyperlink{class_pvector}{Pvector} Alien\+::separation (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_alien}{Alien} $\ast$$>$ $\ast$}]{alien }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a1f8e8072e38c88e7299867ce08e169f4}\label{class_alien_a1f8e8072e38c88e7299867ce08e169f4}} 
+\index{Alien@{Alien}!set\+Alive@{set\+Alive}}
+\index{set\+Alive@{set\+Alive}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{set\+Alive()}{setAlive()}}
+{\footnotesize\ttfamily void Alien\+::set\+Alive (\begin{DoxyParamCaption}\item[{bool}]{alive }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a23b7f6d84b71e233834a36ee37e90b14}\label{class_alien_a23b7f6d84b71e233834a36ee37e90b14}} 
+\index{Alien@{Alien}!set\+Astro@{set\+Astro}}
+\index{set\+Astro@{set\+Astro}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{set\+Astro()}{setAstro()}}
+{\footnotesize\ttfamily void Alien\+::set\+Astro (\begin{DoxyParamCaption}\item[{\hyperlink{class_astronaut}{Astronaut} $\ast$}]{astro }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a5f1364d7d592e43230971365bb58d5a3}\label{class_alien_a5f1364d7d592e43230971365bb58d5a3}} 
+\index{Alien@{Alien}!set\+Damage@{set\+Damage}}
+\index{set\+Damage@{set\+Damage}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{set\+Damage()}{setDamage()}}
+{\footnotesize\ttfamily void Alien\+::set\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a751c54dcc0d77d92c6540b05b0fef50a}\label{class_alien_a751c54dcc0d77d92c6540b05b0fef50a}} 
+\index{Alien@{Alien}!set\+Position@{set\+Position}}
+\index{set\+Position@{set\+Position}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
+{\footnotesize\ttfamily void Alien\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_aead215fe05108897f31e12c9e58b0d90}\label{class_alien_aead215fe05108897f31e12c9e58b0d90}} 
+\index{Alien@{Alien}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{set\+State()}{setState()}}
+{\footnotesize\ttfamily void Alien\+::set\+State (\begin{DoxyParamCaption}\item[{int}]{state }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_aa85a70c1e7ed8d7d728df94ad47b83a2}\label{class_alien_aa85a70c1e7ed8d7d728df94ad47b83a2}} 
+\index{Alien@{Alien}!update\+Dying@{update\+Dying}}
+\index{update\+Dying@{update\+Dying}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{update\+Dying()}{updateDying()}}
+{\footnotesize\ttfamily void Alien\+::update\+Dying (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{dt }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a37c8acacf468919027cb84593a0fc284}\label{class_alien_a37c8acacf468919027cb84593a0fc284}} 
+\index{Alien@{Alien}!update\+Flocking@{update\+Flocking}}
+\index{update\+Flocking@{update\+Flocking}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{update\+Flocking()}{updateFlocking()}}
+{\footnotesize\ttfamily void Alien\+::update\+Flocking (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time,  }\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_alien_a6081c8a068679e203e6e920b9197e4de}\label{class_alien_a6081c8a068679e203e6e920b9197e4de}} 
+\index{Alien@{Alien}!update\+Target\+Capture@{update\+Target\+Capture}}
+\index{update\+Target\+Capture@{update\+Target\+Capture}!Alien@{Alien}}
+\subsubsection{\texorpdfstring{update\+Target\+Capture()}{updateTargetCapture()}}
+{\footnotesize\ttfamily bool Alien\+::update\+Target\+Capture (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{dt }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+F\+M\+L Engine/\hyperlink{_alien_8h}{Alien.\+h}\item 
+S\+F\+M\+L Engine/\hyperlink{_alien_8cpp}{Alien.\+cpp}\end{DoxyCompactItemize}
