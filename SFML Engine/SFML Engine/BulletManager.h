@@ -1,3 +1,8 @@
+/*! \brief The Bullet Maanger. This contains a reference to every bullet and is responsible for their generation.
+*
+*
+*
+*/
 #pragma once
 #include "Bullet.h"
 #include <iostream>

@@ -1,3 +1,8 @@
+/*! \brief The Application Class. Handles the input, loading of textures and fonts, creates scenes.
+*
+*
+*
+*/
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "ResourceHolder.h"

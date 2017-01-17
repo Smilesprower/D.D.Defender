@@ -1,3 +1,8 @@
+/*! \brief The Game Over Scene. Handles everything that is displayed when the game has ended.
+*
+*
+*
+*/
 #pragma once
 #include "Scene.h"
 #include "SceneStack.h"

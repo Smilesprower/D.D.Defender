@@ -1,3 +1,8 @@
+/*! \brief The Collision Manager. Handles all collision between each entity.
+*
+*
+*
+*/
 #pragma once
 #include "Player.h"
 #include "nest.h"

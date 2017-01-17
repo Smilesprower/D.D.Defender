@@ -1,3 +1,9 @@
+/*! \brief The Mutant Class. Handles all the properties of the Mutant.
+*
+*
+*
+*/
+
 #pragma once
 #include "AnimatedSprite.h"
 #include "Pvector.h"

@@ -1,3 +1,8 @@
+/*! \brief The HUD Class. Handles the UI that is displayed during the game.
+*
+*
+*
+*/
 #pragma once
 #include "Scene.h"
 

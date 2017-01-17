@@ -1,3 +1,9 @@
+/*! \brief The Score Class. Holds all score information required for the game.
+*
+*
+*
+*/
+
 #pragma once
 class Score
 {

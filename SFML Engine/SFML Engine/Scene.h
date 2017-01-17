@@ -1,3 +1,9 @@
+/*! \brief The Scene Class. Requests the changing of scenes.
+*
+*
+*
+*/
+
 #pragma once
 #include <memory>
 #include "ResourceHolder.h"

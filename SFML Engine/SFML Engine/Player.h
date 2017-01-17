@@ -1,3 +1,9 @@
+/*! \brief The Player Class. Handles all the properties and responsibilities of the player.
+*
+*
+*
+*/
+
 #include <SFML\Graphics.hpp>
 #include "AnimatedSprite.h"
 #include "BulletManager.h"

@@ -1,3 +1,8 @@
+/*! \brief The Bullet Class. Handles all the properties of the bullet, and sets up each type of bullet.
+*
+*
+*
+*/
 #pragma once
 #include "AnimatedSprite.h"
 #include "Helper.h"

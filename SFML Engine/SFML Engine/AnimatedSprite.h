@@ -1,3 +1,8 @@
+/*! \brief The Animated Sprite Class. Controls the animation of sprites.
+*
+*
+*
+*/
 #pragma once
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Time.hpp>

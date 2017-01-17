@@ -1,3 +1,9 @@
+/*! \brief The Sound Player. Controls the playing of sounds.
+*
+*
+*
+*/
+
 #pragma once
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Audio/Sound.hpp>
