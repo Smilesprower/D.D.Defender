@@ -52,6 +52,7 @@ private:
 
 
 	int NUM_OF_ANIMS = 3;
+	const float MAX_VELOCITY = 550.0f;
 	const int COLLISION_RADIUS = 50;
 	const int BULLET_COOLDOWN_TIMER = 2;
 	const int BULLET_RANGE = 700;

@@ -403,7 +403,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 		for (int i = 0; i < NUM_OF_ALIENS; i++)
 		{
-			if(m_aliens[i]->run(&m_aliens, deltaTime, m_currPlayerPos))
+			if(m_aliens[i]->run(&m_aliens, deltaTime, m_currPlayerPos, i))
 			{
 				for (int j = 0; j < NUM_OF_MUTANTS; j++)
 				{

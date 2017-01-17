@@ -27,19 +27,17 @@ public:
 	~Alien();
 	void init(sf::Vector2f position);
 
-	void applyForce(Pvector force);
 
-	Pvector separation(std::vector<Alien*> *alien);
-	Pvector alignment(std::vector<Alien*> *alien);
-	Pvector cohesion(std::vector<Alien*> *alien);
-	Pvector seek(Pvector v);
+	sf::Vector2f separation(std::vector<Alien*> *alien, int index);
+	sf::Vector2f alignment(std::vector<Alien*>* alien, int index);
+	sf::Vector2f cohesion(std::vector<Alien*> *alien, int index);
 
-	bool run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos);
+	bool run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos, int index);
 	void updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos);
 	bool updateTargetCapture(sf::Time dt);
 	void updateDying(sf::Time dt);
 	void borders();
-	void flock(std::vector<Alien*> *alien);
+	void flock(std::vector<Alien*> *alien, int index);
 
 	bool getAlive();
 	void setAlive(bool alive);
@@ -65,9 +63,9 @@ private:
 	// AI SHTUFF
 	///////////////////////////////////
 	float m_maxSpeed, m_maxForce;
-	Pvector m_location;
-	Pvector m_velocity;
-	Pvector m_acceleration;
+	sf::Vector2f m_position;
+	sf::Vector2f m_velocity;
+
 	sf::Vector2i m_screenBounds;
 	sf::Vector2i m_worldBounds;
 	///////////////////////////////////
