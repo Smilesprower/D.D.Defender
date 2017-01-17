@@ -51,8 +51,8 @@ void Bullet::setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, in
 
 	sf::Vector2f temp = targetPosition - position;
 	temp = Helper::Normalize(temp);
-	m_rotation = std::atan2(temp.y, temp.x);
-	m_velocity = sf::Vector2f(cos(m_rotation) * MISSILE_SPEED, sin(m_rotation)*  MISSILE_SPEED);
+	float rotation = std::atan2(temp.y, temp.x);
+	m_velocity = sf::Vector2f(cos(rotation) * MISSILE_SPEED, sin(rotation)*  MISSILE_SPEED);
 
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
@@ -94,10 +94,8 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 
 	sf::Vector2f temp = targetPosition - position;
 	temp = Helper::Normalize(temp);
-	m_rotation = std::atan2(temp.y, temp.x);
-	m_velocity = sf::Vector2f(cos(m_rotation) * MISSILE_SPEED, sin(m_rotation)*  MISSILE_SPEED);
-	m_prevRotation = m_rotation;
-
+	float rotation = std::atan2(temp.y, temp.x);
+	m_velocity = sf::Vector2f(cos(rotation) * MISSILE_SPEED, sin(rotation)*  MISSILE_SPEED);
 }
 void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount)
 {
@@ -119,6 +117,7 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 		}
 		else
 		{
+			float rotation = 0.f;
 			m_animatedSprite.play(*m_currAnimation);
 			if (m_type == Missile)
 			{
@@ -136,10 +135,10 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 				{
 					sf::Vector2f temp = playerPos - m_animatedSprite.getPosition();
 					temp = Helper::Normalize(temp);
-					m_rotation = std::atan2(temp.y, temp.x);
-					m_velocity = sf::Vector2f(cos(m_rotation) * MISSILE_SPEED, sin(m_rotation)*  MISSILE_SPEED);
+					rotation = std::atan2(temp.y, temp.x);
+					m_velocity = sf::Vector2f(cos(rotation) * MISSILE_SPEED, sin(rotation)*  MISSILE_SPEED);
 				}
-				m_animatedSprite.setRotation(m_rotation * ANGLE_TO_RADS);
+				m_animatedSprite.setRotation(rotation * ANGLE_TO_RADS);
 			}
 			else if (m_type == Explosion)
 			{

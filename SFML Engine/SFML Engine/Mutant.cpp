@@ -35,6 +35,7 @@ Mutant::~Mutant()
 }
 void Mutant::init(sf::Vector2f pos)
 {
+	m_state = Start;
 	m_position = pos;
 	m_maxSpeed = 20;
 	m_alive = true;
@@ -73,16 +74,16 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 		// Circle Formation
 		else if (m_state == FormationB)
 		{
-			if (m_health < 15)
-				m_state = FormationC;
-			else if (mutantSize < 2)
+
+			if (m_health < 15 || mutantSize < 2)
 			{
 				m_state = FormationC;
+				m_velocity = sf::Vector2f(0, 0);
 			}
 
 			sf::Vector2f targetSlot;
 			int npcRadius = 100;
-			int closeEnough = 50;
+			int closeEnough = 100;
 			float angleAroundCircle = 0.0;
 
 			angleAroundCircle = ((float)currentMutant) / (mutantSize);

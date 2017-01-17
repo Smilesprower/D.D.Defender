@@ -30,7 +30,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	//m_playerCutOff.setFillColor(sf::Color::Transparent);
 	//m_playerCutOff.setOutlineThickness(3);
 	//m_playerCutOff.setOutlineColor(sf::Color::Red);
-	//m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
+	m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
 	/////////////////////////////////////////////
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
@@ -154,65 +154,7 @@ void GameScene::draw()
 	sf::RenderWindow& window = *getContext().window;
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
-	if (m_currPlayerPos.x > m_boundries.y)
-	{
-		int enemyNestSize = m_nests.size();
-		int bulletSize = bulletCopy.size();
-		for (int i = 0; i < bulletSize; i++)
-		{
-			if (bulletCopy[i]->isEnabled())
-			{
-				sf::Vector2f tempPos = bulletCopy[i]->getPosition();
-				if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
-					&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
-				{
-					tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
-					bulletCopy[i]->setPosition(tempPos);
-				}
-			}
-		}
-		for (int i = 0; i < enemyNestSize; i++)
-		{
-			sf::Vector2f tempPos = m_nests[i]->getPosition();
-			if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
-				&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
-			{
-				tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
-				m_nests[i]->setPosition(tempPos);
-			}
-		}
-		m_currPlayerPos.x = m_boundries.x;
-	}
-	else if (m_currPlayerPos.x < m_boundries.x)
-	{
-		int enemyNestSize = m_nests.size();
-		int bulletSize = bulletCopy.size();
-		for (int i = 0; i < bulletSize; i++)
-		{
-			if (bulletCopy[i]->isEnabled())
-			{
-				sf::Vector2f tempPos = bulletCopy[i]->getPosition();
-				if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
-					&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
-				{
-					tempPos.x = m_boundries.y + (tempPos.x- m_currPlayerPos.x);
-					bulletCopy[i]->setPosition(tempPos);
-				}
-			}
-		}
-		for (int i = 0; i < enemyNestSize; i++)
-		{
-			sf::Vector2f tempPos = m_nests[i]->getPosition();
-			if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
-				&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
-			{
-				tempPos.x = m_boundries.y + (tempPos.x - m_currPlayerPos.x);
-				m_nests[i]->setPosition(tempPos);
-
-			}
-		}
-		m_currPlayerPos.x = m_boundries.y;
-	}
+	screenSwitch(bulletCopy);
 
 	// Set players position 
 	m_playo->m_animatedSprite.setPosition(sf::Vector2f(m_currPlayerPos.x, m_currPlayerPos.y));
@@ -346,7 +288,7 @@ bool GameScene::update(sf::Time deltaTime)
 {
 	// Check Player Dead
 	//////////////////////////////
-	if(m_playo->gameOver())
+	if(m_playo->gameOver() || Score::Instance()->getAliveAstros() <= 0)
 	{
 		requestStackPop();
 		requestStackPush(Scenes::Gameover);
@@ -540,4 +482,110 @@ void GameScene::setupRipple(sf::Vector2f playerPos)
 	m_ripple->setUniform("resolution", sf::Vector2f(1920, 1080));
 	m_ripple->setUniform("centre", sf::Vector2f(m_currPlayerPos.x + m_screenSize.x, m_currPlayerPos.y));
 	m_playRipple = true;
+}
+
+void GameScene::screenSwitch(std::vector<Bullet*> bulletCopy)
+{
+
+	if (m_currPlayerPos.x > m_boundries.y)
+	{
+		int enemyNestSize = m_nests.size();
+		int bulletSize = bulletCopy.size();
+		for (int i = 0; i < bulletSize; i++)
+		{
+			if (bulletCopy[i]->isEnabled())
+			{
+				sf::Vector2f tempPos = bulletCopy[i]->getPosition();
+				if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
+					&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
+				{
+					tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
+					bulletCopy[i]->setPosition(tempPos);
+				}
+			}
+		}
+		for (int i = 0; i < enemyNestSize; i++)
+		{
+			sf::Vector2f tempPos = m_nests[i]->getPosition();
+			if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
+				&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
+				m_nests[i]->setPosition(tempPos);
+			}
+		}
+		for (int i = 0; i < NUM_OF_ALIENS; i++)
+		{
+			sf::Vector2f tempPos = m_aliens[i]->getPosition();
+			if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
+				&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
+				m_aliens[i]->setPosition(tempPos);
+			}
+		}
+		for (int i = 0; i < NUM_OF_MUTANTS; i++)
+		{
+			sf::Vector2f tempPos = m_mutants[i]->getPosition();
+			if (tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x)
+				&& tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.x + (tempPos.x - m_currPlayerPos.x);
+				m_mutants[i]->setPosition(tempPos);
+			}
+		}
+		m_currPlayerPos.x = m_boundries.x;
+	}
+	else if (m_currPlayerPos.x < m_boundries.x)
+	{
+		int enemyNestSize = m_nests.size();
+		int bulletSize = bulletCopy.size();
+		for (int i = 0; i < bulletSize; i++)
+		{
+			if (bulletCopy[i]->isEnabled())
+			{
+				sf::Vector2f tempPos = bulletCopy[i]->getPosition();
+				if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
+					&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
+				{
+					tempPos.x = m_boundries.y + (tempPos.x - m_currPlayerPos.x);
+					bulletCopy[i]->setPosition(tempPos);
+				}
+			}
+		}
+		for (int i = 0; i < enemyNestSize; i++)
+		{
+			sf::Vector2f tempPos = m_nests[i]->getPosition();
+			if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
+				&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.y + (tempPos.x - m_currPlayerPos.x);
+				m_nests[i]->setPosition(tempPos);
+
+			}
+		}
+		for (int i = 0; i < NUM_OF_ALIENS; i++)
+		{
+			sf::Vector2f tempPos = m_aliens[i]->getPosition();
+			if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
+				&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.y + (tempPos.x - m_currPlayerPos.x);
+				m_aliens[i]->setPosition(tempPos);
+
+			}
+		}
+		for (int i = 0; i < NUM_OF_MUTANTS; i++)
+		{
+			sf::Vector2f tempPos = m_mutants[i]->getPosition();
+			if (tempPos.x > m_currPlayerPos.x - (m_halfScreenSize.x)
+				&& tempPos.x < m_currPlayerPos.x + (m_halfScreenSize.x))
+			{
+				tempPos.x = m_boundries.y + (tempPos.x - m_currPlayerPos.x);
+				m_mutants[i]->setPosition(tempPos);
+
+			}
+		}
+		m_currPlayerPos.x = m_boundries.y;
+	}
 }
