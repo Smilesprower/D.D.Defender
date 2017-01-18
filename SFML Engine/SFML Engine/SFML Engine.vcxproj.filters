@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="AI.cpp" />
     <ClCompile Include="Alien.cpp" />
     <ClCompile Include="AnimatedSprite.cpp" />
     <ClCompile Include="Animation.cpp" />
@@ -17,7 +16,6 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PauseScene.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Pvector.cpp" />
     <ClCompile Include="SFML Engine.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneStack.cpp" />
@@ -30,7 +28,6 @@
     <ClCompile Include="MusicPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AI.h" />
     <ClInclude Include="Alien.h" />
     <ClInclude Include="AnimatedSprite.h" />
     <ClInclude Include="Animation.h" />
@@ -47,7 +44,6 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PauseScene.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Pvector.h" />
     <ClInclude Include="ResourceHolder.h" />
     <ClInclude Include="ResourceIdentifiers.h" />
     <ClInclude Include="Scene.h" />
