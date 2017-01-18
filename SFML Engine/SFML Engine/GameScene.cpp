@@ -69,7 +69,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	{
 		//init gas clouds
 		m_gasClouds.push_back(new Obstacle());
-		m_gasClouds[i]->init(context.textures->get(Textures::Astro), sf::Vector2f(i * 1920, rand() % 600 + 100), m_worldSize, 0);
+		m_gasClouds[i]->init(context.textures->get(Textures::Astro), sf::Vector2f((i * 1920) + 200, rand() % 600 + 100), m_worldSize, 0);
 	}
 	for (int i = 0; i < m_astronauts.size(); ++i)
 	{
