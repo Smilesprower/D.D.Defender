@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Alien.h"
 #include "Score.h"
+#include "SoundPlayer.h"
 
 
 Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBounds)
@@ -178,6 +179,7 @@ void Alien::updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos)
 	{
 		if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
 		{
+			SoundPlayer::Instance()->play(SoundEffect::AlienBullet);
 			if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 4, false));
 			{
 				m_bulletReloadTimer = 0;
@@ -309,6 +311,7 @@ void Alien::setDamage(int damage)
 	m_health -= damage;
 	if (m_health <= 0)
 	{
+		SoundPlayer::Instance()->play(SoundEffect::Explosion);
 		if (m_currAnimation != &m_animations[Anims::Explode])
 		{
 			Score::Instance()->increaseScore(50);

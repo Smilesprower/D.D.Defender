@@ -47,7 +47,12 @@ namespace SoundEffect
 {
 	enum ID
 	{
-		Charge
+		Charge,
+		Teleport,
+		Lazer,
+		Explosion,
+		AlienBullet,
+		Missile,
 	};
 }
 

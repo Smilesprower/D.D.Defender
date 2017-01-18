@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Mutant.h"
 #include "Score.h"
+#include "SoundPlayer.h"
 
 float pi = 3.141592653589793;
 
@@ -109,6 +110,7 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 			{
 				if (distanceSquared < BULLET_RANGE * BULLET_RANGE)
 				{
+					SoundPlayer::Instance()->play(SoundEffect::AlienBullet);
 					if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
 					{
 						if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 5, false));
@@ -165,6 +167,7 @@ void Mutant::setDamage(int damage)
 	m_health -= damage;
 	if (m_health <= 0)
 	{
+		SoundPlayer::Instance()->play(SoundEffect::Explosion);
 		if (m_currAnimation != &m_animations[Anims::Explode])
 		{
 			Score::Instance()->increaseScore(50);

@@ -475,7 +475,7 @@ void GameScene::setupShockwave(sf::Vector2f playerPos)
 }
 void GameScene::setupRipple(sf::Vector2f playerPos)
 {
-	SoundPlayer::Instance()->play(SoundEffect::Charge);
+	SoundPlayer::Instance()->play(SoundEffect::Teleport);
 	m_clock.restart();
 	m_ripple->setUniform("wave_amount", 0.f);
 	m_ripple->setUniform("wave_distortion", 1.f);

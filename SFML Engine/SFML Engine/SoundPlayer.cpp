@@ -8,6 +8,11 @@ SoundPlayer::SoundPlayer()
 {
 	// Load Sounds
 	m_soundBuffers.load(SoundEffect::Charge, "../resources/sfx/charge.wav");
+	m_soundBuffers.load(SoundEffect::Teleport, "../resources/sfx/tp2.wav");
+	m_soundBuffers.load(SoundEffect::Lazer, "../resources/sfx/lazer.wav");
+	m_soundBuffers.load(SoundEffect::Explosion, "../resources/sfx/explosion.wav");
+	m_soundBuffers.load(SoundEffect::AlienBullet, "../resources/sfx/alienBullet.wav"); 
+	m_soundBuffers.load(SoundEffect::Missile, "../resources/sfx/Missile.wav");
 }
 SoundPlayer::~SoundPlayer()
 {
