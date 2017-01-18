@@ -83,6 +83,16 @@ void Score::reset()
 	m_playTime = 0;
 }
 
+bool Score::getGameWon()
+{
+	return m_gameWon;
+}
+
+void Score::setGameWon(bool won)
+{
+	m_gameWon = won;
+}
+
 void Score::setKillStreak()
 {
 	m_killSreak++;

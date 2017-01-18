@@ -226,20 +226,23 @@ void Player::updateSmartBomb(sf::Time deltaTime)
 
 void Player::setDamage(int damage)
 {
-	
-	m_health -= damage;
-	if (m_health <= 0 )
+	if (m_currAnimation != &m_animations[Anims::Explosion])
 	{
-		SoundPlayer::Instance()->play(SoundEffect::Explosion);
-		m_currAnimation = &m_animations[Anims::Explosion];
-		m_animatedSprite.setOrigin(40, 40);
-		m_animatedSprite.setScale(2, 2);
-		m_health = 0;
-		m_animatedSprite.play(*m_currAnimation);
-	}
-	else if (m_health >= 100)
-	{
-		m_health = 100;
+
+		m_health -= damage;
+		if (m_health < 0)
+		{
+			SoundPlayer::Instance()->play(SoundEffect::Explosion);
+			m_currAnimation = &m_animations[Anims::Explosion];
+			m_animatedSprite.setOrigin(40, 40);
+			m_animatedSprite.setScale(2, 2);
+			m_health = 0;
+			m_animatedSprite.play(*m_currAnimation);
+		}
+		else if (m_health >= 100)
+		{
+			m_health = 100;
+		}
 	}
 }
 

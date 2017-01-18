@@ -27,6 +27,9 @@ public:
 
 	void reset();
 
+	bool getGameWon();
+	void setGameWon(bool won);
+
 private:
 	static Score *m_inst;
 
@@ -39,6 +42,7 @@ private:
 	bool m_displayAstroText;
 	int m_killSreak;
 	float m_playTime;
+	bool m_gameWon;
 
 	Score();
 	~Score();

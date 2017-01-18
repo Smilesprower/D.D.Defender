@@ -291,6 +291,15 @@ bool GameScene::update(sf::Time deltaTime)
 	//////////////////////////////
 	if(m_playo->gameOver() || Score::Instance()->getAliveAstros() <= 0)
 	{
+		Score::Instance()->setGameWon(false);
+		requestStackPop();
+		requestStackPush(Scenes::Gameover);
+		MusicPlayer::Instance()->stop();
+		MusicPlayer::Instance()->play(Music::GameOverTheme);
+	}
+	else if (checkEnemiesAlive())
+	{
+		Score::Instance()->setGameWon(true);
 		requestStackPop();
 		requestStackPush(Scenes::Gameover);
 		MusicPlayer::Instance()->stop();
@@ -442,7 +451,10 @@ bool GameScene::update(sf::Time deltaTime)
 		}
 	}
 	m_screenView.setPosition(m_currPlayerPos.x - m_screenSize.x * 0.5, 0);
-	m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_healthPacks, &m_nests, &m_aliens, &m_astronauts, &m_mutants);
+	if (!m_playRipple)
+	{
+		m_collisionManager.checkCollision(m_playo, &bullets, &m_gasClouds, &m_healthPacks, &m_nests, &m_aliens, &m_astronauts, &m_mutants);
+	}
 	return true;
 }
 // Event Input
@@ -457,6 +469,32 @@ bool GameScene::handleEvent(const sf::Event& event)
 		if (event.key.code == sf::Keyboard::P)
 		{
 			requestStackPush(Scenes::Pause);
+		}
+	}
+	return true;
+}
+
+bool GameScene::checkEnemiesAlive()
+{
+	for (int i = 0; i < m_nests.size(); ++i)
+	{
+		if (m_nests[i]->isAlive())
+		{
+			return false;
+		}
+	}
+	for (int i = 0; i < m_aliens.size(); ++i)
+	{
+		if (m_aliens[i]->getAlive())
+		{
+			return false;
+		}
+	}
+	for (int i = 0; i < m_mutants.size(); ++i)
+	{
+		if (m_mutants[i]->isAlive())
+		{
+			return false;
 		}
 	}
 	return true;

@@ -17,15 +17,27 @@ GameoverScene::GameoverScene(SceneStack & stack, Context context)
 
 	m_score.setFont(context.fonts->get(Fonts::PS2P));				// Gets and Sets the font from Resourse Holder
 	m_score.setCharacterSize(70);
-	m_score.setPosition(context.window->getSize().x * 0.365, context.window->getSize().y * 0.48);
+	m_score.setPosition(context.window->getSize().x * 0.4, context.window->getSize().y * 0.48);
 
 	m_time.setFont(context.fonts->get(Fonts::PS2P));				// Gets and Sets the font from Resourse Holder
 	m_time.setCharacterSize(70);
-	m_time.setPosition(context.window->getSize().x * 0.365, context.window->getSize().y * 0.395);
+	m_time.setPosition(context.window->getSize().x * 0.4, context.window->getSize().y * 0.395);
 
-	m_background.setTexture(context.textures->get(Textures::GameOverBG));
+	m_astrosRemaining.setFont(context.fonts->get(Fonts::PS2P));				// Gets and Sets the font from Resourse Holder
+	m_astrosRemaining.setCharacterSize(70);
+	m_astrosRemaining.setPosition(context.window->getSize().x * 0.4, context.window->getSize().y * 0.57);
+
+	if (Score::Instance()->getGameWon())
+	{
+		m_background.setTexture(context.textures->get(Textures::GameWinBG));
+	}
+	else
+	{
+		m_background.setTexture(context.textures->get(Textures::GameOverBG));
+	}
 	m_background.setOrigin(m_background.getTextureRect().width * 0.5, m_background.getTextureRect().height * 0.5);
 	m_background.setPosition(context.window->getSize().x * 0.5, context.window->getSize().y * 0.5);
+
 
 	// Setup Buttons
 	m_ButtonPlay.setTexture(context.textures->get(Textures::Button));
@@ -45,6 +57,10 @@ void GameoverScene::draw()
 	window.draw(m_text);
 	window.draw(m_score);
 	window.draw(m_time);
+	if (Score::Instance()->getGameWon() == true)
+	{
+		window.draw(m_astrosRemaining);
+	}
 }
 
 bool GameoverScene::update(sf::Time deltaTime)
@@ -53,6 +69,8 @@ bool GameoverScene::update(sf::Time deltaTime)
 	m_score.setString(score);
 	std::string time = std::to_string(Score::Instance()->getPlayTime());
 	m_time.setString(time);
+	std::string astrosAlive = std::to_string(Score::Instance()->getAliveAstros());
+	m_astrosRemaining.setString(astrosAlive);
 
 	if (m_selectedButton == 1)
 	{

@@ -26,6 +26,8 @@ public:
 	virtual bool update(sf::Time deltaTime);
 	virtual bool handleEvent(const sf::Event& event);
 
+	bool checkEnemiesAlive();
+
 	void setupShockwave(sf::Vector2f playerPos);
 	void setupRipple(sf::Vector2f playerPos);
 	void screenSwitch(std::vector<Bullet*> bullets);

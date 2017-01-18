@@ -20,6 +20,7 @@ namespace Textures
 		PauseBackground,
 		MainMenuBG,
 		GameOverBG,
+		GameWinBG,
 		Button,
 		HUD,
 		GasCloud,

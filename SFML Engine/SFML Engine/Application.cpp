@@ -30,6 +30,7 @@ Application::Application()
 
 	//	Gameover Texture
 	m_textures.load(Textures::GameOverBG, "../resources/tex/Menu/GameOverBG.png");
+	m_textures.load(Textures::GameWinBG, "../resources/tex/Menu/MissionSuccess.png");
 
 	//	Button Texture
 	m_textures.load(Textures::Button, "../resources/tex/UI/Button.png");
