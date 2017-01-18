@@ -147,9 +147,8 @@ void Player::Move(sf::Time deltaTime)
 		{
 			if (m_bulletTimer >= BULLET_RELOAD_TIME)
 			{
-
 				SoundPlayer::Instance()->play(SoundEffect::Lazer);
-				if (BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), MAX_SPEED, m_directionX, 1, true))
+				if (BulletManager::Instance()->createLaser(sf::Vector2f(m_animatedSprite.getPosition().x , m_animatedSprite.getPosition().y +10), MAX_SPEED, m_directionX, 1, true))
 					m_bulletTimer = 0;
 			}
 		}

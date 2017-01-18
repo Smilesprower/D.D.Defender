@@ -7,7 +7,6 @@
 Alien::Alien(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBounds)
 	: m_animatedSprite(sf::seconds(0.1f), true, false)
 	, m_animations(NUM_OF_ANIMS)
-	, m_acceleration(0,0)
 	, m_currentState(Blank)
 	, m_screenBounds(screenBounds)
 	, m_worldBounds(sf::Vector2i(worldBounds.x, worldBounds.y + abs(worldBounds.x)))
@@ -43,12 +42,8 @@ void Alien::init(sf::Vector2f position)
 {
 	m_currentState = Flock;
 	m_alive = true;
-	m_acceleration = Pvector(0, 0);
-	m_velocity = Pvector(rand() % 3 - 2, rand() % 3 - 2); // Allows for range of -2 -> 2
-	m_maxSpeed = 3.5;
-	m_maxForce = 0.5;
-	m_location.x = position.x;
-	m_location.y = position.y;
+	m_velocity = sf::Vector2f(rand() % 201 + (-100) , rand() % 201 + (-100)); // Allows for range of -2 -> 2
+	m_position = position;
 	m_health = 100;
 
 	m_currAnimation = &m_animations[Anims::Default];
@@ -59,122 +54,95 @@ void Alien::init(sf::Vector2f position)
 	m_animatedSprite.setScale(1, 1);
 }
 
-void Alien::applyForce(Pvector force)
+sf::Vector2f Alien::separation(std::vector<Alien*>* alien, int index)
 {
-	m_acceleration.addVector(force);
-}
+	sf::Vector2f steer{ 0,0 };
+	int neighbourCount = 0;
+	float neighbordist = 175;
 
-Pvector Alien::separation(std::vector<Alien*> *alien)
-{
-	float desiredseparation = 175;
-	Pvector steer(0, 0);
-	int count = 0;
 	for (int i = 0; i < alien->size(); i++)
 	{
 		if (m_alive && m_currentState == Flock)
 		{
-			float d = m_location.distance(alien->at(i)->m_location);
-			if ((d > 0) && (d < desiredseparation))
+			if (Helper::Distance(m_animatedSprite.getPosition(), alien->at(i)->getPosition()) < neighbordist)
 			{
-				Pvector diff(0, 0);
-				diff = diff.subTwoVector(m_location, alien->at(i)->m_location);
-				diff.normalize();
-				diff.divScalar(d);
-				steer.addVector(diff);
-				count++;
+				steer += alien->at(i)->getPosition() - m_animatedSprite.getPosition();
+				neighbourCount++;
 			}
 		}
 	}
-	if (count > 0)
-		steer.divScalar((float)count);
-	if (steer.magnitude() > 0)
+	if (neighbourCount == 0)
+		return steer;
+	else
 	{
-		steer.normalize();
-		steer.mulScalar(m_maxSpeed);
-		steer.subVector(m_velocity);
-		steer.limit(m_maxForce);
-	}
-	return steer;
-}
+		steer.x /= neighbourCount;
+		steer.y /= neighbourCount;
 
-Pvector Alien::alignment(std::vector<Alien*> *alien)
-{
-	float neighbordist = 200;
-
-	Pvector sum(0, 0);
-	int count = 0;
-	for (int i = 0; i < alien->size(); i++)
-	{
-		if (m_alive && m_currentState == Flock) 
-		{
-			float d = m_location.distance(alien->at(i)->m_location);
-			if ((d > 0) && (d < neighbordist)) // 0 < d < 50
-			{
-				sum.addVector(alien->at(i)->m_velocity);
-				count++;
-			}
-		}
-	}
-	// If there are boids close enough for alignment...
-	if (count > 0)
-	{
-		sum.divScalar((float)count);// Divide sum by the number of close boids (average of velocity)
-		sum.normalize();	   		// Turn sum into a unit vector, and
-		sum.mulScalar(m_maxSpeed);  // Multiply by maxSpeed
-									
-		Pvector steer;				// Steer = Desired - Velocity
-		steer = steer.subTwoVector(sum, m_velocity); //sum = desired(average)  
-		steer.limit(m_maxForce);
+		steer.x *= -1;
+		steer.y *= -1;
+		steer = Helper::Normalize(steer);
 		return steer;
 	}
-	else 
-	{
-		Pvector temp(0, 0);
-		return temp;
-	}
 }
 
-Pvector Alien::cohesion(std::vector<Alien*> *alien)
+sf::Vector2f Alien::alignment(std::vector<Alien*>* alien, int index)
 {
+	sf::Vector2f vel{ 0,0 };
+	int neighbourCount = 0;
 	float neighbordist = 200;
 
-	Pvector sum(0, 0);
-	int count = 0;
 	for (int i = 0; i < alien->size(); i++)
 	{
 		if (m_alive && m_currentState == Flock)
 		{
-			float d = m_location.distance(alien->at(i)->m_location);
-			if ((d > 0) && (d < neighbordist))
+			if (Helper::Distance(m_animatedSprite.getPosition(), alien->at(i)->getPosition()) < neighbordist)
 			{
-				sum.addVector(alien->at(i)->m_location);
-				count++;
+				vel += alien->at(i)->m_velocity;
+				neighbourCount++;
 			}
 		}
 	}
-	if (count > 0)
+	if (neighbourCount == 0)
+		return vel;
+	else
 	{
-		sum.divScalar(count);
-		return seek(sum);
+		vel.x /= neighbourCount;
+		vel.y /= neighbourCount;
+		vel = Helper::Normalize(vel);
+		return vel;
 	}
-	else {
-		Pvector temp(0, 0);
+}
+
+sf::Vector2f Alien::cohesion(std::vector<Alien*>* alien, int index)
+{
+	sf::Vector2f pos{ 0,0 };
+	int neighbourCount = 0;
+	float neighbordist = 200;
+
+	for (int i = 0; i < alien->size(); i++)
+	{
+		if (m_alive && m_currentState == Flock)
+		{
+			if (Helper::Distance(m_animatedSprite.getPosition(), alien->at(i)->getPosition()) < neighbordist)
+			{
+				pos += alien->at(i)->getPosition();
+				neighbourCount++;
+			}
+		}
+	}
+	if (neighbourCount == 0)
+		return pos;
+	else
+	{
+		pos.x /= neighbourCount;
+		pos.y /= neighbourCount;
+		sf::Vector2f temp{pos - m_animatedSprite.getPosition()};
+		temp = Helper::Normalize(temp);
 		return temp;
 	}
 }
 
-Pvector Alien::seek(Pvector v)
-{
-	Pvector desired;
-	desired.subVector(v);
-	desired.normalize();
-	desired.mulScalar(m_maxSpeed);
-	m_acceleration.subTwoVector(desired, m_velocity);
-	m_acceleration.limit(m_maxForce);
-	return m_acceleration;
-}
-
-bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos)
+bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos, int index)
 {
 	bool spawnMutant = false;
 
@@ -183,7 +151,7 @@ bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f pla
 		checkBounds();
 		if (m_currentState == Flock)
 		{
-			flock(alien);
+			flock(alien, index);
 			updateFlocking(deltaTime, playerPos);
 			borders();
 		}
@@ -218,21 +186,8 @@ void Alien::updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos)
 			}
 		}
 	}
-
-
-	//To make the slow down not as abrupt
-	m_acceleration.mulScalar(.9);
-	// Update velocity
-	m_velocity.addVector(m_acceleration);
-	// Limit speed
-	m_velocity.limit(m_maxSpeed);
-	m_location.addVector(m_velocity);
-	sf::Vector2f vel = sf::Vector2f(m_velocity.x, m_velocity.y);
-	m_animatedSprite.move(vel);
+	m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 	m_animatedSprite.update(deltaTime);
-
-	// Reset accelertion to 0 each cycle
-	m_acceleration.mulScalar(0);
 }
 
 bool Alien::updateTargetCapture(sf::Time dt)
@@ -253,7 +208,7 @@ bool Alien::updateTargetCapture(sf::Time dt)
 			m_currAnimation = &m_animations[Anims::Abduct];
 			m_animatedSprite.play(*m_currAnimation);
 			m_astro->setAbducted();
-			m_velocity = Pvector(0, 0);
+			m_velocity = sf::Vector2f(0, 0);
 		}
 	
 	}
@@ -299,26 +254,31 @@ void Alien::updateDying(sf::Time dt)
 
 void Alien::borders()
 {
-	if (m_location.y < 100 || m_location.y > (m_screenBounds.y - 200))
+	if (m_animatedSprite.getPosition().y < 300)	
 	{
-		m_velocity.y *= -1;
+		m_velocity.y = abs(m_velocity.y);
+	}
+	else if (m_animatedSprite.getPosition().y >(m_screenBounds.y - 300))
+	{
+		m_velocity.y = abs(m_velocity.y) * -1;
 	}
 }
 
-void Alien::flock(std::vector<Alien*> *alien)
+void Alien::flock(std::vector<Alien*> *alien, int index)
 {
-	Pvector sep = separation(alien);
-	Pvector ali = alignment(alien);
-	Pvector coh = cohesion(alien);
-	// Arbitrarily weight these forces
-	sep.mulScalar(1.5);
-	ali.mulScalar(1.0); // Might need to alter weights for different characteristics
-	coh.mulScalar(1.0);
+	sf::Vector2f sep = separation(alien, index);
+	sf::Vector2f ali = alignment(alien, index);
+	sf::Vector2f coh = cohesion(alien, index);
 
-	// Add the force vectors to acceleration
-	applyForce(sep);
-	applyForce(ali);
-	applyForce(coh);
+	if (sep == sf::Vector2f{ 0,0 } && ali == sf::Vector2f{ 0,0 } && coh == sf::Vector2f{ 0,0 })
+	{
+		return;
+	}
+
+	m_velocity.x = ali.x + coh.x  + sep.x * 1.5f;
+	m_velocity.y = ali.y + coh.y  + sep.y * 1.5f;
+	m_velocity = Helper::Normalize(m_velocity);
+	m_velocity *= 150.f;
 }
 
 bool Alien::getAlive()
