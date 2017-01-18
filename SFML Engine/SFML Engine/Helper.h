@@ -1,29 +1,36 @@
+/*! \Static class that does Vector Calculations.
+*
+*
+*
+*/
+
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #define PI 3.141592635
 class Helper
 {
 public:
-	static float Length(sf::Vector2f v)
+	static float Length(sf::Vector2f v)	/*!< Lenght / Mag of a vector*/
 	{
 		return sqrt((v.x * v.x) + (v.y * v.y));
 	}
-	static float Helper::LengthSquared(sf::Vector2f v)  
+	static float Helper::LengthSquared(sf::Vector2f v)  /*!< Squared Length a vector*/
 	{
 		return v.x *v.x + v.y * v.y;
 	}
-	static sf::Vector2f Helper::DivScaler(sf::Vector2f v, float s)
+	static sf::Vector2f Helper::DivScaler(sf::Vector2f v, float s)	/*!< Division of a vectors components*/
 	{
 		return sf::Vector2f(v.x / s, v.y / s);
 	}
-	static float Helper::Distance(sf::Vector2f v, sf::Vector2f v2)
+	static float Helper::Distance(sf::Vector2f v, sf::Vector2f v2)	/*!< DIstance between 2 vectors*/
 	{
 		float dx = v.x - v2.x;
 		float dy = v.y - v2.y;
 		float dist = sqrt(dx*dx + dy*dy);
 		return dist;
 	}
-	static sf::Vector2f Helper::Normalize(sf::Vector2f v)
+	static sf::Vector2f Helper::Normalize(sf::Vector2f v)	/*!< Normalise a vector*/
 	{
 		if (Length(v) != 0) 
 		{
@@ -36,12 +43,12 @@ public:
 		v.y = 0;
 		return v;
 	}
-	static float Helper::dotProduct(sf::Vector2f v, sf::Vector2f v2)
+	static float Helper::dotProduct(sf::Vector2f v, sf::Vector2f v2)	/*!< Dot Product*/
 	{
 		float dot = v.x * v2.x + v.y * v2.y;
 		return dot;
 	}
-	static float Helper::angleBetween(sf::Vector2f v, sf::Vector2f v2)
+	static float Helper::angleBetween(sf::Vector2f v, sf::Vector2f v2)	/*!< Angle between 2 vectors*/
 	{
 		if (v.x == 0 && v.y == 0) return 0.0f;
 		if (v2.x == 0 && v2.y == 0) return 0.0f;

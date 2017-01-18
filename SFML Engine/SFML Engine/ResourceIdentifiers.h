@@ -9,7 +9,7 @@ namespace sf
 	class SoundBuffer;
 }
 
-namespace Textures
+namespace Textures	/*!< ID of all game textures*/
 {
 	enum ID
 	{
@@ -27,7 +27,7 @@ namespace Textures
 	};
 }
 
-namespace Shaders
+namespace Shaders	/*!< ID of all game shaders*/
 {
 	enum ID
 	{
@@ -36,7 +36,7 @@ namespace Shaders
 	};
 }
 
-namespace Fonts
+namespace Fonts	/*!< ID of all game fonts*/
 {
 	enum ID
 	{
@@ -44,7 +44,7 @@ namespace Fonts
 	};
 }
 
-namespace SoundEffect
+namespace SoundEffect	/*!< ID of all game SFX*/
 {
 	enum ID
 	{
@@ -57,7 +57,7 @@ namespace SoundEffect
 	};
 }
 
-namespace Music
+namespace Music		/*!< ID of all game music*/
 {
 	enum ID
 	{

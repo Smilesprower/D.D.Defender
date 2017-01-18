@@ -19,8 +19,8 @@ class Nest
 	};
 	enum States
 	{
-		Wander,
-		Evade,
+		Wander,				/*!<Randomly wanders around the world spawning alien abductors*/
+		Evade,				/*!<Evades when player gets to close and shoots missile if player gets even closer*/
 		Dying,
 	};
 	enum Direction

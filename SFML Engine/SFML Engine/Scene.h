@@ -18,28 +18,32 @@ class SceneStack;
 class Scene
 {
 public:
-
+	/*! \brief Context holds map to all textures, render window and all fonts. Only one instance is every created and passed around.
+	*
+	*
+	*
+	*/
 	struct Context
 	{
 		Context(sf::RenderWindow& window, TextureHolder& textures, FontHolder& fonts);
-		sf::RenderWindow* window;
-		TextureHolder* textures;
-		FontHolder* fonts;
+		sf::RenderWindow* window;	/*!< Containsrender window*/
+		TextureHolder* textures;	/*!< Contains map of textures*/
+		FontHolder* fonts;			/*!< Contains map of fonts*/
 	};
 
 	Scene(SceneStack& stack, Context context);
 	virtual	~Scene();
 
-	virtual void draw() = 0;
-	virtual bool update(sf::Time deltaTime) = 0;
-	virtual bool handleEvent(const sf::Event& event) = 0;
+	virtual void draw() = 0;								/*!< Scene virtual draw function*/
+	virtual bool update(sf::Time deltaTime) = 0;			/*!< Scene virtual update function*/
+	virtual bool handleEvent(const sf::Event& event) = 0;	/*!< Scene virtual handle event function*/
 
 
 protected:
-	void requestStackPush(Scenes::ID sceneID);
-	void requestStackPop();
-	void requestStateClear();
-	Context	getContext() const;
+	void requestStackPush(Scenes::ID sceneID);				/*!< Request scene to be pushed*/
+	void requestStackPop();									/*!< Request scene to be popped*/
+	void requestStateClear();								/*!< Request Flushing the stack of scenes*/
+	Context	getContext() const;								/*!< Returns context */
 
 private:
 	SceneStack*	mStack;
