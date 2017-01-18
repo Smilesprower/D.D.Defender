@@ -170,7 +170,6 @@ void Nest::checkBounds()
 	{
 		m_animatedSprite.setPosition(m_screenBounds.y + m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getPosition().y);
 	}
-	
 }
 
 sf::Vector2f Nest::getPosition()

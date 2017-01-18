@@ -406,7 +406,7 @@ bool GameScene::update(sf::Time deltaTime)
 
 		for (int i = 0; i < NUM_OF_ALIENS; i++)
 		{
-			if(m_aliens[i]->run(&m_aliens, deltaTime, m_currPlayerPos, i))
+			if(m_aliens[i]->run(&m_aliens,&m_gasClouds, deltaTime, m_currPlayerPos, i))
 			{
 				for (int j = 0; j < NUM_OF_MUTANTS; j++)
 				{
@@ -489,10 +489,11 @@ void GameScene::setupRipple(sf::Vector2f playerPos)
 
 void GameScene::screenSwitch(std::vector<Bullet*> bulletCopy)
 {
-
+	int totalSize = m_worldSize.y + m_screenSize.x;
+	int enemyNestSize = m_nests.size();
 	if (m_currPlayerPos.x > m_boundries.y)
 	{
-		int enemyNestSize = m_nests.size();
+
 		int bulletSize = bulletCopy.size();
 		for (int i = 0; i < bulletSize; i++)
 		{
@@ -590,5 +591,68 @@ void GameScene::screenSwitch(std::vector<Bullet*> bulletCopy)
 			}
 		}
 		m_currPlayerPos.x = m_boundries.y;
+	}
+
+	if (m_currPlayerPos.x < 6720)
+	{
+		// LeftSide
+		for (int i = 0; i < NUM_OF_ALIENS; i++)
+		{
+			if (m_aliens[i]->getAlive())
+			{
+				sf::Vector2f temp = m_aliens[i]->getPosition();
+				if (temp.x > m_worldSize.y)
+					m_aliens[i]->setPosition(sf::Vector2f(temp.x - totalSize, temp.y));
+			}
+		}
+		for (int i = 0; i < NUM_OF_MUTANTS; i++)
+		{
+			if (m_mutants[i]->isAlive())
+			{
+				sf::Vector2f temp = m_mutants[i]->getPosition();
+				if (temp.x > m_worldSize.y)
+					m_mutants[i]->setPosition(sf::Vector2f(temp.x - totalSize, temp.y));
+			}
+		}
+		for (int i = 0; i < enemyNestSize; i++)
+		{
+			if (m_nests[i]->isAlive())
+			{
+				sf::Vector2f temp = m_nests[i]->getPosition();
+				if (temp.x > m_worldSize.y)
+					m_nests[i]->setPosition(sf::Vector2f(temp.x - totalSize, temp.y));
+			}
+		}
+	}
+	else if (m_currPlayerPos.x > 6720)
+	{
+		// RightSide
+		for (int i = 0; i < NUM_OF_ALIENS; i++)
+		{
+			if (m_aliens[i]->getAlive())
+			{
+				sf::Vector2f temp = m_aliens[i]->getPosition();
+				if (temp.x < 0)
+					m_aliens[i]->setPosition(sf::Vector2f(temp.x + totalSize, temp.y));
+			}
+		}
+		for (int i = 0; i < NUM_OF_MUTANTS; i++)
+		{
+			if (m_mutants[i]->isAlive())
+			{
+				sf::Vector2f temp = m_mutants[i]->getPosition();
+				if (temp.x < 0)
+					m_mutants[i]->setPosition(sf::Vector2f(temp.x + totalSize, temp.y));
+			}
+		}
+		for (int i = 0; i < enemyNestSize; i++)
+		{
+			if (m_nests[i]->isAlive())
+			{
+				sf::Vector2f temp = m_nests[i]->getPosition();
+				if (temp.x < 0)
+					m_nests[i]->setPosition(sf::Vector2f(temp.x + totalSize, temp.y));
+			}
+		}
 	}
 }

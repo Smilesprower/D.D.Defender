@@ -9,6 +9,7 @@
 #include "AnimatedSprite.h"
 #include "BulletManager.h"
 #include "Astronaut.h"
+#include "Obstacle.h"
 #include "Helper.h"
 #include "Pvector.h"
 class Alien
@@ -38,7 +39,7 @@ public:
 	sf::Vector2f alignment(std::vector<Alien*>* alien, int index);
 	sf::Vector2f cohesion(std::vector<Alien*> *alien, int index);
 
-	bool run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos, int index);
+	bool run(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle, sf::Time deltaTime, sf::Vector2f playerPos, int index);
 	void updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos);
 	bool updateTargetCapture(sf::Time dt);
 	void updateDying(sf::Time dt);

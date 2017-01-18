@@ -142,7 +142,7 @@ sf::Vector2f Alien::cohesion(std::vector<Alien*>* alien, int index)
 	}
 }
 
-bool Alien::run(std::vector<Alien*> *alien, sf::Time deltaTime, sf::Vector2f playerPos, int index)
+bool Alien::run(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle, sf::Time deltaTime, sf::Vector2f playerPos, int index)
 {
 	bool spawnMutant = false;
 
@@ -359,7 +359,6 @@ AnimatedSprite Alien::draw()
 
 void Alien::checkBounds()
 {
-
 	if (m_animatedSprite.getPosition().x - m_animatedSprite.getLocalBounds().width * 0.5f >= m_worldBounds.y)
 	{
 		m_animatedSprite.setPosition(m_worldBounds.x - m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getPosition().y);
