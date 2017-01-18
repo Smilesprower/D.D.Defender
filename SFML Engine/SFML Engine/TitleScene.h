@@ -1,3 +1,9 @@
+/*! \brief The Title Scene. Handles everything that occurs when the game has been paused.
+*
+*
+*
+*/
+
 #pragma once
 #include "Scene.h"
 #include "SceneStack.h"

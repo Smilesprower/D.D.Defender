@@ -1,3 +1,9 @@
+/*! \brief The Obstacle Class. Handles all the properties of the in game obstacles and items such as the Gas Clouds and the Health Packs.
+*
+*
+*
+*/
+
 #pragma once
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>

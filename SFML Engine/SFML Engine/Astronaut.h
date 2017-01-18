@@ -1,3 +1,8 @@
+/*! \brief The Astronaut Class. Handles all the properties of the astronaut.
+*
+*
+*
+*/
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "AnimatedSprite.h"

@@ -1,3 +1,8 @@
+/*! \brief The Game Over Scene. Handles everything that occurs during the game.
+*
+*
+*
+*/
 #pragma once
 #include "Scene.h"
 #include "AnimatedSprite.h"

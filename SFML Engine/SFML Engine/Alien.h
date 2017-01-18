@@ -1,3 +1,9 @@
+/*! \brief The Alien Class. Handles all the properties of the Abductor.
+*
+*
+*
+*/
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "AnimatedSprite.h"

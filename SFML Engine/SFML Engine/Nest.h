@@ -1,3 +1,9 @@
+/*! \brief The Nest Class. Handles all the properties and responsibilities of the Nest.
+*
+*
+*
+*/
+
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "AnimatedSprite.h"

@@ -1,3 +1,9 @@
+/*! \brief The Scene Stack. Controls the changing of scenes.
+*
+*
+*
+*/
+
 #pragma once
 
 #include <vector>

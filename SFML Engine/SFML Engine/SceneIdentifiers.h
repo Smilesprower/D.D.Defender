@@ -1,3 +1,8 @@
+/*! \brief The Scene Identifiers. Holds the name/id of each scene.
+*
+*
+*
+*/
 #pragma once
 namespace Scenes
 {
