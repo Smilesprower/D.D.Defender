@@ -21,6 +21,7 @@ private:
 	sf::Text m_text;
 	sf::Text m_score;
 	sf::Text m_time;
+	sf::Text m_astrosRemaining;
 	sf::Sprite m_background;
 
 	//	Buttons
