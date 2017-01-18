@@ -110,9 +110,9 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 			{
 				if (distanceSquared < BULLET_RANGE * BULLET_RANGE)
 				{
-					SoundPlayer::Instance()->play(SoundEffect::AlienBullet);
 					if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
 					{
+						SoundPlayer::Instance()->play(SoundEffect::AlienBullet);
 						if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 5, false));
 						{
 							m_bulletReloadTimer = 0;

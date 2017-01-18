@@ -160,7 +160,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			int distanceSquared = (dx*dx) + (dy*dy);
 			if (distanceSquared < ((player->getRadius() + mutants->at(i)->getRadius()) * (player->getRadius() + mutants->at(i)->getRadius())))
 			{
-				player->setDamage(50);
+				player->setDamage(25);
 				mutants->at(i)->setDamage(100);
 			}
 		}

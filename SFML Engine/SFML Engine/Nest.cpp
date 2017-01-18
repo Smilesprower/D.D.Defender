@@ -95,10 +95,9 @@ bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 
 				if (distanceSquared < MISSILE_RANGE * MISSILE_RANGE)
 				{
-
-					SoundPlayer::Instance()->play(SoundEffect::Missile);
 					if (m_missileReloadTimer >= COOLDOWN_TIMER)
 					{
+						SoundPlayer::Instance()->play(SoundEffect::Missile);
 						if (BulletManager::Instance()->createMissile(m_animatedSprite.getPosition(), playerPos, 2));
 						{
 							m_missileReloadTimer = 0;
