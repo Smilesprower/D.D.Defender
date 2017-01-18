@@ -55,6 +55,7 @@ void Bullet::setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
+	m_animatedSprite.setRotation(0);
 }
 
 // bool playerBullet - decides if the player has fired or the com. Useful for collisions 
@@ -78,6 +79,7 @@ void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
+	m_animatedSprite.setRotation(0);
 }
 
 void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, int type)
@@ -89,7 +91,6 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
-
 	sf::Vector2f temp = targetPosition - position;
 	temp = Helper::Normalize(temp);
 	float rotation = std::atan2(temp.y, temp.x);
