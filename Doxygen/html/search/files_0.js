@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['ai_2ecpp',['AI.cpp',['../_a_i_8cpp.html',1,'']]],
-  ['ai_2eh',['AI.h',['../_a_i_8h.html',1,'']]],
   ['alien_2ecpp',['Alien.cpp',['../_alien_8cpp.html',1,'']]],
   ['alien_2eh',['Alien.h',['../_alien_8h.html',1,'']]],
   ['animatedsprite_2ecpp',['AnimatedSprite.cpp',['../_animated_sprite_8cpp.html',1,'']]],

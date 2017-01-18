@@ -15,6 +15,7 @@ var searchData=
   ['getcurrentstate',['getCurrentState',['../class_alien.html#a3165f3c2c824c3784dd0054d48fd5c5a',1,'Alien::getCurrentState()'],['../class_mutant.html#a07b88089382dcc84f261ee3d3d9a009b',1,'Mutant::getCurrentState()']]],
   ['getframe',['getFrame',['../class_animated_sprite.html#a8e929c48b0ca713b7aac7dd769e4f00c',1,'AnimatedSprite::getFrame()'],['../class_animation.html#a8cf30a3b19ba104eeb34b08f45cfabe2',1,'Animation::getFrame()']]],
   ['getframetime',['getFrameTime',['../class_animated_sprite.html#a5291f8e24fe2c6e4284bc7ff9499ef77',1,'AnimatedSprite']]],
+  ['getgamewon',['getGameWon',['../class_score.html#a4004909c5ca1ac466d55d32c5f6a30fd',1,'Score']]],
   ['getglobalbounds',['getGlobalBounds',['../class_animated_sprite.html#a86dca0906c53b3e630aaeac2f0085a0e',1,'AnimatedSprite']]],
   ['gethealth',['getHealth',['../class_alien.html#aa83dd26e21c40429865e3f84018545a0',1,'Alien::getHealth()'],['../class_mutant.html#ae80452778ea58cf79ff76a1a481712af',1,'Mutant::getHealth()'],['../class_nest.html#a31a181f820acdcc53c5c0954ec57bdd2',1,'Nest::getHealth()'],['../class_player.html#abcb15d249bed9a4ab0ab86b52b0d747a',1,'Player::getHealth()']]],
   ['getkillstreak',['getKillStreak',['../class_score.html#a3bd9796efe8e7cf9bb1c97597e56bc01',1,'Score']]],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Defender - AI Project - Jason &amp; Jamie: Alien Class Reference</title>
+<title>Defender: Alien Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,8 +22,9 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="playo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Defender - AI Project - Jason &amp; Jamie
+   <div id="projectname">Defender
    </div>
+   <div id="projectbrief">AI Project by Jason Power &amp; Jamie Jackson</div>
   </td>
  </tr>
  </tbody>
@@ -99,28 +100,24 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7cdfd79d84b51a18003bf41585aedd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a516b6245841735741f287b38c20b8853"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a516b6245841735741f287b38c20b8853">init</a> (sf::Vector2f position)</td></tr>
 <tr class="separator:a516b6245841735741f287b38c20b8853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b57e5b389ab46700ceee75c3b174d0f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a0b57e5b389ab46700ceee75c3b174d0f">applyForce</a> (<a class="el" href="class_pvector.html">Pvector</a> force)</td></tr>
-<tr class="separator:a0b57e5b389ab46700ceee75c3b174d0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ff194fbdb318bb84153e55051c5af8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pvector.html">Pvector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a9ff194fbdb318bb84153e55051c5af8e">separation</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien)</td></tr>
-<tr class="separator:a9ff194fbdb318bb84153e55051c5af8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1e91676d1f4bef69397a21d6ba4867a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pvector.html">Pvector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#ae1e91676d1f4bef69397a21d6ba4867a">alignment</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien)</td></tr>
-<tr class="separator:ae1e91676d1f4bef69397a21d6ba4867a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4d875c73cb6899cb9854bca83443ce4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pvector.html">Pvector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#aa4d875c73cb6899cb9854bca83443ce4">cohesion</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien)</td></tr>
-<tr class="separator:aa4d875c73cb6899cb9854bca83443ce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadb10553ae97d31376dba97e0b0599a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pvector.html">Pvector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#aadb10553ae97d31376dba97e0b0599a8">seek</a> (<a class="el" href="class_pvector.html">Pvector</a> v)</td></tr>
-<tr class="separator:aadb10553ae97d31376dba97e0b0599a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ae22c9eb89a6b1896bc7c237880b9ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a7ae22c9eb89a6b1896bc7c237880b9ba">run</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien, sf::Time deltaTime, sf::Vector2f playerPos)</td></tr>
-<tr class="separator:a7ae22c9eb89a6b1896bc7c237880b9ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37c8acacf468919027cb84593a0fc284"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a37c8acacf468919027cb84593a0fc284">updateFlocking</a> (sf::Time deltaTime, sf::Vector2f playerPos)</td></tr>
-<tr class="separator:a37c8acacf468919027cb84593a0fc284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eaa70b12751c0fb89f23520c2a438f3"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a9eaa70b12751c0fb89f23520c2a438f3">separation</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien, std::vector&lt; <a class="el" href="class_obstacle.html">Obstacle</a> *&gt; *obstacle, sf::Vector2f playerPos, int index)</td></tr>
+<tr class="separator:a9eaa70b12751c0fb89f23520c2a438f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c94d5f45dc31fdda1ef096cf3e60920"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a9c94d5f45dc31fdda1ef096cf3e60920">alignment</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien, int index)</td></tr>
+<tr class="separator:a9c94d5f45dc31fdda1ef096cf3e60920"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad84aef6c1b05152acbed764aaf457442"><td class="memItemLeft" align="right" valign="top">sf::Vector2f&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#ad84aef6c1b05152acbed764aaf457442">cohesion</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien, int index)</td></tr>
+<tr class="separator:ad84aef6c1b05152acbed764aaf457442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a324df6263d05f4cd623b3fc14b76afc3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a324df6263d05f4cd623b3fc14b76afc3">run</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien, std::vector&lt; <a class="el" href="class_obstacle.html">Obstacle</a> *&gt; *obstacle, sf::Time deltaTime, sf::Vector2f playerPos, int index)</td></tr>
+<tr class="separator:a324df6263d05f4cd623b3fc14b76afc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a831772470c94eed62a50c173b002c513"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a831772470c94eed62a50c173b002c513">updateFlock</a> (sf::Time deltaTime, sf::Vector2f playerPos)</td></tr>
+<tr class="separator:a831772470c94eed62a50c173b002c513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6081c8a068679e203e6e920b9197e4de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a6081c8a068679e203e6e920b9197e4de">updateTargetCapture</a> (sf::Time dt)</td></tr>
 <tr class="separator:a6081c8a068679e203e6e920b9197e4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa85a70c1e7ed8d7d728df94ad47b83a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#aa85a70c1e7ed8d7d728df94ad47b83a2">updateDying</a> (sf::Time dt)</td></tr>
 <tr class="separator:aa85a70c1e7ed8d7d728df94ad47b83a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a768bd4e8f7b409f8a7c3b4ac6cdd598f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a768bd4e8f7b409f8a7c3b4ac6cdd598f">borders</a> ()</td></tr>
 <tr class="separator:a768bd4e8f7b409f8a7c3b4ac6cdd598f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a087d886ecd8b70d2554bb54fae81528d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a087d886ecd8b70d2554bb54fae81528d">flock</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien)</td></tr>
-<tr class="separator:a087d886ecd8b70d2554bb54fae81528d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a051e049fc66e47ff7ddf7bd2338b92a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a051e049fc66e47ff7ddf7bd2338b92a5">flock</a> (std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *alien, std::vector&lt; <a class="el" href="class_obstacle.html">Obstacle</a> *&gt; *obstacle, sf::Vector2f playerPos, int index)</td></tr>
+<tr class="separator:a051e049fc66e47ff7ddf7bd2338b92a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6da0e947ec0c70d429e54511d67ad608"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a6da0e947ec0c70d429e54511d67ad608">getAlive</a> ()</td></tr>
 <tr class="separator:a6da0e947ec0c70d429e54511d67ad608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f8e8072e38c88e7299867ce08e169f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_alien.html#a1f8e8072e38c88e7299867ce08e169f4">setAlive</a> (bool alive)</td></tr>
@@ -164,6 +161,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>&lt; Enum for <a class="el" href="class_animation.html" title="Allows user to animate a sprite using a sprite sheet. ">Animation</a> types </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a46333b42b6e6dff962c3236b7012ec8ca7a4a36a6254d3844899e487586e46337"></a>Default&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a46333b42b6e6dff962c3236b7012ec8ca04a2fe3761bed6d947586432c4747a1c"></a>Explode&#160;</td><td class="fielddoc"></td></tr>
@@ -183,6 +181,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>&lt; Enum for Enemy States </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400da816f7fd79da3c3d0d394fb4e3930f5d8"></a>Blank&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08"></a>Target&#160;</td><td class="fielddoc"></td></tr>
@@ -246,39 +245,32 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae1e91676d1f4bef69397a21d6ba4867a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1e91676d1f4bef69397a21d6ba4867a">&#9670;&nbsp;</a></span>alignment()</h2>
+<a id="a9c94d5f45dc31fdda1ef096cf3e60920"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c94d5f45dc31fdda1ef096cf3e60920">&#9670;&nbsp;</a></span>alignment()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_pvector.html">Pvector</a> Alien::alignment </td>
+          <td class="memname">sf::Vector2f Alien::alignment </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *&#160;</td>
-          <td class="paramname"><em>alien</em></td><td>)</td>
-          <td></td>
+          <td class="paramname"><em>alien</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0b57e5b389ab46700ceee75c3b174d0f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b57e5b389ab46700ceee75c3b174d0f">&#9670;&nbsp;</a></span>applyForce()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">void Alien::applyForce </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_pvector.html">Pvector</a>&#160;</td>
-          <td class="paramname"><em>force</em></td><td>)</td>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Alignment function for flocking </p>
 
 </div>
 </div>
@@ -296,6 +288,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Checks boundaries for <a class="el" href="class_alien.html" title="Handles all the properties of the Abductor. ">Alien</a> while in flocking state </p>
 
 </div>
 </div>
@@ -313,24 +306,36 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Check Aliens screen bounds and repositions </p>
 
 </div>
 </div>
-<a id="aa4d875c73cb6899cb9854bca83443ce4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa4d875c73cb6899cb9854bca83443ce4">&#9670;&nbsp;</a></span>cohesion()</h2>
+<a id="ad84aef6c1b05152acbed764aaf457442"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad84aef6c1b05152acbed764aaf457442">&#9670;&nbsp;</a></span>cohesion()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_pvector.html">Pvector</a> Alien::cohesion </td>
+          <td class="memname">sf::Vector2f Alien::cohesion </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *&#160;</td>
-          <td class="paramname"><em>alien</em></td><td>)</td>
+          <td class="paramname"><em>alien</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Cohesion function for flocking </p>
 
 </div>
 </div>
@@ -348,11 +353,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Aliens sprite ready to be drawn </p>
 
 </div>
 </div>
-<a id="a087d886ecd8b70d2554bb54fae81528d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a087d886ecd8b70d2554bb54fae81528d">&#9670;&nbsp;</a></span>flock()</h2>
+<a id="a051e049fc66e47ff7ddf7bd2338b92a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a051e049fc66e47ff7ddf7bd2338b92a5">&#9670;&nbsp;</a></span>flock()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -361,11 +367,34 @@ Public Member Functions</h2></td></tr>
           <td class="memname">void Alien::flock </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *&#160;</td>
-          <td class="paramname"><em>alien</em></td><td>)</td>
+          <td class="paramname"><em>alien</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_obstacle.html">Obstacle</a> *&gt; *&#160;</td>
+          <td class="paramname"><em>obstacle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>playerPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates each of the 3 flocking functions "Cohesion, Speration, Alignment </p>
 
 </div>
 </div>
@@ -383,6 +412,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Aliens abduction radius/bounds </p>
 
 </div>
 </div>
@@ -400,6 +430,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Aliens alive status </p>
 
 </div>
 </div>
@@ -417,6 +448,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns current state of <a class="el" href="class_alien.html" title="Handles all the properties of the Abductor. ">Alien</a> </p>
 
 </div>
 </div>
@@ -434,6 +466,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Aliens health </p>
 
 </div>
 </div>
@@ -451,6 +484,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Aliens position </p>
 
 </div>
 </div>
@@ -468,6 +502,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Aliens radius/bounds </p>
 
 </div>
 </div>
@@ -485,6 +520,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Returns Aliens current state </p>
 
 </div>
 </div>
@@ -506,8 +542,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7ae22c9eb89a6b1896bc7c237880b9ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ae22c9eb89a6b1896bc7c237880b9ba">&#9670;&nbsp;</a></span>run()</h2>
+<a id="a324df6263d05f4cd623b3fc14b76afc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a324df6263d05f4cd623b3fc14b76afc3">&#9670;&nbsp;</a></span>run()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -521,6 +557,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_obstacle.html">Obstacle</a> *&gt; *&#160;</td>
+          <td class="paramname"><em>obstacle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">sf::Time&#160;</td>
           <td class="paramname"><em>deltaTime</em>, </td>
         </tr>
@@ -528,7 +570,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">sf::Vector2f&#160;</td>
-          <td class="paramname"><em>playerPos</em>&#160;</td>
+          <td class="paramname"><em>playerPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -537,42 +585,48 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Handles update for differen <a class="el" href="class_alien.html" title="Handles all the properties of the Abductor. ">Alien</a> states </p>
 
 </div>
 </div>
-<a id="aadb10553ae97d31376dba97e0b0599a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadb10553ae97d31376dba97e0b0599a8">&#9670;&nbsp;</a></span>seek()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_pvector.html">Pvector</a> Alien::seek </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_pvector.html">Pvector</a>&#160;</td>
-          <td class="paramname"><em>v</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9ff194fbdb318bb84153e55051c5af8e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ff194fbdb318bb84153e55051c5af8e">&#9670;&nbsp;</a></span>separation()</h2>
+<a id="a9eaa70b12751c0fb89f23520c2a438f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eaa70b12751c0fb89f23520c2a438f3">&#9670;&nbsp;</a></span>separation()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_pvector.html">Pvector</a> Alien::separation </td>
+          <td class="memname">sf::Vector2f Alien::separation </td>
           <td>(</td>
           <td class="paramtype">std::vector&lt; <a class="el" href="class_alien.html">Alien</a> *&gt; *&#160;</td>
-          <td class="paramname"><em>alien</em></td><td>)</td>
+          <td class="paramname"><em>alien</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="class_obstacle.html">Obstacle</a> *&gt; *&#160;</td>
+          <td class="paramname"><em>obstacle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>playerPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Seperation function for flocking </p>
 
 </div>
 </div>
@@ -591,6 +645,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets Aliens alive status </p>
 
 </div>
 </div>
@@ -609,6 +664,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets Aliens astronaut pointer to the current astronaut its pursuing </p>
 
 </div>
 </div>
@@ -627,6 +683,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets Aliens health based on damage value passed in </p>
 
 </div>
 </div>
@@ -645,6 +702,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets Aliens position </p>
 
 </div>
 </div>
@@ -663,6 +721,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Sets Aliens current state </p>
 
 </div>
 </div>
@@ -681,17 +740,18 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates Dying state </p>
 
 </div>
 </div>
-<a id="a37c8acacf468919027cb84593a0fc284"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37c8acacf468919027cb84593a0fc284">&#9670;&nbsp;</a></span>updateFlocking()</h2>
+<a id="a831772470c94eed62a50c173b002c513"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a831772470c94eed62a50c173b002c513">&#9670;&nbsp;</a></span>updateFlock()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Alien::updateFlocking </td>
+          <td class="memname">void Alien::updateFlock </td>
           <td>(</td>
           <td class="paramtype">sf::Time&#160;</td>
           <td class="paramname"><em>deltaTime</em>, </td>
@@ -709,6 +769,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates Flocking state </p>
 
 </div>
 </div>
@@ -727,6 +788,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Updates Target and Capture state </p>
 
 </div>
 </div>

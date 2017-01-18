@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['_7eai',['~AI',['../class_a_i.html#a66a8645f0c27285cd75346f2c2bbfb14',1,'AI']]],
   ['_7ealien',['~Alien',['../class_alien.html#a7cdfd79d84b51a18003bf41585aedd43',1,'Alien']]],
   ['_7eastronaut',['~Astronaut',['../class_astronaut.html#af31f9de205719a042df5f0a1879ee064',1,'Astronaut']]],
   ['_7ebullet',['~Bullet',['../class_bullet.html#aaeb5cb41d7db89f49007b08b41f1bfcf',1,'Bullet']]],
