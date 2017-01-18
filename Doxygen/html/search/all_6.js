@@ -38,7 +38,7 @@ var searchData=
   ['getsize',['getSize',['../class_animation.html#ac6854dc96e9fc8ffd97feba43547c869',1,'Animation']]],
   ['getsmartbombstate',['getSmartBombState',['../class_player.html#a5aaef7be6b70ec6069a861add36b5e2c',1,'Player']]],
   ['getspritesheet',['getSpriteSheet',['../class_animation.html#abf4f00f8b1657829583d7d92e71b93d1',1,'Animation']]],
-  ['getstate',['getState',['../class_alien.html#a4954611d3a021f57a02564f17a3b0efc',1,'Alien::getState()'],['../class_astronaut.html#a6396ab5b07039062ab97666d36bb781a',1,'Astronaut::getState()']]],
+  ['getstate',['getState',['../class_alien.html#a4954611d3a021f57a02564f17a3b0efc',1,'Alien::getState()'],['../class_astronaut.html#a6396ab5b07039062ab97666d36bb781a',1,'Astronaut::getState()'],['../class_nest.html#a730a5f41978e51fc1a10093014c464f5',1,'Nest::getState()']]],
   ['getteleport',['getTeleport',['../class_player.html#a995b03fe2b8f0b47aa526c975a3b8254',1,'Player']]],
   ['gettype',['getType',['../class_bullet.html#a73634149134359bca3f2201fb6284707',1,'Bullet::getType()'],['../class_obstacle.html#ad28c6a458187a5f5ec68c8cc3c425114',1,'Obstacle::getType()']]],
   ['getvel',['getVel',['../class_player.html#a0ec9b337a29a388ca7ce6dc9de93ca76',1,'Player']]]

@@ -181,12 +181,15 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>&lt; Enum for Enemy States </p>
+<p>&lt; Enum for States </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400da816f7fd79da3c3d0d394fb4e3930f5d8"></a>Blank&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08"></a>Target&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400dae02a372972a7b4862d4840321e663e31"></a>Capture&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400da5f2f5d641e92fc16ce133da2ca32f709"></a>Flock&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08"></a>Target&#160;</td><td class="fielddoc"><p>Targets Astro for capture by locking on to them </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400dae02a372972a7b4862d4840321e663e31"></a>Capture&#160;</td><td class="fielddoc"><p>Captures Astro in classic style by vertically moving them upwards out of the screen </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400da5f2f5d641e92fc16ce133da2ca32f709"></a>Flock&#160;</td><td class="fielddoc"><p>Flock with other Aliens while avoiding <a class="el" href="class_player.html" title="Handles all the properties and responsibilities of the player. ">Player</a> and Obstacles </p>
+</td></tr>
 <tr><td class="fieldname"><a id="a493c0f699c9ae8b2b714f9c739a2400da90dc39d1c949da5f9fb7703938b99c53"></a>Dying&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
@@ -306,7 +309,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Check Aliens screen bounds and repositions </p>
+<p>Check screen bounds and repositions </p>
 
 </div>
 </div>
@@ -353,7 +356,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns Aliens sprite ready to be drawn </p>
+<p>Returns sprite ready to be drawn </p>
 
 </div>
 </div>
@@ -412,7 +415,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns Aliens abduction radius/bounds </p>
+<p>Returns abduction radius/bounds </p>
 
 </div>
 </div>
@@ -430,7 +433,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns Aliens alive status </p>
+<p>Returns alive state </p>
 
 </div>
 </div>
@@ -448,7 +451,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns current state of <a class="el" href="class_alien.html" title="Handles all the properties of the Abductor. ">Alien</a> </p>
+<p>Returns current state </p>
 
 </div>
 </div>
@@ -466,7 +469,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns Aliens health </p>
+<p>Returns <a class="el" href="class_alien.html" title="Handles all the properties of the Abductor. ">Alien</a> health </p>
 
 </div>
 </div>
@@ -484,7 +487,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns Aliens position </p>
+<p>Returns position </p>
 
 </div>
 </div>
@@ -502,7 +505,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns Aliens radius/bounds </p>
+<p>Returns radius/bounds </p>
 
 </div>
 </div>
@@ -520,7 +523,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns Aliens current state </p>
+<p>Returns current state </p>
 
 </div>
 </div>
@@ -539,6 +542,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Initialise ready for th current game </p>
 
 </div>
 </div>
@@ -645,7 +649,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets Aliens alive status </p>
+<p>Sets alive state </p>
 
 </div>
 </div>
@@ -664,7 +668,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets Aliens astronaut pointer to the current astronaut its pursuing </p>
+<p>Sets astronaut pointer to the current <a class="el" href="class_astronaut.html" title="Handles all the properties of the astronaut. ">Astronaut</a> its pursuing </p>
 
 </div>
 </div>
@@ -683,7 +687,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets Aliens health based on damage value passed in </p>
+<p>Sets health based on damage value passed in </p>
 
 </div>
 </div>
@@ -702,7 +706,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets Aliens position </p>
+<p>Sets position </p>
 
 </div>
 </div>
@@ -721,7 +725,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets Aliens current state </p>
+<p>Sets current state </p>
 
 </div>
 </div>

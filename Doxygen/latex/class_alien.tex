@@ -115,21 +115,21 @@ Abduct&\\
 \subsubsection{\texorpdfstring{State}{State}}
 {\footnotesize\ttfamily enum \hyperlink{class_alien_a493c0f699c9ae8b2b714f9c739a2400d}{Alien\+::\+State}}
 
-$<$ Enum for Enemy States \begin{DoxyEnumFields}{Enumerator}
+$<$ Enum for States \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Blank@{Blank}!Alien@{Alien}}\index{Alien@{Alien}!Blank@{Blank}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400da816f7fd79da3c3d0d394fb4e3930f5d8}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400da816f7fd79da3c3d0d394fb4e3930f5d8}} 
 Blank&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Target@{Target}!Alien@{Alien}}\index{Alien@{Alien}!Target@{Target}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400dafa74abaf987256bdeb9f2df8a69ffd08}} 
-Target&\\
+Target&Targets Astro for capture by locking on to them \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Capture@{Capture}!Alien@{Alien}}\index{Alien@{Alien}!Capture@{Capture}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400dae02a372972a7b4862d4840321e663e31}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400dae02a372972a7b4862d4840321e663e31}} 
-Capture&\\
+Capture&Captures Astro in classic style by vertically moving them upwards out of the screen \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Flock@{Flock}!Alien@{Alien}}\index{Alien@{Alien}!Flock@{Flock}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400da5f2f5d641e92fc16ce133da2ca32f709}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400da5f2f5d641e92fc16ce133da2ca32f709}} 
-Flock&\\
+Flock&Flock with other Aliens while avoiding \hyperlink{class_player}{Player} and Obstacles \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Dying@{Dying}!Alien@{Alien}}\index{Alien@{Alien}!Dying@{Dying}}}\mbox{\Hypertarget{class_alien_a493c0f699c9ae8b2b714f9c739a2400da90dc39d1c949da5f9fb7703938b99c53}\label{class_alien_a493c0f699c9ae8b2b714f9c739a2400da90dc39d1c949da5f9fb7703938b99c53}} 
@@ -173,7 +173,7 @@ Checks boundaries for \hyperlink{class_alien}{Alien} while in flocking state \mb
 \subsubsection{\texorpdfstring{check\+Bounds()}{checkBounds()}}
 {\footnotesize\ttfamily void Alien\+::check\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Check Aliens screen bounds and repositions \mbox{\Hypertarget{class_alien_ad84aef6c1b05152acbed764aaf457442}\label{class_alien_ad84aef6c1b05152acbed764aaf457442}} 
+Check screen bounds and repositions \mbox{\Hypertarget{class_alien_ad84aef6c1b05152acbed764aaf457442}\label{class_alien_ad84aef6c1b05152acbed764aaf457442}} 
 \index{Alien@{Alien}!cohesion@{cohesion}}
 \index{cohesion@{cohesion}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{cohesion()}{cohesion()}}
@@ -185,7 +185,7 @@ Cohesion function for flocking \mbox{\Hypertarget{class_alien_a518e51803e638c46d
 \subsubsection{\texorpdfstring{draw()}{draw()}}
 {\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Alien\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns Aliens sprite ready to be drawn \mbox{\Hypertarget{class_alien_a051e049fc66e47ff7ddf7bd2338b92a5}\label{class_alien_a051e049fc66e47ff7ddf7bd2338b92a5}} 
+Returns sprite ready to be drawn \mbox{\Hypertarget{class_alien_a051e049fc66e47ff7ddf7bd2338b92a5}\label{class_alien_a051e049fc66e47ff7ddf7bd2338b92a5}} 
 \index{Alien@{Alien}!flock@{flock}}
 \index{flock@{flock}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{flock()}{flock()}}
@@ -197,49 +197,49 @@ Updates each of the 3 flocking functions "Cohesion, Speration, Alignment \mbox{\
 \subsubsection{\texorpdfstring{get\+Abduct\+Radius()}{getAbductRadius()}}
 {\footnotesize\ttfamily int Alien\+::get\+Abduct\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns Aliens abduction radius/bounds \mbox{\Hypertarget{class_alien_a6da0e947ec0c70d429e54511d67ad608}\label{class_alien_a6da0e947ec0c70d429e54511d67ad608}} 
+Returns abduction radius/bounds \mbox{\Hypertarget{class_alien_a6da0e947ec0c70d429e54511d67ad608}\label{class_alien_a6da0e947ec0c70d429e54511d67ad608}} 
 \index{Alien@{Alien}!get\+Alive@{get\+Alive}}
 \index{get\+Alive@{get\+Alive}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{get\+Alive()}{getAlive()}}
 {\footnotesize\ttfamily bool Alien\+::get\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns Aliens alive status \mbox{\Hypertarget{class_alien_a3165f3c2c824c3784dd0054d48fd5c5a}\label{class_alien_a3165f3c2c824c3784dd0054d48fd5c5a}} 
+Returns alive state \mbox{\Hypertarget{class_alien_a3165f3c2c824c3784dd0054d48fd5c5a}\label{class_alien_a3165f3c2c824c3784dd0054d48fd5c5a}} 
 \index{Alien@{Alien}!get\+Current\+State@{get\+Current\+State}}
 \index{get\+Current\+State@{get\+Current\+State}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{get\+Current\+State()}{getCurrentState()}}
 {\footnotesize\ttfamily int Alien\+::get\+Current\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns current state of \hyperlink{class_alien}{Alien} \mbox{\Hypertarget{class_alien_aa83dd26e21c40429865e3f84018545a0}\label{class_alien_aa83dd26e21c40429865e3f84018545a0}} 
+Returns current state \mbox{\Hypertarget{class_alien_aa83dd26e21c40429865e3f84018545a0}\label{class_alien_aa83dd26e21c40429865e3f84018545a0}} 
 \index{Alien@{Alien}!get\+Health@{get\+Health}}
 \index{get\+Health@{get\+Health}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
 {\footnotesize\ttfamily int Alien\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns Aliens health \mbox{\Hypertarget{class_alien_a52dc07105cf8ff2a25961ecebf9fbbe1}\label{class_alien_a52dc07105cf8ff2a25961ecebf9fbbe1}} 
+Returns \hyperlink{class_alien}{Alien} health \mbox{\Hypertarget{class_alien_a52dc07105cf8ff2a25961ecebf9fbbe1}\label{class_alien_a52dc07105cf8ff2a25961ecebf9fbbe1}} 
 \index{Alien@{Alien}!get\+Position@{get\+Position}}
 \index{get\+Position@{get\+Position}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
 {\footnotesize\ttfamily sf\+::\+Vector2f Alien\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns Aliens position \mbox{\Hypertarget{class_alien_ab649dc3a1c86463c29b32931683685ab}\label{class_alien_ab649dc3a1c86463c29b32931683685ab}} 
+Returns position \mbox{\Hypertarget{class_alien_ab649dc3a1c86463c29b32931683685ab}\label{class_alien_ab649dc3a1c86463c29b32931683685ab}} 
 \index{Alien@{Alien}!get\+Radius@{get\+Radius}}
 \index{get\+Radius@{get\+Radius}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{get\+Radius()}{getRadius()}}
 {\footnotesize\ttfamily int Alien\+::get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns Aliens radius/bounds \mbox{\Hypertarget{class_alien_a4954611d3a021f57a02564f17a3b0efc}\label{class_alien_a4954611d3a021f57a02564f17a3b0efc}} 
+Returns radius/bounds \mbox{\Hypertarget{class_alien_a4954611d3a021f57a02564f17a3b0efc}\label{class_alien_a4954611d3a021f57a02564f17a3b0efc}} 
 \index{Alien@{Alien}!get\+State@{get\+State}}
 \index{get\+State@{get\+State}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{get\+State()}{getState()}}
 {\footnotesize\ttfamily int Alien\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Returns Aliens current state \mbox{\Hypertarget{class_alien_a516b6245841735741f287b38c20b8853}\label{class_alien_a516b6245841735741f287b38c20b8853}} 
+Returns current state \mbox{\Hypertarget{class_alien_a516b6245841735741f287b38c20b8853}\label{class_alien_a516b6245841735741f287b38c20b8853}} 
 \index{Alien@{Alien}!init@{init}}
 \index{init@{init}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{init()}{init()}}
 {\footnotesize\ttfamily void Alien\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_alien_a324df6263d05f4cd623b3fc14b76afc3}\label{class_alien_a324df6263d05f4cd623b3fc14b76afc3}} 
+Initialise ready for th current game \mbox{\Hypertarget{class_alien_a324df6263d05f4cd623b3fc14b76afc3}\label{class_alien_a324df6263d05f4cd623b3fc14b76afc3}} 
 \index{Alien@{Alien}!run@{run}}
 \index{run@{run}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{run()}{run()}}
@@ -257,31 +257,31 @@ Seperation function for flocking \mbox{\Hypertarget{class_alien_a1f8e8072e38c88e
 \subsubsection{\texorpdfstring{set\+Alive()}{setAlive()}}
 {\footnotesize\ttfamily void Alien\+::set\+Alive (\begin{DoxyParamCaption}\item[{bool}]{alive }\end{DoxyParamCaption})}
 
-Sets Aliens alive status \mbox{\Hypertarget{class_alien_a23b7f6d84b71e233834a36ee37e90b14}\label{class_alien_a23b7f6d84b71e233834a36ee37e90b14}} 
+Sets alive state \mbox{\Hypertarget{class_alien_a23b7f6d84b71e233834a36ee37e90b14}\label{class_alien_a23b7f6d84b71e233834a36ee37e90b14}} 
 \index{Alien@{Alien}!set\+Astro@{set\+Astro}}
 \index{set\+Astro@{set\+Astro}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{set\+Astro()}{setAstro()}}
 {\footnotesize\ttfamily void Alien\+::set\+Astro (\begin{DoxyParamCaption}\item[{\hyperlink{class_astronaut}{Astronaut} $\ast$}]{astro }\end{DoxyParamCaption})}
 
-Sets Aliens astronaut pointer to the current astronaut its pursuing \mbox{\Hypertarget{class_alien_a5f1364d7d592e43230971365bb58d5a3}\label{class_alien_a5f1364d7d592e43230971365bb58d5a3}} 
+Sets astronaut pointer to the current \hyperlink{class_astronaut}{Astronaut} its pursuing \mbox{\Hypertarget{class_alien_a5f1364d7d592e43230971365bb58d5a3}\label{class_alien_a5f1364d7d592e43230971365bb58d5a3}} 
 \index{Alien@{Alien}!set\+Damage@{set\+Damage}}
 \index{set\+Damage@{set\+Damage}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{set\+Damage()}{setDamage()}}
 {\footnotesize\ttfamily void Alien\+::set\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
 
-Sets Aliens health based on damage value passed in \mbox{\Hypertarget{class_alien_a751c54dcc0d77d92c6540b05b0fef50a}\label{class_alien_a751c54dcc0d77d92c6540b05b0fef50a}} 
+Sets health based on damage value passed in \mbox{\Hypertarget{class_alien_a751c54dcc0d77d92c6540b05b0fef50a}\label{class_alien_a751c54dcc0d77d92c6540b05b0fef50a}} 
 \index{Alien@{Alien}!set\+Position@{set\+Position}}
 \index{set\+Position@{set\+Position}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
 {\footnotesize\ttfamily void Alien\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
 
-Sets Aliens position \mbox{\Hypertarget{class_alien_aead215fe05108897f31e12c9e58b0d90}\label{class_alien_aead215fe05108897f31e12c9e58b0d90}} 
+Sets position \mbox{\Hypertarget{class_alien_aead215fe05108897f31e12c9e58b0d90}\label{class_alien_aead215fe05108897f31e12c9e58b0d90}} 
 \index{Alien@{Alien}!set\+State@{set\+State}}
 \index{set\+State@{set\+State}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{set\+State()}{setState()}}
 {\footnotesize\ttfamily void Alien\+::set\+State (\begin{DoxyParamCaption}\item[{int}]{state }\end{DoxyParamCaption})}
 
-Sets Aliens current state \mbox{\Hypertarget{class_alien_aa85a70c1e7ed8d7d728df94ad47b83a2}\label{class_alien_aa85a70c1e7ed8d7d728df94ad47b83a2}} 
+Sets current state \mbox{\Hypertarget{class_alien_aa85a70c1e7ed8d7d728df94ad47b83a2}\label{class_alien_aa85a70c1e7ed8d7d728df94ad47b83a2}} 
 \index{Alien@{Alien}!update\+Dying@{update\+Dying}}
 \index{update\+Dying@{update\+Dying}!Alien@{Alien}}
 \subsubsection{\texorpdfstring{update\+Dying()}{updateDying()}}

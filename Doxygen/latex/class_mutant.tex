@@ -86,9 +86,9 @@ Explode&\\
 \subsubsection{\texorpdfstring{States}{States}}
 {\footnotesize\ttfamily enum \hyperlink{class_mutant_a508d3c9d254807091259a620bbf77209}{Mutant\+::\+States}}
 
-\begin{DoxyEnumFields}{Enumerator}
+$<$ Enum for current mutant state \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Start@{Start}!Mutant@{Mutant}}\index{Mutant@{Mutant}!Start@{Start}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209a8d0b9823bfe10057d91ac5222ef86bfc}\label{class_mutant_a508d3c9d254807091259a620bbf77209a8d0b9823bfe10057d91ac5222ef86bfc}} 
-Start&\\
+Start&Starting state moves mutant downwards into game world \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Dying@{Dying}!Mutant@{Mutant}}\index{Mutant@{Mutant}!Dying@{Dying}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209ae11da7182d95dacee973bbb21c0693ad}\label{class_mutant_a508d3c9d254807091259a620bbf77209ae11da7182d95dacee973bbb21c0693ad}} 
@@ -96,15 +96,15 @@ Dying&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{FormationA@{FormationA}!Mutant@{Mutant}}\index{Mutant@{Mutant}!FormationA@{FormationA}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209a7fab13c7c339486920f8372a69f1e541}\label{class_mutant_a508d3c9d254807091259a620bbf77209a7fab13c7c339486920f8372a69f1e541}} 
-FormationA&\\
+FormationA&Unused State \char`\"{}time issues\char`\"{} \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{FormationB@{FormationB}!Mutant@{Mutant}}\index{Mutant@{Mutant}!FormationB@{FormationB}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209af42129159ef9e4228065426e0db479e7}\label{class_mutant_a508d3c9d254807091259a620bbf77209af42129159ef9e4228065426e0db479e7}} 
-FormationB&\\
+FormationB&Swarming with circle formation around the \hyperlink{class_player}{Player} \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{FormationC@{FormationC}!Mutant@{Mutant}}\index{Mutant@{Mutant}!FormationC@{FormationC}}}\mbox{\Hypertarget{class_mutant_a508d3c9d254807091259a620bbf77209ae5caa138a87f21ff544dac38f1475eb5}\label{class_mutant_a508d3c9d254807091259a620bbf77209ae5caa138a87f21ff544dac38f1475eb5}} 
-FormationC&\\
+FormationC&Kamikazee \\
 \hline
 
 \end{DoxyEnumFields}
@@ -132,73 +132,73 @@ FormationC&\\
 \subsubsection{\texorpdfstring{check\+Bounds()}{checkBounds()}}
 {\footnotesize\ttfamily void Mutant\+::check\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_ad085db34f2e45e82b6b7bb6bfc4be1c7}\label{class_mutant_ad085db34f2e45e82b6b7bb6bfc4be1c7}} 
+Check out of bounds \mbox{\Hypertarget{class_mutant_ad085db34f2e45e82b6b7bb6bfc4be1c7}\label{class_mutant_ad085db34f2e45e82b6b7bb6bfc4be1c7}} 
 \index{Mutant@{Mutant}!draw@{draw}}
 \index{draw@{draw}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{draw()}{draw()}}
 {\footnotesize\ttfamily \hyperlink{class_animated_sprite}{Animated\+Sprite} Mutant\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_a07b88089382dcc84f261ee3d3d9a009b}\label{class_mutant_a07b88089382dcc84f261ee3d3d9a009b}} 
+Retuns sprite ready to be drawn \mbox{\Hypertarget{class_mutant_a07b88089382dcc84f261ee3d3d9a009b}\label{class_mutant_a07b88089382dcc84f261ee3d3d9a009b}} 
 \index{Mutant@{Mutant}!get\+Current\+State@{get\+Current\+State}}
 \index{get\+Current\+State@{get\+Current\+State}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{get\+Current\+State()}{getCurrentState()}}
 {\footnotesize\ttfamily int Mutant\+::get\+Current\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_ae80452778ea58cf79ff76a1a481712af}\label{class_mutant_ae80452778ea58cf79ff76a1a481712af}} 
+Returns current state \mbox{\Hypertarget{class_mutant_ae80452778ea58cf79ff76a1a481712af}\label{class_mutant_ae80452778ea58cf79ff76a1a481712af}} 
 \index{Mutant@{Mutant}!get\+Health@{get\+Health}}
 \index{get\+Health@{get\+Health}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{get\+Health()}{getHealth()}}
 {\footnotesize\ttfamily int Mutant\+::get\+Health (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_ab20f22800bae3c7587beb641248412ac}\label{class_mutant_ab20f22800bae3c7587beb641248412ac}} 
+Returns current health \mbox{\Hypertarget{class_mutant_ab20f22800bae3c7587beb641248412ac}\label{class_mutant_ab20f22800bae3c7587beb641248412ac}} 
 \index{Mutant@{Mutant}!get\+Position@{get\+Position}}
 \index{get\+Position@{get\+Position}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
 {\footnotesize\ttfamily sf\+::\+Vector2f Mutant\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_afb53c9562d5e98d5f6749024d09d132e}\label{class_mutant_afb53c9562d5e98d5f6749024d09d132e}} 
+Returns current position \mbox{\Hypertarget{class_mutant_afb53c9562d5e98d5f6749024d09d132e}\label{class_mutant_afb53c9562d5e98d5f6749024d09d132e}} 
 \index{Mutant@{Mutant}!get\+Radius@{get\+Radius}}
 \index{get\+Radius@{get\+Radius}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{get\+Radius()}{getRadius()}}
 {\footnotesize\ttfamily int Mutant\+::get\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_a43fe449ecbb708a19095cd030b399cee}\label{class_mutant_a43fe449ecbb708a19095cd030b399cee}} 
+Returns collision radius \mbox{\Hypertarget{class_mutant_a43fe449ecbb708a19095cd030b399cee}\label{class_mutant_a43fe449ecbb708a19095cd030b399cee}} 
 \index{Mutant@{Mutant}!init@{init}}
 \index{init@{init}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{init()}{init()}}
 {\footnotesize\ttfamily void Mutant\+::init (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{pos }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_ab92626e4168187b7bf49073e0626e071}\label{class_mutant_ab92626e4168187b7bf49073e0626e071}} 
+Initialise ready for the current game \mbox{\Hypertarget{class_mutant_ab92626e4168187b7bf49073e0626e071}\label{class_mutant_ab92626e4168187b7bf49073e0626e071}} 
 \index{Mutant@{Mutant}!is\+Alive@{is\+Alive}}
 \index{is\+Alive@{is\+Alive}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{is\+Alive()}{isAlive()}}
 {\footnotesize\ttfamily bool Mutant\+::is\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_ae31d5187569549ce0c6346c8bef31bd4}\label{class_mutant_ae31d5187569549ce0c6346c8bef31bd4}} 
+Returns is alive \mbox{\Hypertarget{class_mutant_ae31d5187569549ce0c6346c8bef31bd4}\label{class_mutant_ae31d5187569549ce0c6346c8bef31bd4}} 
 \index{Mutant@{Mutant}!set\+Alive@{set\+Alive}}
 \index{set\+Alive@{set\+Alive}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{set\+Alive()}{setAlive()}}
 {\footnotesize\ttfamily void Mutant\+::set\+Alive (\begin{DoxyParamCaption}\item[{bool}]{alive }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_a7632057c37a56ed27df3d692b5357c6a}\label{class_mutant_a7632057c37a56ed27df3d692b5357c6a}} 
+Sets if mutant is alive \mbox{\Hypertarget{class_mutant_a7632057c37a56ed27df3d692b5357c6a}\label{class_mutant_a7632057c37a56ed27df3d692b5357c6a}} 
 \index{Mutant@{Mutant}!set\+Damage@{set\+Damage}}
 \index{set\+Damage@{set\+Damage}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{set\+Damage()}{setDamage()}}
 {\footnotesize\ttfamily void Mutant\+::set\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_a10a34b2ddc9177b0da17fa8bc77d48c7}\label{class_mutant_a10a34b2ddc9177b0da17fa8bc77d48c7}} 
+Set damage to current health \mbox{\Hypertarget{class_mutant_a10a34b2ddc9177b0da17fa8bc77d48c7}\label{class_mutant_a10a34b2ddc9177b0da17fa8bc77d48c7}} 
 \index{Mutant@{Mutant}!set\+Position@{set\+Position}}
 \index{set\+Position@{set\+Position}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{set\+Position()}{setPosition()}}
 {\footnotesize\ttfamily void Mutant\+::set\+Position (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{position }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_mutant_aa334f3574bc0a367e0cc722a900b35da}\label{class_mutant_aa334f3574bc0a367e0cc722a900b35da}} 
+Sets current position \mbox{\Hypertarget{class_mutant_aa334f3574bc0a367e0cc722a900b35da}\label{class_mutant_aa334f3574bc0a367e0cc722a900b35da}} 
 \index{Mutant@{Mutant}!update@{update}}
 \index{update@{update}!Mutant@{Mutant}}
 \subsubsection{\texorpdfstring{update()}{update()}}
 {\footnotesize\ttfamily void Mutant\+::update (\begin{DoxyParamCaption}\item[{int}]{mutant\+Size,  }\item[{int}]{current\+Mutant,  }\item[{sf\+::\+Time}]{delta\+Time,  }\item[{sf\+::\+Vector2f}]{player\+Pos,  }\item[{sf\+::\+Vector2f}]{player\+Vel }\end{DoxyParamCaption})}
 
-
+Updates mutant based on current state 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
