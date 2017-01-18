@@ -4,8 +4,6 @@
 
 Bullet::Bullet(sf::Texture & tex)
 	: m_enabled(false)
-	, m_rotation(0)
-	, m_prevRotation(0)
 	, m_animatedSprite(sf::seconds(0.1f), true, false)
 	, m_animations(NUM_OF_ANIMS)
 {
@@ -111,7 +109,6 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 			{
 				m_velocity.x = 0;
 				m_velocity.y = 0;
-				m_rotation = 0;
 				m_enabled = false;
 			}
 		}
@@ -129,7 +126,6 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 					m_currAnimation = &m_animations[Type::Explosion];
 					m_velocity.x = 0;
 					m_velocity.y = 0;
-					m_rotation = 0;
 				}
 				else
 				{
@@ -195,7 +191,6 @@ void Bullet::reset()
 {
 	m_velocity.x = 0;
 	m_velocity.y = 0;
-	m_rotation = 0;
 	m_enabled = false;
 	m_ttl = 0;
 }

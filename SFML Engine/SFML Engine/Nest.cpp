@@ -10,7 +10,7 @@ Nest::Nest(sf::Texture & tex, sf::Vector2i screenBounds)
 	, m_animations(NUM_OF_ANIMS)
 	, m_animations1(1)
 	, m_wanderTime(0)
-	, m_missileReloadTimer(COOLDOWN_TIMER)
+	, m_missileReloadTimer(0)
 	, m_health(MAX_HEALTH)
 	, m_animatedSprite(sf::seconds(0.15f), true, false)
 	, m_animatedSprite1(sf::seconds(0.15f), true, true)
@@ -133,7 +133,7 @@ void Nest::init(sf::Vector2f pos)
 {
 	m_alive = true;
 
-	m_missileReloadTimer = COOLDOWN_TIMER;
+	m_missileReloadTimer = 0;
 	m_wanderTime = 0;
 	m_health = MAX_HEALTH;
 	m_state = Wander;

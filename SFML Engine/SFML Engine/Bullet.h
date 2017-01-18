@@ -58,9 +58,6 @@ private:
 	bool m_enabled;
 	bool m_playerBullet;
 	float m_ttl;
-	float m_rotation;
-	float m_prevRotation;
-
 
 	sf::Vector2f m_velocity;
 	sf::Time m_frameTime;

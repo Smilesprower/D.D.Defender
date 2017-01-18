@@ -69,13 +69,6 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 				m_state = FormationB;
 			}
 		}
-		else if (m_state == FormationA)
-		{
-			if (mutantSize > 3)
-			{
-				m_state = FormationB;
-			}
-		}
 		// Circle Formation
 		else if (m_state == FormationB)
 		{

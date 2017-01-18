@@ -30,7 +30,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	//m_playerCutOff.setFillColor(sf::Color::Transparent);
 	//m_playerCutOff.setOutlineThickness(3);
 	//m_playerCutOff.setOutlineColor(sf::Color::Red);
-	m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
+	//m_playerCutOff.setPosition(sf::Vector2f(m_boundries.x, 0));
 	/////////////////////////////////////////////
 
 	// Check player world bounds " X value is MIN / Y value is MAX of the X Position"
@@ -63,7 +63,7 @@ GameScene::GameScene(SceneStack& stack, Context context)
 	for (int i = 0; i < 3; i++)
 	{
 		m_nests.push_back(new Nest(context.textures->get(Textures::Astro), m_worldSize));
-		m_nests[i]->init(sf::Vector2f(6000 * i, 200));
+		m_nests[i]->init(sf::Vector2f(4250 * (i+ 1), 200));
 	}
 	for (int i = 0; i < MAX_GAS_CLOUDS; i++)
 	{
