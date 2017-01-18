@@ -17,60 +17,47 @@ public:
 	{
 		Default,
 		Explode,
-	};
-	enum States
+	};	
+	enum States					/*!< Enum for current mutant state*/
 	{
-		Start, 
+		Start,					/*!< Starting state moves mutant downwards into game world */
 		Dying,
-		FormationA,
-		FormationB,
-		FormationC,
+		FormationA,				/*!< Unused State "time issues" */
+		FormationB,				/*!< Swarming with circle formation around the Player*/
+		FormationC,				/*!< Kamikazee */
 	};
-
+	
 	Mutant(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldBounds);
 	~Mutant();
 
-	void update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::Vector2f playerPos, sf::Vector2f playerVel);
-	void init(sf::Vector2f pos);
-	void checkBounds();
-	sf::Vector2f getPosition();
-	void setPosition(sf::Vector2f position);
-	AnimatedSprite draw();
+	void update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::Vector2f playerPos, sf::Vector2f playerVel); /*!< Updates mutant based on current state */
+	void init(sf::Vector2f pos);																						/*!< Initialise ready for the current game*/
+	void checkBounds();																									/*!< Check out of bounds*/
+	sf::Vector2f getPosition();																							/*!< Returns current position*/
+	void setPosition(sf::Vector2f position);																			/*!< Sets current position*/
+	AnimatedSprite draw();																								/*!< Retuns sprite ready to be drawn*/
+	void setDamage(int damage);																							/*!< Set damage to current health*/
+	int getHealth();																									/*!< Returns current health*/
+	int getRadius();																									/*!< Returns collision radius*/
+	bool isAlive();																										/*!< Returns is alive*/
+	void setAlive(bool alive);																							/*!< Sets if mutant is alive*/
+	int getCurrentState();																								/*!< Returns current state*/
 
-	void setDamage(int damage);
-	int getHealth();
-	int getRadius();
-
-	bool isAlive();
-	void setAlive(bool alive);
-
-	int getCurrentState();
-
-	//void applyForce(Pvector force);
-	//Pvector seek(sf::Vector2f playerpos);
-	//Pvector getVelocity();
 private:
-	float m_maxSpeed, m_maxForce;
-	//Pvector m_location;
-	//Pvector m_velocity;
-	//Pvector m_acceleration;
-
-
-	int NUM_OF_ANIMS = 3;
-	const float MAX_VELOCITY = 550.0f;
-	const int COLLISION_RADIUS = 50;
-	const int BULLET_COOLDOWN_TIMER = 2;
-	const int BULLET_RANGE = 700;
-	float m_bulletReloadTimer;
-	float m_kamikazeTimer;
-	int m_health;
-	bool m_alive;
-	int m_state;
-	sf::Vector2i m_screenBounds;
-	sf::Vector2i m_worldBounds;
-	sf::Vector2f m_velocity;
-	sf::Vector2f m_position;
-	//sf::Vector2f m_acceleration;
+	
+	int NUM_OF_ANIMS = 3;							/*!<Max number of animations*/
+	const float MAX_VELOCITY = 550.0f;				/*!<Max velocity*/
+	const int COLLISION_RADIUS = 50;				/*!<Collision radius/bounds*/
+	const int BULLET_COOLDOWN_TIMER = 2;			/*!<Time before shooting another Bullet in seconds*/
+	const int BULLET_RANGE = 700;					/*!<Max range a Player has to be less than before firing a Bullet*/
+	float m_bulletReloadTimer;						/*!<Contains current reloading time*/		
+	int m_health;									/*!<Contains current health*/
+	bool m_alive;									/*!<Contains current alive state*/
+	int m_state;									/*!<Contains current state*/
+	sf::Vector2i m_screenBounds;					/*!<Contains current screenbounds*/
+	sf::Vector2i m_worldBounds;						/*!<Contains current worldbounds*/
+	sf::Vector2f m_velocity;						/*!<Contains current velocity*/
+	sf::Vector2f m_position;						/*!<Contains current position*/
 
 	sf::Time m_frameTime;
 	AnimatedSprite m_animatedSprite;

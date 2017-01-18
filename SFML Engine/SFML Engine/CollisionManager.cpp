@@ -48,7 +48,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			// if bullet collides with a nest enemy
 			for (int j = 0; j < nests->size(); j++)
 			{
-				if (nests->at(j)->isAlive())
+				if (nests->at(j)->isAlive() && nests->at(j)->getState() != 2)
 				{
 					int dx = bullets->at(i)->getPosition().x - nests->at(j)->getPosition().x;
 					int dy = bullets->at(i)->getPosition().y - nests->at(j)->getPosition().y;
@@ -64,7 +64,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			// if bullet collides with a nest enemy
 			for (int j = 0; j < aliens->size(); j++)
 			{
-				if (aliens->at(j)->getAlive())
+				if (aliens->at(j)->getAlive() && aliens->at(j)->getCurrentState() != 4)
 				{
 					int dx = bullets->at(i)->getPosition().x - aliens->at(j)->getPosition().x;
 					int dy = bullets->at(i)->getPosition().y - aliens->at(j)->getPosition().y;
@@ -80,7 +80,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 			// if bullet collides with a mutant enemy
 			for (int j = 0; j < mutants->size(); j++)
 			{
-				if (mutants->at(j)->isAlive())
+				if (mutants->at(j)->isAlive() && mutants->at(j)->getCurrentState() != 1)
 				{
 					int dx = bullets->at(i)->getPosition().x - mutants->at(j)->getPosition().x;
 					int dy = bullets->at(i)->getPosition().y - mutants->at(j)->getPosition().y;
@@ -139,7 +139,7 @@ void CollisionManager::checkCollision(Player *player, std::vector<Bullet*> *bull
 	}
 	for (int i = 0; i < nests->size(); i++)
 	{
-		if (nests->at(i)->isAlive())
+		if (nests->at(i)->isAlive() && nests->at(i)->getState()!=1)
 		{
 			int dx = player->getPosition().x - nests->at(i)->getPosition().x;
 			int dy = player->getPosition().y - nests->at(i)->getPosition().y;

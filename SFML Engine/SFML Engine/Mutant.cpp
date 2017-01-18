@@ -12,7 +12,6 @@ Mutant::Mutant(sf::Texture & tex, sf::Vector2i screenBounds, sf::Vector2i worldB
 	, m_worldBounds(sf::Vector2i(worldBounds.x, worldBounds.y + abs(worldBounds.x)))
 	, m_alive(false)
 	, m_health(0)
-	, m_kamikazeTimer(0)
 {
 	m_animations[Anims::Default].setSpriteSheet(tex);
 	m_animations[Anims::Default].addFrame(sf::IntRect(417, 0, 98, 98));
@@ -38,7 +37,6 @@ void Mutant::init(sf::Vector2f pos)
 {
 	m_state = Start;
 	m_position = pos;
-	m_maxSpeed = 20;
 	m_alive = true;
 	m_health = 100;
 	m_velocity = sf::Vector2f{ 0,300 };

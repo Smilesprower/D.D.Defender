@@ -202,11 +202,17 @@ sf::CircleShape Nest::drawFire()
 	return m_missileRadius;
 }
 
+int Nest::getState()
+{
+	return m_state;
+}
+
 void Nest::setDamage(int damage)
 {
 	m_health -= damage;
 	if (m_health <= 0)
 	{
+		m_state = States::Dying;
 		SoundPlayer::Instance()->play(SoundEffect::Explosion);
 		m_velocity = sf::Vector2f(0, 0);
 		if (m_currAnimation != &m_animations[Anims::Explode])

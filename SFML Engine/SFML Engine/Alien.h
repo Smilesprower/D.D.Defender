@@ -24,9 +24,9 @@ public:
 	enum State		/*!< Enum for States*/
 	{
 		Blank,
-		Target,
-		Capture,
-		Flock,
+		Target,						/*!<Targets Astro for capture by locking on to them*/
+		Capture,					/*!<Captures Astro in classic style by vertically moving them upwards out of the screen*/
+		Flock,						/*!<Flock with other Aliens while avoiding Player and Obstacles*/
 		Dying,
 	};
 

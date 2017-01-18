@@ -7,7 +7,7 @@ Bullet::Bullet(sf::Texture & tex)
 	, m_animatedSprite(sf::seconds(0.1f), true, false)
 	, m_animations(NUM_OF_ANIMS)
 {
-	
+
 	m_animations[Type::Lazer].setSpriteSheet(tex);
 	m_animations[Type::Lazer].addFrame(sf::IntRect(158, 0, 34, 9));
 
@@ -55,7 +55,6 @@ void Bullet::setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
-	m_animatedSprite.setRotation(0);
 }
 
 // bool playerBullet - decides if the player has fired or the com. Useful for collisions 
@@ -66,7 +65,7 @@ void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int
 	m_type = type;
 	m_playerBullet = playerBullet;
 	m_direction = direction;
-	m_velocity.x = (xSpeed + BULLET_SPEED) * m_direction ;
+	m_velocity.x = (xSpeed + BULLET_SPEED) * m_direction;
 	m_velocity.y = 0;
 	if (m_type == Default)
 	{
@@ -79,7 +78,6 @@ void Bullet::setUpBullet(sf::Vector2f position, float xSpeed, int direction, int
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
-	m_animatedSprite.setRotation(0);
 }
 
 void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, int type)
@@ -91,6 +89,7 @@ void Bullet::setUpMissile(sf::Vector2f position, sf::Vector2f targetPosition, in
 	m_animatedSprite.play(*m_currAnimation);
 	m_animatedSprite.setPosition(position);
 	m_animatedSprite.setOrigin(m_animatedSprite.getLocalBounds().width * 0.5f, m_animatedSprite.getLocalBounds().height * 0.5f);
+
 	sf::Vector2f temp = targetPosition - position;
 	temp = Helper::Normalize(temp);
 	float rotation = std::atan2(temp.y, temp.x);
@@ -100,7 +99,7 @@ void Bullet::update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount
 {
 	if (m_enabled)
 	{
-		if(m_type != Missile && m_type != Explosion)
+		if (m_type != Missile && m_type != Explosion)
 		{
 			m_animatedSprite.move(m_velocity * deltaTime.asSeconds());
 			m_animatedSprite.update(deltaTime);

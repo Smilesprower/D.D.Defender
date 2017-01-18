@@ -20,6 +20,6 @@ public:
 
 	void checkCollision(Player * player, std::vector<Bullet*> *bullets, std::vector<Obstacle*> *gasClouds,
 		std::vector<Obstacle*> *healthPacks, std::vector<Nest*> *nests, std::vector<Alien*> *aliens, 
-			std::vector<Astronaut*> *astronauts, std::vector<Mutant*> *mutants);
+			std::vector<Astronaut*> *astronauts, std::vector<Mutant*> *mutants);/*!< Checks collision for all entities including "Player, Nets, Mutant, Obstacle, Bullet and Alien*/
 };
 
