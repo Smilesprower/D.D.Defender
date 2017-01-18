@@ -167,6 +167,7 @@
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="Mutant.h" />
     <ClInclude Include="nest.h" />
     <ClInclude Include="Obstacle.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="GameoverScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="Mutant.cpp" />
     <ClCompile Include="nest.cpp" />
     <ClCompile Include="Obstacle.cpp" />
