@@ -1,4 +1,4 @@
-/*! \brief The Alien Class. Handles all the properties of the Abductor.
+/*! \brief Handles all the properties of the Abductor.
 *
 *
 *

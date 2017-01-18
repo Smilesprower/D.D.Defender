@@ -1,4 +1,4 @@
-/*! \brief The Scene Class. Requests the changing of scenes.
+/*! \brief Requests the changing of scenes.
 *
 *
 *

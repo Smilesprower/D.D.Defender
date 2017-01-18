@@ -1,4 +1,4 @@
-/*! \brief The Sound Player. Controls the playing of sounds.
+/*! \brief Controls the playing of sounds.
 *
 *
 *

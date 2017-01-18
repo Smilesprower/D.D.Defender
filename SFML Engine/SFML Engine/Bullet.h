@@ -1,4 +1,4 @@
-/*! \brief The Bullet Class. Handles all the properties of the bullet, and sets up each type of bullet.
+/*! \brief Handles all the properties of the bullet, and sets up each type of bullet.
 *
 *
 *

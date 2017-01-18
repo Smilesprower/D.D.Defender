@@ -1,4 +1,4 @@
-/*! \brief The Application Class. Handles the input, loading of textures and fonts, creates scenes.
+/*! \brief Handles the input, loading of textures and fonts, creates scenes.
 *
 *
 *

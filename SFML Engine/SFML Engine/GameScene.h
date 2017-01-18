@@ -1,4 +1,4 @@
-/*! \brief The Game Over Scene. Handles everything that occurs during the game.
+/*! \brief Handles everything that occurs during the game.
 *
 *
 *

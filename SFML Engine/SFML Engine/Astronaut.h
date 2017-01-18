@@ -1,4 +1,4 @@
-/*! \brief The Astronaut Class. Handles all the properties of the astronaut.
+/*! \brief Handles all the properties of the astronaut.
 *
 *
 *

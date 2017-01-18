@@ -1,4 +1,4 @@
-/*! \brief The Collision Manager. Handles all collision between each entity.
+/*! \brief Handles all collision between each entity.
 *
 *
 *

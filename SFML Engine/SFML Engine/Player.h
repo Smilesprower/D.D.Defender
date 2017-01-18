@@ -1,4 +1,4 @@
-/*! \brief The Player Class. Handles all the properties and responsibilities of the player.
+/*! \brief Handles all the properties and responsibilities of the player.
 *
 *
 *

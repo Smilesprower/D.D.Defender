@@ -1,4 +1,4 @@
-/*! \brief The Camera Class. Handles all the properties of the camera, controls the view.
+/*! \brief  Handles all the properties of the camera, controls the view.
 *
 *
 *

@@ -1,4 +1,4 @@
-/*! \brief The Scene Stack. Controls the changing of scenes.
+/*! \brief Controls the changing of scenes.
 *
 *
 *

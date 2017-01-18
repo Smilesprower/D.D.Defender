@@ -1,4 +1,4 @@
-/*! \brief The HUD Class. Handles the UI that is displayed during the game.
+/*! \brief Handles the UI that is displayed during the game.
 *
 *
 *

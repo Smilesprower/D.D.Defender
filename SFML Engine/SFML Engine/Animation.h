@@ -1,4 +1,4 @@
-/*! \brief The Animation Class. Allows user to animate a sprite using a sprite sheet.
+/*! \brief Allows user to animate a sprite using a sprite sheet.
 *
 *
 *

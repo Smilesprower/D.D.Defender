@@ -1,4 +1,4 @@
-/*! \brief The Animated Sprite Class. Controls the animation of sprites.
+/*! \brief Controls the animation of sprites.
 *
 *
 *

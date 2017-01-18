@@ -1,4 +1,4 @@
-/*! \brief The Bullet Maanger. This contains a reference to every bullet and is responsible for their generation.
+/*! \brief This contains a reference to every bullet and is responsible for their generation.
 *
 *
 *

@@ -1,4 +1,4 @@
-/*! \brief The Nest Class. Handles all the properties and responsibilities of the Nest.
+/*! \brief Handles all the properties and responsibilities of the Nest.
 *
 *
 *

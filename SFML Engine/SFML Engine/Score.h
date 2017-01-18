@@ -1,4 +1,4 @@
-/*! \brief The Score Class. Holds all score information required for the game.
+/*! \brief Holds all score information required for the game.
 *
 *
 *

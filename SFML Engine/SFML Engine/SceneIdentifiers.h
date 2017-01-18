@@ -1,4 +1,4 @@
-/*! \brief The Scene Identifiers. Holds the name/id of each scene.
+/*! \brief Holds the name/id of each scene.
 *
 *
 *

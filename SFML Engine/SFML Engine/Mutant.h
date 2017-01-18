@@ -1,4 +1,4 @@
-/*! \brief The Mutant Class. Handles all the properties of the Mutant.
+/*! \brief Handles all the properties of the Mutant.
 *
 *
 *

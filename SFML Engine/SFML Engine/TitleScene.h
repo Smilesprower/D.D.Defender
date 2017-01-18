@@ -1,4 +1,4 @@
-/*! \brief The Title Scene. Handles everything that occurs when the game has been paused.
+/*! \brief Handles everything that occurs when the game has been paused.
 *
 *
 *
