@@ -11,7 +11,7 @@
 class Bullet
 {
 public:
-	enum Type
+	enum Type			/*!< Enum for Bullet types*/
 	{
 		Default,
 		Lazer,
@@ -24,46 +24,43 @@ public:
 	Bullet(sf::Texture & tex);
 	Bullet();
 	~Bullet();
-	void setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, int type, bool playerBullet);
-	void setUpBullet(sf::Vector2f position, float xSpeed, int direction, int type, bool playerBullet);
-	void setUpMissile(sf::Vector2f position, sf::Vector2f playerPos, int type);
-	void update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount);
-	void setPosition(sf::Vector2f position);
-	sf::Vector2f getPosition();
-	bool isEnabled();
-	void setEnabled(bool);
-	int getType();
-	void setTTL(int ttl);
-	int getRadius();
-	void reset();
-	AnimatedSprite draw();
+	void setUpEBullet(sf::Vector2f position, sf::Vector2f targetPosition, int type, bool playerBullet); /*!< Set up Alien and Mutant bullets*/
+	void setUpBullet(sf::Vector2f position, float xSpeed, int direction, int type, bool playerBullet);	/*!< Set up player bullet*/
+	void setUpMissile(sf::Vector2f position, sf::Vector2f playerPos, int type);							/*!< Set up Nest Missile*/
+	void update(sf::Time deltaTime, sf::Vector2f playerPos, int &missleCount);							/*!< Update all bullets*/
+	void setPosition(sf::Vector2f position);															/*!< Set bullet position*/
+	sf::Vector2f getPosition();																			/*!< Get bullet position*/
+	bool isEnabled();																					/*!< Returns is bullet active*/
+	void setEnabled(bool);																				/*!< Sets if bullet is active*/
+	int getType();																						/*!< Returns bullet type*/
+	void setTTL(int ttl);																				/*!< Set bullets Time to Live*/
+	int getRadius();																					/*!< Gets bullets collision radius/bounds*/
+	void reset();																						/*!< Resets bullet to be used again as different types*/
+	AnimatedSprite draw();																				/*!< Returns bullet sprite to be drawn*/
 	sf::CircleShape drawMissileCollider();
 
 private:
-	const float MAX_ROTATION = 2.f;
-	const int MAX_FRAMES_EXPLOSION = 3;
-	const int MISSILE_SPEED = 350;
-	const int BULLET_SPEED = 1000;
-	const int BULLET_TTL = 2;
-	const int MISSILE_TTL = 5;
-	const int MISSILE_RADIUS = 20;
-	const int NUM_OF_EXP_FRAMES = 8;
-	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);
-	const int NUM_OF_ANIMS = 6;
+	const int MISSILE_SPEED = 350;						/*!< Max missile speed*/
+	const int BULLET_SPEED = 1000;						/*!< Max bullet speed*/
+	const int BULLET_TTL = 2;							/*!< Bullets time to live as seconds*/
+	const int MISSILE_TTL = 5;							/*!< Missiles time to live as seconds*/
+	const int MISSILE_RADIUS = 20;						/*!< Missiles collision radius/bounds*/
+	const int NUM_OF_EXP_FRAMES = 8;					/*!< Number of frames for explosion animation*/
+	const double ANGLE_TO_RADS = 180 / (atan(1) * 4);	/*!< Angle to Rads converter*/
+	const int NUM_OF_ANIMS = 6;							/*!< Number of bullet animations*/
 
-	int m_type;
-	int m_speed;
-	int m_direction;
-	bool m_enabled;
-	bool m_playerBullet;
-	float m_ttl;
+	int m_type;											/*!< Contains current type*/
+	int m_speed;										/*!< Contains current speed*/
+	int m_direction;									/*!< Contains current direction "Player only"*/
+	bool m_enabled;										/*!< Contains bullet enabled*/
+	bool m_playerBullet;								/*!< Is the bullet from the player state*/
+	float m_ttl;										/*!< Contains bullets time to live*/
+	sf::Vector2f m_velocity;							/*!< Contains velocity*/
 
-	sf::Vector2f m_velocity;
-	sf::Time m_frameTime;
-	AnimatedSprite m_animatedSprite;
-	std::vector<Animation> m_animations;
-	Animation* m_currAnimation;
-
-	sf::CircleShape m_missileCollider;
-};
-
+	sf::Time m_frameTime;								
+	AnimatedSprite m_animatedSprite;					
+	std::vector<Animation> m_animations;				
+	Animation* m_currAnimation;													
+	sf::CircleShape m_missileCollider;					
+};													
+										

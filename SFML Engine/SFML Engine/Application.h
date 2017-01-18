@@ -15,21 +15,19 @@ class Application
 {
 public:
 	Application();
-	void run();
+	void run();							/*!< Runs gameloop"*/
 
 private:
-	void handleInput();					// Handles Input and Events
-	void update(sf::Time deltaTime);	// Update
-	void render();						// Draw
-	void createScenes();				// Creating our states
+	void handleInput();					/*!< Handles input for the game "All Scenes"*/
+	void update(sf::Time deltaTime);	/*!< Handles update for the game "All Scenes"*/
+	void render();						/*!< Handles draw for the game "All Scenes"*/
+	void createScenes();				/*!< Creates all game scenes"*/
 
-private:
 
-	sf::RenderWindow m_window;
-	TextureHolder m_textures;
-	FontHolder m_fonts;
-	SceneStack m_sceneStack;
-	const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);
-
+	sf::RenderWindow m_window;			/*!< Render Window for the game"*/
+	TextureHolder m_textures;			/*!< Holds all the games Textures"*/
+	FontHolder m_fonts;					/*!< Holds all the games fonts"*/
+	SceneStack m_sceneStack;			/*!< Holds all the games Scenes"*/
+	const sf::Time TIME_PER_FRAME = sf::seconds(1.f / 60.f);	/*!<Game Update in frames per second"*/
 };
 

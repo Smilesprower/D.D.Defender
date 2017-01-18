@@ -20,7 +20,7 @@ public:
 	{
 		float dx = v.x - v2.x;
 		float dy = v.y - v2.y;
-		float dist = sqrt(dx*dx + dy*dy); //Based on definition of distance formula
+		float dist = sqrt(dx*dx + dy*dy);
 		return dist;
 	}
 	static sf::Vector2f Helper::Normalize(sf::Vector2f v)
@@ -49,8 +49,8 @@ public:
 		double dot = v.x * v2.x + v.y * v2.y;
 		double v1mag = sqrt(v.x * v.x + v.y * v.y);
 		double v2mag = sqrt(v2.x * v2.x + v2.y * v2.y);
-		double amt = dot / (v1mag * v2mag); //Based of definition of dot product
-											//dot product / product of magnitudes gives amt
+		double amt = dot / (v1mag * v2mag);
+										
 		if (amt <= -1) {
 			return PI;
 		}
