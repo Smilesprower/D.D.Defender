@@ -52,18 +52,22 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 {
 	if (m_alive)
 	{
+		float distanceSquared;
+		float dx = m_animatedSprite.getPosition().x - playerPos.x;
+		float dy = m_animatedSprite.getPosition().y - playerPos.y;
+		distanceSquared = (dx*dx) + (dy*dy);
 
 		mutantSize += 1;
 		m_bulletReloadTimer += deltaTime.asSeconds();
+
 		if (m_state == Start)
 		{
 			if (m_animatedSprite.getPosition().y > 200)
 			{
 				m_velocity = sf::Vector2f(0, 0);
-				m_state = FormationA;
+				m_state = FormationB;
 			}
 		}
-		// Piss player off
 		else if (m_state == FormationA)
 		{
 			if (mutantSize > 3)
@@ -82,8 +86,8 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 			}
 
 			sf::Vector2f targetSlot;
-			int npcRadius = 100;
-			int closeEnough = 100;
+			int npcRadius = 175;
+			int closeEnough = 175;
 			float angleAroundCircle = 0.0;
 
 			angleAroundCircle = ((float)currentMutant) / (mutantSize);
@@ -99,15 +103,10 @@ void Mutant::update(int mutantSize, int currentMutant, sf::Time deltaTime, sf::V
 
 			if (distance > closeEnough)
 			{
-				m_velocity = Helper::Normalize(m_velocity) * 500.0f;
+				m_velocity = Helper::Normalize(m_velocity) * MAX_VELOCITY;
 			}
 			else
 			{
-				float distanceSquared;
-				float dx = m_animatedSprite.getPosition().x - playerPos.x;
-				float dy = m_animatedSprite.getPosition().y - playerPos.y;
-				distanceSquared = (dx*dx) + (dy*dy);
-
 				if (distanceSquared < BULLET_RANGE * BULLET_RANGE)
 				{
 					if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
