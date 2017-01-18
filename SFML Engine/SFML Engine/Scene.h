@@ -11,6 +11,8 @@
 #include "SceneIdentifiers.h"
 #include "SoundPlayer.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include "MusicPlayer.h"
 
 class SceneStack;
 class Scene

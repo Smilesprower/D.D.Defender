@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "TitleScene.h"
+#include <iostream>
 
 TitleScene::TitleScene(SceneStack& stack, Context context)
 	: Scene(stack, context)								
@@ -58,6 +59,8 @@ bool TitleScene::handleEvent(const sf::Event& event)
 		{
 			requestStackPop();					// Removes current Scene from Stack
 			requestStackPush(Scenes::Game);		// Push Game Scene to the Stack
+			MusicPlayer::Instance()->stop();
+			MusicPlayer::Instance()->play(Music::GameTheme);
 		}
 		else if (m_selectedButton == 2)
 		{

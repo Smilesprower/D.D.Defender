@@ -206,10 +206,6 @@ void GameScene::draw()
 				window.draw(m_astronauts[i]->draw());
 			}
 		}
-		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
-		{
-			window.draw(m_gasClouds[i]->draw());
-		}
 		for (int i = 0; i < NUM_OF_HEALTH_PACKS; i++)
 		{
 			if (m_healthPacks[i]->isEnabled())
@@ -229,6 +225,10 @@ void GameScene::draw()
 			}
 		}
 		window.draw(m_playo->draw());
+		for (int i = 0; i < MAX_GAS_CLOUDS; i++)
+		{
+			window.draw(m_gasClouds[i]->draw());
+		}
 	}
 		
 	//// DEBUGGING CODE
@@ -293,6 +293,8 @@ bool GameScene::update(sf::Time deltaTime)
 	{
 		requestStackPop();
 		requestStackPush(Scenes::Gameover);
+		MusicPlayer::Instance()->stop();
+		MusicPlayer::Instance()->play(Music::GameOverTheme);
 	}
 	std::vector<Bullet*> bullets = BulletManager::Instance()->getBullets();
 
