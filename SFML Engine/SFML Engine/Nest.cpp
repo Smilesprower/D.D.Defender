@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "nest.h"
 #include "Score.h"
+#include "SoundPlayer.h"
 
 Nest::Nest(sf::Texture & tex, sf::Vector2i screenBounds)
 	: m_alive(false)
@@ -94,6 +95,8 @@ bool Nest::update(sf::Time deltaTime, sf::Vector2f playerPos)
 
 				if (distanceSquared < MISSILE_RANGE * MISSILE_RANGE)
 				{
+
+					SoundPlayer::Instance()->play(SoundEffect::Missile);
 					if (m_missileReloadTimer >= COOLDOWN_TIMER)
 					{
 						if (BulletManager::Instance()->createMissile(m_animatedSprite.getPosition(), playerPos, 2));
@@ -206,6 +209,7 @@ void Nest::setDamage(int damage)
 	m_health -= damage;
 	if (m_health <= 0)
 	{
+		SoundPlayer::Instance()->play(SoundEffect::Explosion);
 		m_velocity = sf::Vector2f(0, 0);
 		if (m_currAnimation != &m_animations[Anims::Explode])
 		{

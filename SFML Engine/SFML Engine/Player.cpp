@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Player.h"
 #include <iostream>
+#include "SoundPlayer.h"
 
 
 Player::Player()
@@ -146,6 +147,8 @@ void Player::Move(sf::Time deltaTime)
 		{
 			if (m_bulletTimer >= BULLET_RELOAD_TIME)
 			{
+
+				SoundPlayer::Instance()->play(SoundEffect::Lazer);
 				if (BulletManager::Instance()->createLaser(m_animatedSprite.getPosition(), MAX_SPEED, m_directionX, 1, true))
 					m_bulletTimer = 0;
 			}
@@ -228,6 +231,7 @@ void Player::setDamage(int damage)
 	m_health -= damage;
 	if (m_health <= 0 )
 	{
+		SoundPlayer::Instance()->play(SoundEffect::Explosion);
 		m_currAnimation = &m_animations[Anims::Explosion];
 		m_animatedSprite.setOrigin(40, 40);
 		m_animatedSprite.setScale(2, 2);
