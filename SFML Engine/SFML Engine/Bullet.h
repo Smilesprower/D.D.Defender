@@ -32,7 +32,6 @@ public:
 	sf::Vector2f getPosition();
 	bool isEnabled();
 	void setEnabled(bool);
-	void collided(bool);
 	int getType();
 	void setTTL(int ttl);
 	int getRadius();

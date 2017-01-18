@@ -42,7 +42,7 @@ void Alien::init(sf::Vector2f position)
 {
 	m_currentState = Flock;
 	m_alive = true;
-	m_velocity = sf::Vector2f(rand() % 201 + (-100) , rand() % 201 + (-100)); // Allows for range of -2 -> 2
+	m_velocity = sf::Vector2f(static_cast<float>(rand() % 201 + (-100)) , static_cast<float>(rand() % 201 + (-100))); // Allows for range of -2 -> 2
 	m_position = position;
 	m_health = 100;
 
@@ -167,7 +167,7 @@ bool Alien::run(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle, sf
 		if (m_currentState == Flock)
 		{
 			flock(alien,obstacle, playerPos, index);
-			updateFlocking(deltaTime, playerPos);
+			updateFlock(deltaTime, playerPos);
 			borders();
 		}
 		else if (m_currentState == Capture || m_currentState == Target)
@@ -182,7 +182,7 @@ bool Alien::run(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle, sf
 	return spawnMutant;
 }
 
-void Alien::updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos)
+void Alien::updateFlock(sf::Time deltaTime, sf::Vector2f playerPos)
 {
 	m_bulletReloadTimer += deltaTime.asSeconds();
 	float distanceSquared;
@@ -195,7 +195,7 @@ void Alien::updateFlocking(sf::Time deltaTime, sf::Vector2f playerPos)
 		if (m_bulletReloadTimer >= BULLET_COOLDOWN_TIMER)
 		{
 			SoundPlayer::Instance()->play(SoundEffect::AlienBullet);
-			if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 4, false));
+			if (BulletManager::Instance()->createEBullet(m_animatedSprite.getPosition(), playerPos, 4, false))
 			{
 				m_bulletReloadTimer = 0;
 			}
