@@ -54,7 +54,7 @@ void Alien::init(sf::Vector2f position)
 	m_animatedSprite.setScale(1, 1);
 }
 
-sf::Vector2f Alien::separation(std::vector<Alien*>* alien, int index)
+sf::Vector2f Alien::separation(std::vector<Alien*>* alien, std::vector<Obstacle*> *obstacle, int index)
 {
 	sf::Vector2f steer{ 0,0 };
 	int neighbourCount = 0;
@@ -69,6 +69,14 @@ sf::Vector2f Alien::separation(std::vector<Alien*>* alien, int index)
 				steer += alien->at(i)->getPosition() - m_animatedSprite.getPosition();
 				neighbourCount++;
 			}
+		}
+	}
+	for (int i = 0; i < obstacle->size(); i++)
+	{
+		if (Helper::Distance(m_animatedSprite.getPosition(), obstacle->at(i)->getPosition()) < neighbordist)
+		{
+			steer += obstacle->at(i)->getPosition() - m_animatedSprite.getPosition();
+			neighbourCount++;
 		}
 	}
 	if (neighbourCount == 0)
@@ -151,7 +159,7 @@ bool Alien::run(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle, sf
 		checkBounds();
 		if (m_currentState == Flock)
 		{
-			flock(alien, index);
+			flock(alien,obstacle, index);
 			updateFlocking(deltaTime, playerPos);
 			borders();
 		}
@@ -264,9 +272,9 @@ void Alien::borders()
 	}
 }
 
-void Alien::flock(std::vector<Alien*> *alien, int index)
+void Alien::flock(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle,  int index)
 {
-	sf::Vector2f sep = separation(alien, index);
+	sf::Vector2f sep = separation(alien, obstacle, index);
 	sf::Vector2f ali = alignment(alien, index);
 	sf::Vector2f coh = cohesion(alien, index);
 

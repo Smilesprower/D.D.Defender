@@ -35,7 +35,7 @@ public:
 	void init(sf::Vector2f position);
 
 
-	sf::Vector2f separation(std::vector<Alien*> *alien, int index);
+	sf::Vector2f separation(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle, int index);
 	sf::Vector2f alignment(std::vector<Alien*>* alien, int index);
 	sf::Vector2f cohesion(std::vector<Alien*> *alien, int index);
 
@@ -44,7 +44,7 @@ public:
 	bool updateTargetCapture(sf::Time dt);
 	void updateDying(sf::Time dt);
 	void borders();
-	void flock(std::vector<Alien*> *alien, int index);
+	void flock(std::vector<Alien*> *alien, std::vector<Obstacle*> *obstacle, int index);
 
 	bool getAlive();
 	void setAlive(bool alive);
