@@ -13,8 +13,8 @@ class TitleScene : public Scene
 public:
 	TitleScene(SceneStack& stack, Context context);
 
-	void draw() override;	/*!< This draws the title scene, anything that is placed on the title scene is drawn here*/
-	bool update(sf::Time deltaTime) override;	/*!< This updates the title scene, it will update everything on the title scene*/
+	void draw() override;								/*!< This draws the title scene, anything that is placed on the title scene is drawn here*/
+	bool update(sf::Time deltaTime) override;			/*!< This updates the title scene, it will update everything on the title scene*/
 	bool handleEvent(const sf::Event& event) override;	/*!< This handles the events on the title scene*/
 
 private:
