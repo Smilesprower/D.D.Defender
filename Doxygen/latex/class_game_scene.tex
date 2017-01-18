@@ -66,13 +66,13 @@ Handles everything that occurs during the game.
 \subsubsection{\texorpdfstring{check\+Enemies\+Alive()}{checkEnemiesAlive()}}
 {\footnotesize\ttfamily bool Game\+Scene\+::check\+Enemies\+Alive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}\label{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}} 
+Check to see if all enemies have been killed, complete game when all enemies are dead \mbox{\Hypertarget{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}\label{class_game_scene_ae9eb60cbb8fa55eeb07b951e3d83f426}} 
 \index{Game\+Scene@{Game\+Scene}!draw@{draw}}
 \index{draw@{draw}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{draw()}{draw()}}
 {\footnotesize\ttfamily void Game\+Scene\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-
+Manages drawing all game entities in the gamescene 
 
 Implements \hyperlink{class_scene_a789c16961aa1e316b2a4a05b95187546}{Scene}.
 
@@ -82,7 +82,7 @@ Implements \hyperlink{class_scene_a789c16961aa1e316b2a4a05b95187546}{Scene}.
 \subsubsection{\texorpdfstring{handle\+Event()}{handleEvent()}}
 {\footnotesize\ttfamily bool Game\+Scene\+::handle\+Event (\begin{DoxyParamCaption}\item[{const sf\+::\+Event \&}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-
+Manages handle input for the gamescene 
 
 Implements \hyperlink{class_scene_af25e4d2c998aca4e95899fb67488e815}{Scene}.
 
@@ -92,25 +92,25 @@ Implements \hyperlink{class_scene_af25e4d2c998aca4e95899fb67488e815}{Scene}.
 \subsubsection{\texorpdfstring{screen\+Switch()}{screenSwitch()}}
 {\footnotesize\ttfamily void Game\+Scene\+::screen\+Switch (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \hyperlink{class_bullet}{Bullet} $\ast$$>$}]{bullets }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_game_scene_aca0b30f731595929fb7182e2f65941b1}\label{class_game_scene_aca0b30f731595929fb7182e2f65941b1}} 
+When the player screen swap from onside to the other any enemy with in the players view gets swapped also \mbox{\Hypertarget{class_game_scene_aca0b30f731595929fb7182e2f65941b1}\label{class_game_scene_aca0b30f731595929fb7182e2f65941b1}} 
 \index{Game\+Scene@{Game\+Scene}!setup\+Ripple@{setup\+Ripple}}
 \index{setup\+Ripple@{setup\+Ripple}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{setup\+Ripple()}{setupRipple()}}
 {\footnotesize\ttfamily void Game\+Scene\+::setup\+Ripple (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_game_scene_a67664e1bbce6bec9eda855a9b109d9ec}\label{class_game_scene_a67664e1bbce6bec9eda855a9b109d9ec}} 
+Sets up the ripple/teleporting shader effect using players current position \mbox{\Hypertarget{class_game_scene_a67664e1bbce6bec9eda855a9b109d9ec}\label{class_game_scene_a67664e1bbce6bec9eda855a9b109d9ec}} 
 \index{Game\+Scene@{Game\+Scene}!setup\+Shockwave@{setup\+Shockwave}}
 \index{setup\+Shockwave@{setup\+Shockwave}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{setup\+Shockwave()}{setupShockwave()}}
 {\footnotesize\ttfamily void Game\+Scene\+::setup\+Shockwave (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{player\+Pos }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{class_game_scene_ae54628d2f041bcad66242584b2db10d6}\label{class_game_scene_ae54628d2f041bcad66242584b2db10d6}} 
+Sets up the shockwave/smartbomb shader effect using players current position \mbox{\Hypertarget{class_game_scene_ae54628d2f041bcad66242584b2db10d6}\label{class_game_scene_ae54628d2f041bcad66242584b2db10d6}} 
 \index{Game\+Scene@{Game\+Scene}!update@{update}}
 \index{update@{update}!Game\+Scene@{Game\+Scene}}
 \subsubsection{\texorpdfstring{update()}{update()}}
 {\footnotesize\ttfamily bool Game\+Scene\+::update (\begin{DoxyParamCaption}\item[{sf\+::\+Time}]{delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-
+Manages the update of all game entities in the gamescene 
 
 Implements \hyperlink{class_scene_a72683c984a1da2ce4f757705e93730f2}{Scene}.
 
