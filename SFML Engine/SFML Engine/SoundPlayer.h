@@ -16,22 +16,22 @@ class SoundPlayer
 
 public:
 
-	static SoundPlayer * Instance();
-	void play(SoundEffect::ID effect);
-	void removeStoppedSounds();
+	static SoundPlayer * Instance();	 /*!< Instance of the Sound Player to be accessed by other classes*/
+	void play(SoundEffect::ID effect);	 /*!< Function to play the sound effect*/
+	void removeStoppedSounds();			 /*!< Function to remove sounds from buffer that aren't playing*/
 
 private:
 
-	SoundBufferHolder m_soundBuffers;
-	std::list<sf::Sound> m_sounds;
+	SoundBufferHolder m_soundBuffers;	 /*!< Soundbuffer to load and hold different sound effects*/
+	std::list<sf::Sound> m_sounds;		 /*!< List of sound effects to be played*/
 
-	static SoundPlayer *m_inst;
+	static SoundPlayer *m_inst;			 /*!< Used for creation of sound player instance*/
 
 	// Disallow Copying
 	SoundPlayer(const SoundPlayer&);
 	SoundPlayer& operator=(const SoundPlayer&);
 
-	SoundPlayer();
+	SoundPlayer();						/*!< Constructor loads in sound effects*/
 	~SoundPlayer();
 };
 
