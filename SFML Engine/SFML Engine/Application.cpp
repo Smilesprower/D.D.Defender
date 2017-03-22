@@ -34,6 +34,7 @@ Application::Application()
 
 	//	Button Texture
 	m_textures.load(Textures::Button, "../resources/tex/UI/Button.png");
+	m_textures.load(Textures::ButtonHL, "../resources/tex/UI/ButtonHL.png");
 
 	// Gas Cloud Texture
 	m_textures.load(Textures::GasCloud, "../resources/tex/Game/Misc/GasCloud.png");

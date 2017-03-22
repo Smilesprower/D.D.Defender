@@ -22,6 +22,7 @@ namespace Textures	/*!< ID of all game textures*/
 		GameOverBG,
 		GameWinBG,
 		Button,
+		ButtonHL,
 		HUD,
 		GasCloud,
 	};
